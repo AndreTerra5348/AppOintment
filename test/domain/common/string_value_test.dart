@@ -5,14 +5,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("String Value Validators", () {
-    group("StringMaxLengthValidator", stringMaxLengthValidatorTests);
-    group("StringMinLengthValidator", stringMinLengthValidatorTests);
+    group("StringMaxLengthValidator call", stringMaxLengthValidatorCallTests);
+    group("StringMinLengthValidator call", stringMinLengthValidatorCallTests);
   });
 }
 
-void stringMaxLengthValidatorTests() {
+void stringMaxLengthValidatorCallTests() {
   test(
-      "Should return a type of Right<StringFailure, String> when validate is call with a string whose length is less than maxLength parameter",
+      "Should return the testing String when validate is call with a string whose length is less than maxLength parameter",
       () {
     // Arrange
     String value = "test";
@@ -21,26 +21,10 @@ void stringMaxLengthValidatorTests() {
     Validator<StringFailure, String> sut = StringMaxLengthValidator(maxLength);
 
     // Act
-    var actual = sut(value);
+    var actual = sut(value) as Right;
 
     // Assert
-    expect(actual, isA<Right<StringFailure, String>>());
-  });
-
-  test(
-      "Should return Right(value) when validate is call with a string whose length is less than maxLength parameter",
-      () {
-    // Arrange
-    String value = "test";
-    int maxLength = 5;
-
-    Validator<StringFailure, String> sut = StringMaxLengthValidator(maxLength);
-
-    // Act
-    var actual = sut(value);
-
-    // Assert
-    expect(actual, Right(value));
+    expect(actual.value, value);
   });
 
   test(
@@ -104,9 +88,9 @@ void stringMaxLengthValidatorTests() {
   });
 }
 
-void stringMinLengthValidatorTests() {
+void stringMinLengthValidatorCallTests() {
   test(
-      "Should return a type of Right<StringFailure, String> when validate is call with a string whose length is greater than minLength parameter",
+      "Should return the testing String when validate is call with a string whose length is greater than minLength parameter",
       () {
     // Arrange
     String value = "test";
@@ -115,26 +99,10 @@ void stringMinLengthValidatorTests() {
     Validator<StringFailure, String> sut = StringMinLengthValidator(minLength);
 
     // Act
-    var actual = sut(value);
+    var actual = sut(value) as Right;
 
     // Assert
-    expect(actual, isA<Right<StringFailure, String>>());
-  });
-
-  test(
-      "Should return Right(value) when validate is call with a string whose length is greater than minLength parameter",
-      () {
-    // Arrange
-    String value = "test";
-    int minLength = 3;
-
-    Validator<StringFailure, String> sut = StringMinLengthValidator(minLength);
-
-    // Act
-    var actual = sut(value);
-
-    // Assert
-    expect(actual, Right(value));
+    expect(actual.value, value);
   });
 
   test(
