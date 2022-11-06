@@ -33,7 +33,7 @@ jobs:
         run: flutter analyze
 
       - name: Run Tests
-        run: flutter test --coverage --machine > test-results.json
+        run: flutter test --machine > test-results.json
 
       - name: Generate Test Report
         uses: dorny/test-reporter@v1.4.2
@@ -41,8 +41,3 @@ jobs:
           name: test-results
           path: test-results.json
           reporter: flutter-json
-
-      - name: Check Test Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
-        with:
-          min_coverage: 80
