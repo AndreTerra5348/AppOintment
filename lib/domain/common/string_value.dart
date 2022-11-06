@@ -4,19 +4,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'string_value.freezed.dart';
 
-class StringLenValidator extends Validator<StringFailure, String> {
-  final int _len;
+class StringMaxLengthValidator extends Validator<ExceedingLength, String> {
+  final int _length;
 
-  StringLenValidator(this._len);
+  StringMaxLengthValidator(this._length);
   @override
-  Either<StringFailure, String> call(String value) {
-    return value.length >= _len
-        ? const Left(StringFailure.exceedingLength())
+  Either<ExceedingLength, String> call(String value) {
+    return value.length >= _length
+        ? Left(StringFailure.exceedingLength(value: value, length: _length)
+            as ExceedingLength)
         : Right(value);
   }
 }
 
 @freezed
 class StringFailure with _$StringFailure {
-  const factory StringFailure.exceedingLength() = _ExceedingLength;
+  const factory StringFailure.exceedingLength(
+      {required String value, required int length}) = ExceedingLength;
 }
