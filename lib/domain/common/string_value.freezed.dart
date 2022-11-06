@@ -17,23 +17,25 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$StringFailure {
   String get value => throw _privateConstructorUsedError;
-  int get length => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String value, int length) maxLength,
     required TResult Function(String value, int length) minLength,
+    required TResult Function(String value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String value, int length)? maxLength,
     TResult? Function(String value, int length)? minLength,
+    TResult? Function(String value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String value, int length)? maxLength,
     TResult Function(String value, int length)? minLength,
+    TResult Function(String value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -41,18 +43,21 @@ mixin _$StringFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(MaxLengthFailure value) maxLength,
     required TResult Function(MinLengthFailure value) minLength,
+    required TResult Function(EmptyStringFailure value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MaxLengthFailure value)? maxLength,
     TResult? Function(MinLengthFailure value)? minLength,
+    TResult? Function(EmptyStringFailure value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MaxLengthFailure value)? maxLength,
     TResult Function(MinLengthFailure value)? minLength,
+    TResult Function(EmptyStringFailure value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,7 +73,7 @@ abstract class $StringFailureCopyWith<$Res> {
           StringFailure value, $Res Function(StringFailure) then) =
       _$StringFailureCopyWithImpl<$Res, StringFailure>;
   @useResult
-  $Res call({String value, int length});
+  $Res call({String value});
 }
 
 /// @nodoc
@@ -85,17 +90,12 @@ class _$StringFailureCopyWithImpl<$Res, $Val extends StringFailure>
   @override
   $Res call({
     Object? value = null,
-    Object? length = null,
   }) {
     return _then(_value.copyWith(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      length: null == length
-          ? _value.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -176,6 +176,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(String value, int length) maxLength,
     required TResult Function(String value, int length) minLength,
+    required TResult Function(String value) empty,
   }) {
     return maxLength(value, length);
   }
@@ -185,6 +186,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String value, int length)? maxLength,
     TResult? Function(String value, int length)? minLength,
+    TResult? Function(String value)? empty,
   }) {
     return maxLength?.call(value, length);
   }
@@ -194,6 +196,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String value, int length)? maxLength,
     TResult Function(String value, int length)? minLength,
+    TResult Function(String value)? empty,
     required TResult orElse(),
   }) {
     if (maxLength != null) {
@@ -207,6 +210,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(MaxLengthFailure value) maxLength,
     required TResult Function(MinLengthFailure value) minLength,
+    required TResult Function(EmptyStringFailure value) empty,
   }) {
     return maxLength(this);
   }
@@ -216,6 +220,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MaxLengthFailure value)? maxLength,
     TResult? Function(MinLengthFailure value)? minLength,
+    TResult? Function(EmptyStringFailure value)? empty,
   }) {
     return maxLength?.call(this);
   }
@@ -225,6 +230,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MaxLengthFailure value)? maxLength,
     TResult Function(MinLengthFailure value)? minLength,
+    TResult Function(EmptyStringFailure value)? empty,
     required TResult orElse(),
   }) {
     if (maxLength != null) {
@@ -241,7 +247,6 @@ abstract class MaxLengthFailure implements StringFailure {
 
   @override
   String get value;
-  @override
   int get length;
   @override
   @JsonKey(ignore: true)
@@ -325,6 +330,7 @@ class _$MinLengthFailure implements MinLengthFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(String value, int length) maxLength,
     required TResult Function(String value, int length) minLength,
+    required TResult Function(String value) empty,
   }) {
     return minLength(value, length);
   }
@@ -334,6 +340,7 @@ class _$MinLengthFailure implements MinLengthFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String value, int length)? maxLength,
     TResult? Function(String value, int length)? minLength,
+    TResult? Function(String value)? empty,
   }) {
     return minLength?.call(value, length);
   }
@@ -343,6 +350,7 @@ class _$MinLengthFailure implements MinLengthFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String value, int length)? maxLength,
     TResult Function(String value, int length)? minLength,
+    TResult Function(String value)? empty,
     required TResult orElse(),
   }) {
     if (minLength != null) {
@@ -356,6 +364,7 @@ class _$MinLengthFailure implements MinLengthFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(MaxLengthFailure value) maxLength,
     required TResult Function(MinLengthFailure value) minLength,
+    required TResult Function(EmptyStringFailure value) empty,
   }) {
     return minLength(this);
   }
@@ -365,6 +374,7 @@ class _$MinLengthFailure implements MinLengthFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MaxLengthFailure value)? maxLength,
     TResult? Function(MinLengthFailure value)? minLength,
+    TResult? Function(EmptyStringFailure value)? empty,
   }) {
     return minLength?.call(this);
   }
@@ -374,6 +384,7 @@ class _$MinLengthFailure implements MinLengthFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MaxLengthFailure value)? maxLength,
     TResult Function(MinLengthFailure value)? minLength,
+    TResult Function(EmptyStringFailure value)? empty,
     required TResult orElse(),
   }) {
     if (minLength != null) {
@@ -390,10 +401,154 @@ abstract class MinLengthFailure implements StringFailure {
 
   @override
   String get value;
-  @override
   int get length;
   @override
   @JsonKey(ignore: true)
   _$$MinLengthFailureCopyWith<_$MinLengthFailure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EmptyStringFailureCopyWith<$Res>
+    implements $StringFailureCopyWith<$Res> {
+  factory _$$EmptyStringFailureCopyWith(_$EmptyStringFailure value,
+          $Res Function(_$EmptyStringFailure) then) =
+      __$$EmptyStringFailureCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$EmptyStringFailureCopyWithImpl<$Res>
+    extends _$StringFailureCopyWithImpl<$Res, _$EmptyStringFailure>
+    implements _$$EmptyStringFailureCopyWith<$Res> {
+  __$$EmptyStringFailureCopyWithImpl(
+      _$EmptyStringFailure _value, $Res Function(_$EmptyStringFailure) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$EmptyStringFailure(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EmptyStringFailure implements EmptyStringFailure {
+  const _$EmptyStringFailure({required this.value});
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'StringFailure.empty(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmptyStringFailure &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmptyStringFailureCopyWith<_$EmptyStringFailure> get copyWith =>
+      __$$EmptyStringFailureCopyWithImpl<_$EmptyStringFailure>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String value, int length) maxLength,
+    required TResult Function(String value, int length) minLength,
+    required TResult Function(String value) empty,
+  }) {
+    return empty(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String value, int length)? maxLength,
+    TResult? Function(String value, int length)? minLength,
+    TResult? Function(String value)? empty,
+  }) {
+    return empty?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String value, int length)? maxLength,
+    TResult Function(String value, int length)? minLength,
+    TResult Function(String value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MaxLengthFailure value) maxLength,
+    required TResult Function(MinLengthFailure value) minLength,
+    required TResult Function(EmptyStringFailure value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MaxLengthFailure value)? maxLength,
+    TResult? Function(MinLengthFailure value)? minLength,
+    TResult? Function(EmptyStringFailure value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MaxLengthFailure value)? maxLength,
+    TResult Function(MinLengthFailure value)? minLength,
+    TResult Function(EmptyStringFailure value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyStringFailure implements StringFailure {
+  const factory EmptyStringFailure({required final String value}) =
+      _$EmptyStringFailure;
+
+  @override
+  String get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$EmptyStringFailureCopyWith<_$EmptyStringFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

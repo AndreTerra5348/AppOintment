@@ -42,7 +42,7 @@ jobs:
           path: test-results.json
           reporter: flutter-json
 
-      - name: Generate Test Coverage
+      - name: Check Test Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
           min_coverage: 50
