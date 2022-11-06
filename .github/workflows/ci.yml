@@ -12,24 +12,37 @@ on:
 
 jobs:
   unit-test:
-    name: Run Flutter analyze and test
+    name: Continuous Integration Jobs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clone Flutter repository with stable channel
+        uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-      - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter format --dry-run --set-exit-if-changed lib/
-      - run: flutter format --dry-run --set-exit-if-changed test/
-      - run: flutter test --coverage
-      - run: flutter test --machine > test-results.json
-      - uses: dorny/test-reporter@v1.4.2
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Format
+        run: flutter format --dry-run --set-exit-if-changed lib/ test/
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run Tests
+        run: flutter test --coverage --machine > test-results.json
+
+      - name: Generate Test Report
+        uses: dorny/test-reporter@v1.4.2
         with:
           name: test-results
           path: test-results.json
           reporter: flutter-json
-      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+
+      - name: Check Test Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
-          min_coverage: 0
+          min_coverage: 80
