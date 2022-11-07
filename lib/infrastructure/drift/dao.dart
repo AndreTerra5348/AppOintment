@@ -1,13 +1,30 @@
-class Dao<T_Model> {
-  /// Returns model id
-  Future<int> insert(T_Model model) {
-    return Future.sync(() => 0);
-  }
+import 'package:appointment/domain/common/uid.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
+import 'package:appointment/infrastructure/drift/tables.dart';
+import 'package:drift/drift.dart';
+
+part 'dao.g.dart';
+
+abstract class Dao<T_Model extends DataClass> {
+  Future<int> insert(Insertable<T_Model> model);
+  Future<T_Model> getByUid(Uid uid);
 }
 
-class ClientModel {
-  final String name;
-  final int id;
+@DriftAccessor(tables: [ClientModels])
+class ClientDao extends DatabaseAccessor<AppDb>
+    with _$ClientDaoMixin
+    implements Dao<ClientModel> {
+  ClientDao(super.attachedDatabase);
 
-  ClientModel(this.name, this.id);
+  @override
+  Future<int> insert(Insertable<ClientModel> model) {
+    return into(clientModels).insert(model);
+  }
+
+  @override
+  Future<ClientModel> getByUid(Uid uid) {
+    return (select(clientModels)
+          ..where((tbl) => tbl.id.equals(uid.getOrCrash())))
+        .getSingle();
+  }
 }

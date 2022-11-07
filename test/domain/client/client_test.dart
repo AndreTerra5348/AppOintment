@@ -16,11 +16,11 @@ void firstNameTests() {
         "Should return a type of Right<Iterable<StringFailure>, String>, String> when name length is equal to 1",
         () {
       // Arrange
-      String name = "J";
-      var sut = Name(name);
+      const name = "J";
+      final sut = Name(name);
 
       // Act
-      var actual = sut.value;
+      final actual = sut.value;
 
       // Assert
       expect(actual, isA<Right>());
@@ -32,11 +32,11 @@ void firstNameTests() {
         "Should return a type of Left<Iterable<StringFailure>, String> when name length is less than 1",
         () {
       // Arrange
-      String name = "";
-      var sut = Name(name);
+      const name = "";
+      final sut = Name(name);
 
       // Act
-      var actual = sut.value;
+      final actual = sut.value;
 
       // Assert
       expect(actual, isA<Left<Iterable<StringFailure>, String>>());

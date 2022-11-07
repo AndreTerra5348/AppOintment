@@ -7,7 +7,7 @@ class UnexpectedValueError<T_Failure> extends Error {
 
   @override
   String toString() {
-    var failuresMessage = failures.map((e) => e.toString()).join(", ");
+    final failuresMessage = failures.map((e) => e.toString()).join(", ");
     return Error.safeToString('Critical Failure: $failuresMessage');
   }
 }
@@ -23,10 +23,10 @@ abstract class ValueObject<T_Failure, T_Value> {
   bool isValid() => value.isRight();
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
 
-    return o is ValueObject<T_Failure, T_Value> && o.value == value;
+    return other is ValueObject<T_Failure, T_Value> && other.value == value;
   }
 
   @override
@@ -38,7 +38,7 @@ abstract class ValueObject<T_Failure, T_Value> {
 
 Either<Iterable<T_Failure>, T_Value> validate<T_Failure, T_Value>(
     Iterable<Validation<T_Failure, T_Value>> validators, T_Value value) {
-  var failures = validators
+  final failures = validators
       .map((validator) => validator(value))
       .where((element) => element.isLeft())
       .cast<Left<T_Failure, T_Value>>()

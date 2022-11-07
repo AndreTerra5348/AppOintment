@@ -2,15 +2,18 @@ import 'package:appointment/domain/client/client.dart';
 import 'package:appointment/domain/common/uid.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/drift/dao.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
+import 'package:appointment/infrastructure/drift/entity_model_converter.dart';
 import 'package:appointment/infrastructure/drift/repositories.dart';
 import 'package:dartz/dartz.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'client_repository_test.mocks.dart';
+import 'repositories_test.mocks.dart';
 
-@GenerateMocks([Dao])
+@GenerateMocks([Dao<ClientModel>])
 void main() {
   group("Client Repository", () {
     group("Insert", insertTests);
@@ -20,46 +23,49 @@ void main() {
 void insertTests() {
   test("Should call Dao<ClientModel> insert only once", () async {
     // Arrange
-    var clientDao = MockDao<ClientModel>();
-    var client = Client.withoutUid(name: Name("Bob"));
+    final clientDao = MockDao<ClientModel>();
+    final client = Client.withoutUid(name: Name("Bob"));
 
-    IRepository<Client> clientRepository = ClientRepository(clientDao);
+    final sut = ClientRepository(clientDao, ClientConveter());
 
     // Act
-    await clientRepository.insert(client);
+    await sut.insert(client);
 
     // Assert
     verify(clientDao.insert(any)).called(1);
   });
 
-  test("Should call Dao<ClientModel> insert with clientModel", () async {
+  test("Should call Dao<ClientModel> insert with clientModelsCompanion",
+      () async {
     // Arrange
-    var clientDao = MockDao<ClientModel>();
-    var client = Client.withoutUid(name: Name("Bob"));
+    final clientDao = MockDao<ClientModel>();
+    when(clientDao.insert(any))
+        .thenAnswer((realInvocation) => Future.sync(() => 0));
+    final client = Client.withoutUid(name: Name("Bob"));
 
-    IRepository<Client> clientRepository = ClientRepository(clientDao);
+    final sut = ClientRepository(clientDao, ClientConveter());
 
     // Act
-    await clientRepository.insert(client);
+    await sut.insert(client);
 
     // Assert
     expect(verify(clientDao.insert(captureAny)).captured.single,
-        isA<ClientModel>());
+        isA<UpdateCompanion<ClientModel>>());
   });
 
   test("Should return client with correct id when insert is called", () async {
     // Arrange
-    var client = Client.withoutUid(name: Name("Bob"));
+    final client = Client.withoutUid(name: Name("Bob"));
 
-    var clientDao = MockDao<ClientModel>();
-    var id = 1;
+    final clientDao = MockDao<ClientModel>();
+    const id = 1;
     when(clientDao.insert(any))
         .thenAnswer((realInvocation) => Future.sync(() => id));
 
-    IRepository<Client> clientRepository = ClientRepository(clientDao);
+    final sut = ClientRepository(clientDao, ClientConveter());
 
     // Act
-    var actual = await clientRepository.insert(client);
+    final actual = await sut.insert(client);
 
     // Assert
     expect(actual, isA<Right<RepositoryFailure, Client>>());
@@ -70,13 +76,14 @@ void insertTests() {
   test("Should return RepositoryFailure when Dao<ClientModel> throws exception",
       () async {
     // Arrange
-    var client = Client.withoutUid(name: Name("Bob"));
-    var clientDao = MockDao<ClientModel>();
+    final client = Client.withoutUid(name: Name("Bob"));
+    final clientDao = MockDao<ClientModel>();
     when(clientDao.insert(any)).thenThrow(Exception("Mocked Exception"));
-    IRepository<Client> clientRepository = ClientRepository(clientDao);
+
+    final sut = ClientRepository(clientDao, ClientConveter());
 
     // Act
-    var actual = await clientRepository.insert(client);
+    final actual = await sut.insert(client);
 
     // Assert
     expect(actual, isA<Left<RepositoryFailure, Client>>());

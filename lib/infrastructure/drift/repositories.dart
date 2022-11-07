@@ -2,33 +2,31 @@ import 'package:appointment/domain/common/uid.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/drift/dao.dart';
 import 'package:appointment/domain/client/client.dart';
+import 'package:appointment/infrastructure/drift/entity_model_converter.dart';
 import 'package:dartz/dartz.dart';
+import 'package:drift/drift.dart';
 
-abstract class BaseRepository<T_Entity, T_Table>
+import 'drift_db.dart';
+
+abstract class BaseRepository<T_Entity, T_Model extends DataClass>
     implements IRepository<T_Entity> {
-  final Dao<T_Table> _dao;
+  final Dao<T_Model> _dao;
+  final EntityModelConverter<T_Entity, T_Model> converter;
 
-  BaseRepository(this._dao);
-}
-
-class ClientRepository extends BaseRepository<Client, ClientModel> {
-  ClientRepository(super.dao);
+  BaseRepository(this._dao, this.converter);
 
   @override
-  Future<Either<RepositoryFailure, Client>> insert(Client entity) async {
+  Future<Either<RepositoryFailure, T_Entity>> insert(T_Entity entity) async {
     try {
-      var id = await _dao.insert(toModel(entity));
-      return Right(entity.copyWith(id: Uid.fromInt(id)));
+      final companion = converter.toUpdateCompanion(entity);
+      final id = await _dao.insert(companion);
+      return Right(converter.toEntityWithId(entity, Uid.fromInt(id)));
     } catch (error) {
       return Left(RepositoryFailure.dbException(error: error));
     }
   }
+}
 
-  Client toEntity(ClientModel model) {
-    return Client(name: Name(model.name), id: Uid.fromInt(model.id));
-  }
-
-  ClientModel toModel(Client client) {
-    return ClientModel((client.name.value as Right).value, 0);
-  }
+class ClientRepository extends BaseRepository<Client, ClientModel> {
+  ClientRepository(super.dao, super.converter);
 }
