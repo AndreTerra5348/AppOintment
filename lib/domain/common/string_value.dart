@@ -42,7 +42,7 @@ class NonEmptyStringValidator extends Validator<EmptyStringFailure, String> {
 }
 
 @freezed
-class StringFailure with _$StringFailure {
+abstract class StringFailure with _$StringFailure {
   const factory StringFailure.maxLength(
       {required String value, required int length}) = MaxLengthFailure;
   const factory StringFailure.minLength(

@@ -2,7 +2,9 @@ import 'package:appointment/domain/common/string_value.dart';
 import 'package:appointment/domain/common/value_object.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 
+@GenerateMocks([ValueObject<StringFailure, String>])
 void main() {
   group("Validate Method", validateTests);
 }
