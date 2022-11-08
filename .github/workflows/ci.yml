@@ -42,7 +42,9 @@ jobs:
           path: test-results.json
           reporter: flutter-json
 
-      - name: Check Test Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+      - name: Report code coverage
+        uses: zgosalvez/github-actions-report-lcov@v1
         with:
-          min_coverage: 50
+          coverage-files: coverage/lcov.*.info
+          minimum-coverage: 80
+          artifact-name: code-coverage-report
