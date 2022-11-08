@@ -36,7 +36,7 @@ class NonEmptyStringValidator extends Validator<EmptyStringFailure, String> {
   @override
   Either<EmptyStringFailure, String> call(String value) {
     return value.isEmpty
-        ? Left(StringFailure.empty(value: value) as EmptyStringFailure)
+        ? const Left(StringFailure.empty() as EmptyStringFailure)
         : Right(value);
   }
 }
@@ -47,6 +47,5 @@ class StringFailure with _$StringFailure {
       {required String value, required int length}) = MaxLengthFailure;
   const factory StringFailure.minLength(
       {required String value, required int length}) = MinLengthFailure;
-  const factory StringFailure.empty({required String value}) =
-      EmptyStringFailure;
+  const factory StringFailure.empty() = EmptyStringFailure;
 }

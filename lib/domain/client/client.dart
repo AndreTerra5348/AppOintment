@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'client.freezed.dart';
 
 @freezed
-abstract class Client implements _$Client {
+abstract class Client with _$Client {
   const Client._();
 
   const factory Client({required Name name, required Uid id}) = _Client;

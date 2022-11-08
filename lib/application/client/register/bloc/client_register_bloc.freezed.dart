@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'client_form_bloc.dart';
+part of 'client_register_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ClientFormEvent {
+mixin _$ClientRegisterEvent {
   String get name => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -51,23 +51,23 @@ mixin _$ClientFormEvent {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ClientFormEventCopyWith<ClientFormEvent> get copyWith =>
+  $ClientRegisterEventCopyWith<ClientRegisterEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ClientFormEventCopyWith<$Res> {
-  factory $ClientFormEventCopyWith(
-          ClientFormEvent value, $Res Function(ClientFormEvent) then) =
-      _$ClientFormEventCopyWithImpl<$Res, ClientFormEvent>;
+abstract class $ClientRegisterEventCopyWith<$Res> {
+  factory $ClientRegisterEventCopyWith(
+          ClientRegisterEvent value, $Res Function(ClientRegisterEvent) then) =
+      _$ClientRegisterEventCopyWithImpl<$Res, ClientRegisterEvent>;
   @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class _$ClientFormEventCopyWithImpl<$Res, $Val extends ClientFormEvent>
-    implements $ClientFormEventCopyWith<$Res> {
-  _$ClientFormEventCopyWithImpl(this._value, this._then);
+class _$ClientRegisterEventCopyWithImpl<$Res, $Val extends ClientRegisterEvent>
+    implements $ClientRegisterEventCopyWith<$Res> {
+  _$ClientRegisterEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -90,7 +90,7 @@ class _$ClientFormEventCopyWithImpl<$Res, $Val extends ClientFormEvent>
 
 /// @nodoc
 abstract class _$$_NameChangedCopyWith<$Res>
-    implements $ClientFormEventCopyWith<$Res> {
+    implements $ClientRegisterEventCopyWith<$Res> {
   factory _$$_NameChangedCopyWith(
           _$_NameChanged value, $Res Function(_$_NameChanged) then) =
       __$$_NameChangedCopyWithImpl<$Res>;
@@ -101,7 +101,7 @@ abstract class _$$_NameChangedCopyWith<$Res>
 
 /// @nodoc
 class __$$_NameChangedCopyWithImpl<$Res>
-    extends _$ClientFormEventCopyWithImpl<$Res, _$_NameChanged>
+    extends _$ClientRegisterEventCopyWithImpl<$Res, _$_NameChanged>
     implements _$$_NameChangedCopyWith<$Res> {
   __$$_NameChangedCopyWithImpl(
       _$_NameChanged _value, $Res Function(_$_NameChanged) _then)
@@ -131,7 +131,7 @@ class _$_NameChanged implements _NameChanged {
 
   @override
   String toString() {
-    return 'ClientFormEvent.nameChanged(name: $name)';
+    return 'ClientRegisterEvent.nameChanged(name: $name)';
   }
 
   @override
@@ -208,7 +208,7 @@ class _$_NameChanged implements _NameChanged {
   }
 }
 
-abstract class _NameChanged implements ClientFormEvent {
+abstract class _NameChanged implements ClientRegisterEvent {
   const factory _NameChanged({required final String name}) = _$_NameChanged;
 
   @override
@@ -220,27 +220,30 @@ abstract class _NameChanged implements ClientFormEvent {
 }
 
 /// @nodoc
-mixin _$ClientFormState {
-  Name get name => throw _privateConstructorUsedError;
+mixin _$ClientRegisterState {
+  ClientRegisterForm get clientRegisterForm =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ClientFormStateCopyWith<ClientFormState> get copyWith =>
+  $ClientRegisterStateCopyWith<ClientRegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ClientFormStateCopyWith<$Res> {
-  factory $ClientFormStateCopyWith(
-          ClientFormState value, $Res Function(ClientFormState) then) =
-      _$ClientFormStateCopyWithImpl<$Res, ClientFormState>;
+abstract class $ClientRegisterStateCopyWith<$Res> {
+  factory $ClientRegisterStateCopyWith(
+          ClientRegisterState value, $Res Function(ClientRegisterState) then) =
+      _$ClientRegisterStateCopyWithImpl<$Res, ClientRegisterState>;
   @useResult
-  $Res call({Name name});
+  $Res call({ClientRegisterForm clientRegisterForm});
+
+  $ClientRegisterFormCopyWith<$Res> get clientRegisterForm;
 }
 
 /// @nodoc
-class _$ClientFormStateCopyWithImpl<$Res, $Val extends ClientFormState>
-    implements $ClientFormStateCopyWith<$Res> {
-  _$ClientFormStateCopyWithImpl(this._value, this._then);
+class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
+    implements $ClientRegisterStateCopyWith<$Res> {
+  _$ClientRegisterStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -250,31 +253,43 @@ class _$ClientFormStateCopyWithImpl<$Res, $Val extends ClientFormState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? clientRegisterForm = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+      clientRegisterForm: null == clientRegisterForm
+          ? _value.clientRegisterForm
+          : clientRegisterForm // ignore: cast_nullable_to_non_nullable
+              as ClientRegisterForm,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientRegisterFormCopyWith<$Res> get clientRegisterForm {
+    return $ClientRegisterFormCopyWith<$Res>(_value.clientRegisterForm,
+        (value) {
+      return _then(_value.copyWith(clientRegisterForm: value) as $Val);
+    });
   }
 }
 
 /// @nodoc
 abstract class _$$_ClientFormStateCopyWith<$Res>
-    implements $ClientFormStateCopyWith<$Res> {
+    implements $ClientRegisterStateCopyWith<$Res> {
   factory _$$_ClientFormStateCopyWith(
           _$_ClientFormState value, $Res Function(_$_ClientFormState) then) =
       __$$_ClientFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Name name});
+  $Res call({ClientRegisterForm clientRegisterForm});
+
+  @override
+  $ClientRegisterFormCopyWith<$Res> get clientRegisterForm;
 }
 
 /// @nodoc
 class __$$_ClientFormStateCopyWithImpl<$Res>
-    extends _$ClientFormStateCopyWithImpl<$Res, _$_ClientFormState>
+    extends _$ClientRegisterStateCopyWithImpl<$Res, _$_ClientFormState>
     implements _$$_ClientFormStateCopyWith<$Res> {
   __$$_ClientFormStateCopyWithImpl(
       _$_ClientFormState _value, $Res Function(_$_ClientFormState) _then)
@@ -283,13 +298,13 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? clientRegisterForm = null,
   }) {
     return _then(_$_ClientFormState(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+      clientRegisterForm: null == clientRegisterForm
+          ? _value.clientRegisterForm
+          : clientRegisterForm // ignore: cast_nullable_to_non_nullable
+              as ClientRegisterForm,
     ));
   }
 }
@@ -297,14 +312,14 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClientFormState implements _ClientFormState {
-  const _$_ClientFormState({required this.name});
+  const _$_ClientFormState({required this.clientRegisterForm});
 
   @override
-  final Name name;
+  final ClientRegisterForm clientRegisterForm;
 
   @override
   String toString() {
-    return 'ClientFormState(name: $name)';
+    return 'ClientRegisterState(clientRegisterForm: $clientRegisterForm)';
   }
 
   @override
@@ -312,11 +327,12 @@ class _$_ClientFormState implements _ClientFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClientFormState &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.clientRegisterForm, clientRegisterForm) ||
+                other.clientRegisterForm == clientRegisterForm));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, clientRegisterForm);
 
   @JsonKey(ignore: true)
   @override
@@ -325,12 +341,13 @@ class _$_ClientFormState implements _ClientFormState {
       __$$_ClientFormStateCopyWithImpl<_$_ClientFormState>(this, _$identity);
 }
 
-abstract class _ClientFormState implements ClientFormState {
-  const factory _ClientFormState({required final Name name}) =
+abstract class _ClientFormState implements ClientRegisterState {
+  const factory _ClientFormState(
+          {required final ClientRegisterForm clientRegisterForm}) =
       _$_ClientFormState;
 
   @override
-  Name get name;
+  ClientRegisterForm get clientRegisterForm;
   @override
   @JsonKey(ignore: true)
   _$$_ClientFormStateCopyWith<_$_ClientFormState> get copyWith =>
