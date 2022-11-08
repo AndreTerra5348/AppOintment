@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:appointment/infrastructure/drift/tables.dart';
+import 'package:appointment/infrastructure/client/client_models.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
-part 'drift_db.g.dart';
+part 'app_db.g.dart';
 
 @DriftDatabase(tables: [ClientModels])
 class AppDb extends _$AppDb {

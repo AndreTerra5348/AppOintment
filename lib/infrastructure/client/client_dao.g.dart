@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dao.dart';
+part of 'client_dao.dart';
 
 // **************************************************************************
 // DaoGenerator

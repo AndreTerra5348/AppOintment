@@ -1,6 +1,6 @@
 import 'package:appointment/domain/common/uid.dart';
-import 'package:appointment/infrastructure/drift/dao.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
+import 'package:appointment/infrastructure/client/client_dao.dart';
+import 'package:appointment/infrastructure/drift/app_db.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 

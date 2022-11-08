@@ -1,14 +1,10 @@
 import 'package:appointment/domain/common/uid.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
-import 'package:appointment/infrastructure/drift/tables.dart';
+import 'package:appointment/infrastructure/client/client_models.dart';
+import 'package:appointment/infrastructure/core/dao.dart';
+import 'package:appointment/infrastructure/drift/app_db.dart';
 import 'package:drift/drift.dart';
 
-part 'dao.g.dart';
-
-abstract class Dao<T_Model extends DataClass> {
-  Future<int> insert(Insertable<T_Model> model);
-  Future<T_Model> getByUid(Uid uid);
-}
+part 'client_dao.g.dart';
 
 @DriftAccessor(tables: [ClientModels])
 class ClientDao extends DatabaseAccessor<AppDb>

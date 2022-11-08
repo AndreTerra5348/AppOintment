@@ -1,7 +1,8 @@
 import 'package:appointment/domain/client/client.dart';
+import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/uid.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
-import 'package:appointment/infrastructure/drift/entity_model_converter.dart';
+import 'package:appointment/infrastructure/client/client_converter.dart';
+import 'package:appointment/infrastructure/drift/app_db.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
