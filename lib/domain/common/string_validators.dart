@@ -2,7 +2,7 @@ import 'package:appointment/domain/common/value_object.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'string_value.freezed.dart';
+part 'string_validators.freezed.dart';
 
 class MaxLengthStringValidator extends Validator<MaxLengthFailure, String> {
   final int _length;

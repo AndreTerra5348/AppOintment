@@ -1,5 +1,5 @@
 import 'package:appointment/domain/common/value_object.dart';
-import 'package:appointment/domain/common/string_value.dart';
+import 'package:appointment/domain/common/string_validators.dart';
 import 'package:dartz/dartz.dart';
 
 class Name extends ValueObject<StringFailure, String> {
