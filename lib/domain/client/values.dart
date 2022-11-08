@@ -13,4 +13,6 @@ class Name extends ValueObject<StringFailure, String> {
     ];
     return Name._(validate(validators, text));
   }
+
+  factory Name.empty() => const Name._(Right(""));
 }
