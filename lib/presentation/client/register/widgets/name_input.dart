@@ -14,8 +14,8 @@ class NameInputWidget extends StatelessWidget {
     return BlocBuilder<ClientRegisterBloc, ClientRegisterState>(
       builder: (context, state) => TextFormField(
         key: nameTextFormKey,
-        initialValue: state.clientRegisterForm.nameInput.value.value
-            .fold((l) => "", (r) => r),
+        initialValue:
+            state.form.nameInput.value.value.fold((l) => "", (r) => r),
         decoration: const InputDecoration(labelText: "Name"),
         onChanged: ((value) {
           context

@@ -221,8 +221,7 @@ abstract class _NameChanged implements ClientRegisterEvent {
 
 /// @nodoc
 mixin _$ClientRegisterState {
-  ClientRegisterForm get clientRegisterForm =>
-      throw _privateConstructorUsedError;
+  ClientRegisterForm get form => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientRegisterStateCopyWith<ClientRegisterState> get copyWith =>
@@ -235,9 +234,9 @@ abstract class $ClientRegisterStateCopyWith<$Res> {
           ClientRegisterState value, $Res Function(ClientRegisterState) then) =
       _$ClientRegisterStateCopyWithImpl<$Res, ClientRegisterState>;
   @useResult
-  $Res call({ClientRegisterForm clientRegisterForm});
+  $Res call({ClientRegisterForm form});
 
-  $ClientRegisterFormCopyWith<$Res> get clientRegisterForm;
+  $ClientRegisterFormCopyWith<$Res> get form;
 }
 
 /// @nodoc
@@ -253,22 +252,21 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? clientRegisterForm = null,
+    Object? form = null,
   }) {
     return _then(_value.copyWith(
-      clientRegisterForm: null == clientRegisterForm
-          ? _value.clientRegisterForm
-          : clientRegisterForm // ignore: cast_nullable_to_non_nullable
+      form: null == form
+          ? _value.form
+          : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ClientRegisterFormCopyWith<$Res> get clientRegisterForm {
-    return $ClientRegisterFormCopyWith<$Res>(_value.clientRegisterForm,
-        (value) {
-      return _then(_value.copyWith(clientRegisterForm: value) as $Val);
+  $ClientRegisterFormCopyWith<$Res> get form {
+    return $ClientRegisterFormCopyWith<$Res>(_value.form, (value) {
+      return _then(_value.copyWith(form: value) as $Val);
     });
   }
 }
@@ -281,10 +279,10 @@ abstract class _$$_ClientFormStateCopyWith<$Res>
       __$$_ClientFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ClientRegisterForm clientRegisterForm});
+  $Res call({ClientRegisterForm form});
 
   @override
-  $ClientRegisterFormCopyWith<$Res> get clientRegisterForm;
+  $ClientRegisterFormCopyWith<$Res> get form;
 }
 
 /// @nodoc
@@ -298,12 +296,12 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? clientRegisterForm = null,
+    Object? form = null,
   }) {
     return _then(_$_ClientFormState(
-      clientRegisterForm: null == clientRegisterForm
-          ? _value.clientRegisterForm
-          : clientRegisterForm // ignore: cast_nullable_to_non_nullable
+      form: null == form
+          ? _value.form
+          : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
     ));
   }
@@ -312,14 +310,14 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClientFormState implements _ClientFormState {
-  const _$_ClientFormState({required this.clientRegisterForm});
+  const _$_ClientFormState({required this.form});
 
   @override
-  final ClientRegisterForm clientRegisterForm;
+  final ClientRegisterForm form;
 
   @override
   String toString() {
-    return 'ClientRegisterState(clientRegisterForm: $clientRegisterForm)';
+    return 'ClientRegisterState(form: $form)';
   }
 
   @override
@@ -327,12 +325,11 @@ class _$_ClientFormState implements _ClientFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClientFormState &&
-            (identical(other.clientRegisterForm, clientRegisterForm) ||
-                other.clientRegisterForm == clientRegisterForm));
+            (identical(other.form, form) || other.form == form));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, clientRegisterForm);
+  int get hashCode => Object.hash(runtimeType, form);
 
   @JsonKey(ignore: true)
   @override
@@ -342,12 +339,11 @@ class _$_ClientFormState implements _ClientFormState {
 }
 
 abstract class _ClientFormState implements ClientRegisterState {
-  const factory _ClientFormState(
-          {required final ClientRegisterForm clientRegisterForm}) =
+  const factory _ClientFormState({required final ClientRegisterForm form}) =
       _$_ClientFormState;
 
   @override
-  ClientRegisterForm get clientRegisterForm;
+  ClientRegisterForm get form;
   @override
   @JsonKey(ignore: true)
   _$$_ClientFormStateCopyWith<_$_ClientFormState> get copyWith =>

@@ -22,17 +22,16 @@ void main() {
       // Act
 
       // Assert
-      expect(sut.state.clientRegisterForm.nameInput.value, Name.empty());
+      expect(sut.state.form.nameInput.value, Name.empty());
     });
 
     const name = "Bob";
     blocTest<ClientRegisterBloc, ClientRegisterState>(
-        'emits [Name] when ClientFormEvent.nameChanged is added',
-        build: () => ClientRegisterBloc(),
-        act: (bloc) =>
-            bloc.add(const ClientRegisterEvent.nameChanged(name: name)),
-        verify: ((bloc) {
-          expect(bloc.state.clientRegisterForm.nameInput.value, Name(name));
-        }));
+      'Should change [ClientRegisterState] name when ClientFormEvent.nameChanged is added',
+      build: () => ClientRegisterBloc(),
+      act: (bloc) =>
+          bloc.add(const ClientRegisterEvent.nameChanged(name: name)),
+      verify: (bloc) => expect(bloc.state.form.nameInput.value, Name(name)),
+    );
   });
 }
