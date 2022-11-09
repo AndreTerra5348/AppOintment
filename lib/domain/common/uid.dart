@@ -6,10 +6,10 @@ part 'uid.freezed.dart';
 
 class Uid extends ValueObject<UidFailure, int> {
   @override
-  final Either<Iterable<UidFailure>, int> value;
+  final Either<UidFailure, int> value;
 
   const Uid._(this.value);
-  factory Uid() => const Uid._(Left([UidFailure.invalid()]));
+  factory Uid() => const Uid._(Left(UidFailure.invalid()));
   factory Uid.fromInt(int id) => Uid._(Right(id));
 }
 

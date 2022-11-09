@@ -1,45 +1,10 @@
-import 'package:appointment/domain/common/value_object.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'string_validators.freezed.dart';
 
-class MaxLengthStringValidator extends Validator<MaxLengthFailure, String> {
-  final int _length;
-
-  const MaxLengthStringValidator(this._length);
-  @override
-  Either<MaxLengthFailure, String> call(String value) {
-    return value.length >= _length
-        ? Left(StringFailure.maxLength(value: value, length: _length)
-            as MaxLengthFailure)
-        : Right(value);
-  }
-}
-
-class MinLengthStringValidator extends Validator<MinLengthFailure, String> {
-  final int _length;
-
-  const MinLengthStringValidator(this._length);
-
-  @override
-  Either<MinLengthFailure, String> call(String value) {
-    return value.length < _length
-        ? Left(StringFailure.minLength(value: value, length: _length)
-            as MinLengthFailure)
-        : Right(value);
-  }
-}
-
-class NonEmptyStringValidator extends Validator<EmptyStringFailure, String> {
-  const NonEmptyStringValidator();
-  @override
-  Either<EmptyStringFailure, String> call(String value) {
-    return value.isEmpty
-        ? const Left(StringFailure.empty() as EmptyStringFailure)
-        : Right(value);
-  }
-}
+Either<StringFailure, String> emptyStringValidation(String value) =>
+    value.isEmpty ? const Left(StringFailure.empty()) : Right(value);
 
 @freezed
 class StringFailure with _$StringFailure {

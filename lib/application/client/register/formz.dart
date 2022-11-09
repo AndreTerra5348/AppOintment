@@ -19,12 +19,12 @@ class ClientRegisterForm with FormzMixin, _$ClientRegisterForm {
   List<FormzInput> get inputs => [nameInput];
 }
 
-class NameInput extends FormzInput<Name, Iterable<StringFailure>> {
+class NameInput extends FormzInput<Name, StringFailure> {
   NameInput.pure() : super.pure(Name.empty());
   NameInput.dirty(super.value) : super.dirty();
 
   @override
-  Iterable<StringFailure>? validator(Name value) {
-    return value.value.fold((failures) => failures, (r) => null);
+  StringFailure? validator(Name value) {
+    return value.value.fold((f) => f, (r) => null);
   }
 }

@@ -13,7 +13,7 @@ void firstNameTests() {
   // Non empty name
   group("value", () {
     test(
-        "Should return a type of Right<Iterable<StringFailure>, String>, String> when name length is equal to 1",
+        "Should return a type of Right<StringFailure, String> with the same value, when value length is equal to 1",
         () {
       // Arrange
       const name = "J";
@@ -23,13 +23,13 @@ void firstNameTests() {
       final actual = sut.value;
 
       // Assert
-      expect(actual, isA<Right>());
-      expect((actual as Right).value, name);
+      expect(actual, isA<Right<StringFailure, String>>());
+      expect(actual, const Right(name));
     });
 
     // Empty name
     test(
-        "Should return a type of Left<Iterable<StringFailure>, String> when name length is less than 1",
+        "Should return a type of Left<StringFailure>, String> when name length is less than 1",
         () {
       // Arrange
       const name = "";
@@ -39,7 +39,7 @@ void firstNameTests() {
       final actual = sut.value;
 
       // Assert
-      expect(actual, isA<Left<Iterable<StringFailure>, String>>());
+      expect(actual, isA<Left<StringFailure, String>>());
     });
   });
 }

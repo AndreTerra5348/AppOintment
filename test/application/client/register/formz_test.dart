@@ -32,7 +32,6 @@ void nameInputValidatorFormz() {
 
     // Assert
     expect(nameInput.error, isNotNull);
-    expect(nameInput.error, hasLength(1));
-    expect(nameInput.error, everyElement(isA<EmptyStringFailure>()));
+    expect(nameInput.error, isA<EmptyStringFailure>());
   });
 }
