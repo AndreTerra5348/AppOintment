@@ -22,7 +22,7 @@ class ClientRegisterForm with FormzMixin, _$ClientRegisterForm {
 class NameInput extends FormzInput<Name, StringFailure> {
   NameInput.pure(super.value) : super.pure();
   NameInput.dirty(super.value) : super.dirty();
-  NameInput.initial() : super.pure(Name.empty());
+  NameInput.initial() : super.pure(Name(""));
 
   @override
   StringFailure? validator(Name value) {

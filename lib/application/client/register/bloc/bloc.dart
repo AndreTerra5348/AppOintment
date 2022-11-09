@@ -13,9 +13,15 @@ class ClientRegisterBloc
     on<_NameChanged>((event, emit) {
       emit(state.copyWith(
         form: state.form.copyWith(
-          nameInput: NameInput.pure(
-            Name(event.name),
-          ),
+          nameInput: NameInput.pure(Name(event.name)),
+        ),
+      ));
+    });
+
+    on<_NameUnfocused>((event, emit) {
+      emit(state.copyWith(
+        form: state.form.copyWith(
+          nameInput: NameInput.dirty(state.form.nameInput.value),
         ),
       ));
     });
