@@ -5,15 +5,15 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("Value Object", () {
-    group("Name", firstNameTests);
+    group("Name", nameTests);
   });
 }
 
-void firstNameTests() {
+void nameTests() {
   // Non empty name
   group("value", () {
     test(
-        "Should return a type of Right<StringFailure, String> with the same value, when value length is equal to 1",
+        "Should return Right(name) with the same value, when value length is equal to 1",
         () {
       // Arrange
       const name = "J";
@@ -29,7 +29,7 @@ void firstNameTests() {
 
     // Empty name
     test(
-        "Should return a type of Left<StringFailure>, String> when name length is less than 1",
+        "Should return a type of Left<StringFailure, String>, String> when name length is less than 1",
         () {
       // Arrange
       const name = "";

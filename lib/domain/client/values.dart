@@ -8,12 +8,12 @@ class Name extends ValueObject<StringFailure, String> {
   const Name._(this.value);
 
   factory Name(String text) {
-    return Name._(_validateName(text));
+    return Name._(nameValidation(text));
   }
 
   factory Name.empty() => const Name._(Right(""));
 }
 
-Either<StringFailure, String> _validateName(String text) {
-  return emptyStringValidation(text);
+Either<StringFailure, String> nameValidation(String name) {
+  return nonEmptyStringValidation(name);
 }

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'string_validators.freezed.dart';
 
-Either<StringFailure, String> emptyStringValidation(String value) =>
+Either<StringFailure, String> nonEmptyStringValidation(String value) =>
     value.isEmpty ? const Left(StringFailure.empty()) : Right(value);
 
 @freezed
