@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_db.dart';
+part of 'db.dart';
 
 // **************************************************************************
 // DriftDatabaseGenerator
@@ -177,8 +177,8 @@ class $ClientModelsTable extends ClientModels
   }
 }
 
-abstract class _$AppDb extends GeneratedDatabase {
-  _$AppDb(QueryExecutor e) : super(e);
+abstract class _$DriftDb extends GeneratedDatabase {
+  _$DriftDb(QueryExecutor e) : super(e);
   late final $ClientModelsTable clientModels = $ClientModelsTable(this);
   @override
   Iterable<TableInfo<Table, dynamic>> get allTables =>

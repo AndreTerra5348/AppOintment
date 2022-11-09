@@ -4,16 +4,20 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("Client Register Page", () {
-    testWidgets("Name TextFormField should be displayed",
+    testWidgets("Enter name to name TextFormField",
         (WidgetTester tester) async {
       // Arrange
+      const name = "Bob";
       await tester.pumpWidget(const MaterialApp(home: ClientRegisterPage()));
       await tester.pumpAndSettle();
 
       // Act
+      await tester.enterText(
+          find.byKey(ClientRegisterPage.nameTextFormKey), name);
 
       // Assert
       expect(find.byKey(ClientRegisterPage.nameTextFormKey), findsOneWidget);
+      expect(find.text(name), findsOneWidget);
     });
   });
 }

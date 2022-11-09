@@ -1,11 +1,11 @@
-import 'package:appointment/domain/client/client.dart';
+import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/common/uid.dart';
+import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
-import 'package:appointment/infrastructure/client/client_converter.dart';
-import 'package:appointment/infrastructure/client/client_repository.dart';
+import 'package:appointment/infrastructure/client/converter.dart';
+import 'package:appointment/infrastructure/client/repository.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
-import 'package:appointment/infrastructure/drift/app_db.dart';
+import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_test/flutter_test.dart';

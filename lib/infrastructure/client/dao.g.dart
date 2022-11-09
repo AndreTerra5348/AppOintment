@@ -1,11 +1,11 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'client_dao.dart';
+part of 'dao.dart';
 
 // **************************************************************************
 // DaoGenerator
 // **************************************************************************
 
-mixin _$ClientDaoMixin on DatabaseAccessor<AppDb> {
+mixin _$ClientDaoMixin on DatabaseAccessor<DriftDb> {
   $ClientModelsTable get clientModels => attachedDatabase.clientModels;
 }

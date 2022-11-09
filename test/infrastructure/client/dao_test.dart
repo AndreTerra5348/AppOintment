@@ -1,13 +1,13 @@
-import 'package:appointment/domain/common/uid.dart';
-import 'package:appointment/infrastructure/client/client_dao.dart';
-import 'package:appointment/infrastructure/drift/app_db.dart';
+import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/infrastructure/client/dao.dart';
+import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  late final AppDb db;
+  late final DriftDb db;
   setUp(() {
-    db = AppDb(executor: NativeDatabase.memory());
+    db = DriftDb(executor: NativeDatabase.memory());
   });
 
   group("Client Dao", () {

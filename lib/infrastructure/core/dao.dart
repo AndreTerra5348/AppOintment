@@ -1,4 +1,4 @@
-import 'package:appointment/domain/common/uid.dart';
+import 'package:appointment/domain/common/values.dart';
 import 'package:drift/drift.dart';
 
 abstract class Dao<T_Model extends DataClass> {

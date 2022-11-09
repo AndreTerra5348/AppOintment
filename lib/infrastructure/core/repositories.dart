@@ -1,4 +1,4 @@
-import 'package:appointment/domain/common/uid.dart';
+import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/core/entity_model_converter.dart';
