@@ -1,4 +1,4 @@
-import 'package:appointment/presentation/client/register/client_register_page.dart';
+import 'package:appointment/presentation/client/register/page.dart';
 import 'package:flutter/material.dart';
 
 class AppOintment extends StatelessWidget {

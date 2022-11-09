@@ -1,4 +1,5 @@
-import 'package:appointment/presentation/client/register/client_register_page.dart';
+import 'package:appointment/presentation/client/register/page.dart';
+import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,11 +13,10 @@ void main() {
       await tester.pumpAndSettle();
 
       // Act
-      await tester.enterText(
-          find.byKey(ClientRegisterPage.nameTextFormKey), name);
+      await tester.enterText(find.byKey(NameInputWidget.nameTextFormKey), name);
 
       // Assert
-      expect(find.byKey(ClientRegisterPage.nameTextFormKey), findsOneWidget);
+      expect(find.byKey(NameInputWidget.nameTextFormKey), findsOneWidget);
       expect(find.text(name), findsOneWidget);
     });
   });

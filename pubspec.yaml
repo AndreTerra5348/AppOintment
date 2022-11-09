@@ -22,6 +22,7 @@ dependencies:
   formz: ^0.4.1
   get_it: ^7.2.0
   injectable: ^1.5.4
+  flutter_bloc: ^8.1.1
 
 dev_dependencies:
   flutter_test:

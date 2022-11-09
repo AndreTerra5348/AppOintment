@@ -1,4 +1,4 @@
-import 'package:appointment/application/client/register/bloc/client_register_bloc.dart';
+import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
