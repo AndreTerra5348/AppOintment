@@ -13,15 +13,16 @@ class ClientRegisterForm with FormzMixin, _$ClientRegisterForm {
       _ClientRegisterForm;
 
   factory ClientRegisterForm.initial() =>
-      ClientRegisterForm(nameInput: NameInput.pure());
+      ClientRegisterForm(nameInput: NameInput.initial());
 
   @override
   List<FormzInput> get inputs => [nameInput];
 }
 
 class NameInput extends FormzInput<Name, StringFailure> {
-  NameInput.pure() : super.pure(Name.empty());
+  NameInput.pure(super.value) : super.pure();
   NameInput.dirty(super.value) : super.dirty();
+  NameInput.initial() : super.pure(Name.empty());
 
   @override
   StringFailure? validator(Name value) {
