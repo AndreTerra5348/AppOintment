@@ -7,22 +7,24 @@ class NameInputWidget extends StatelessWidget {
     super.key,
   });
 
-  static const nameTextFormKey = Key("name");
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ClientRegisterBloc, ClientRegisterState>(
-      builder: (context, state) => TextFormField(
-        key: nameTextFormKey,
-        initialValue:
-            state.form.nameInput.value.value.fold((l) => "", (r) => r),
-        decoration: const InputDecoration(labelText: "Name"),
-        onChanged: ((value) {
-          context
-              .read<ClientRegisterBloc>()
-              .add(ClientRegisterEvent.nameChanged(name: value));
-        }),
-      ),
+      builder: (context, state) => Focus(
+          child: TextFormField(
+            initialValue:
+                state.form.nameInput.value.value.fold((l) => "", (r) => r),
+            decoration: const InputDecoration(labelText: "Name"),
+            onChanged: (value) => context
+                .read<ClientRegisterBloc>()
+                .add(ClientRegisterEvent.nameChanged(name: value)),
+          ),
+          onFocusChange: (value) {
+            if (value) return;
+            context
+                .read<ClientRegisterBloc>()
+                .add(const ClientRegisterEvent.nameUnfocused());
+          }),
     );
   }
 }

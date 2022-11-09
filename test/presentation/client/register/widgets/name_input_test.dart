@@ -5,12 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'name_input.mocks.dart';
+import 'name_input_test.mocks.dart';
 
 @GenerateMocks([ClientRegisterBloc])
 void main() {
   group("Name input widget", () {
-    testWidgets("name TextFormField should add nameChanged event to bloc",
+    testWidgets(
+        "Should add nameChanged event to bloc when TextFormField value change",
         (WidgetTester tester) async {
       // Arrange
       const name = "Bob";
@@ -22,24 +23,45 @@ void main() {
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pumpAndSettle();
 
-      expect(find.byKey(NameInputWidget.nameTextFormKey), findsOneWidget);
+      expect(find.byType(TextFormField), findsOneWidget);
 
       // Act
-      await tester.enterText(find.byKey(NameInputWidget.nameTextFormKey), name);
+      await tester.enterText(find.byType(TextFormField), name);
 
       // // Assert
       verify(mockBloc.add(any)).called(1);
     });
+
+    testWidgets(
+        "Should add nameFocusChanged event to bloc when TextFormField loses focus change",
+        (WidgetTester tester) async {
+      // Arrange
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(ClientRegisterState.initial());
+      when(mockBloc.stream)
+          .thenAnswer((realInvocation) => const Stream.empty());
+
+      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpAndSettle();
+
+      final textFormField = tester.element(find.byType(TextFormField));
+      final focus = Focus.of(textFormField);
+      // Act
+
+      focus.requestFocus();
+      await tester.pump();
+
+      expect(focus.hasFocus, isTrue);
+
+      focus.unfocus();
+      await tester.pump();
+
+      expect(focus.hasFocus, isFalse);
+
+      // Assert
+      verify(mockBloc.add(const ClientRegisterEvent.nameUnfocused())).called(1);
+    });
   });
-}
-
-class MockApp extends StatelessWidget {
-  const MockApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
 }
 
 class MockClientPage extends StatelessWidget {
