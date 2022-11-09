@@ -1,4 +1,4 @@
-part of 'client_register_bloc.dart';
+part of 'bloc.dart';
 
 @freezed
 class ClientRegisterEvent with _$ClientRegisterEvent {

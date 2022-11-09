@@ -3,9 +3,9 @@ import 'package:appointment/domain/client/values.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'client_register_event.dart';
-part 'client_register_state.dart';
-part 'client_register_bloc.freezed.dart';
+part 'event.dart';
+part 'state.dart';
+part 'bloc.freezed.dart';
 
 class ClientRegisterBloc
     extends Bloc<ClientRegisterEvent, ClientRegisterState> {
