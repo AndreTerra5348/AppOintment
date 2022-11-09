@@ -11,7 +11,7 @@ void main() {
 
 void nameInputValidatorFormz() {
   test(
-      "Should error property return null when dirty constructure is used with a valid name",
+      "Should error property return null when dirty construtor is used with a valid name",
       () {
     // Arrange
     final nameInput = NameInput.dirty(Name("Bob"));
@@ -23,7 +23,7 @@ void nameInputValidatorFormz() {
   });
 
   test(
-      "Should error property return EmptyStringFailure when dirty constructure is used with a invalid name",
+      "Should error property return EmptyStringFailure when dirty construtor is used with a invalid name",
       () {
     // Arrange
     final nameInput = NameInput.dirty(Name(""));
