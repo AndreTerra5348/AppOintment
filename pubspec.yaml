@@ -19,7 +19,6 @@ dependencies:
   path_provider: ^2.0.11
   path: ^1.8.2
   bloc: ^8.1.0
-  formz: ^0.4.1
   get_it: ^7.2.0
   injectable: ^1.5.4
   flutter_bloc: ^8.1.1

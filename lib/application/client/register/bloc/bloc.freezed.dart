@@ -16,43 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientRegisterEvent {
+  String get name => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
-    required TResult Function() nameUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String name)? nameChanged,
-    TResult? Function()? nameUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
-    TResult Function()? nameUnfocused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_NameUnfocused value) nameUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NameChanged value)? nameChanged,
-    TResult? Function(_NameUnfocused value)? nameUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_NameUnfocused value)? nameUnfocused,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ClientRegisterEventCopyWith<ClientRegisterEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +60,8 @@ abstract class $ClientRegisterEventCopyWith<$Res> {
   factory $ClientRegisterEventCopyWith(
           ClientRegisterEvent value, $Res Function(ClientRegisterEvent) then) =
       _$ClientRegisterEventCopyWithImpl<$Res, ClientRegisterEvent>;
+  @useResult
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -72,13 +73,28 @@ class _$ClientRegisterEventCopyWithImpl<$Res, $Val extends ClientRegisterEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_NameChangedCopyWith<$Res> {
+abstract class _$$_NameChangedCopyWith<$Res>
+    implements $ClientRegisterEventCopyWith<$Res> {
   factory _$$_NameChangedCopyWith(
           _$_NameChanged value, $Res Function(_$_NameChanged) then) =
       __$$_NameChangedCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({String name});
 }
@@ -139,7 +155,6 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
-    required TResult Function() nameUnfocused,
   }) {
     return nameChanged(name);
   }
@@ -148,7 +163,6 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String name)? nameChanged,
-    TResult? Function()? nameUnfocused,
   }) {
     return nameChanged?.call(name);
   }
@@ -157,7 +171,6 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
-    TResult Function()? nameUnfocused,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -170,7 +183,6 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_NameUnfocused value) nameUnfocused,
   }) {
     return nameChanged(this);
   }
@@ -179,7 +191,6 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NameChanged value)? nameChanged,
-    TResult? Function(_NameUnfocused value)? nameUnfocused,
   }) {
     return nameChanged?.call(this);
   }
@@ -188,7 +199,6 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_NameUnfocused value)? nameUnfocused,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -201,112 +211,12 @@ class _$_NameChanged implements _NameChanged {
 abstract class _NameChanged implements ClientRegisterEvent {
   const factory _NameChanged({required final String name}) = _$_NameChanged;
 
+  @override
   String get name;
+  @override
   @JsonKey(ignore: true)
   _$$_NameChangedCopyWith<_$_NameChanged> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_NameUnfocusedCopyWith<$Res> {
-  factory _$$_NameUnfocusedCopyWith(
-          _$_NameUnfocused value, $Res Function(_$_NameUnfocused) then) =
-      __$$_NameUnfocusedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_NameUnfocusedCopyWithImpl<$Res>
-    extends _$ClientRegisterEventCopyWithImpl<$Res, _$_NameUnfocused>
-    implements _$$_NameUnfocusedCopyWith<$Res> {
-  __$$_NameUnfocusedCopyWithImpl(
-      _$_NameUnfocused _value, $Res Function(_$_NameUnfocused) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_NameUnfocused implements _NameUnfocused {
-  const _$_NameUnfocused();
-
-  @override
-  String toString() {
-    return 'ClientRegisterEvent.nameUnfocused()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NameUnfocused);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String name) nameChanged,
-    required TResult Function() nameUnfocused,
-  }) {
-    return nameUnfocused();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name)? nameChanged,
-    TResult? Function()? nameUnfocused,
-  }) {
-    return nameUnfocused?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name)? nameChanged,
-    TResult Function()? nameUnfocused,
-    required TResult orElse(),
-  }) {
-    if (nameUnfocused != null) {
-      return nameUnfocused();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_NameUnfocused value) nameUnfocused,
-  }) {
-    return nameUnfocused(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NameChanged value)? nameChanged,
-    TResult? Function(_NameUnfocused value)? nameUnfocused,
-  }) {
-    return nameUnfocused?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_NameUnfocused value)? nameUnfocused,
-    required TResult orElse(),
-  }) {
-    if (nameUnfocused != null) {
-      return nameUnfocused(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NameUnfocused implements ClientRegisterEvent {
-  const factory _NameUnfocused() = _$_NameUnfocused;
 }
 
 /// @nodoc

@@ -1,4 +1,5 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
+import 'package:appointment/domain/common/string_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,21 +11,28 @@ class NameInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ClientRegisterBloc, ClientRegisterState>(
-      builder: (context, state) => Focus(
+      builder: (context, state) {
+        return Focus(
           child: TextFormField(
-            initialValue:
-                state.form.nameInput.value.value.fold((l) => "", (r) => r),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(labelText: "Name"),
+            validator: (_) =>
+                state.form.name.value.fold((l) => l.toErrorText(), (r) => null),
             onChanged: (value) => context
                 .read<ClientRegisterBloc>()
                 .add(ClientRegisterEvent.nameChanged(name: value)),
           ),
-          onFocusChange: (value) {
-            if (value) return;
-            context
-                .read<ClientRegisterBloc>()
-                .add(const ClientRegisterEvent.nameUnfocused());
-          }),
+        );
+      },
+    );
+  }
+}
+
+extension StringFailureExtension on StringFailure {
+  String? toErrorText() {
+    return maybeMap(
+      orElse: () => null,
+      empty: (value) => "Name cannot be empty",
     );
   }
 }

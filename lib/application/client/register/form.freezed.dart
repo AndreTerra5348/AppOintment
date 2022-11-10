@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'formz.dart';
+part of 'form.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientRegisterForm {
-  NameInput get nameInput => throw _privateConstructorUsedError;
+  FormSubmissionStatus get status => throw _privateConstructorUsedError;
+  Name get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientRegisterFormCopyWith<ClientRegisterForm> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $ClientRegisterFormCopyWith<$Res> {
           ClientRegisterForm value, $Res Function(ClientRegisterForm) then) =
       _$ClientRegisterFormCopyWithImpl<$Res, ClientRegisterForm>;
   @useResult
-  $Res call({NameInput nameInput});
+  $Res call({FormSubmissionStatus status, Name name});
 }
 
 /// @nodoc
@@ -45,13 +46,18 @@ class _$ClientRegisterFormCopyWithImpl<$Res, $Val extends ClientRegisterForm>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nameInput = null,
+    Object? status = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      nameInput: null == nameInput
-          ? _value.nameInput
-          : nameInput // ignore: cast_nullable_to_non_nullable
-              as NameInput,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FormSubmissionStatus,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as Name,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$_ClientRegisterFormCopyWith<$Res>
       __$$_ClientRegisterFormCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({NameInput nameInput});
+  $Res call({FormSubmissionStatus status, Name name});
 }
 
 /// @nodoc
@@ -78,28 +84,35 @@ class __$$_ClientRegisterFormCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nameInput = null,
+    Object? status = null,
+    Object? name = null,
   }) {
     return _then(_$_ClientRegisterForm(
-      nameInput: null == nameInput
-          ? _value.nameInput
-          : nameInput // ignore: cast_nullable_to_non_nullable
-              as NameInput,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FormSubmissionStatus,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as Name,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ClientRegisterForm extends _ClientRegisterForm {
-  const _$_ClientRegisterForm({required this.nameInput}) : super._();
+class _$_ClientRegisterForm implements _ClientRegisterForm {
+  const _$_ClientRegisterForm({required this.status, required this.name});
 
   @override
-  final NameInput nameInput;
+  final FormSubmissionStatus status;
+  @override
+  final Name name;
 
   @override
   String toString() {
-    return 'ClientRegisterForm(nameInput: $nameInput)';
+    return 'ClientRegisterForm(status: $status, name: $name)';
   }
 
   @override
@@ -107,12 +120,12 @@ class _$_ClientRegisterForm extends _ClientRegisterForm {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClientRegisterForm &&
-            (identical(other.nameInput, nameInput) ||
-                other.nameInput == nameInput));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, nameInput);
+  int get hashCode => Object.hash(runtimeType, status, name);
 
   @JsonKey(ignore: true)
   @override
@@ -122,13 +135,15 @@ class _$_ClientRegisterForm extends _ClientRegisterForm {
           this, _$identity);
 }
 
-abstract class _ClientRegisterForm extends ClientRegisterForm {
-  const factory _ClientRegisterForm({required final NameInput nameInput}) =
-      _$_ClientRegisterForm;
-  const _ClientRegisterForm._() : super._();
+abstract class _ClientRegisterForm implements ClientRegisterForm {
+  const factory _ClientRegisterForm(
+      {required final FormSubmissionStatus status,
+      required final Name name}) = _$_ClientRegisterForm;
 
   @override
-  NameInput get nameInput;
+  FormSubmissionStatus get status;
+  @override
+  Name get name;
   @override
   @JsonKey(ignore: true)
   _$$_ClientRegisterFormCopyWith<_$_ClientRegisterForm> get copyWith =>

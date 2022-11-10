@@ -1,4 +1,5 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
+import 'package:appointment/domain/common/string_validators.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,9 +34,10 @@ void main() {
     });
 
     testWidgets(
-        "Should add nameFocusChanged event to bloc when TextFormField loses focus change",
+        "Should show invalid text form error message when validate onUserInteraction",
         (WidgetTester tester) async {
       // Arrange
+      const name = "Bob";
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
       when(mockBloc.stream)
@@ -43,23 +45,25 @@ void main() {
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pumpAndSettle();
+      final element = tester.element(find.byType(TextFormField));
+      final focus = Focus.of(element);
 
-      final textFormField = tester.element(find.byType(TextFormField));
-      final focus = Focus.of(textFormField);
       // Act
 
-      focus.requestFocus();
+      await tester.enterText(find.byType(TextFormField), name);
       await tester.pump();
 
-      expect(focus.hasFocus, isTrue);
+      await tester.enterText(find.byType(TextFormField), '');
+      await tester.pump();
 
       focus.unfocus();
       await tester.pump();
 
       expect(focus.hasFocus, isFalse);
+      expect(find.text(const StringFailure.empty().toErrorText()!),
+          findsOneWidget);
 
       // Assert
-      verify(mockBloc.add(const ClientRegisterEvent.nameUnfocused())).called(1);
     });
   });
 }
