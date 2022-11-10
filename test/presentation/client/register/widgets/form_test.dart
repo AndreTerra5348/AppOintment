@@ -1,64 +1,51 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/domain/common/string_validators.dart';
-import 'package:appointment/presentation/client/register/widgets/name_input.dart';
+import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'name_input_test.mocks.dart';
 
 @GenerateMocks([ClientRegisterBloc])
 void main() {
-  group("Name input widget", () {
-    testWidgets(
-        "Should add nameChanged event to bloc when TextFormField value change",
-        (WidgetTester tester) async {
+  group("ClientRegisterFormWidget", () {
+    testWidgets("Should have a Form and a ElevatedButton", (tester) async {
       // Arrange
-      const name = "Bob";
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
       when(mockBloc.stream)
           .thenAnswer((realInvocation) => const Stream.empty());
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+
       await tester.pumpAndSettle();
 
-      expect(find.byType(TextFormField), findsOneWidget);
-
       // Act
-      await tester.enterText(find.byType(TextFormField), name);
 
       // Assert
-      verify(mockBloc.add(any)).called(1);
+      expect(find.byType(Form), findsOneWidget);
+      expect(find.byType(ElevatedButton), findsOneWidget);
     });
 
-    testWidgets(
-        "Should show invalid text form error message when validate onUserInteraction",
-        (WidgetTester tester) async {
+    testWidgets("Should Add [Submitted] event to bloc", (tester) async {
       // Arrange
-      const name = "Bob";
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
       when(mockBloc.stream)
           .thenAnswer((realInvocation) => const Stream.empty());
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+
       await tester.pumpAndSettle();
-      final element = tester.element(find.byType(TextFormField));
-      final focus = Focus.of(element);
 
       // Act
-      await tester.enterText(find.byType(TextFormField), name);
-      await tester.enterText(find.byType(TextFormField), '');
-
-      focus.unfocus();
+      await tester.tap(find.byType(ElevatedButton));
       await tester.pump();
 
       // Assert
-      expect(focus.hasFocus, isFalse);
-      expect(find.text(const StringFailure.empty().toErrorText()!),
-          findsOneWidget);
+      verify(mockBloc.add(const ClientRegisterEvent.submitted())).called(1);
     });
   });
 }
@@ -73,18 +60,9 @@ class MockClientPage extends StatelessWidget {
       home: Scaffold(
         body: BlocProvider(
           create: (context) => bloc,
-          child: const MockClientRegisterWidget(),
+          child: const ClientRegisterFormWidget(),
         ),
       ),
     );
-  }
-}
-
-class MockClientRegisterWidget extends StatelessWidget {
-  const MockClientRegisterWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const NameInputWidget();
   }
 }

@@ -16,7 +16,6 @@ void main() {
 
       // Assert
       expect(find.byType(TextFormField), findsOneWidget);
-      expect(find.byType(TextFormField), findsOneWidget);
     });
   });
 }
