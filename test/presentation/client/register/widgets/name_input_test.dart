@@ -59,11 +59,10 @@ void main() {
       focus.unfocus();
       await tester.pump();
 
+      // Assert
       expect(focus.hasFocus, isFalse);
       expect(find.text(const StringFailure.empty().toErrorText()!),
           findsOneWidget);
-
-      // Assert
     });
   });
 }

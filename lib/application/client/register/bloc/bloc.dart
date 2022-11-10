@@ -1,4 +1,5 @@
 import 'package:appointment/application/client/register/form.dart';
+import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,6 +16,15 @@ class ClientRegisterBloc
         form: state.form.copyWith(
           name: Name(event.name),
         ),
+      ));
+    });
+
+    on<_Submitted>((event, emit) {
+      emit(state.copyWith(
+        form: state.form.copyWith(
+            submissionStatus: state.form.isValid
+                ? FormSubmissionStatus.inProgress
+                : FormSubmissionStatus.failure),
       ));
     });
   }

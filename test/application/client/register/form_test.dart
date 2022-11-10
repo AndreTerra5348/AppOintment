@@ -15,13 +15,22 @@ void main() {
       expect(form.name.value, const Left(StringFailure.empty()));
     });
 
-    test("initial status should be initial", () {
+    test("initial submissionStatus should be initial", () {
       // Arrange
       final form = ClientRegisterForm.initial();
       // Act
 
       // Assert
       expect(form.submissionStatus, FormSubmissionStatus.initial);
+    });
+
+    test("initial isValid should be false", () {
+      // Arrange
+      final form = ClientRegisterForm.initial();
+      // Act
+
+      // Assert
+      expect(form.isValid, isFalse);
     });
   });
 }
