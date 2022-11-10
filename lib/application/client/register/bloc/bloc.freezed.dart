@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientRegisterEvent {
-  String get name => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
+    required TResult Function() submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String name)? nameChanged,
+    TResult? Function()? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
+    TResult Function()? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NameChanged value)? nameChanged,
+    TResult? Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ClientRegisterEventCopyWith<ClientRegisterEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $ClientRegisterEventCopyWith<$Res> {
   factory $ClientRegisterEventCopyWith(
           ClientRegisterEvent value, $Res Function(ClientRegisterEvent) then) =
       _$ClientRegisterEventCopyWithImpl<$Res, ClientRegisterEvent>;
-  @useResult
-  $Res call({String name});
 }
 
 /// @nodoc
@@ -73,28 +72,13 @@ class _$ClientRegisterEventCopyWithImpl<$Res, $Val extends ClientRegisterEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_NameChangedCopyWith<$Res>
-    implements $ClientRegisterEventCopyWith<$Res> {
+abstract class _$$_NameChangedCopyWith<$Res> {
   factory _$$_NameChangedCopyWith(
           _$_NameChanged value, $Res Function(_$_NameChanged) then) =
       __$$_NameChangedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String name});
 }
@@ -155,6 +139,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
+    required TResult Function() submitted,
   }) {
     return nameChanged(name);
   }
@@ -163,6 +148,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String name)? nameChanged,
+    TResult? Function()? submitted,
   }) {
     return nameChanged?.call(name);
   }
@@ -171,6 +157,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
+    TResult Function()? submitted,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -183,6 +170,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_Submitted value) submitted,
   }) {
     return nameChanged(this);
   }
@@ -191,6 +179,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NameChanged value)? nameChanged,
+    TResult? Function(_Submitted value)? submitted,
   }) {
     return nameChanged?.call(this);
   }
@@ -199,6 +188,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -211,12 +201,112 @@ class _$_NameChanged implements _NameChanged {
 abstract class _NameChanged implements ClientRegisterEvent {
   const factory _NameChanged({required final String name}) = _$_NameChanged;
 
-  @override
   String get name;
-  @override
   @JsonKey(ignore: true)
   _$$_NameChangedCopyWith<_$_NameChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SubmittedCopyWith<$Res> {
+  factory _$$_SubmittedCopyWith(
+          _$_Submitted value, $Res Function(_$_Submitted) then) =
+      __$$_SubmittedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SubmittedCopyWithImpl<$Res>
+    extends _$ClientRegisterEventCopyWithImpl<$Res, _$_Submitted>
+    implements _$$_SubmittedCopyWith<$Res> {
+  __$$_SubmittedCopyWithImpl(
+      _$_Submitted _value, $Res Function(_$_Submitted) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Submitted implements _Submitted {
+  const _$_Submitted();
+
+  @override
+  String toString() {
+    return 'ClientRegisterEvent.submitted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Submitted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name) nameChanged,
+    required TResult Function() submitted,
+  }) {
+    return submitted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String name)? nameChanged,
+    TResult? Function()? submitted,
+  }) {
+    return submitted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name)? nameChanged,
+    TResult Function()? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_Submitted value) submitted,
+  }) {
+    return submitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NameChanged value)? nameChanged,
+    TResult? Function(_Submitted value)? submitted,
+  }) {
+    return submitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_Submitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (submitted != null) {
+      return submitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submitted implements ClientRegisterEvent {
+  const factory _Submitted() = _$_Submitted;
 }
 
 /// @nodoc

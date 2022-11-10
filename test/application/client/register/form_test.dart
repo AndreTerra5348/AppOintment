@@ -1,5 +1,5 @@
 import 'package:appointment/application/client/register/form.dart';
-import 'package:appointment/application/common/form_submission_status.dart';
+import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/common/string_validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,7 +21,7 @@ void main() {
       // Act
 
       // Assert
-      expect(form.status, FormSubmissionStatus.initial);
+      expect(form.submissionStatus, FormSubmissionStatus.initial);
     });
   });
 }

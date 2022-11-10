@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientRegisterForm {
-  FormSubmissionStatus get status => throw _privateConstructorUsedError;
+  FormSubmissionStatus get submissionStatus =>
+      throw _privateConstructorUsedError;
   Name get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,7 @@ abstract class $ClientRegisterFormCopyWith<$Res> {
           ClientRegisterForm value, $Res Function(ClientRegisterForm) then) =
       _$ClientRegisterFormCopyWithImpl<$Res, ClientRegisterForm>;
   @useResult
-  $Res call({FormSubmissionStatus status, Name name});
+  $Res call({FormSubmissionStatus submissionStatus, Name name});
 }
 
 /// @nodoc
@@ -46,13 +47,13 @@ class _$ClientRegisterFormCopyWithImpl<$Res, $Val extends ClientRegisterForm>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? submissionStatus = null,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      submissionStatus: null == submissionStatus
+          ? _value.submissionStatus
+          : submissionStatus // ignore: cast_nullable_to_non_nullable
               as FormSubmissionStatus,
       name: null == name
           ? _value.name
@@ -70,7 +71,7 @@ abstract class _$$_ClientRegisterFormCopyWith<$Res>
       __$$_ClientRegisterFormCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FormSubmissionStatus status, Name name});
+  $Res call({FormSubmissionStatus submissionStatus, Name name});
 }
 
 /// @nodoc
@@ -84,13 +85,13 @@ class __$$_ClientRegisterFormCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? submissionStatus = null,
     Object? name = null,
   }) {
     return _then(_$_ClientRegisterForm(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      submissionStatus: null == submissionStatus
+          ? _value.submissionStatus
+          : submissionStatus // ignore: cast_nullable_to_non_nullable
               as FormSubmissionStatus,
       name: null == name
           ? _value.name
@@ -102,17 +103,19 @@ class __$$_ClientRegisterFormCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ClientRegisterForm implements _ClientRegisterForm {
-  const _$_ClientRegisterForm({required this.status, required this.name});
+class _$_ClientRegisterForm extends _ClientRegisterForm {
+  const _$_ClientRegisterForm(
+      {required this.submissionStatus, required this.name})
+      : super._();
 
   @override
-  final FormSubmissionStatus status;
+  final FormSubmissionStatus submissionStatus;
   @override
   final Name name;
 
   @override
   String toString() {
-    return 'ClientRegisterForm(status: $status, name: $name)';
+    return 'ClientRegisterForm(submissionStatus: $submissionStatus, name: $name)';
   }
 
   @override
@@ -120,12 +123,13 @@ class _$_ClientRegisterForm implements _ClientRegisterForm {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClientRegisterForm &&
-            (identical(other.status, status) || other.status == status) &&
+            (identical(other.submissionStatus, submissionStatus) ||
+                other.submissionStatus == submissionStatus) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, name);
+  int get hashCode => Object.hash(runtimeType, submissionStatus, name);
 
   @JsonKey(ignore: true)
   @override
@@ -135,13 +139,14 @@ class _$_ClientRegisterForm implements _ClientRegisterForm {
           this, _$identity);
 }
 
-abstract class _ClientRegisterForm implements ClientRegisterForm {
+abstract class _ClientRegisterForm extends ClientRegisterForm {
   const factory _ClientRegisterForm(
-      {required final FormSubmissionStatus status,
+      {required final FormSubmissionStatus submissionStatus,
       required final Name name}) = _$_ClientRegisterForm;
+  const _ClientRegisterForm._() : super._();
 
   @override
-  FormSubmissionStatus get status;
+  FormSubmissionStatus get submissionStatus;
   @override
   Name get name;
   @override

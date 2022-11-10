@@ -16,11 +16,12 @@ abstract class ValueObject<T_Failure, T_Value> {
   const ValueObject();
   Either<T_Failure, T_Value> get value;
 
-  T_Value getOrCrash() {
+  T_Value getOrThrow() {
     return value.fold((f) => throw UnexpectedValueError(f), (r) => r);
   }
 
-  bool isValid() => value.isRight();
+  bool get isValid => value.isRight();
+  bool get isNotValid => !isValid;
 
   @override
   bool operator ==(Object other) {

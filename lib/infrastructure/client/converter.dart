@@ -17,6 +17,6 @@ class ClientConveter extends EntityModelConverter<Client, ClientModel> {
 
   @override
   ClientModelsCompanion toUpdateCompanion(Client entity) {
-    return ClientModelsCompanion.insert(name: entity.name.getOrCrash());
+    return ClientModelsCompanion.insert(name: entity.name.getOrThrow());
   }
 }

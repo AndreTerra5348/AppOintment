@@ -25,8 +25,8 @@ void toEntityTests() {
     final actual = sut.toEntity(model);
 
     // Assert
-    expect(actual.name.getOrCrash(), model.name);
-    expect(actual.id.getOrCrash(), model.id);
+    expect(actual.name.getOrThrow(), model.name);
+    expect(actual.id.getOrThrow(), model.id);
   });
 }
 
@@ -43,7 +43,7 @@ void toUpdateCompanionTests() {
 
     // Assert
     expect(actual, isA<ClientModelsCompanion>());
-    expect(actual.name.value, entity.name.getOrCrash());
+    expect(actual.name.value, entity.name.getOrThrow());
   });
 }
 

@@ -20,7 +20,7 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   @override
   Future<ClientModel> getByUid(Uid uid) {
     return (select(clientModels)
-          ..where((tbl) => tbl.id.equals(uid.getOrCrash())))
+          ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
         .getSingle();
   }
 }

@@ -1,3 +1,5 @@
+import 'package:appointment/domain/common/value_object.dart';
+
 /// Copy from Formz
 /// Enum representing the submission status of a form.
 enum FormSubmissionStatus {
@@ -33,4 +35,18 @@ extension FormSubmissionStatusX on FormSubmissionStatus {
 
   /// Indicates whether the form submission has been canceled.
   bool get isCanceled => this == FormSubmissionStatus.canceled;
+}
+
+mixin FormMixin {
+  /// Whether the [ValueObject] values are all valid.
+  bool get isValid => values.every((element) => element.isValid);
+
+  /// Whether the [ValueObject] values are not all valid.
+  bool get isNotValid => !isValid;
+
+  /// Returns all [ValueObject] instances.
+  ///
+  /// Override this and give it all [ValueObject]s in your class that should be
+  /// validated automatically.
+  List<ValueObject<dynamic, dynamic>> get values;
 }
