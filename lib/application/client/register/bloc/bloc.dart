@@ -6,11 +6,13 @@ import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
+@injectable
 class ClientRegisterBloc
     extends Bloc<ClientRegisterEvent, ClientRegisterState> {
   final IRepository<Client> _repository;

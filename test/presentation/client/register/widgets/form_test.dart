@@ -1,5 +1,6 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/client/register/form.dart';
+import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +38,13 @@ void main() {
       // Arrange
       const name = "Bob";
       final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
-        form: ClientRegisterForm.initial().copyWith(
-          name: Name(name),
+      when(mockBloc.state).thenReturn(
+        ClientRegisterState.initial().copyWith(
+          form: ClientRegisterForm.initial().copyWith(
+            name: Name(name),
+          ),
         ),
-      ));
+      );
       when(mockBloc.stream)
           .thenAnswer((realInvocation) => const Stream.empty());
 
@@ -58,7 +61,7 @@ void main() {
     });
 
     testWidgets(
-        "Should [ElevatedButton] enable be false when [Form] is not valid",
+        "[ElevatedButton] enable should be false when [Form] is not valid",
         (tester) async {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
@@ -76,6 +79,69 @@ void main() {
 
       // Assert
       expect(button.enabled, isFalse);
+    });
+
+    testWidgets(
+        "Should show [ProgressIndicator] when [ClientRegisterForm] submissionStatus is inProgress",
+        (tester) async {
+      // Arrange
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
+        form: ClientRegisterForm.initial().copyWith(
+          submissionStatus: FormSubmissionStatus.inProgress,
+        ),
+      ));
+      when(mockBloc.stream)
+          .thenAnswer((realInvocation) => const Stream.empty());
+
+      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+
+      // Act
+
+      // Assert
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    });
+
+    testWidgets(
+        "Should NOT show [ProgressIndicator] when [ClientRegisterForm] submissionStatus is NOT inProgress",
+        (tester) async {
+      // Arrange
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
+        form: ClientRegisterForm.initial().copyWith(
+          submissionStatus: FormSubmissionStatus.initial,
+        ),
+      ));
+      when(mockBloc.stream)
+          .thenAnswer((realInvocation) => const Stream.empty());
+
+      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+
+      // Act
+
+      // Assert
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+    });
+
+    testWidgets(
+        "Should show [Icons.check_circle_outline] when [ClientRegisterForm] submissionStatus is success",
+        (tester) async {
+      // Arrange
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
+        form: ClientRegisterForm.initial().copyWith(
+          submissionStatus: FormSubmissionStatus.success,
+        ),
+      ));
+      when(mockBloc.stream)
+          .thenAnswer((realInvocation) => const Stream.empty());
+
+      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+
+      // Act
+
+      // Assert
+      expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
     });
   });
 }
