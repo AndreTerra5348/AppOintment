@@ -158,6 +158,8 @@ void repositoryTests() {
     ],
   );
 
+  // TODO: Change reposity failure with bloc failure
+
   const dbErrorMessage = "Error";
   blocTest(
     """[ClientRegisterForm] submissionStatus Should be inProgress then failure 

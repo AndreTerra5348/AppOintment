@@ -15,10 +15,13 @@ class ClientRegisterFormWidget extends StatelessWidget {
           children: [
             const NameInputWidget(),
             ElevatedButton(
-                onPressed: () => context
-                    .read<ClientRegisterBloc>()
-                    .add(const ClientRegisterEvent.submitted()),
-                child: const Text("Register"))
+              onPressed: state.form.isValid
+                  ? () => context
+                      .read<ClientRegisterBloc>()
+                      .add(const ClientRegisterEvent.submitted())
+                  : null,
+              child: const Text("Register"),
+            )
           ],
         ));
       },

@@ -11,6 +11,8 @@ import 'name_input_test.mocks.dart';
 @GenerateMocks([ClientRegisterBloc])
 void main() {
   group("Name input widget", () {
+    // TODO: test for "required" text
+
     testWidgets(
         "Should add nameChanged event to bloc when TextFormField value change",
         (WidgetTester tester) async {

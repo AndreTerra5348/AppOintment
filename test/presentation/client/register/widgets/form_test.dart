@@ -1,4 +1,6 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
+import 'package:appointment/application/client/register/form.dart';
+import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +13,7 @@ import 'name_input_test.mocks.dart';
 @GenerateMocks([ClientRegisterBloc])
 void main() {
   group("ClientRegisterFormWidget", () {
-    testWidgets("Should have a Form and a ElevatedButton", (tester) async {
+    testWidgets("Should have a [Form] and a [ElevatedButton]", (tester) async {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
@@ -29,10 +31,17 @@ void main() {
       expect(find.byType(ElevatedButton), findsOneWidget);
     });
 
-    testWidgets("Should Add [Submitted] event to bloc", (tester) async {
+    testWidgets(
+        "Should Add [Submitted] event to bloc when [Form] is valid and [ElevatedButton] is tapped",
+        (tester) async {
       // Arrange
+      const name = "Bob";
       final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial());
+      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
+        form: ClientRegisterForm.initial().copyWith(
+          name: Name(name),
+        ),
+      ));
       when(mockBloc.stream)
           .thenAnswer((realInvocation) => const Stream.empty());
 
@@ -46,6 +55,27 @@ void main() {
 
       // Assert
       verify(mockBloc.add(const ClientRegisterEvent.submitted())).called(1);
+    });
+
+    testWidgets(
+        "Should [ElevatedButton] enable be false when [Form] is not valid",
+        (tester) async {
+      // Arrange
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(ClientRegisterState.initial());
+      when(mockBloc.stream)
+          .thenAnswer((realInvocation) => const Stream.empty());
+
+      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpAndSettle();
+
+      final button =
+          tester.widget(find.byType(ElevatedButton)) as ElevatedButton;
+
+      // Act
+
+      // Assert
+      expect(button.enabled, isFalse);
     });
   });
 }
