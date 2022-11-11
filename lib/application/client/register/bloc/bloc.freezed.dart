@@ -15,6 +15,225 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$BlocFailure {
+  RepositoryFailure get failure => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RepositoryFailure failure) repository,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RepositoryFailure failure)? repository,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RepositoryFailure failure)? repository,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Repository value) repository,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Repository value)? repository,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Repository value)? repository,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BlocFailureCopyWith<BlocFailure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BlocFailureCopyWith<$Res> {
+  factory $BlocFailureCopyWith(
+          BlocFailure value, $Res Function(BlocFailure) then) =
+      _$BlocFailureCopyWithImpl<$Res, BlocFailure>;
+  @useResult
+  $Res call({RepositoryFailure failure});
+
+  $RepositoryFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class _$BlocFailureCopyWithImpl<$Res, $Val extends BlocFailure>
+    implements $BlocFailureCopyWith<$Res> {
+  _$BlocFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_value.copyWith(
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as RepositoryFailure,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RepositoryFailureCopyWith<$Res> get failure {
+    return $RepositoryFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_RepositoryCopyWith<$Res>
+    implements $BlocFailureCopyWith<$Res> {
+  factory _$$_RepositoryCopyWith(
+          _$_Repository value, $Res Function(_$_Repository) then) =
+      __$$_RepositoryCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({RepositoryFailure failure});
+
+  @override
+  $RepositoryFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class __$$_RepositoryCopyWithImpl<$Res>
+    extends _$BlocFailureCopyWithImpl<$Res, _$_Repository>
+    implements _$$_RepositoryCopyWith<$Res> {
+  __$$_RepositoryCopyWithImpl(
+      _$_Repository _value, $Res Function(_$_Repository) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_$_Repository(
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as RepositoryFailure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Repository implements _Repository {
+  const _$_Repository({required this.failure});
+
+  @override
+  final RepositoryFailure failure;
+
+  @override
+  String toString() {
+    return 'BlocFailure.repository(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Repository &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RepositoryCopyWith<_$_Repository> get copyWith =>
+      __$$_RepositoryCopyWithImpl<_$_Repository>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RepositoryFailure failure) repository,
+  }) {
+    return repository(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RepositoryFailure failure)? repository,
+  }) {
+    return repository?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RepositoryFailure failure)? repository,
+    required TResult orElse(),
+  }) {
+    if (repository != null) {
+      return repository(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Repository value) repository,
+  }) {
+    return repository(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Repository value)? repository,
+  }) {
+    return repository?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Repository value)? repository,
+    required TResult orElse(),
+  }) {
+    if (repository != null) {
+      return repository(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Repository implements BlocFailure {
+  const factory _Repository({required final RepositoryFailure failure}) =
+      _$_Repository;
+
+  @override
+  RepositoryFailure get failure;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RepositoryCopyWith<_$_Repository> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ClientRegisterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -312,8 +531,7 @@ abstract class _Submitted implements ClientRegisterEvent {
 /// @nodoc
 mixin _$ClientRegisterState {
   ClientRegisterForm get form => throw _privateConstructorUsedError;
-  RepositoryFailure? get repositoryFailure =>
-      throw _privateConstructorUsedError;
+  BlocFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientRegisterStateCopyWith<ClientRegisterState> get copyWith =>
@@ -326,10 +544,10 @@ abstract class $ClientRegisterStateCopyWith<$Res> {
           ClientRegisterState value, $Res Function(ClientRegisterState) then) =
       _$ClientRegisterStateCopyWithImpl<$Res, ClientRegisterState>;
   @useResult
-  $Res call({ClientRegisterForm form, RepositoryFailure? repositoryFailure});
+  $Res call({ClientRegisterForm form, BlocFailure? failure});
 
   $ClientRegisterFormCopyWith<$Res> get form;
-  $RepositoryFailureCopyWith<$Res>? get repositoryFailure;
+  $BlocFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -346,17 +564,17 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
   @override
   $Res call({
     Object? form = null,
-    Object? repositoryFailure = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       form: null == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
-      repositoryFailure: freezed == repositoryFailure
-          ? _value.repositoryFailure
-          : repositoryFailure // ignore: cast_nullable_to_non_nullable
-              as RepositoryFailure?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as BlocFailure?,
     ) as $Val);
   }
 
@@ -370,13 +588,13 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
 
   @override
   @pragma('vm:prefer-inline')
-  $RepositoryFailureCopyWith<$Res>? get repositoryFailure {
-    if (_value.repositoryFailure == null) {
+  $BlocFailureCopyWith<$Res>? get failure {
+    if (_value.failure == null) {
       return null;
     }
 
-    return $RepositoryFailureCopyWith<$Res>(_value.repositoryFailure!, (value) {
-      return _then(_value.copyWith(repositoryFailure: value) as $Val);
+    return $BlocFailureCopyWith<$Res>(_value.failure!, (value) {
+      return _then(_value.copyWith(failure: value) as $Val);
     });
   }
 }
@@ -389,12 +607,12 @@ abstract class _$$_ClientFormStateCopyWith<$Res>
       __$$_ClientFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ClientRegisterForm form, RepositoryFailure? repositoryFailure});
+  $Res call({ClientRegisterForm form, BlocFailure? failure});
 
   @override
   $ClientRegisterFormCopyWith<$Res> get form;
   @override
-  $RepositoryFailureCopyWith<$Res>? get repositoryFailure;
+  $BlocFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -409,17 +627,17 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? form = null,
-    Object? repositoryFailure = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_$_ClientFormState(
       form: null == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
-      repositoryFailure: freezed == repositoryFailure
-          ? _value.repositoryFailure
-          : repositoryFailure // ignore: cast_nullable_to_non_nullable
-              as RepositoryFailure?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as BlocFailure?,
     ));
   }
 }
@@ -427,16 +645,16 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClientFormState implements _ClientFormState {
-  const _$_ClientFormState({required this.form, this.repositoryFailure});
+  const _$_ClientFormState({required this.form, this.failure});
 
   @override
   final ClientRegisterForm form;
   @override
-  final RepositoryFailure? repositoryFailure;
+  final BlocFailure? failure;
 
   @override
   String toString() {
-    return 'ClientRegisterState(form: $form, repositoryFailure: $repositoryFailure)';
+    return 'ClientRegisterState(form: $form, failure: $failure)';
   }
 
   @override
@@ -445,12 +663,11 @@ class _$_ClientFormState implements _ClientFormState {
         (other.runtimeType == runtimeType &&
             other is _$_ClientFormState &&
             (identical(other.form, form) || other.form == form) &&
-            (identical(other.repositoryFailure, repositoryFailure) ||
-                other.repositoryFailure == repositoryFailure));
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, form, repositoryFailure);
+  int get hashCode => Object.hash(runtimeType, form, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -462,12 +679,12 @@ class _$_ClientFormState implements _ClientFormState {
 abstract class _ClientFormState implements ClientRegisterState {
   const factory _ClientFormState(
       {required final ClientRegisterForm form,
-      final RepositoryFailure? repositoryFailure}) = _$_ClientFormState;
+      final BlocFailure? failure}) = _$_ClientFormState;
 
   @override
   ClientRegisterForm get form;
   @override
-  RepositoryFailure? get repositoryFailure;
+  BlocFailure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_ClientFormStateCopyWith<_$_ClientFormState> get copyWith =>

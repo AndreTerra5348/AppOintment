@@ -158,12 +158,10 @@ void repositoryTests() {
     ],
   );
 
-  // TODO: Change reposity failure with bloc failure
-
   const dbErrorMessage = "Error";
   blocTest(
     """[ClientRegisterForm] submissionStatus Should be inProgress then failure 
-    and repositoryFailure should be dbException with error message
+    and blocFailure should be repository failure dbException with error message
     when [Submitted] event is added with valid name and repository returns any error""",
     setUp: () {
       repository = MockClientRepository();
@@ -189,8 +187,8 @@ void repositoryTests() {
       ClientRegisterState(
         form: ClientRegisterForm(
             name: Name(name), submissionStatus: FormSubmissionStatus.failure),
-        repositoryFailure:
-            const RepositoryFailure.dbException(error: dbErrorMessage),
+        failure: const BlocFailure.repository(
+            failure: RepositoryFailure.dbException(error: dbErrorMessage)),
       )
     ],
   );

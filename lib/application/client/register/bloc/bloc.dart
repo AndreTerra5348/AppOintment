@@ -35,7 +35,7 @@ class ClientRegisterBloc
     result.fold(
       (l) => emit(state
           .withSubmissionStatus(status: FormSubmissionStatus.failure)
-          .copyWith(repositoryFailure: l)),
+          .copyWith(failure: BlocFailure.repository(failure: l))),
       (r) => emit(
           state.withSubmissionStatus(status: FormSubmissionStatus.success)),
     );
@@ -48,4 +48,10 @@ class ClientRegisterBloc
       ),
     ));
   }
+}
+
+@freezed
+class BlocFailure with _$BlocFailure {
+  const factory BlocFailure.repository({required RepositoryFailure failure}) =
+      _Repository;
 }
