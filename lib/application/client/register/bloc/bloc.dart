@@ -35,11 +35,16 @@ class ClientRegisterBloc
         await _repository.insert(Client.withoutUid(name: state.form.name));
 
     result.fold(
-      (l) => emit(state
-          .withSubmissionStatus(status: FormSubmissionStatus.failure)
-          .copyWith(failure: BlocFailure.repository(failure: l))),
-      (r) => emit(
-          state.withSubmissionStatus(status: FormSubmissionStatus.success)),
+      (l) {
+        emit(state
+            .withSubmissionStatus(status: FormSubmissionStatus.failure)
+            .copyWith(failure: BlocFailure.repository(failure: l)));
+        emit(state.withSubmissionStatus(status: FormSubmissionStatus.initial));
+      },
+      (r) {
+        emit(state.withSubmissionStatus(status: FormSubmissionStatus.success));
+        emit(ClientRegisterState.initial());
+      },
     );
   }
 

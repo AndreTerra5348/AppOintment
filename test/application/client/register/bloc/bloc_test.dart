@@ -129,7 +129,7 @@ void repositoryTests() {
   );
 
   blocTest(
-    """[ClientRegisterForm] submissionStatus Should be inProgress then success
+    """[ClientRegisterForm] submissionStatus Should be inProgress then success with empty name then initial
     when [Submitted] event is added with valid name and repository DO NOT return any error""",
     setUp: () {
       repository = MockClientRepository();
@@ -154,14 +154,18 @@ void repositoryTests() {
       ClientRegisterState(
         form: ClientRegisterForm(
             name: Name(name), submissionStatus: FormSubmissionStatus.success),
+      ),
+      ClientRegisterState(
+        form: ClientRegisterForm(
+            name: Name(""), submissionStatus: FormSubmissionStatus.initial),
       )
     ],
   );
 
   const dbErrorMessage = "Error";
   blocTest(
-    """[ClientRegisterForm] submissionStatus Should be inProgress then failure 
-    and blocFailure should be repository failure dbException with error message
+    """[ClientRegisterForm] submissionStatus Should be inProgress then failure
+    and then initial with current name, blocFailure should be repository failure dbException with error message
     when [Submitted] event is added with valid name and repository returns any error""",
     setUp: () {
       repository = MockClientRepository();
@@ -187,6 +191,12 @@ void repositoryTests() {
       ClientRegisterState(
         form: ClientRegisterForm(
             name: Name(name), submissionStatus: FormSubmissionStatus.failure),
+        failure: const BlocFailure.repository(
+            failure: RepositoryFailure.dbException(error: dbErrorMessage)),
+      ),
+      ClientRegisterState(
+        form: ClientRegisterForm(
+            name: Name(name), submissionStatus: FormSubmissionStatus.initial),
         failure: const BlocFailure.repository(
             failure: RepositoryFailure.dbException(error: dbErrorMessage)),
       )
