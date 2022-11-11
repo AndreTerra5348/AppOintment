@@ -1,5 +1,6 @@
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/string_validators.dart';
+import 'package:appointment/domain/common/value_object.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -25,6 +26,9 @@ void nameTests() {
       // Assert
       expect(actual, isA<Right<StringFailure, String>>());
       expect(actual, const Right(name));
+      expect(sut.isValid, isTrue);
+      expect(sut.isNotValid, isFalse);
+      expect(sut.getOrThrow(), name);
     });
 
     // Empty name
@@ -40,6 +44,9 @@ void nameTests() {
 
       // Assert
       expect(actual, isA<Left<StringFailure, String>>());
+      expect(sut.isValid, isFalse);
+      expect(sut.isNotValid, isTrue);
+      expect(() => sut.getOrThrow(), throwsA(isA<UnexpectedValueError>()));
     });
   });
 }
