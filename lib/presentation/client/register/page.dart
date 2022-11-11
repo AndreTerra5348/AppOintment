@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ClientRegisterPage extends StatelessWidget {
-  const ClientRegisterPage({super.key});
+  final ClientRegisterBloc bloc;
+  const ClientRegisterPage({super.key, required this.bloc});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Client Registration")),
       body: BlocProvider(
-        create: (context) => ClientRegisterBloc(),
+        create: (context) => bloc,
         child: const ClientRegisterFormWidget(),
       ),
     );

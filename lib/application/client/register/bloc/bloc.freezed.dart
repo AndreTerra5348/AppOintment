@@ -312,6 +312,8 @@ abstract class _Submitted implements ClientRegisterEvent {
 /// @nodoc
 mixin _$ClientRegisterState {
   ClientRegisterForm get form => throw _privateConstructorUsedError;
+  RepositoryFailure? get repositoryFailure =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientRegisterStateCopyWith<ClientRegisterState> get copyWith =>
@@ -324,9 +326,10 @@ abstract class $ClientRegisterStateCopyWith<$Res> {
           ClientRegisterState value, $Res Function(ClientRegisterState) then) =
       _$ClientRegisterStateCopyWithImpl<$Res, ClientRegisterState>;
   @useResult
-  $Res call({ClientRegisterForm form});
+  $Res call({ClientRegisterForm form, RepositoryFailure? repositoryFailure});
 
   $ClientRegisterFormCopyWith<$Res> get form;
+  $RepositoryFailureCopyWith<$Res>? get repositoryFailure;
 }
 
 /// @nodoc
@@ -343,12 +346,17 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
   @override
   $Res call({
     Object? form = null,
+    Object? repositoryFailure = freezed,
   }) {
     return _then(_value.copyWith(
       form: null == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
+      repositoryFailure: freezed == repositoryFailure
+          ? _value.repositoryFailure
+          : repositoryFailure // ignore: cast_nullable_to_non_nullable
+              as RepositoryFailure?,
     ) as $Val);
   }
 
@@ -357,6 +365,18 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
   $ClientRegisterFormCopyWith<$Res> get form {
     return $ClientRegisterFormCopyWith<$Res>(_value.form, (value) {
       return _then(_value.copyWith(form: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RepositoryFailureCopyWith<$Res>? get repositoryFailure {
+    if (_value.repositoryFailure == null) {
+      return null;
+    }
+
+    return $RepositoryFailureCopyWith<$Res>(_value.repositoryFailure!, (value) {
+      return _then(_value.copyWith(repositoryFailure: value) as $Val);
     });
   }
 }
@@ -369,10 +389,12 @@ abstract class _$$_ClientFormStateCopyWith<$Res>
       __$$_ClientFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ClientRegisterForm form});
+  $Res call({ClientRegisterForm form, RepositoryFailure? repositoryFailure});
 
   @override
   $ClientRegisterFormCopyWith<$Res> get form;
+  @override
+  $RepositoryFailureCopyWith<$Res>? get repositoryFailure;
 }
 
 /// @nodoc
@@ -387,12 +409,17 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? form = null,
+    Object? repositoryFailure = freezed,
   }) {
     return _then(_$_ClientFormState(
       form: null == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
+      repositoryFailure: freezed == repositoryFailure
+          ? _value.repositoryFailure
+          : repositoryFailure // ignore: cast_nullable_to_non_nullable
+              as RepositoryFailure?,
     ));
   }
 }
@@ -400,14 +427,16 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClientFormState implements _ClientFormState {
-  const _$_ClientFormState({required this.form});
+  const _$_ClientFormState({required this.form, this.repositoryFailure});
 
   @override
   final ClientRegisterForm form;
+  @override
+  final RepositoryFailure? repositoryFailure;
 
   @override
   String toString() {
-    return 'ClientRegisterState(form: $form)';
+    return 'ClientRegisterState(form: $form, repositoryFailure: $repositoryFailure)';
   }
 
   @override
@@ -415,11 +444,13 @@ class _$_ClientFormState implements _ClientFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClientFormState &&
-            (identical(other.form, form) || other.form == form));
+            (identical(other.form, form) || other.form == form) &&
+            (identical(other.repositoryFailure, repositoryFailure) ||
+                other.repositoryFailure == repositoryFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, form);
+  int get hashCode => Object.hash(runtimeType, form, repositoryFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -429,11 +460,14 @@ class _$_ClientFormState implements _ClientFormState {
 }
 
 abstract class _ClientFormState implements ClientRegisterState {
-  const factory _ClientFormState({required final ClientRegisterForm form}) =
-      _$_ClientFormState;
+  const factory _ClientFormState(
+      {required final ClientRegisterForm form,
+      final RepositoryFailure? repositoryFailure}) = _$_ClientFormState;
 
   @override
   ClientRegisterForm get form;
+  @override
+  RepositoryFailure? get repositoryFailure;
   @override
   @JsonKey(ignore: true)
   _$$_ClientFormStateCopyWith<_$_ClientFormState> get copyWith =>

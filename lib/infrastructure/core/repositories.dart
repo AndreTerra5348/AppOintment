@@ -8,16 +8,16 @@ import 'package:drift/drift.dart';
 abstract class BaseRepository<T_Entity, T_Model extends DataClass>
     implements IRepository<T_Entity> {
   final Dao<T_Model> _dao;
-  final EntityModelConverter<T_Entity, T_Model> converter;
+  final EntityModelConverter<T_Entity, T_Model> _converter;
 
-  BaseRepository(this._dao, this.converter);
+  BaseRepository(this._dao, this._converter);
 
   @override
   Future<Either<RepositoryFailure, T_Entity>> insert(T_Entity entity) async {
     try {
-      final companion = converter.toUpdateCompanion(entity);
+      final companion = _converter.toUpdateCompanion(entity);
       final id = await _dao.insert(companion);
-      return Right(converter.toEntityWithId(entity, Uid.fromInt(id)));
+      return Right(_converter.toEntityWithId(entity, Uid.fromInt(id)));
     } catch (error) {
       return Left(RepositoryFailure.dbException(error: error));
     }
