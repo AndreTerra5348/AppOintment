@@ -16,6 +16,9 @@ class ClientRegisterForm with _$ClientRegisterForm, FormMixin {
   factory ClientRegisterForm.initial() => ClientRegisterForm(
       submissionStatus: FormSubmissionStatus.initial, name: Name(""));
 
+  factory ClientRegisterForm.success() => ClientRegisterForm.initial()
+      .copyWith(submissionStatus: FormSubmissionStatus.success);
+
   @override
   List<ValueObject> get values => [name];
 }

@@ -50,3 +50,5 @@ mixin FormMixin {
   /// validated automatically.
   List<ValueObject<dynamic, dynamic>> get values;
 }
+
+// TODO: add FormInput

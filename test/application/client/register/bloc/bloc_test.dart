@@ -96,8 +96,8 @@ void repositoryTests() {
     """Should call [Repository] insert when [Submitted] event is added with valid name""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.sync(
-            () => const Left(RepositoryFailure.dbException(error: "")),
+      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+            const Left(RepositoryFailure.dbException(error: "")),
           ));
     },
     build: () => ClientRegisterBloc(repository),
@@ -114,8 +114,8 @@ void repositoryTests() {
     """Should NOT call [Repository] insert when [Submitted] event is added with invalid name""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.sync(
-            () => const Left(RepositoryFailure.dbException(error: "")),
+      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+            const Left(RepositoryFailure.dbException(error: "")),
           ));
     },
     build: () => ClientRegisterBloc(repository),
@@ -129,12 +129,12 @@ void repositoryTests() {
   );
 
   blocTest(
-    """[ClientRegisterForm] submissionStatus Should be inProgress then success with empty name then initial
+    """[ClientRegisterForm] submissionStatus Should be inProgress then success with empty name
     when [Submitted] event is added with valid name and repository DO NOT return any error""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.sync(
-            () => Right(Client.withoutUid(name: Name(name))),
+      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+            Right(Client.withoutUid(name: Name(name))),
           ));
     },
     build: () => ClientRegisterBloc(repository),
@@ -153,25 +153,20 @@ void repositoryTests() {
       ),
       ClientRegisterState(
         form: ClientRegisterForm(
-            name: Name(name), submissionStatus: FormSubmissionStatus.success),
+            name: Name(""), submissionStatus: FormSubmissionStatus.success),
       ),
-      ClientRegisterState(
-        form: ClientRegisterForm(
-            name: Name(""), submissionStatus: FormSubmissionStatus.initial),
-      )
     ],
   );
 
   const dbErrorMessage = "Error";
   blocTest(
-    """[ClientRegisterForm] submissionStatus Should be inProgress then failure
-    and then initial with current name, blocFailure should be repository failure dbException with error message
+    """[ClientRegisterForm] submissionStatus Should be inProgress then failure, 
+    blocFailure should be repository failure dbException with error message
     when [Submitted] event is added with valid name and repository returns any error""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.sync(
-            () => const Left(
-                RepositoryFailure.dbException(error: dbErrorMessage)),
+      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+            const Left(RepositoryFailure.dbException(error: dbErrorMessage)),
           ));
     },
     build: () => ClientRegisterBloc(repository),
@@ -194,12 +189,6 @@ void repositoryTests() {
         failure: const BlocFailure.repository(
             failure: RepositoryFailure.dbException(error: dbErrorMessage)),
       ),
-      ClientRegisterState(
-        form: ClientRegisterForm(
-            name: Name(name), submissionStatus: FormSubmissionStatus.initial),
-        failure: const BlocFailure.repository(
-            failure: RepositoryFailure.dbException(error: dbErrorMessage)),
-      )
     ],
   );
 }

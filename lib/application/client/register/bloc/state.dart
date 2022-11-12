@@ -7,10 +7,17 @@ class ClientRegisterState with _$ClientRegisterState {
       BlocFailure? failure}) = _ClientFormState;
   factory ClientRegisterState.initial() =>
       ClientRegisterState(form: ClientRegisterForm.initial());
+  factory ClientRegisterState.success() =>
+      ClientRegisterState(form: ClientRegisterForm.success());
 }
 
 extension on ClientRegisterState {
-  ClientRegisterState withSubmissionStatus(
+  ClientRegisterState copyWithSubmissionStatus(
           {required FormSubmissionStatus status}) =>
       copyWith(form: form.copyWith(submissionStatus: status));
+
+  ClientRegisterState copyWithFailure({required BlocFailure failure}) =>
+      copyWith(
+          form: form.copyWith(submissionStatus: FormSubmissionStatus.failure),
+          failure: failure);
 }

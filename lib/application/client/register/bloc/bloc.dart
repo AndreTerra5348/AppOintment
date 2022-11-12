@@ -22,7 +22,7 @@ class ClientRegisterBloc
   }
 
   FutureOr<void> _submitted(event, emit) async {
-    emit(state.withSubmissionStatus(
+    emit(state.copyWithSubmissionStatus(
         status: state.form.isValid
             ? FormSubmissionStatus.inProgress
             : FormSubmissionStatus.failure));
@@ -36,14 +36,12 @@ class ClientRegisterBloc
 
     result.fold(
       (l) {
-        emit(state
-            .withSubmissionStatus(status: FormSubmissionStatus.failure)
-            .copyWith(failure: BlocFailure.repository(failure: l)));
-        emit(state.withSubmissionStatus(status: FormSubmissionStatus.initial));
+        emit(
+          state.copyWithFailure(failure: BlocFailure.repository(failure: l)),
+        );
       },
       (r) {
-        emit(state.withSubmissionStatus(status: FormSubmissionStatus.success));
-        emit(ClientRegisterState.initial());
+        emit(ClientRegisterState.success());
       },
     );
   }

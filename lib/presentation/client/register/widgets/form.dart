@@ -24,6 +24,9 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
           current.form.submissionStatus.isFailure ||
           current.form.submissionStatus.isSuccess,
       listener: (context, state) {
+        // TODO: reset state if success
+        // TODO: show dialog with success or failure
+        // TODO: popup dialog context after 1 second
         Timer(const Duration(seconds: 1),
             () => setState(() => _showFeedback = false));
       },
