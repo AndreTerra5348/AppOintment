@@ -37,10 +37,8 @@ class ClientRegisterBloc
 
     result.fold(
       (l) {
-        emit(
-          state.copyWithFailure(
-              failure: SubmissionFailure.repository(failure: l)),
-        );
+        emit(state.copyWithFailure(
+            failure: SubmissionFailure.repository(failure: l)));
       },
       (r) {
         emit(ClientRegisterState.success());
@@ -49,11 +47,13 @@ class ClientRegisterBloc
   }
 
   FutureOr<void> _nameChanged(event, emit) {
-    emit(state.copyWith(
-      form: state.form.copyWith(
-          name: Name(event.name),
-          submissionStatus: const SubmissionStatus.initial()),
-    ));
+    emit(
+      state.copyWith(
+        form: state.form.copyWith(
+            name: Name(event.name),
+            submissionStatus: const SubmissionStatus.initial()),
+      ),
+    );
   }
 }
 

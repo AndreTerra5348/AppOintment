@@ -3,6 +3,7 @@ import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/string_validators.dart';
+import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
@@ -147,8 +148,9 @@ void main() {
       expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
     });
 
-    testWidgets(
-        "Should show [Icons.error_outline] when [ClientRegisterForm] submissionStatus is failure",
+    testWidgets("""Should show [Icons.error_outline] with 
+        SubmissionFailure.invalidField() error text
+        when [ClientRegisterForm] submissionStatus is SubmissionFailure.invalidField()""",
         (tester) async {
       // Arrange
       final state = ClientRegisterState.initial().copyWith(
@@ -168,6 +170,41 @@ void main() {
 
       // Assert
       expect(find.byIcon(Icons.error_outline), findsOneWidget);
+      expect(find.text(const SubmissionFailure.invalidField().toErrorText()),
+          findsOneWidget);
+    });
+
+    const dbErrorMessage = "Error";
+    const repositoryFailure =
+        RepositoryFailure.dbException(error: dbErrorMessage);
+    const submissionFailure =
+        SubmissionFailure.repository(failure: repositoryFailure);
+
+    testWidgets("""Should show [Icons.error_outline] with 
+        SubmissionFailure.repository(RepositoryFailure
+          .dbFailure(errorMessage)) error text
+        when [ClientRegisterForm] submissionStatus is 
+        SubmissionFailure.repository(RepositoryFailure
+          .dbFailure(errorMessage))""", (tester) async {
+      // Arrange
+      final state = ClientRegisterState.initial().copyWith(
+        form: ClientRegisterForm.initial().copyWith(
+          submissionStatus:
+              const SubmissionStatus.failure(failure: submissionFailure),
+        ),
+      );
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(state);
+      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
+
+      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pump();
+
+      // Act
+
+      // Assert
+      expect(find.byIcon(Icons.error_outline), findsOneWidget);
+      expect(find.text(submissionFailure.toErrorText()), findsOneWidget);
     });
   });
 }

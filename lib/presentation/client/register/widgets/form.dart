@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:appointment/application/client/register/bloc/bloc.dart';
+import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,8 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
         state.form.submissionStatus.maybeMap(
           orElse: () {},
           success: (_) => _handleSuccess(context),
-          failure: (_) => _handleFailure(context),
+          failure: (failureStatus) =>
+              _handleFailure(context, failureStatus.failure),
         );
         _timer =
             Timer(const Duration(seconds: 1), () => Navigator.pop(context));
@@ -64,14 +66,24 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     setState(() => _formKey.currentState!.reset());
     showDialog(
       context: context,
-      builder: (_) => const Icon(Icons.check_circle_outline),
+      builder: (_) => Column(
+        children: const [
+          Icon(Icons.check_circle_outline),
+          Text("Registration Completed")
+        ],
+      ),
     );
   }
 
-  _handleFailure(BuildContext context) {
+  _handleFailure(BuildContext context, SubmissionFailure failure) {
     showDialog(
       context: context,
-      builder: (_) => const Icon(Icons.error_outline),
+      builder: (_) => Column(
+        children: [
+          const Icon(Icons.error_outline),
+          Text(failure.toErrorText()),
+        ],
+      ),
     );
   }
 
@@ -79,5 +91,14 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   void dispose() {
     super.dispose();
     _timer?.cancel();
+  }
+}
+
+extension SubmissionFailureExtension on SubmissionFailure {
+  String toErrorText() {
+    return map(
+      repository: (value) => "Database error: ${value.failure.error}",
+      invalidField: (value) => "Invalid Fields",
+    );
   }
 }
