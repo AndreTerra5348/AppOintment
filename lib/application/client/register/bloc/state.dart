@@ -13,11 +13,14 @@ class ClientRegisterState with _$ClientRegisterState {
 
 extension ClientRegisterStateExt on ClientRegisterState {
   ClientRegisterState copyWithSubmissionStatus(
-          {required FormSubmissionStatus status}) =>
+          {required SubmissionStatus status}) =>
       copyWith(form: form.copyWith(submissionStatus: status));
 
   ClientRegisterState copyWithFailure({required BlocFailure failure}) =>
       copyWith(
-          form: form.copyWith(submissionStatus: FormSubmissionStatus.failure),
-          failure: failure);
+        form: form.copyWith(
+          submissionStatus: const SubmissionStatus.failure(),
+        ),
+        failure: failure,
+      );
 }

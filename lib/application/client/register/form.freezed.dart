@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientRegisterForm {
-  FormSubmissionStatus get submissionStatus =>
-      throw _privateConstructorUsedError;
+  SubmissionStatus get submissionStatus => throw _privateConstructorUsedError;
   Name get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +30,9 @@ abstract class $ClientRegisterFormCopyWith<$Res> {
           ClientRegisterForm value, $Res Function(ClientRegisterForm) then) =
       _$ClientRegisterFormCopyWithImpl<$Res, ClientRegisterForm>;
   @useResult
-  $Res call({FormSubmissionStatus submissionStatus, Name name});
+  $Res call({SubmissionStatus submissionStatus, Name name});
+
+  $SubmissionStatusCopyWith<$Res> get submissionStatus;
 }
 
 /// @nodoc
@@ -54,12 +55,20 @@ class _$ClientRegisterFormCopyWithImpl<$Res, $Val extends ClientRegisterForm>
       submissionStatus: null == submissionStatus
           ? _value.submissionStatus
           : submissionStatus // ignore: cast_nullable_to_non_nullable
-              as FormSubmissionStatus,
+              as SubmissionStatus,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as Name,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SubmissionStatusCopyWith<$Res> get submissionStatus {
+    return $SubmissionStatusCopyWith<$Res>(_value.submissionStatus, (value) {
+      return _then(_value.copyWith(submissionStatus: value) as $Val);
+    });
   }
 }
 
@@ -71,7 +80,10 @@ abstract class _$$_ClientRegisterFormCopyWith<$Res>
       __$$_ClientRegisterFormCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FormSubmissionStatus submissionStatus, Name name});
+  $Res call({SubmissionStatus submissionStatus, Name name});
+
+  @override
+  $SubmissionStatusCopyWith<$Res> get submissionStatus;
 }
 
 /// @nodoc
@@ -92,7 +104,7 @@ class __$$_ClientRegisterFormCopyWithImpl<$Res>
       submissionStatus: null == submissionStatus
           ? _value.submissionStatus
           : submissionStatus // ignore: cast_nullable_to_non_nullable
-              as FormSubmissionStatus,
+              as SubmissionStatus,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -109,7 +121,7 @@ class _$_ClientRegisterForm extends _ClientRegisterForm {
       : super._();
 
   @override
-  final FormSubmissionStatus submissionStatus;
+  final SubmissionStatus submissionStatus;
   @override
   final Name name;
 
@@ -141,12 +153,12 @@ class _$_ClientRegisterForm extends _ClientRegisterForm {
 
 abstract class _ClientRegisterForm extends ClientRegisterForm {
   const factory _ClientRegisterForm(
-      {required final FormSubmissionStatus submissionStatus,
+      {required final SubmissionStatus submissionStatus,
       required final Name name}) = _$_ClientRegisterForm;
   const _ClientRegisterForm._() : super._();
 
   @override
-  FormSubmissionStatus get submissionStatus;
+  SubmissionStatus get submissionStatus;
   @override
   Name get name;
   @override

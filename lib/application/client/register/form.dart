@@ -10,14 +10,14 @@ class ClientRegisterForm with _$ClientRegisterForm, FormMixin {
   const ClientRegisterForm._();
 
   const factory ClientRegisterForm(
-      {required FormSubmissionStatus submissionStatus,
+      {required SubmissionStatus submissionStatus,
       required Name name}) = _ClientRegisterForm;
 
   factory ClientRegisterForm.initial() => ClientRegisterForm(
-      submissionStatus: FormSubmissionStatus.initial, name: Name(""));
+      submissionStatus: const SubmissionStatus.initial(), name: Name(""));
 
   factory ClientRegisterForm.success() => ClientRegisterForm.initial()
-      .copyWith(submissionStatus: FormSubmissionStatus.success);
+      .copyWith(submissionStatus: const SubmissionStatus.success());
 
   @override
   List<ValueObject> get values => [name];

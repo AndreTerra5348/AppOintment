@@ -21,7 +21,7 @@ void main() {
       // Act
 
       // Assert
-      expect(form.submissionStatus, FormSubmissionStatus.initial);
+      expect(form.submissionStatus, const SubmissionStatus.initial());
     });
 
     test("initial isValid should be false", () {

@@ -90,7 +90,7 @@ void main() {
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
         form: ClientRegisterForm.initial().copyWith(
-          submissionStatus: FormSubmissionStatus.inProgress,
+          submissionStatus: const SubmissionStatus.inProgress(),
         ),
       ));
       when(mockBloc.stream)
@@ -111,7 +111,7 @@ void main() {
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
         form: ClientRegisterForm.initial().copyWith(
-          submissionStatus: FormSubmissionStatus.initial,
+          submissionStatus: const SubmissionStatus.initial(),
         ),
       ));
       when(mockBloc.stream)
@@ -131,7 +131,7 @@ void main() {
       // Arrange
       final state = ClientRegisterState.initial().copyWith(
         form: ClientRegisterForm.initial().copyWith(
-          submissionStatus: FormSubmissionStatus.success,
+          submissionStatus: const SubmissionStatus.success(),
         ),
       );
       final mockBloc = MockClientRegisterBloc();

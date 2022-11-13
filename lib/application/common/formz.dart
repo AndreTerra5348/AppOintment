@@ -1,44 +1,23 @@
 import 'package:appointment/domain/common/value_object.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'formz.freezed.dart';
 
-/// Copy from Formz
-/// Enum representing the submission status of a form.
-enum FormSubmissionStatus {
-  /// The form has not yet been submitted.
-  initial,
+@freezed
+class SubmissionStatus with _$SubmissionStatus {
+  const SubmissionStatus._();
+  const factory SubmissionStatus.initial() = _Initial;
+  const factory SubmissionStatus.inProgress() = _InProgress;
+  const factory SubmissionStatus.success() = _Success;
+  const factory SubmissionStatus.failure() = _Failure;
+  const factory SubmissionStatus.canceled() = _Canceled;
 
-  /// The form is in the process of being submitted.
-  inProgress,
-
-  /// The form has been submitted successfully.
-  success,
-
-  /// The form submission failed.
-  failure,
-
-  /// The form submission has been canceled.
-  canceled
-}
-
-/// Useful extensions on [FormSubmissionStatus]
-extension FormSubmissionStatusX on FormSubmissionStatus {
-  /// Indicates whether the form has not yet been submitted.
-  bool get isInitial => this == FormSubmissionStatus.initial;
-
-  /// Indicates whether the form is in the process of being submitted.
-  bool get isInProgress => this == FormSubmissionStatus.inProgress;
-
-  /// Indicates whether the form has been submitted successfully.
-  bool get isSuccess => this == FormSubmissionStatus.success;
-
-  /// Indicates whether the form submission failed.
-  bool get isFailure => this == FormSubmissionStatus.failure;
-
-  /// Indicates whether the form submission has been canceled.
-  bool get isCanceled => this == FormSubmissionStatus.canceled;
+  bool get isInitial => maybeMap(orElse: () => false, initial: (_) => true);
+  bool get isInProgress =>
+      maybeMap(orElse: () => false, inProgress: (_) => true);
+  bool get isSuccess => maybeMap(orElse: () => false, success: (_) => true);
+  bool get isFailure => maybeMap(orElse: () => false, failure: (_) => true);
+  bool get isCanceled => maybeMap(orElse: () => false, canceled: (_) => true);
 }
 
 mixin FormMixin {
@@ -53,22 +32,4 @@ mixin FormMixin {
   /// Override this and give it all [ValueObject]s in your class that should be
   /// validated automatically.
   List<ValueObject<dynamic, dynamic>> get values;
-}
-
-@freezed
-class FormInput<T_Failure, T_Value> with _$FormInput<T_Failure, T_Value> {
-  const FormInput._();
-  const factory FormInput(
-      {required ValueObject<T_Failure, T_Value> object,
-      required bool isPure}) = _FormInput;
-
-  factory FormInput.pure({required ValueObject<T_Failure, T_Value> object}) =>
-      FormInput(object: object, isPure: true);
-
-  factory FormInput.dirty({required ValueObject<T_Failure, T_Value> object}) =>
-      FormInput(object: object, isPure: false);
-
-  Either<T_Failure, T_Value> get value => object.value;
-  bool get isValid => object.isValid;
-  bool get isNotValie => !isValid;
 }

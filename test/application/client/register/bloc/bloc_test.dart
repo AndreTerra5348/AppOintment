@@ -55,7 +55,7 @@ void initialValuesTests() {
     // Act
 
     // Assert
-    expect(sut.state.form.submissionStatus, FormSubmissionStatus.initial);
+    expect(sut.state.form.submissionStatus, const SubmissionStatus.initial());
   });
 }
 
@@ -69,7 +69,8 @@ void statesTests() {
     expect: () => [
       ClientRegisterState(
         form: ClientRegisterForm(
-            name: Name(name), submissionStatus: FormSubmissionStatus.initial),
+            name: Name(name),
+            submissionStatus: const SubmissionStatus.initial()),
       )
     ],
   );
@@ -82,7 +83,7 @@ void statesTests() {
     expect: () => [
       ClientRegisterState(
         form: ClientRegisterForm(
-            name: Name(''), submissionStatus: FormSubmissionStatus.failure),
+            name: Name(''), submissionStatus: const SubmissionStatus.failure()),
       )
     ],
   );
@@ -149,11 +150,11 @@ void repositoryTests() {
       ClientRegisterState(
         form: ClientRegisterForm(
             name: Name(name),
-            submissionStatus: FormSubmissionStatus.inProgress),
+            submissionStatus: const SubmissionStatus.inProgress()),
       ),
       ClientRegisterState(
         form: ClientRegisterForm(
-            name: Name(""), submissionStatus: FormSubmissionStatus.success),
+            name: Name(""), submissionStatus: const SubmissionStatus.success()),
       ),
     ],
   );
@@ -181,11 +182,12 @@ void repositoryTests() {
       ClientRegisterState(
         form: ClientRegisterForm(
             name: Name(name),
-            submissionStatus: FormSubmissionStatus.inProgress),
+            submissionStatus: const SubmissionStatus.inProgress()),
       ),
       ClientRegisterState(
         form: ClientRegisterForm(
-            name: Name(name), submissionStatus: FormSubmissionStatus.failure),
+            name: Name(name),
+            submissionStatus: const SubmissionStatus.failure()),
         failure: const BlocFailure.repository(
             failure: RepositoryFailure.dbException(error: dbErrorMessage)),
       ),

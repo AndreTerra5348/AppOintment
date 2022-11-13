@@ -32,34 +32,6 @@ void main() {
       // Assert
       verify(mockBloc.add(any)).called(1);
     });
-
-    testWidgets(
-        "Should show invalid text form error message when validate onUserInteraction",
-        (WidgetTester tester) async {
-      // Arrange
-      const name = "Bob";
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial());
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
-      await tester.pumpAndSettle();
-      final element = tester.element(find.byType(TextFormField));
-      final focus = Focus.of(element);
-
-      // Act
-      await tester.enterText(find.byType(TextFormField), name);
-      await tester.enterText(find.byType(TextFormField), '');
-
-      focus.unfocus();
-      await tester.pump();
-
-      // Assert
-      expect(focus.hasFocus, isFalse);
-      expect(find.text(const StringFailure.empty().toErrorText()!),
-          findsOneWidget);
-    });
   });
 }
 

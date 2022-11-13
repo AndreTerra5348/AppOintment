@@ -24,8 +24,8 @@ class ClientRegisterBloc
   FutureOr<void> _submitted(event, emit) async {
     emit(state.copyWithSubmissionStatus(
         status: state.form.isValid
-            ? FormSubmissionStatus.inProgress
-            : FormSubmissionStatus.failure));
+            ? const SubmissionStatus.inProgress()
+            : const SubmissionStatus.failure()));
 
     if (state.form.isNotValid) {
       return;
@@ -50,7 +50,7 @@ class ClientRegisterBloc
     emit(state.copyWith(
       form: state.form.copyWith(
           name: Name(event.name),
-          submissionStatus: FormSubmissionStatus.initial),
+          submissionStatus: const SubmissionStatus.initial()),
     ));
   }
 }

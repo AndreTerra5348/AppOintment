@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,15 +24,10 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
           current.form.submissionStatus.isFailure ||
           current.form.submissionStatus.isSuccess,
       listener: (context, state) {
-        if (state.form.submissionStatus.isSuccess) {
-          setState(() => _formKey.currentState!.reset());
-          showDialog(
-            context: context,
-            builder: (_) => const Icon(Icons.check_circle_outline),
-          );
-          _timer =
-              Timer(const Duration(seconds: 1), () => Navigator.pop(context));
-        }
+        state.form.submissionStatus.maybeMap(
+          orElse: () {},
+          success: (_) => _handleSuccess(context),
+        );
       },
       builder: (context, state) {
         return Form(
@@ -61,6 +55,15 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
         );
       },
     );
+  }
+
+  void _handleSuccess(BuildContext context) {
+    setState(() => _formKey.currentState!.reset());
+    showDialog(
+      context: context,
+      builder: (_) => const Icon(Icons.check_circle_outline),
+    );
+    _timer = Timer(const Duration(seconds: 1), () => Navigator.pop(context));
   }
 
   @override
