@@ -1,5 +1,4 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/domain/common/string_validators.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

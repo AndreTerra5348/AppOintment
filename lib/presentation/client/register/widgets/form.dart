@@ -27,7 +27,10 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
         state.form.submissionStatus.maybeMap(
           orElse: () {},
           success: (_) => _handleSuccess(context),
+          failure: (_) => _handleFailure(context),
         );
+        _timer =
+            Timer(const Duration(seconds: 1), () => Navigator.pop(context));
       },
       builder: (context, state) {
         return Form(
@@ -57,13 +60,19 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     );
   }
 
-  void _handleSuccess(BuildContext context) {
+  _handleSuccess(BuildContext context) {
     setState(() => _formKey.currentState!.reset());
     showDialog(
       context: context,
       builder: (_) => const Icon(Icons.check_circle_outline),
     );
-    _timer = Timer(const Duration(seconds: 1), () => Navigator.pop(context));
+  }
+
+  _handleFailure(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => const Icon(Icons.error_outline),
+    );
   }
 
   @override

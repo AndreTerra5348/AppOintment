@@ -25,7 +25,8 @@ class ClientRegisterBloc
     emit(state.copyWithSubmissionStatus(
         status: state.form.isValid
             ? const SubmissionStatus.inProgress()
-            : const SubmissionStatus.failure()));
+            : const SubmissionStatus.failure(
+                failure: SubmissionFailure.invalidField())));
 
     if (state.form.isNotValid) {
       return;
@@ -37,7 +38,8 @@ class ClientRegisterBloc
     result.fold(
       (l) {
         emit(
-          state.copyWithFailure(failure: BlocFailure.repository(failure: l)),
+          state.copyWithFailure(
+              failure: SubmissionFailure.repository(failure: l)),
         );
       },
       (r) {

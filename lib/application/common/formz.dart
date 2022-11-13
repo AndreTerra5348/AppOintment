@@ -1,4 +1,6 @@
 import 'package:appointment/domain/common/value_object.dart';
+import 'package:appointment/domain/core/i_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'formz.freezed.dart';
@@ -9,7 +11,8 @@ class SubmissionStatus with _$SubmissionStatus {
   const factory SubmissionStatus.initial() = _Initial;
   const factory SubmissionStatus.inProgress() = _InProgress;
   const factory SubmissionStatus.success() = _Success;
-  const factory SubmissionStatus.failure() = _Failure;
+  const factory SubmissionStatus.failure({required SubmissionFailure failure}) =
+      _Failure;
   const factory SubmissionStatus.canceled() = _Canceled;
 
   bool get isInitial => maybeMap(orElse: () => false, initial: (_) => true);
@@ -18,6 +21,13 @@ class SubmissionStatus with _$SubmissionStatus {
   bool get isSuccess => maybeMap(orElse: () => false, success: (_) => true);
   bool get isFailure => maybeMap(orElse: () => false, failure: (_) => true);
   bool get isCanceled => maybeMap(orElse: () => false, canceled: (_) => true);
+}
+
+@freezed
+class SubmissionFailure with _$SubmissionFailure {
+  const factory SubmissionFailure.repository(
+      {required RepositoryFailure failure}) = _Repository;
+  const factory SubmissionFailure.invalidField() = _InvalidInput;
 }
 
 mixin FormMixin {

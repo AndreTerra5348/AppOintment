@@ -531,7 +531,6 @@ abstract class _Submitted implements ClientRegisterEvent {
 /// @nodoc
 mixin _$ClientRegisterState {
   ClientRegisterForm get form => throw _privateConstructorUsedError;
-  BlocFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientRegisterStateCopyWith<ClientRegisterState> get copyWith =>
@@ -544,10 +543,9 @@ abstract class $ClientRegisterStateCopyWith<$Res> {
           ClientRegisterState value, $Res Function(ClientRegisterState) then) =
       _$ClientRegisterStateCopyWithImpl<$Res, ClientRegisterState>;
   @useResult
-  $Res call({ClientRegisterForm form, BlocFailure? failure});
+  $Res call({ClientRegisterForm form});
 
   $ClientRegisterFormCopyWith<$Res> get form;
-  $BlocFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -564,17 +562,12 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
   @override
   $Res call({
     Object? form = null,
-    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       form: null == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as BlocFailure?,
     ) as $Val);
   }
 
@@ -583,18 +576,6 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
   $ClientRegisterFormCopyWith<$Res> get form {
     return $ClientRegisterFormCopyWith<$Res>(_value.form, (value) {
       return _then(_value.copyWith(form: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $BlocFailureCopyWith<$Res>? get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-
-    return $BlocFailureCopyWith<$Res>(_value.failure!, (value) {
-      return _then(_value.copyWith(failure: value) as $Val);
     });
   }
 }
@@ -607,12 +588,10 @@ abstract class _$$_ClientFormStateCopyWith<$Res>
       __$$_ClientFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ClientRegisterForm form, BlocFailure? failure});
+  $Res call({ClientRegisterForm form});
 
   @override
   $ClientRegisterFormCopyWith<$Res> get form;
-  @override
-  $BlocFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -627,17 +606,12 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? form = null,
-    Object? failure = freezed,
   }) {
     return _then(_$_ClientFormState(
       form: null == form
           ? _value.form
           : form // ignore: cast_nullable_to_non_nullable
               as ClientRegisterForm,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as BlocFailure?,
     ));
   }
 }
@@ -645,16 +619,14 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClientFormState implements _ClientFormState {
-  const _$_ClientFormState({required this.form, this.failure});
+  const _$_ClientFormState({required this.form});
 
   @override
   final ClientRegisterForm form;
-  @override
-  final BlocFailure? failure;
 
   @override
   String toString() {
-    return 'ClientRegisterState(form: $form, failure: $failure)';
+    return 'ClientRegisterState(form: $form)';
   }
 
   @override
@@ -662,12 +634,11 @@ class _$_ClientFormState implements _ClientFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClientFormState &&
-            (identical(other.form, form) || other.form == form) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.form, form) || other.form == form));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, form, failure);
+  int get hashCode => Object.hash(runtimeType, form);
 
   @JsonKey(ignore: true)
   @override
@@ -677,14 +648,11 @@ class _$_ClientFormState implements _ClientFormState {
 }
 
 abstract class _ClientFormState implements ClientRegisterState {
-  const factory _ClientFormState(
-      {required final ClientRegisterForm form,
-      final BlocFailure? failure}) = _$_ClientFormState;
+  const factory _ClientFormState({required final ClientRegisterForm form}) =
+      _$_ClientFormState;
 
   @override
   ClientRegisterForm get form;
-  @override
-  BlocFailure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_ClientFormStateCopyWith<_$_ClientFormState> get copyWith =>

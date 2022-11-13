@@ -76,14 +76,19 @@ void statesTests() {
   );
 
   blocTest(
-    """[ClientRegisterForm] submissionStatus Should be failure 
+    """[ClientRegisterForm] submissionStatus Should be 
+    SubmissionStatus.failure(SubmissionFailure.invalidField())
     when [Submitted] event is added with invalid name""",
     build: () => ClientRegisterBloc(MockClientRepository()),
     act: (bloc) => bloc.add(const ClientRegisterEvent.submitted()),
     expect: () => [
       ClientRegisterState(
         form: ClientRegisterForm(
-            name: Name(''), submissionStatus: const SubmissionStatus.failure()),
+          name: Name(''),
+          submissionStatus: const SubmissionStatus.failure(
+            failure: SubmissionFailure.invalidField(),
+          ),
+        ),
       )
     ],
   );
@@ -160,14 +165,17 @@ void repositoryTests() {
   );
 
   const dbErrorMessage = "Error";
+  const repositoryFailure =
+      RepositoryFailure.dbException(error: dbErrorMessage);
   blocTest(
-    """[ClientRegisterForm] submissionStatus Should be inProgress then failure, 
-    blocFailure should be repository failure dbException with error message
+    """[ClientRegisterForm] submissionStatus Should be SubmissionStatus.inProgress()
+    then failure SubmissionStatus.failure(SubmissionFailure
+    .repository(RepositoryFailure.dbException(error: dbErrorMessage)))
     when [Submitted] event is added with valid name and repository returns any error""",
     setUp: () {
       repository = MockClientRepository();
       when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
-            const Left(RepositoryFailure.dbException(error: dbErrorMessage)),
+            const Left(repositoryFailure),
           ));
     },
     build: () => ClientRegisterBloc(repository),
@@ -186,10 +194,11 @@ void repositoryTests() {
       ),
       ClientRegisterState(
         form: ClientRegisterForm(
-            name: Name(name),
-            submissionStatus: const SubmissionStatus.failure()),
-        failure: const BlocFailure.repository(
-            failure: RepositoryFailure.dbException(error: dbErrorMessage)),
+          name: Name(name),
+          submissionStatus: const SubmissionStatus.failure(
+            failure: SubmissionFailure.repository(failure: repositoryFailure),
+          ),
+        ),
       ),
     ],
   );

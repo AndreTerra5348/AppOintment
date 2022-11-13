@@ -2,8 +2,9 @@ import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/core/i_repository.dart';
+import 'package:appointment/domain/common/string_validators.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
+import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -67,9 +68,7 @@ void main() {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
       final state = ClientRegisterState.initial().copyWithFailure(
-        failure: const BlocFailure.repository(
-          failure: RepositoryFailure.dbException(error: ""),
-        ),
+        failure: const SubmissionFailure.invalidField(),
       );
       when(mockBloc.state).thenReturn(state);
       when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
@@ -80,7 +79,8 @@ void main() {
       // Act
 
       // Assert
-      expect(find.text("Name cannot be empty"), findsOneWidget);
+      expect(find.text(const StringFailure.empty().toErrorText()!),
+          findsOneWidget);
     });
 
     testWidgets(
@@ -145,6 +145,29 @@ void main() {
 
       // Assert
       expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
+    });
+
+    testWidgets(
+        "Should show [Icons.error_outline] when [ClientRegisterForm] submissionStatus is failure",
+        (tester) async {
+      // Arrange
+      final state = ClientRegisterState.initial().copyWith(
+        form: ClientRegisterForm.initial().copyWith(
+          submissionStatus: const SubmissionStatus.failure(
+              failure: SubmissionFailure.invalidField()),
+        ),
+      );
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(state);
+      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
+
+      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pump();
+
+      // Act
+
+      // Assert
+      expect(find.byIcon(Icons.error_outline), findsOneWidget);
     });
   });
 }

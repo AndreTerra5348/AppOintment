@@ -21,7 +21,7 @@ mixin _$SubmissionStatus {
     required TResult Function() initial,
     required TResult Function() inProgress,
     required TResult Function() success,
-    required TResult Function() failure,
+    required TResult Function(SubmissionFailure failure) failure,
     required TResult Function() canceled,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$SubmissionStatus {
     TResult? Function()? initial,
     TResult? Function()? inProgress,
     TResult? Function()? success,
-    TResult? Function()? failure,
+    TResult? Function(SubmissionFailure failure)? failure,
     TResult? Function()? canceled,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$SubmissionStatus {
     TResult Function()? initial,
     TResult Function()? inProgress,
     TResult Function()? success,
-    TResult Function()? failure,
+    TResult Function(SubmissionFailure failure)? failure,
     TResult Function()? canceled,
     required TResult orElse(),
   }) =>
@@ -109,12 +109,18 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial extends _Initial {
+class _$_Initial extends _Initial with DiagnosticableTreeMixin {
   const _$_Initial() : super._();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SubmissionStatus.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'SubmissionStatus.initial'));
   }
 
   @override
@@ -132,7 +138,7 @@ class _$_Initial extends _Initial {
     required TResult Function() initial,
     required TResult Function() inProgress,
     required TResult Function() success,
-    required TResult Function() failure,
+    required TResult Function(SubmissionFailure failure) failure,
     required TResult Function() canceled,
   }) {
     return initial();
@@ -144,7 +150,7 @@ class _$_Initial extends _Initial {
     TResult? Function()? initial,
     TResult? Function()? inProgress,
     TResult? Function()? success,
-    TResult? Function()? failure,
+    TResult? Function(SubmissionFailure failure)? failure,
     TResult? Function()? canceled,
   }) {
     return initial?.call();
@@ -156,7 +162,7 @@ class _$_Initial extends _Initial {
     TResult Function()? initial,
     TResult Function()? inProgress,
     TResult Function()? success,
-    TResult Function()? failure,
+    TResult Function(SubmissionFailure failure)? failure,
     TResult Function()? canceled,
     required TResult orElse(),
   }) {
@@ -230,12 +236,18 @@ class __$$_InProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_InProgress extends _InProgress {
+class _$_InProgress extends _InProgress with DiagnosticableTreeMixin {
   const _$_InProgress() : super._();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SubmissionStatus.inProgress()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'SubmissionStatus.inProgress'));
   }
 
   @override
@@ -253,7 +265,7 @@ class _$_InProgress extends _InProgress {
     required TResult Function() initial,
     required TResult Function() inProgress,
     required TResult Function() success,
-    required TResult Function() failure,
+    required TResult Function(SubmissionFailure failure) failure,
     required TResult Function() canceled,
   }) {
     return inProgress();
@@ -265,7 +277,7 @@ class _$_InProgress extends _InProgress {
     TResult? Function()? initial,
     TResult? Function()? inProgress,
     TResult? Function()? success,
-    TResult? Function()? failure,
+    TResult? Function(SubmissionFailure failure)? failure,
     TResult? Function()? canceled,
   }) {
     return inProgress?.call();
@@ -277,7 +289,7 @@ class _$_InProgress extends _InProgress {
     TResult Function()? initial,
     TResult Function()? inProgress,
     TResult Function()? success,
-    TResult Function()? failure,
+    TResult Function(SubmissionFailure failure)? failure,
     TResult Function()? canceled,
     required TResult orElse(),
   }) {
@@ -350,12 +362,18 @@ class __$$_SuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Success extends _Success {
+class _$_Success extends _Success with DiagnosticableTreeMixin {
   const _$_Success() : super._();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SubmissionStatus.success()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'SubmissionStatus.success'));
   }
 
   @override
@@ -373,7 +391,7 @@ class _$_Success extends _Success {
     required TResult Function() initial,
     required TResult Function() inProgress,
     required TResult Function() success,
-    required TResult Function() failure,
+    required TResult Function(SubmissionFailure failure) failure,
     required TResult Function() canceled,
   }) {
     return success();
@@ -385,7 +403,7 @@ class _$_Success extends _Success {
     TResult? Function()? initial,
     TResult? Function()? inProgress,
     TResult? Function()? success,
-    TResult? Function()? failure,
+    TResult? Function(SubmissionFailure failure)? failure,
     TResult? Function()? canceled,
   }) {
     return success?.call();
@@ -397,7 +415,7 @@ class _$_Success extends _Success {
     TResult Function()? initial,
     TResult Function()? inProgress,
     TResult Function()? success,
-    TResult Function()? failure,
+    TResult Function(SubmissionFailure failure)? failure,
     TResult Function()? canceled,
     required TResult orElse(),
   }) {
@@ -458,6 +476,10 @@ abstract class _$$_FailureCopyWith<$Res> {
   factory _$$_FailureCopyWith(
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SubmissionFailure failure});
+
+  $SubmissionFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -466,26 +488,66 @@ class __$$_FailureCopyWithImpl<$Res>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_$_Failure(
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as SubmissionFailure,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SubmissionFailureCopyWith<$Res> get failure {
+    return $SubmissionFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$_Failure extends _Failure {
-  const _$_Failure() : super._();
+class _$_Failure extends _Failure with DiagnosticableTreeMixin {
+  const _$_Failure({required this.failure}) : super._();
 
   @override
-  String toString() {
-    return 'SubmissionStatus.failure()';
+  final SubmissionFailure failure;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SubmissionStatus.failure(failure: $failure)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SubmissionStatus.failure'))
+      ..add(DiagnosticsProperty('failure', failure));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Failure);
+        (other.runtimeType == runtimeType &&
+            other is _$_Failure &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -493,10 +555,10 @@ class _$_Failure extends _Failure {
     required TResult Function() initial,
     required TResult Function() inProgress,
     required TResult Function() success,
-    required TResult Function() failure,
+    required TResult Function(SubmissionFailure failure) failure,
     required TResult Function() canceled,
   }) {
-    return failure();
+    return failure(this.failure);
   }
 
   @override
@@ -505,10 +567,10 @@ class _$_Failure extends _Failure {
     TResult? Function()? initial,
     TResult? Function()? inProgress,
     TResult? Function()? success,
-    TResult? Function()? failure,
+    TResult? Function(SubmissionFailure failure)? failure,
     TResult? Function()? canceled,
   }) {
-    return failure?.call();
+    return failure?.call(this.failure);
   }
 
   @override
@@ -517,12 +579,12 @@ class _$_Failure extends _Failure {
     TResult Function()? initial,
     TResult Function()? inProgress,
     TResult Function()? success,
-    TResult Function()? failure,
+    TResult Function(SubmissionFailure failure)? failure,
     TResult Function()? canceled,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure();
+      return failure(this.failure);
     }
     return orElse();
   }
@@ -569,8 +631,14 @@ class _$_Failure extends _Failure {
 }
 
 abstract class _Failure extends SubmissionStatus {
-  const factory _Failure() = _$_Failure;
+  const factory _Failure({required final SubmissionFailure failure}) =
+      _$_Failure;
   const _Failure._() : super._();
+
+  SubmissionFailure get failure;
+  @JsonKey(ignore: true)
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -591,12 +659,18 @@ class __$$_CanceledCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Canceled extends _Canceled {
+class _$_Canceled extends _Canceled with DiagnosticableTreeMixin {
   const _$_Canceled() : super._();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SubmissionStatus.canceled()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'SubmissionStatus.canceled'));
   }
 
   @override
@@ -614,7 +688,7 @@ class _$_Canceled extends _Canceled {
     required TResult Function() initial,
     required TResult Function() inProgress,
     required TResult Function() success,
-    required TResult Function() failure,
+    required TResult Function(SubmissionFailure failure) failure,
     required TResult Function() canceled,
   }) {
     return canceled();
@@ -626,7 +700,7 @@ class _$_Canceled extends _Canceled {
     TResult? Function()? initial,
     TResult? Function()? inProgress,
     TResult? Function()? success,
-    TResult? Function()? failure,
+    TResult? Function(SubmissionFailure failure)? failure,
     TResult? Function()? canceled,
   }) {
     return canceled?.call();
@@ -638,7 +712,7 @@ class _$_Canceled extends _Canceled {
     TResult Function()? initial,
     TResult Function()? inProgress,
     TResult Function()? success,
-    TResult Function()? failure,
+    TResult Function(SubmissionFailure failure)? failure,
     TResult Function()? canceled,
     required TResult orElse(),
   }) {
@@ -692,4 +766,325 @@ class _$_Canceled extends _Canceled {
 abstract class _Canceled extends SubmissionStatus {
   const factory _Canceled() = _$_Canceled;
   const _Canceled._() : super._();
+}
+
+/// @nodoc
+mixin _$SubmissionFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RepositoryFailure failure) repository,
+    required TResult Function() invalidField,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RepositoryFailure failure)? repository,
+    TResult? Function()? invalidField,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RepositoryFailure failure)? repository,
+    TResult Function()? invalidField,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Repository value) repository,
+    required TResult Function(_InvalidInput value) invalidField,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Repository value)? repository,
+    TResult? Function(_InvalidInput value)? invalidField,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Repository value)? repository,
+    TResult Function(_InvalidInput value)? invalidField,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SubmissionFailureCopyWith<$Res> {
+  factory $SubmissionFailureCopyWith(
+          SubmissionFailure value, $Res Function(SubmissionFailure) then) =
+      _$SubmissionFailureCopyWithImpl<$Res, SubmissionFailure>;
+}
+
+/// @nodoc
+class _$SubmissionFailureCopyWithImpl<$Res, $Val extends SubmissionFailure>
+    implements $SubmissionFailureCopyWith<$Res> {
+  _$SubmissionFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_RepositoryCopyWith<$Res> {
+  factory _$$_RepositoryCopyWith(
+          _$_Repository value, $Res Function(_$_Repository) then) =
+      __$$_RepositoryCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RepositoryFailure failure});
+
+  $RepositoryFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class __$$_RepositoryCopyWithImpl<$Res>
+    extends _$SubmissionFailureCopyWithImpl<$Res, _$_Repository>
+    implements _$$_RepositoryCopyWith<$Res> {
+  __$$_RepositoryCopyWithImpl(
+      _$_Repository _value, $Res Function(_$_Repository) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_$_Repository(
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as RepositoryFailure,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RepositoryFailureCopyWith<$Res> get failure {
+    return $RepositoryFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Repository with DiagnosticableTreeMixin implements _Repository {
+  const _$_Repository({required this.failure});
+
+  @override
+  final RepositoryFailure failure;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SubmissionFailure.repository(failure: $failure)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SubmissionFailure.repository'))
+      ..add(DiagnosticsProperty('failure', failure));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Repository &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RepositoryCopyWith<_$_Repository> get copyWith =>
+      __$$_RepositoryCopyWithImpl<_$_Repository>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RepositoryFailure failure) repository,
+    required TResult Function() invalidField,
+  }) {
+    return repository(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RepositoryFailure failure)? repository,
+    TResult? Function()? invalidField,
+  }) {
+    return repository?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RepositoryFailure failure)? repository,
+    TResult Function()? invalidField,
+    required TResult orElse(),
+  }) {
+    if (repository != null) {
+      return repository(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Repository value) repository,
+    required TResult Function(_InvalidInput value) invalidField,
+  }) {
+    return repository(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Repository value)? repository,
+    TResult? Function(_InvalidInput value)? invalidField,
+  }) {
+    return repository?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Repository value)? repository,
+    TResult Function(_InvalidInput value)? invalidField,
+    required TResult orElse(),
+  }) {
+    if (repository != null) {
+      return repository(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Repository implements SubmissionFailure {
+  const factory _Repository({required final RepositoryFailure failure}) =
+      _$_Repository;
+
+  RepositoryFailure get failure;
+  @JsonKey(ignore: true)
+  _$$_RepositoryCopyWith<_$_Repository> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InvalidInputCopyWith<$Res> {
+  factory _$$_InvalidInputCopyWith(
+          _$_InvalidInput value, $Res Function(_$_InvalidInput) then) =
+      __$$_InvalidInputCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InvalidInputCopyWithImpl<$Res>
+    extends _$SubmissionFailureCopyWithImpl<$Res, _$_InvalidInput>
+    implements _$$_InvalidInputCopyWith<$Res> {
+  __$$_InvalidInputCopyWithImpl(
+      _$_InvalidInput _value, $Res Function(_$_InvalidInput) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_InvalidInput with DiagnosticableTreeMixin implements _InvalidInput {
+  const _$_InvalidInput();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SubmissionFailure.invalidField()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'SubmissionFailure.invalidField'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_InvalidInput);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RepositoryFailure failure) repository,
+    required TResult Function() invalidField,
+  }) {
+    return invalidField();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RepositoryFailure failure)? repository,
+    TResult? Function()? invalidField,
+  }) {
+    return invalidField?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RepositoryFailure failure)? repository,
+    TResult Function()? invalidField,
+    required TResult orElse(),
+  }) {
+    if (invalidField != null) {
+      return invalidField();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Repository value) repository,
+    required TResult Function(_InvalidInput value) invalidField,
+  }) {
+    return invalidField(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Repository value)? repository,
+    TResult? Function(_InvalidInput value)? invalidField,
+  }) {
+    return invalidField?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Repository value)? repository,
+    TResult Function(_InvalidInput value)? invalidField,
+    required TResult orElse(),
+  }) {
+    if (invalidField != null) {
+      return invalidField(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidInput implements SubmissionFailure {
+  const factory _InvalidInput() = _$_InvalidInput;
 }
