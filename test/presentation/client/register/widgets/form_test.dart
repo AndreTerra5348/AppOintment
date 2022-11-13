@@ -2,15 +2,15 @@ import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/common/string_validators.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
-import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
 import 'name_input_test.mocks.dart';
 
@@ -80,8 +80,7 @@ void main() {
       // Act
 
       // Assert
-      expect(find.text(const StringFailure.empty().toErrorText()!),
-          findsOneWidget);
+      expect(find.text(AppLocalizationsEn().emptyNameFailure), findsOneWidget);
     });
 
     testWidgets(
@@ -170,8 +169,8 @@ void main() {
 
       // Assert
       expect(find.byIcon(Icons.error_outline), findsOneWidget);
-      expect(find.text(const SubmissionFailure.invalidField().toErrorText()),
-          findsOneWidget);
+      expect(
+          find.text(AppLocalizationsEn().invalidFieldsFailure), findsOneWidget);
     });
 
     const dbErrorMessage = "Error";
@@ -204,7 +203,8 @@ void main() {
 
       // Assert
       expect(find.byIcon(Icons.error_outline), findsOneWidget);
-      expect(find.text(submissionFailure.toErrorText()), findsOneWidget);
+      expect(find.text(AppLocalizationsEn().databaseFailure(dbErrorMessage)),
+          findsOneWidget);
     });
   });
 }
@@ -216,6 +216,9 @@ class MockClientPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: const Locale('en'),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
         body: BlocProvider(
           create: (context) => bloc,

@@ -1,0 +1,14 @@
+{
+    "@_CLIENT_REGISTER_PAGE": {},
+    "pageClientRegisterTitle": "Client Registration",
+    "nameTextFormField": "Name",
+    "registrationCompleted": "Registration Completed",
+    "emptyNameFailure": "Name cannot be empty",
+    "invalidFieldsFailure": "Invalid Fields",
+    "databaseFailure": "Database error: {error}",
+    "@databaseFailure": {
+        "placeholders": {
+            "error": {}
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:appointment/app_ointment.dart';
 import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
@@ -67,9 +68,9 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     showDialog(
       context: context,
       builder: (_) => Column(
-        children: const [
-          Icon(Icons.check_circle_outline),
-          Text("Registration Completed")
+        children: [
+          const Icon(Icons.check_circle_outline),
+          Text(context.tr.registrationCompleted)
         ],
       ),
     );
@@ -81,7 +82,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
       builder: (_) => Column(
         children: [
           const Icon(Icons.error_outline),
-          Text(failure.toErrorText()),
+          Text(failure.toErrorText(context)),
         ],
       ),
     );
@@ -95,10 +96,10 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
 }
 
 extension SubmissionFailureExtension on SubmissionFailure {
-  String toErrorText() {
+  String toErrorText(BuildContext context) {
     return map(
-      repository: (value) => "Database error: ${value.failure.error}",
-      invalidField: (value) => "Invalid Fields",
+      repository: (value) => context.tr.databaseFailure(value.failure.error),
+      invalidField: (value) => context.tr.invalidFieldsFailure,
     );
   }
 }

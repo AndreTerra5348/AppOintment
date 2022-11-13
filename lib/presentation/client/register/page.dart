@@ -1,3 +1,4 @@
+import 'package:appointment/app_ointment.dart';
 import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class ClientRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Client Registration")),
+      appBar: AppBar(title: Text(context.tr.pageClientRegisterTitle)),
       body: BlocProvider(
         create: (context) => bloc,
         child: const ClientRegisterFormWidget(),

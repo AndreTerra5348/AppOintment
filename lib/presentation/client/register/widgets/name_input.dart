@@ -1,3 +1,4 @@
+import 'package:appointment/app_ointment.dart';
 import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/domain/common/string_validators.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class NameInputWidget extends StatelessWidget {
                 .form
                 .name
                 .value
-                .fold((l) => l.toErrorText(), (r) => null),
+                .fold((l) => l.toErrorText(context), (r) => null),
             onChanged: (value) => context
                 .read<ClientRegisterBloc>()
                 .add(ClientRegisterEvent.nameChanged(name: value)),
@@ -31,10 +32,10 @@ class NameInputWidget extends StatelessWidget {
 }
 
 extension StringFailureExtension on StringFailure {
-  String? toErrorText() {
+  String? toErrorText(BuildContext context) {
     return maybeMap(
       orElse: () => null,
-      empty: (value) => "Name cannot be empty",
+      empty: (value) => context.tr.emptyNameFailure,
     );
   }
 }
