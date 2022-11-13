@@ -127,16 +127,17 @@ void main() {
         "Should show [Icons.check_circle_outline] when [ClientRegisterForm] submissionStatus is success",
         (tester) async {
       // Arrange
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
+      final state = ClientRegisterState.initial().copyWith(
         form: ClientRegisterForm.initial().copyWith(
           submissionStatus: FormSubmissionStatus.success,
         ),
-      ));
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
+      );
+      final mockBloc = MockClientRegisterBloc();
+      when(mockBloc.state).thenReturn(state);
+      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pump();
 
       // Act
 

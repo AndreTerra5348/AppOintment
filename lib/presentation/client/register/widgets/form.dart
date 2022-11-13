@@ -15,7 +15,8 @@ class ClientRegisterFormWidget extends StatefulWidget {
 }
 
 class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
-  bool _showFeedback = true;
+  final _formKey = GlobalKey<FormState>();
+  Timer? _timer;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +25,19 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
           current.form.submissionStatus.isFailure ||
           current.form.submissionStatus.isSuccess,
       listener: (context, state) {
-        // TODO: reset state if success
-        // TODO: show dialog with success or failure
-        // TODO: popup dialog context after 1 second
-        Timer(const Duration(seconds: 1),
-            () => setState(() => _showFeedback = false));
+        if (state.form.submissionStatus.isSuccess) {
+          setState(() => _formKey.currentState!.reset());
+          showDialog(
+            context: context,
+            builder: (_) => const Icon(Icons.check_circle_outline),
+          );
+          _timer =
+              Timer(const Duration(seconds: 1), () => Navigator.pop(context));
+        }
       },
       builder: (context, state) {
         return Form(
+          key: _formKey,
           child: Stack(
             children: [
               Column(
@@ -47,14 +53,18 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
                   )
                 ],
               ),
-              if (state.form.submissionStatus.isInProgress && _showFeedback)
-                const CircularProgressIndicator(value: null),
-              if (state.form.submissionStatus.isSuccess && _showFeedback)
-                const Icon(Icons.check_circle_outline)
+              if (state.form.submissionStatus.isInProgress)
+                const CircularProgressIndicator(value: null)
             ],
           ),
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
   }
 }
