@@ -13,7 +13,8 @@ class NameInputWidget extends StatelessWidget {
       builder: (context, state) {
         return Focus(
           child: TextFormField(
-            decoration: const InputDecoration(labelText: "Name"),
+            decoration:
+                InputDecoration(labelText: context.tr.nameTextFormField),
             validator: (_) => context
                 .read<ClientRegisterBloc>()
                 .state
