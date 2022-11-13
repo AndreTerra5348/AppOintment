@@ -49,8 +49,8 @@ class ClientRegisterBloc
   FutureOr<void> _nameChanged(event, emit) {
     emit(state.copyWith(
       form: state.form.copyWith(
-        name: Name(event.name),
-      ),
+          name: Name(event.name),
+          submissionStatus: FormSubmissionStatus.initial),
     ));
   }
 }

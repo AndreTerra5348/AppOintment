@@ -1,4 +1,8 @@
 import 'package:appointment/domain/common/value_object.dart';
+import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'formz.freezed.dart';
 
 /// Copy from Formz
 /// Enum representing the submission status of a form.
@@ -51,4 +55,20 @@ mixin FormMixin {
   List<ValueObject<dynamic, dynamic>> get values;
 }
 
-// TODO: add FormInput
+@freezed
+class FormInput<T_Failure, T_Value> with _$FormInput<T_Failure, T_Value> {
+  const FormInput._();
+  const factory FormInput(
+      {required ValueObject<T_Failure, T_Value> object,
+      required bool isPure}) = _FormInput;
+
+  factory FormInput.pure({required ValueObject<T_Failure, T_Value> object}) =>
+      FormInput(object: object, isPure: true);
+
+  factory FormInput.dirty({required ValueObject<T_Failure, T_Value> object}) =>
+      FormInput(object: object, isPure: false);
+
+  Either<T_Failure, T_Value> get value => object.value;
+  bool get isValid => object.isValid;
+  bool get isNotValie => !isValid;
+}

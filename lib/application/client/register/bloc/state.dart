@@ -11,7 +11,7 @@ class ClientRegisterState with _$ClientRegisterState {
       ClientRegisterState(form: ClientRegisterForm.success());
 }
 
-extension on ClientRegisterState {
+extension ClientRegisterStateExt on ClientRegisterState {
   ClientRegisterState copyWithSubmissionStatus(
           {required FormSubmissionStatus status}) =>
       copyWith(form: form.copyWith(submissionStatus: status));

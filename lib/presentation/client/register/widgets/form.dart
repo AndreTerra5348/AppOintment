@@ -38,17 +38,18 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
       builder: (context, state) {
         return Form(
           key: _formKey,
+          autovalidateMode: state.form.submissionStatus.isFailure
+              ? AutovalidateMode.always
+              : AutovalidateMode.onUserInteraction,
           child: Stack(
             children: [
               Column(
                 children: [
                   const NameInputWidget(),
                   ElevatedButton(
-                    onPressed: state.form.isValid
-                        ? () => context
-                            .read<ClientRegisterBloc>()
-                            .add(const ClientRegisterEvent.submitted())
-                        : null,
+                    onPressed: () => context
+                        .read<ClientRegisterBloc>()
+                        .add(const ClientRegisterEvent.submitted()),
                     child: const Icon(Icons.add_circle),
                   )
                 ],

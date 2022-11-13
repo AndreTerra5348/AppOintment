@@ -2,6 +2,7 @@ import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/values.dart';
+import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,24 +62,25 @@ void main() {
     });
 
     testWidgets(
-        "[ElevatedButton] enable should be false when [Form] is not valid",
+        "Show error message when [ClientRegisterForm] submissionStatus is failure because of invalid fileds",
         (tester) async {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial());
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
+      final state = ClientRegisterState.initial().copyWithFailure(
+        failure: const BlocFailure.repository(
+          failure: RepositoryFailure.dbException(error: ""),
+        ),
+      );
+      when(mockBloc.state).thenReturn(state);
+      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pumpAndSettle();
 
-      final button =
-          tester.widget(find.byType(ElevatedButton)) as ElevatedButton;
-
       // Act
 
       // Assert
-      expect(button.enabled, isFalse);
+      expect(find.text("Name cannot be empty"), findsOneWidget);
     });
 
     testWidgets(

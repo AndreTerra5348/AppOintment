@@ -12,11 +12,14 @@ class NameInputWidget extends StatelessWidget {
       builder: (context, state) {
         return Focus(
           child: TextFormField(
-            // TODO: move auto validate to Form
-            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(labelText: "Name"),
-            validator: (_) =>
-                state.form.name.value.fold((l) => l.toErrorText(), (r) => null),
+            validator: (_) => context
+                .read<ClientRegisterBloc>()
+                .state
+                .form
+                .name
+                .value
+                .fold((l) => l.toErrorText(), (r) => null),
             onChanged: (value) => context
                 .read<ClientRegisterBloc>()
                 .add(ClientRegisterEvent.nameChanged(name: value)),
