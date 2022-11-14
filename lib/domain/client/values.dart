@@ -1,3 +1,4 @@
+import 'package:appointment/domain/common/failures.dart';
 import 'package:appointment/domain/common/value_object.dart';
 import 'package:appointment/domain/common/validators.dart';
 import 'package:dartz/dartz.dart';

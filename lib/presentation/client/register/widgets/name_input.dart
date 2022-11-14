@@ -1,5 +1,6 @@
 import 'package:appointment/app_ointment.dart';
 import 'package:appointment/application/client/register/bloc/bloc.dart';
+import 'package:appointment/domain/common/failures.dart';
 import 'package:appointment/domain/common/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

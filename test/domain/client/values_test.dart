@@ -1,5 +1,5 @@
 import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/common/validators.dart';
+import 'package:appointment/domain/common/failures.dart';
 import 'package:appointment/domain/common/value_object.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';

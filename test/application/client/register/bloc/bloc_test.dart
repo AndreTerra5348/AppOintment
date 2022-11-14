@@ -4,7 +4,7 @@ import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/di.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/common/validators.dart';
+import 'package:appointment/domain/common/failures.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/repository.dart';
 import 'package:bloc_test/bloc_test.dart';

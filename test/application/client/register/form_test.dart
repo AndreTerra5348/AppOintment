@@ -1,6 +1,6 @@
 import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
-import 'package:appointment/domain/common/validators.dart';
+import 'package:appointment/domain/common/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
