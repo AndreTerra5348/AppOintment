@@ -1,7 +1,8 @@
 import 'package:appointment/app_ointment.dart';
 import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/domain/common/string_validators.dart';
+import 'package:appointment/domain/common/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NameInputWidget extends StatelessWidget {
@@ -13,6 +14,9 @@ class NameInputWidget extends StatelessWidget {
       builder: (context, state) {
         return Focus(
           child: TextFormField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(lettersAndAccentsRegex),
+            ],
             decoration:
                 InputDecoration(labelText: context.tr.nameTextFormField),
             validator: (_) => context

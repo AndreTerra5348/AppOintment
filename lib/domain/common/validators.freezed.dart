@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'string_validators.dart';
+part of 'validators.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -21,6 +21,7 @@ mixin _$StringFailure {
     required TResult Function(String value, int length) maxLength,
     required TResult Function(String value, int length) minLength,
     required TResult Function() empty,
+    required TResult Function(String value) invalidCharacter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$StringFailure {
     TResult? Function(String value, int length)? maxLength,
     TResult? Function(String value, int length)? minLength,
     TResult? Function()? empty,
+    TResult? Function(String value)? invalidCharacter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$StringFailure {
     TResult Function(String value, int length)? maxLength,
     TResult Function(String value, int length)? minLength,
     TResult Function()? empty,
+    TResult Function(String value)? invalidCharacter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$StringFailure {
     required TResult Function(MaxLengthFailure value) maxLength,
     required TResult Function(MinLengthFailure value) minLength,
     required TResult Function(EmptyStringFailure value) empty,
+    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$StringFailure {
     TResult? Function(MaxLengthFailure value)? maxLength,
     TResult? Function(MinLengthFailure value)? minLength,
     TResult? Function(EmptyStringFailure value)? empty,
+    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$StringFailure {
     TResult Function(MaxLengthFailure value)? maxLength,
     TResult Function(MinLengthFailure value)? minLength,
     TResult Function(EmptyStringFailure value)? empty,
+    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,6 +161,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
     required TResult Function(String value, int length) maxLength,
     required TResult Function(String value, int length) minLength,
     required TResult Function() empty,
+    required TResult Function(String value) invalidCharacter,
   }) {
     return maxLength(value, length);
   }
@@ -165,6 +172,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
     TResult? Function(String value, int length)? maxLength,
     TResult? Function(String value, int length)? minLength,
     TResult? Function()? empty,
+    TResult? Function(String value)? invalidCharacter,
   }) {
     return maxLength?.call(value, length);
   }
@@ -175,6 +183,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
     TResult Function(String value, int length)? maxLength,
     TResult Function(String value, int length)? minLength,
     TResult Function()? empty,
+    TResult Function(String value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (maxLength != null) {
@@ -189,6 +198,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
     required TResult Function(MaxLengthFailure value) maxLength,
     required TResult Function(MinLengthFailure value) minLength,
     required TResult Function(EmptyStringFailure value) empty,
+    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
   }) {
     return maxLength(this);
   }
@@ -199,6 +209,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
     TResult? Function(MaxLengthFailure value)? maxLength,
     TResult? Function(MinLengthFailure value)? minLength,
     TResult? Function(EmptyStringFailure value)? empty,
+    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
   }) {
     return maxLength?.call(this);
   }
@@ -209,6 +220,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
     TResult Function(MaxLengthFailure value)? maxLength,
     TResult Function(MinLengthFailure value)? minLength,
     TResult Function(EmptyStringFailure value)? empty,
+    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (maxLength != null) {
@@ -305,6 +317,7 @@ class _$MinLengthFailure implements MinLengthFailure {
     required TResult Function(String value, int length) maxLength,
     required TResult Function(String value, int length) minLength,
     required TResult Function() empty,
+    required TResult Function(String value) invalidCharacter,
   }) {
     return minLength(value, length);
   }
@@ -315,6 +328,7 @@ class _$MinLengthFailure implements MinLengthFailure {
     TResult? Function(String value, int length)? maxLength,
     TResult? Function(String value, int length)? minLength,
     TResult? Function()? empty,
+    TResult? Function(String value)? invalidCharacter,
   }) {
     return minLength?.call(value, length);
   }
@@ -325,6 +339,7 @@ class _$MinLengthFailure implements MinLengthFailure {
     TResult Function(String value, int length)? maxLength,
     TResult Function(String value, int length)? minLength,
     TResult Function()? empty,
+    TResult Function(String value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (minLength != null) {
@@ -339,6 +354,7 @@ class _$MinLengthFailure implements MinLengthFailure {
     required TResult Function(MaxLengthFailure value) maxLength,
     required TResult Function(MinLengthFailure value) minLength,
     required TResult Function(EmptyStringFailure value) empty,
+    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
   }) {
     return minLength(this);
   }
@@ -349,6 +365,7 @@ class _$MinLengthFailure implements MinLengthFailure {
     TResult? Function(MaxLengthFailure value)? maxLength,
     TResult? Function(MinLengthFailure value)? minLength,
     TResult? Function(EmptyStringFailure value)? empty,
+    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
   }) {
     return minLength?.call(this);
   }
@@ -359,6 +376,7 @@ class _$MinLengthFailure implements MinLengthFailure {
     TResult Function(MaxLengthFailure value)? maxLength,
     TResult Function(MinLengthFailure value)? minLength,
     TResult Function(EmptyStringFailure value)? empty,
+    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (minLength != null) {
@@ -421,6 +439,7 @@ class _$EmptyStringFailure implements EmptyStringFailure {
     required TResult Function(String value, int length) maxLength,
     required TResult Function(String value, int length) minLength,
     required TResult Function() empty,
+    required TResult Function(String value) invalidCharacter,
   }) {
     return empty();
   }
@@ -431,6 +450,7 @@ class _$EmptyStringFailure implements EmptyStringFailure {
     TResult? Function(String value, int length)? maxLength,
     TResult? Function(String value, int length)? minLength,
     TResult? Function()? empty,
+    TResult? Function(String value)? invalidCharacter,
   }) {
     return empty?.call();
   }
@@ -441,6 +461,7 @@ class _$EmptyStringFailure implements EmptyStringFailure {
     TResult Function(String value, int length)? maxLength,
     TResult Function(String value, int length)? minLength,
     TResult Function()? empty,
+    TResult Function(String value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -455,6 +476,7 @@ class _$EmptyStringFailure implements EmptyStringFailure {
     required TResult Function(MaxLengthFailure value) maxLength,
     required TResult Function(MinLengthFailure value) minLength,
     required TResult Function(EmptyStringFailure value) empty,
+    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
   }) {
     return empty(this);
   }
@@ -465,6 +487,7 @@ class _$EmptyStringFailure implements EmptyStringFailure {
     TResult? Function(MaxLengthFailure value)? maxLength,
     TResult? Function(MinLengthFailure value)? minLength,
     TResult? Function(EmptyStringFailure value)? empty,
+    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
   }) {
     return empty?.call(this);
   }
@@ -475,6 +498,7 @@ class _$EmptyStringFailure implements EmptyStringFailure {
     TResult Function(MaxLengthFailure value)? maxLength,
     TResult Function(MinLengthFailure value)? minLength,
     TResult Function(EmptyStringFailure value)? empty,
+    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -486,4 +510,151 @@ class _$EmptyStringFailure implements EmptyStringFailure {
 
 abstract class EmptyStringFailure implements StringFailure {
   const factory EmptyStringFailure() = _$EmptyStringFailure;
+}
+
+/// @nodoc
+abstract class _$$InvalidCharacterFailureCopyWith<$Res> {
+  factory _$$InvalidCharacterFailureCopyWith(_$InvalidCharacterFailure value,
+          $Res Function(_$InvalidCharacterFailure) then) =
+      __$$InvalidCharacterFailureCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$InvalidCharacterFailureCopyWithImpl<$Res>
+    extends _$StringFailureCopyWithImpl<$Res, _$InvalidCharacterFailure>
+    implements _$$InvalidCharacterFailureCopyWith<$Res> {
+  __$$InvalidCharacterFailureCopyWithImpl(_$InvalidCharacterFailure _value,
+      $Res Function(_$InvalidCharacterFailure) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$InvalidCharacterFailure(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvalidCharacterFailure implements InvalidCharacterFailure {
+  const _$InvalidCharacterFailure({required this.value});
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'StringFailure.invalidCharacter(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvalidCharacterFailure &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InvalidCharacterFailureCopyWith<_$InvalidCharacterFailure> get copyWith =>
+      __$$InvalidCharacterFailureCopyWithImpl<_$InvalidCharacterFailure>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String value, int length) maxLength,
+    required TResult Function(String value, int length) minLength,
+    required TResult Function() empty,
+    required TResult Function(String value) invalidCharacter,
+  }) {
+    return invalidCharacter(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String value, int length)? maxLength,
+    TResult? Function(String value, int length)? minLength,
+    TResult? Function()? empty,
+    TResult? Function(String value)? invalidCharacter,
+  }) {
+    return invalidCharacter?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String value, int length)? maxLength,
+    TResult Function(String value, int length)? minLength,
+    TResult Function()? empty,
+    TResult Function(String value)? invalidCharacter,
+    required TResult orElse(),
+  }) {
+    if (invalidCharacter != null) {
+      return invalidCharacter(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MaxLengthFailure value) maxLength,
+    required TResult Function(MinLengthFailure value) minLength,
+    required TResult Function(EmptyStringFailure value) empty,
+    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
+  }) {
+    return invalidCharacter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MaxLengthFailure value)? maxLength,
+    TResult? Function(MinLengthFailure value)? minLength,
+    TResult? Function(EmptyStringFailure value)? empty,
+    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
+  }) {
+    return invalidCharacter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MaxLengthFailure value)? maxLength,
+    TResult Function(MinLengthFailure value)? minLength,
+    TResult Function(EmptyStringFailure value)? empty,
+    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
+    required TResult orElse(),
+  }) {
+    if (invalidCharacter != null) {
+      return invalidCharacter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidCharacterFailure implements StringFailure {
+  const factory InvalidCharacterFailure({required final String value}) =
+      _$InvalidCharacterFailure;
+
+  String get value;
+  @JsonKey(ignore: true)
+  _$$InvalidCharacterFailureCopyWith<_$InvalidCharacterFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

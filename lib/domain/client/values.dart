@@ -1,5 +1,5 @@
 import 'package:appointment/domain/common/value_object.dart';
-import 'package:appointment/domain/common/string_validators.dart';
+import 'package:appointment/domain/common/validators.dart';
 import 'package:dartz/dartz.dart';
 
 class Name extends ValueObject<StringFailure, String> {
@@ -13,5 +13,6 @@ class Name extends ValueObject<StringFailure, String> {
 }
 
 Either<StringFailure, String> nameValidation(String name) {
-  return nonEmptyStringValidation(name);
+  return nonEmptyStringValidation(name)
+      .flatMap((a) => lettersAndAccentsValidation(a));
 }
