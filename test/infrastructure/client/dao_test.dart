@@ -30,6 +30,23 @@ void main() {
     });
   });
 
+  group("Count", () {
+    test("Should return the number of rows when count is called", () async {
+      // Arrange
+      const count = 5;
+      final sut = ClientDao(db);
+      Iterable.generate(count)
+          .map((e) => ClientModelsCompanion.insert(name: "Bob"))
+          .forEach(sut.insert);
+
+      // Act
+      final actual = await sut.count();
+
+      // Assert
+      expect(actual, count);
+    });
+  });
+
   tearDown(() async {
     await db.close();
   });

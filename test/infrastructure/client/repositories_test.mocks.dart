@@ -46,4 +46,12 @@ class MockDao<T_Model extends _i1.DataClass> extends _i2.Mock
         ),
         returnValue: _i4.Future<T_Model>.value(null),
       ) as _i4.Future<T_Model>);
+  @override
+  _i4.Future<int> count() => (super.noSuchMethod(
+        Invocation.method(
+          #count,
+          [],
+        ),
+        returnValue: _i4.Future<int>.value(0),
+      ) as _i4.Future<int>);
 }

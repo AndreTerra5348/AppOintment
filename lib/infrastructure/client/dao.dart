@@ -23,4 +23,12 @@ class ClientDao extends DatabaseAccessor<DriftDb>
           ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
         .getSingle();
   }
+
+  @override
+  Future<int> count() async {
+    final countExp = countAll();
+    final query = selectOnly(clientModels)..addColumns([countExp]);
+    final row = await query.getSingle();
+    return row.read(countExp) ?? 0;
+  }
 }
