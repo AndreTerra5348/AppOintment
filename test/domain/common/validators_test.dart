@@ -56,7 +56,7 @@ void lettersAndAccentsValidationTests() {
   test("""Should return [Left(StringFailure.invalidCharacter(value))] 
           when validate is call with invalid string""", () {
     // Arrange
-    const value = "0";
+    const value = "A0";
 
     // Act
     final actual = lettersAndAccentsValidation(value);
