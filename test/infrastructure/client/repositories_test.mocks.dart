@@ -27,10 +27,9 @@ import 'package:mockito/mockito.dart' as _i2;
 /// See the documentation for Mockito's code generation for more information.
 class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
     extends _i2.Mock implements _i3.Dao<T_Table, T_Model> {
-  MockDao() {
-    _i2.throwOnMissingStub(this);
-  }
-
+  @override
+  T_Table get table => throw UnsupportedError(
+      '\'table\' cannot be used without a mockito fallback generator.');
   @override
   _i4.Future<int> insert(_i1.Insertable<T_Model>? model) => (super.noSuchMethod(
         Invocation.method(
@@ -38,6 +37,7 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
           [model],
         ),
         returnValue: _i4.Future<int>.value(0),
+        returnValueForMissingStub: _i4.Future<int>.value(0),
       ) as _i4.Future<int>);
   @override
   _i4.Future<T_Model> getByUid(_i5.Uid? uid) => (super.noSuchMethod(
@@ -46,6 +46,7 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
           [uid],
         ),
         returnValue: _i4.Future<T_Model>.value(null),
+        returnValueForMissingStub: _i4.Future<T_Model>.value(null),
       ) as _i4.Future<T_Model>);
   @override
   _i4.Future<int> count({
@@ -62,6 +63,7 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
           },
         ),
         returnValue: _i4.Future<int>.value(0),
+        returnValueForMissingStub: _i4.Future<int>.value(0),
       ) as _i4.Future<int>);
   @override
   _i4.Future<Iterable<T_Model>> getPage({
@@ -80,5 +82,7 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
           },
         ),
         returnValue: _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
+        returnValueForMissingStub:
+            _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
       ) as _i4.Future<Iterable<T_Model>>);
 }

@@ -1,6 +1,6 @@
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
-import 'package:appointment/infrastructure/core/filters.dart';
+import 'package:appointment/infrastructure/client/filters.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -46,7 +46,6 @@ void main() {
     // Arrange
     const count = 5;
     final sut = ClientDao(db!);
-    final filter = ClientNameFilter(sut, "Bob");
     Iterable.generate(count)
         .map((e) => ClientModelsCompanion.insert(name: "Bob"))
         .forEach(sut.insert);
@@ -54,7 +53,7 @@ void main() {
     sut.insert(ClientModelsCompanion.insert(name: "Joe"));
 
     // Act
-    final actual = await sut.count(filter: filter.countFilter);
+    final actual = await sut.count(filter: sut.table.name.equals("Bob"));
 
     // Assert
     expect(actual, count);
@@ -105,7 +104,7 @@ void main() {
         .forEach(sut.insert);
 
     sut.insert(ClientModelsCompanion.insert(name: "Joe"));
-    final filter = ClientNameFilter(sut, "Bob");
+    final filter = ClientNameFilter("Bob");
     // Act
     final actual = await sut.getPage(page: 0, size: 5, filter: filter);
 

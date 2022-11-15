@@ -3,6 +3,7 @@ import 'package:appointment/infrastructure/core/filters.dart';
 import 'package:drift/drift.dart';
 
 abstract class Dao<T_Table extends Table, T_Model extends DataClass> {
+  T_Table get table;
   Future<int> insert(Insertable<T_Model> model);
   Future<T_Model> getByUid(Uid uid);
   Future<int> count({Expression<bool>? filter, bool distinct = false});

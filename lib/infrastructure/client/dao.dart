@@ -14,6 +14,9 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   ClientDao(super.attachedDatabase);
 
   @override
+  ClientModels get table => clientModels;
+
+  @override
   Future<int> insert(Insertable<ClientModel> model) {
     return into(clientModels).insert(model);
   }

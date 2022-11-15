@@ -15,7 +15,9 @@ import 'package:mockito/mockito.dart';
 
 import 'repositories_test.mocks.dart';
 
-@GenerateMocks([Dao<ClientModels, ClientModel>])
+@GenerateNiceMocks([
+  MockSpec<Dao>(unsupportedMembers: {#table})
+])
 void main() {
   group("Client Repository", () {
     group("Insert", insertTests);
