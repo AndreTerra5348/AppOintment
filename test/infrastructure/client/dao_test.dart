@@ -50,17 +50,18 @@ void main() {
         .map((e) => ClientModelsCompanion.insert(name: "Bob"))
         .forEach(sut.insert);
 
+    final filter = ClientNameFilter("Bob", sut);
     sut.insert(ClientModelsCompanion.insert(name: "Joe"));
 
     // Act
-    final actual = await sut.count(filter: sut.table.name.equals("Bob"));
+    final actual = await sut.count(filter: filter.countFilter);
 
     // Assert
     expect(actual, count);
   });
 
   test(
-      "Should return the 5 first clients when getPage is called with page 0 and size 5",
+      "Should return the 5 first clientModel when getPage is called with page 0 and size 5",
       () async {
     // Arrange
     const count = 5;
@@ -87,7 +88,7 @@ void main() {
   });
 
   test(
-      "Should return the clients which match the filter when getPage is called with page 0 size 5 and NameFilter",
+      "Should return the clientModel which match the filter when getPage is called with page 0 size 5 and NameFilter",
       () async {
     // Arrange
     const count = 3;
@@ -104,7 +105,7 @@ void main() {
         .forEach(sut.insert);
 
     sut.insert(ClientModelsCompanion.insert(name: "Joe"));
-    final filter = ClientNameFilter("Bob");
+    final filter = ClientNameFilter("Bob", sut);
     // Act
     final actual = await sut.getPage(page: 0, size: 5, filter: filter);
 

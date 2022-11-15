@@ -43,6 +43,7 @@ void insertTests() {
       () async {
     // Arrange
     final clientDao = MockDao<ClientModels, ClientModel>();
+    // TODO: change to Future.value and discard realInvocation value
     when(clientDao.insert(any))
         .thenAnswer((realInvocation) => Future.sync(() => 0));
     final client = Client.withoutUid(name: Name("Bob"));

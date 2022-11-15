@@ -42,9 +42,9 @@ class ClientDao extends DatabaseAccessor<DriftDb>
       {required int page,
       required int size,
       SelectFilter<ClientModels, ClientModel>? filter}) {
-    return (filter?.call(select(clientModels))
-              ?..limit(size, offset: page * size))
-            ?.get() ??
-        (select(clientModels)..limit(size, offset: page * size)).get();
+    return filter == null
+        ? (select(clientModels)..limit(size, offset: page * size)).get()
+        : (filter(select(clientModels))..limit(size, offset: page * size))
+            .get();
   }
 }
