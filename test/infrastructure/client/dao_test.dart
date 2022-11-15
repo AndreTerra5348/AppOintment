@@ -1,5 +1,3 @@
-import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/core/filters.dart';
