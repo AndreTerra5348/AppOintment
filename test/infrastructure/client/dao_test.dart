@@ -6,65 +6,58 @@ import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  late final DriftDb db;
+  DriftDb? db;
   setUp(() {
     db = DriftDb(executor: NativeDatabase.memory());
   });
 
-  group("Client Dao", () {
-    group("insert getById", () {
-      test(
-          'Should return clientModel with same name and id when insert is called',
-          () async {
-        // Arrange
-        final model = ClientModelsCompanion.insert(name: "Bob");
-        final sut = ClientDao(db);
+  test('Should return clientModel with same name and id when insert is called',
+      () async {
+    // Arrange
+    final model = ClientModelsCompanion.insert(name: "Bob");
+    final sut = ClientDao(db!);
 
-        // Act
-        final id = await sut.insert(model);
-        final actual = await sut.getByUid(Uid.fromInt(id));
+    // Act
+    final id = await sut.insert(model);
+    final actual = await sut.getByUid(Uid.fromInt(id));
 
-        // Assert
-        expect(actual.id, id);
-        expect(actual.name, model.name.value);
-      });
-    });
+    // Assert
+    expect(actual.id, id);
+    expect(actual.name, model.name.value);
   });
 
-  group("Count", () {
-    test("Should return the number of rows when count is called", () async {
-      // Arrange
-      const count = 5;
-      final sut = ClientDao(db);
-      Iterable.generate(count)
-          .map((e) => ClientModelsCompanion.insert(name: "Bob"))
-          .forEach(sut.insert);
+  test("Should return the number of rows when count is called", () async {
+    // Arrange
+    const count = 5;
+    final sut = ClientDao(db!);
+    Iterable.generate(count)
+        .map((e) => ClientModelsCompanion.insert(name: "Bob"))
+        .forEach(sut.insert);
 
-      // Act
-      final actual = await sut.count();
+    // Act
+    final actual = await sut.count();
 
-      // Assert
-      expect(actual, count);
-    });
+    // Assert
+    expect(actual, count);
+  });
 
-    test("Should return the number of rows when count with filter is called",
-        () async {
-      // Arrange
-      const count = 5;
-      final sut = ClientDao(db);
-      Iterable.generate(count)
-          .map((e) => ClientModelsCompanion.insert(name: "Bob"))
-          .forEach(sut.insert);
+  test("Should return the number of rows when count with filter is called",
+      () async {
+    // Arrange
+    const count = 5;
+    final sut = ClientDao(db!);
+    final filter = ClientNameFilter(sut, "Bob");
+    Iterable.generate(count)
+        .map((e) => ClientModelsCompanion.insert(name: "Bob"))
+        .forEach(sut.insert);
 
-      sut.insert(ClientModelsCompanion.insert(name: "Joe"));
+    sut.insert(ClientModelsCompanion.insert(name: "Joe"));
 
-      // Act
-      final actual =
-          await sut.count(filter: sut.clientModels.name.equals("Bob"));
+    // Act
+    final actual = await sut.count(filter: filter.countFilter);
 
-      // Assert
-      expect(actual, count);
-    });
+    // Assert
+    expect(actual, count);
   });
 
   test(
@@ -79,7 +72,7 @@ void main() {
       ),
     );
 
-    final sut = ClientDao(db);
+    final sut = ClientDao(db!);
     clients
         .map((e) => ClientModelsCompanion.insert(name: e.name))
         .forEach(sut.insert);
@@ -106,7 +99,7 @@ void main() {
       ),
     );
 
-    final sut = ClientDao(db);
+    final sut = ClientDao(db!);
     clients
         .map((e) => ClientModelsCompanion.insert(name: e.name))
         .forEach(sut.insert);
@@ -122,6 +115,6 @@ void main() {
   });
 
   tearDown(() async {
-    await db.close();
+    await db?.close();
   });
 }

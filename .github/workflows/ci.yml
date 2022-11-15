@@ -33,7 +33,7 @@ jobs:
         run: flutter analyze
 
       - name: Run Tests
-        run: flutter test --coverage --machine > test-results.json
+        run: flutter test --machine > test-results.json
 
       - name: Generate Test Report
         uses: dorny/test-reporter@v1.4.2
