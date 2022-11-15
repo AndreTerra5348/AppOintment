@@ -4,6 +4,7 @@ import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
 import 'package:appointment/infrastructure/client/repository.dart';
+import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:dartz/dartz.dart';
@@ -14,7 +15,7 @@ import 'package:mockito/mockito.dart';
 
 import 'repositories_test.mocks.dart';
 
-@GenerateMocks([Dao<ClientModel>])
+@GenerateMocks([Dao<ClientModels, ClientModel>])
 void main() {
   group("Client Repository", () {
     group("Insert", insertTests);
@@ -24,7 +25,7 @@ void main() {
 void insertTests() {
   test("Should call Dao<ClientModel> insert only once", () async {
     // Arrange
-    final clientDao = MockDao<ClientModel>();
+    final clientDao = MockDao<ClientModels, ClientModel>();
     final client = Client.withoutUid(name: Name("Bob"));
 
     final sut = ClientRepository(clientDao, ClientConveter());
@@ -39,7 +40,7 @@ void insertTests() {
   test("Should call Dao<ClientModel> insert with clientModelsCompanion",
       () async {
     // Arrange
-    final clientDao = MockDao<ClientModel>();
+    final clientDao = MockDao<ClientModels, ClientModel>();
     when(clientDao.insert(any))
         .thenAnswer((realInvocation) => Future.sync(() => 0));
     final client = Client.withoutUid(name: Name("Bob"));
@@ -58,7 +59,7 @@ void insertTests() {
     // Arrange
     final client = Client.withoutUid(name: Name("Bob"));
 
-    final clientDao = MockDao<ClientModel>();
+    final clientDao = MockDao<ClientModels, ClientModel>();
     const id = 1;
     when(clientDao.insert(any))
         .thenAnswer((realInvocation) => Future.sync(() => id));
@@ -78,7 +79,7 @@ void insertTests() {
       () async {
     // Arrange
     final client = Client.withoutUid(name: Name("Bob"));
-    final clientDao = MockDao<ClientModel>();
+    final clientDao = MockDao<ClientModels, ClientModel>();
     when(clientDao.insert(any)).thenThrow(Exception("Mocked Exception"));
 
     final sut = ClientRepository(clientDao, ClientConveter());

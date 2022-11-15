@@ -7,6 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:appointment/domain/common/values.dart' as _i5;
 import 'package:appointment/infrastructure/core/dao.dart' as _i3;
+import 'package:appointment/infrastructure/core/filters.dart' as _i6;
 import 'package:drift/drift.dart' as _i1;
 import 'package:mockito/mockito.dart' as _i2;
 
@@ -24,8 +25,8 @@ import 'package:mockito/mockito.dart' as _i2;
 /// A class which mocks [Dao].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDao<T_Model extends _i1.DataClass> extends _i2.Mock
-    implements _i3.Dao<T_Model> {
+class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
+    extends _i2.Mock implements _i3.Dao<T_Table, T_Model> {
   MockDao() {
     _i2.throwOnMissingStub(this);
   }
@@ -62,4 +63,22 @@ class MockDao<T_Model extends _i1.DataClass> extends _i2.Mock
         ),
         returnValue: _i4.Future<int>.value(0),
       ) as _i4.Future<int>);
+  @override
+  _i4.Future<Iterable<T_Model>> getPage({
+    required int? page,
+    required int? size,
+    _i6.SelectFilter<T_Table, T_Model>? filter,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getPage,
+          [],
+          {
+            #page: page,
+            #size: size,
+            #filter: filter,
+          },
+        ),
+        returnValue: _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
+      ) as _i4.Future<Iterable<T_Model>>);
 }
