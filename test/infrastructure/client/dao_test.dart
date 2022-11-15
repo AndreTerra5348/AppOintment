@@ -45,6 +45,25 @@ void main() {
       // Assert
       expect(actual, count);
     });
+
+    test("Should return the number of rows when count with filter is called",
+        () async {
+      // Arrange
+      const count = 5;
+      final sut = ClientDao(db);
+      Iterable.generate(count)
+          .map((e) => ClientModelsCompanion.insert(name: "Bob"))
+          .forEach(sut.insert);
+
+      sut.insert(ClientModelsCompanion.insert(name: "Joe"));
+
+      // Act
+      final actual =
+          await sut.count(filter: sut.clientModels.name.equals("Bob"));
+
+      // Assert
+      expect(actual, count);
+    });
   });
 
   tearDown(() async {

@@ -25,9 +25,10 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   }
 
   @override
-  Future<int> count() async {
-    final countExp = countAll();
-    final query = selectOnly(clientModels)..addColumns([countExp]);
+  Future<int> count({Expression<bool>? filter, bool distinct = false}) async {
+    final countExp = countAll(filter: filter);
+    final query = selectOnly(clientModels, distinct: distinct)
+      ..addColumns([countExp]);
     final row = await query.getSingle();
     return row.read(countExp) ?? 0;
   }
