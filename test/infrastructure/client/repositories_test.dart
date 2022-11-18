@@ -43,9 +43,7 @@ void insertTests() {
       () async {
     // Arrange
     final clientDao = MockDao<ClientModels, ClientModel>();
-    // TODO: change to Future.value and discard realInvocation value
-    when(clientDao.insert(any))
-        .thenAnswer((realInvocation) => Future.sync(() => 0));
+    when(clientDao.insert(any)).thenAnswer((_) => Future.value(0));
     final client = Client.withoutUid(name: Name("Bob"));
 
     final sut = ClientRepository(clientDao, ClientConveter());
@@ -64,8 +62,7 @@ void insertTests() {
 
     final clientDao = MockDao<ClientModels, ClientModel>();
     const id = 1;
-    when(clientDao.insert(any))
-        .thenAnswer((realInvocation) => Future.sync(() => id));
+    when(clientDao.insert(any)).thenAnswer((_) => Future.value(id));
 
     final sut = ClientRepository(clientDao, ClientConveter());
 

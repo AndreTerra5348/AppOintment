@@ -18,8 +18,7 @@ void main() {
       const name = "Bob";
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
+      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pumpAndSettle();

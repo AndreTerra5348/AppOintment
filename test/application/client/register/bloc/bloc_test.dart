@@ -1,5 +1,4 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/di.dart';
 import 'package:appointment/domain/client/entity.dart';
@@ -26,7 +25,7 @@ void main() {
 }
 
 void initialValuesTests() {
-  test("initial state should be [ClientRegisterState] initial", () {
+  test("initial state should be [ClientRegisterState.initial()]", () {
     // Arrange
     final sut = ClientRegisterBloc(MockClientRepository());
 
@@ -45,7 +44,7 @@ void initialValuesTests() {
     // Act
 
     // Assert
-    expect(sut.state.form.name.value, isA<Left<StringFailure, String>>());
+    expect(sut.state.name.value, isA<Left<StringFailure, String>>());
   });
 
   test("initial [ClientRegisterForm] submissionStatus should be initial", () {
@@ -55,7 +54,7 @@ void initialValuesTests() {
     // Act
 
     // Assert
-    expect(sut.state.form.submissionStatus, const SubmissionStatus.initial());
+    expect(sut.state.submissionStatus, const SubmissionStatus.initial());
   });
 }
 
@@ -68,9 +67,8 @@ void statesTests() {
     act: (bloc) => bloc.add(const ClientRegisterEvent.nameChanged(name: name)),
     expect: () => [
       ClientRegisterState(
-        form: ClientRegisterForm(
-            name: Name(name),
-            submissionStatus: const SubmissionStatus.initial()),
+        name: Name(name),
+        submissionStatus: const SubmissionStatus.initial(),
       )
     ],
   );
@@ -83,11 +81,9 @@ void statesTests() {
     act: (bloc) => bloc.add(const ClientRegisterEvent.submitted()),
     expect: () => [
       ClientRegisterState(
-        form: ClientRegisterForm(
-          name: Name(''),
-          submissionStatus: const SubmissionStatus.failure(
-            failure: SubmissionFailure.invalidField(),
-          ),
+        name: Name(''),
+        submissionStatus: const SubmissionStatus.failure(
+          failure: SubmissionFailure.invalidField(),
         ),
       )
     ],
@@ -102,7 +98,7 @@ void repositoryTests() {
     """Should call [Repository] insert when [Submitted] event is added with valid name""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+      when(repository.insert(any)).thenAnswer((_) => Future.value(
             const Left(RepositoryFailure.dbException(error: "")),
           ));
     },
@@ -120,7 +116,7 @@ void repositoryTests() {
     """Should NOT call [Repository] insert when [Submitted] event is added with invalid name""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+      when(repository.insert(any)).thenAnswer((_) => Future.value(
             const Left(RepositoryFailure.dbException(error: "")),
           ));
     },
@@ -139,7 +135,7 @@ void repositoryTests() {
     when [Submitted] event is added with valid name and repository DO NOT return any error""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+      when(repository.insert(any)).thenAnswer((_) => Future.value(
             Right(Client.withoutUid(name: Name(name))),
           ));
     },
@@ -149,17 +145,14 @@ void repositoryTests() {
       bloc.add(const ClientRegisterEvent.submitted());
     },
     expect: () => [
+      ClientRegisterState.initial().copyWith(name: Name(name)),
       ClientRegisterState(
-        form: ClientRegisterForm.initial().copyWith(name: Name(name)),
+        name: Name(name),
+        submissionStatus: const SubmissionStatus.inProgress(),
       ),
       ClientRegisterState(
-        form: ClientRegisterForm(
-            name: Name(name),
-            submissionStatus: const SubmissionStatus.inProgress()),
-      ),
-      ClientRegisterState(
-        form: ClientRegisterForm(
-            name: Name(""), submissionStatus: const SubmissionStatus.success()),
+        name: Name(""),
+        submissionStatus: const SubmissionStatus.success(),
       ),
     ],
   );
@@ -174,7 +167,7 @@ void repositoryTests() {
     when [Submitted] event is added with valid name and repository returns any error""",
     setUp: () {
       repository = MockClientRepository();
-      when(repository.insert(any)).thenAnswer((realInvocation) => Future.value(
+      when(repository.insert(any)).thenAnswer((_) => Future.value(
             const Left(repositoryFailure),
           ));
     },
@@ -184,20 +177,15 @@ void repositoryTests() {
       bloc.add(const ClientRegisterEvent.submitted());
     },
     expect: () => [
+      ClientRegisterState.initial().copyWith(name: Name(name)),
       ClientRegisterState(
-        form: ClientRegisterForm.initial().copyWith(name: Name(name)),
+        name: Name(name),
+        submissionStatus: const SubmissionStatus.inProgress(),
       ),
       ClientRegisterState(
-        form: ClientRegisterForm(
-            name: Name(name),
-            submissionStatus: const SubmissionStatus.inProgress()),
-      ),
-      ClientRegisterState(
-        form: ClientRegisterForm(
-          name: Name(name),
-          submissionStatus: const SubmissionStatus.failure(
-            failure: SubmissionFailure.repository(failure: repositoryFailure),
-          ),
+        name: Name(name),
+        submissionStatus: const SubmissionStatus.failure(
+          failure: SubmissionFailure.repository(failure: repositoryFailure),
         ),
       ),
     ],

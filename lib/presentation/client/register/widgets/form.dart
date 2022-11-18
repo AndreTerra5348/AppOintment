@@ -23,10 +23,10 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<ClientRegisterBloc, ClientRegisterState>(
       listenWhen: (previous, current) =>
-          current.form.submissionStatus.isFailure ||
-          current.form.submissionStatus.isSuccess,
+          current.submissionStatus.isFailure ||
+          current.submissionStatus.isSuccess,
       listener: (context, state) {
-        state.form.submissionStatus.maybeMap(
+        state.submissionStatus.maybeMap(
           orElse: () {},
           success: (_) => _handleSuccess(context),
           failure: (failureStatus) =>
@@ -38,7 +38,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
       builder: (context, state) {
         return Form(
           key: _formKey,
-          autovalidateMode: state.form.submissionStatus.isFailure
+          autovalidateMode: state.submissionStatus.isFailure
               ? AutovalidateMode.always
               : AutovalidateMode.onUserInteraction,
           child: Stack(
@@ -54,7 +54,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
                   )
                 ],
               ),
-              if (state.form.submissionStatus.isInProgress)
+              if (state.submissionStatus.isInProgress)
                 const CircularProgressIndicator(value: null)
             ],
           ),

@@ -23,7 +23,6 @@ class NameInputWidget extends StatelessWidget {
             validator: (_) => context
                 .read<ClientRegisterBloc>()
                 .state
-                .form
                 .name
                 .value
                 .fold((l) => l.toErrorText(context), (r) => null),

@@ -1,5 +1,4 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
@@ -21,8 +20,7 @@ void main() {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
+      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
 
@@ -43,13 +41,10 @@ void main() {
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(
         ClientRegisterState.initial().copyWith(
-          form: ClientRegisterForm.initial().copyWith(
-            name: Name(name),
-          ),
+          name: Name(name),
         ),
       );
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
+      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
 
@@ -72,7 +67,7 @@ void main() {
         failure: const SubmissionFailure.invalidField(),
       );
       when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
+      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pumpAndSettle();
@@ -89,12 +84,9 @@ void main() {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
-        form: ClientRegisterForm.initial().copyWith(
-          submissionStatus: const SubmissionStatus.inProgress(),
-        ),
+        submissionStatus: const SubmissionStatus.inProgress(),
       ));
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
+      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
 
@@ -110,12 +102,9 @@ void main() {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
-        form: ClientRegisterForm.initial().copyWith(
-          submissionStatus: const SubmissionStatus.initial(),
-        ),
+        submissionStatus: const SubmissionStatus.initial(),
       ));
-      when(mockBloc.stream)
-          .thenAnswer((realInvocation) => const Stream.empty());
+      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
 
@@ -130,13 +119,11 @@ void main() {
         (tester) async {
       // Arrange
       final state = ClientRegisterState.initial().copyWith(
-        form: ClientRegisterForm.initial().copyWith(
-          submissionStatus: const SubmissionStatus.success(),
-        ),
+        submissionStatus: const SubmissionStatus.success(),
       );
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
+      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pump();
@@ -153,14 +140,12 @@ void main() {
         (tester) async {
       // Arrange
       final state = ClientRegisterState.initial().copyWith(
-        form: ClientRegisterForm.initial().copyWith(
           submissionStatus: const SubmissionStatus.failure(
-              failure: SubmissionFailure.invalidField()),
-        ),
-      );
+        failure: SubmissionFailure.invalidField(),
+      ));
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
+      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pump();
@@ -187,14 +172,13 @@ void main() {
           .dbFailure(errorMessage))""", (tester) async {
       // Arrange
       final state = ClientRegisterState.initial().copyWith(
-        form: ClientRegisterForm.initial().copyWith(
-          submissionStatus:
-              const SubmissionStatus.failure(failure: submissionFailure),
+        submissionStatus: const SubmissionStatus.failure(
+          failure: submissionFailure,
         ),
       );
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((realInvocation) => Stream.value(state));
+      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
       await tester.pumpWidget(MockClientPage(bloc: mockBloc));
       await tester.pump();

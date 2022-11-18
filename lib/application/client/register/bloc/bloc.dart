@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:appointment/application/client/register/form.dart';
 import 'package:appointment/application/common/formz.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
+import 'package:appointment/domain/common/value_object.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,18 +22,18 @@ class ClientRegisterBloc
   }
 
   FutureOr<void> _submitted(event, emit) async {
-    emit(state.copyWithSubmissionStatus(
-        status: state.form.isValid
+    emit(state.copyWith(
+        submissionStatus: state.isValid
             ? const SubmissionStatus.inProgress()
             : const SubmissionStatus.failure(
                 failure: SubmissionFailure.invalidField())));
 
-    if (state.form.isNotValid) {
+    if (state.isNotValid) {
       return;
     }
 
     final result =
-        await _repository.insert(Client.withoutUid(name: state.form.name));
+        await _repository.insert(Client.withoutUid(name: state.name));
 
     result.fold(
       (l) {
@@ -49,10 +49,8 @@ class ClientRegisterBloc
   FutureOr<void> _nameChanged(event, emit) {
     emit(
       state.copyWith(
-        form: state.form.copyWith(
-            name: Name(event.name),
-            submissionStatus: const SubmissionStatus.initial()),
-      ),
+          name: Name(event.name),
+          submissionStatus: const SubmissionStatus.initial()),
     );
   }
 }
