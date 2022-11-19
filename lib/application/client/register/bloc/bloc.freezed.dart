@@ -587,11 +587,11 @@ class _$ClientRegisterStateCopyWithImpl<$Res, $Val extends ClientRegisterState>
 }
 
 /// @nodoc
-abstract class _$$_ClientFormStateCopyWith<$Res>
+abstract class _$$_ClientRegisterStateCopyWith<$Res>
     implements $ClientRegisterStateCopyWith<$Res> {
-  factory _$$_ClientFormStateCopyWith(
-          _$_ClientFormState value, $Res Function(_$_ClientFormState) then) =
-      __$$_ClientFormStateCopyWithImpl<$Res>;
+  factory _$$_ClientRegisterStateCopyWith(_$_ClientRegisterState value,
+          $Res Function(_$_ClientRegisterState) then) =
+      __$$_ClientRegisterStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({SubmissionStatus submissionStatus, Name name});
@@ -601,11 +601,11 @@ abstract class _$$_ClientFormStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ClientFormStateCopyWithImpl<$Res>
-    extends _$ClientRegisterStateCopyWithImpl<$Res, _$_ClientFormState>
-    implements _$$_ClientFormStateCopyWith<$Res> {
-  __$$_ClientFormStateCopyWithImpl(
-      _$_ClientFormState _value, $Res Function(_$_ClientFormState) _then)
+class __$$_ClientRegisterStateCopyWithImpl<$Res>
+    extends _$ClientRegisterStateCopyWithImpl<$Res, _$_ClientRegisterState>
+    implements _$$_ClientRegisterStateCopyWith<$Res> {
+  __$$_ClientRegisterStateCopyWithImpl(_$_ClientRegisterState _value,
+      $Res Function(_$_ClientRegisterState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -614,7 +614,7 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
     Object? submissionStatus = null,
     Object? name = null,
   }) {
-    return _then(_$_ClientFormState(
+    return _then(_$_ClientRegisterState(
       submissionStatus: null == submissionStatus
           ? _value.submissionStatus
           : submissionStatus // ignore: cast_nullable_to_non_nullable
@@ -629,8 +629,9 @@ class __$$_ClientFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ClientFormState extends _ClientFormState {
-  const _$_ClientFormState({required this.submissionStatus, required this.name})
+class _$_ClientRegisterState extends _ClientRegisterState {
+  const _$_ClientRegisterState(
+      {required this.submissionStatus, required this.name})
       : super._();
 
   @override
@@ -647,7 +648,7 @@ class _$_ClientFormState extends _ClientFormState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ClientFormState &&
+            other is _$_ClientRegisterState &&
             (identical(other.submissionStatus, submissionStatus) ||
                 other.submissionStatus == submissionStatus) &&
             (identical(other.name, name) || other.name == name));
@@ -659,15 +660,16 @@ class _$_ClientFormState extends _ClientFormState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ClientFormStateCopyWith<_$_ClientFormState> get copyWith =>
-      __$$_ClientFormStateCopyWithImpl<_$_ClientFormState>(this, _$identity);
+  _$$_ClientRegisterStateCopyWith<_$_ClientRegisterState> get copyWith =>
+      __$$_ClientRegisterStateCopyWithImpl<_$_ClientRegisterState>(
+          this, _$identity);
 }
 
-abstract class _ClientFormState extends ClientRegisterState {
-  const factory _ClientFormState(
+abstract class _ClientRegisterState extends ClientRegisterState {
+  const factory _ClientRegisterState(
       {required final SubmissionStatus submissionStatus,
-      required final Name name}) = _$_ClientFormState;
-  const _ClientFormState._() : super._();
+      required final Name name}) = _$_ClientRegisterState;
+  const _ClientRegisterState._() : super._();
 
   @override
   SubmissionStatus get submissionStatus;
@@ -675,6 +677,6 @@ abstract class _ClientFormState extends ClientRegisterState {
   Name get name;
   @override
   @JsonKey(ignore: true)
-  _$$_ClientFormStateCopyWith<_$_ClientFormState> get copyWith =>
+  _$$_ClientRegisterStateCopyWith<_$_ClientRegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -16,37 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientSearchEvent {
+  String get term => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String term) termChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String term)? termChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String term)? termChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_TermChanged value) termChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_TermChanged value)? termChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_TermChanged value)? termChanged,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ClientSearchEventCopyWith<ClientSearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +60,8 @@ abstract class $ClientSearchEventCopyWith<$Res> {
   factory $ClientSearchEventCopyWith(
           ClientSearchEvent value, $Res Function(ClientSearchEvent) then) =
       _$ClientSearchEventCopyWithImpl<$Res, ClientSearchEvent>;
+  @useResult
+  $Res call({String term});
 }
 
 /// @nodoc
@@ -66,66 +73,108 @@ class _$ClientSearchEventCopyWithImpl<$Res, $Val extends ClientSearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? term = null,
+  }) {
+    return _then(_value.copyWith(
+      term: null == term
+          ? _value.term
+          : term // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$_TermChangedCopyWith<$Res>
+    implements $ClientSearchEventCopyWith<$Res> {
+  factory _$$_TermChangedCopyWith(
+          _$_TermChanged value, $Res Function(_$_TermChanged) then) =
+      __$$_TermChangedCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String term});
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$ClientSearchEventCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+class __$$_TermChangedCopyWithImpl<$Res>
+    extends _$ClientSearchEventCopyWithImpl<$Res, _$_TermChanged>
+    implements _$$_TermChangedCopyWith<$Res> {
+  __$$_TermChangedCopyWithImpl(
+      _$_TermChanged _value, $Res Function(_$_TermChanged) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? term = null,
+  }) {
+    return _then(_$_TermChanged(
+      term: null == term
+          ? _value.term
+          : term // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$_TermChanged implements _TermChanged {
+  const _$_TermChanged({required this.term});
+
+  @override
+  final String term;
 
   @override
   String toString() {
-    return 'ClientSearchEvent.started()';
+    return 'ClientSearchEvent.termChanged(term: $term)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType &&
+            other is _$_TermChanged &&
+            (identical(other.term, term) || other.term == term));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, term);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TermChangedCopyWith<_$_TermChanged> get copyWith =>
+      __$$_TermChangedCopyWithImpl<_$_TermChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String term) termChanged,
   }) {
-    return started();
+    return termChanged(term);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String term)? termChanged,
   }) {
-    return started?.call();
+    return termChanged?.call(term);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String term)? termChanged,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (termChanged != null) {
+      return termChanged(term);
     }
     return orElse();
   }
@@ -133,69 +182,50 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_TermChanged value) termChanged,
   }) {
-    return started(this);
+    return termChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_TermChanged value)? termChanged,
   }) {
-    return started?.call(this);
+    return termChanged?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_TermChanged value)? termChanged,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (termChanged != null) {
+      return termChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements ClientSearchEvent {
-  const factory _Started() = _$_Started;
+abstract class _TermChanged implements ClientSearchEvent {
+  const factory _TermChanged({required final String term}) = _$_TermChanged;
+
+  @override
+  String get term;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TermChangedCopyWith<_$_TermChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$ClientSearchState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  String get term => throw _privateConstructorUsedError;
+  SearchFilter get filter => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ClientSearchStateCopyWith<ClientSearchState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -204,6 +234,10 @@ abstract class $ClientSearchStateCopyWith<$Res> {
   factory $ClientSearchStateCopyWith(
           ClientSearchState value, $Res Function(ClientSearchState) then) =
       _$ClientSearchStateCopyWithImpl<$Res, ClientSearchState>;
+  @useResult
+  $Res call({String term, SearchFilter filter});
+
+  $SearchFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -215,37 +249,209 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? term = null,
+    Object? filter = null,
+  }) {
+    return _then(_value.copyWith(
+      term: null == term
+          ? _value.term
+          : term // ignore: cast_nullable_to_non_nullable
+              as String,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as SearchFilter,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchFilterCopyWith<$Res> get filter {
+    return $SearchFilterCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$_ClientSearchStateCopyWith<$Res>
+    implements $ClientSearchStateCopyWith<$Res> {
+  factory _$$_ClientSearchStateCopyWith(_$_ClientSearchState value,
+          $Res Function(_$_ClientSearchState) then) =
+      __$$_ClientSearchStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String term, SearchFilter filter});
+
+  @override
+  $SearchFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$ClientSearchStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_ClientSearchStateCopyWithImpl<$Res>
+    extends _$ClientSearchStateCopyWithImpl<$Res, _$_ClientSearchState>
+    implements _$$_ClientSearchStateCopyWith<$Res> {
+  __$$_ClientSearchStateCopyWithImpl(
+      _$_ClientSearchState _value, $Res Function(_$_ClientSearchState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? term = null,
+    Object? filter = null,
+  }) {
+    return _then(_$_ClientSearchState(
+      term: null == term
+          ? _value.term
+          : term // ignore: cast_nullable_to_non_nullable
+              as String,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as SearchFilter,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_ClientSearchState implements _ClientSearchState {
+  const _$_ClientSearchState({required this.term, required this.filter});
+
+  @override
+  final String term;
+  @override
+  final SearchFilter filter;
 
   @override
   String toString() {
-    return 'ClientSearchState.initial()';
+    return 'ClientSearchState(term: $term, filter: $filter)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_ClientSearchState &&
+            (identical(other.term, term) || other.term == term) &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, term, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ClientSearchStateCopyWith<_$_ClientSearchState> get copyWith =>
+      __$$_ClientSearchStateCopyWithImpl<_$_ClientSearchState>(
+          this, _$identity);
+}
+
+abstract class _ClientSearchState implements ClientSearchState {
+  const factory _ClientSearchState(
+      {required final String term,
+      required final SearchFilter filter}) = _$_ClientSearchState;
+
+  @override
+  String get term;
+  @override
+  SearchFilter get filter;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ClientSearchStateCopyWith<_$_ClientSearchState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SearchFilter {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() name,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? name,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? name,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NameFilter value) name,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NameFilter value)? name,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NameFilter value)? name,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchFilterCopyWith<$Res> {
+  factory $SearchFilterCopyWith(
+          SearchFilter value, $Res Function(SearchFilter) then) =
+      _$SearchFilterCopyWithImpl<$Res, SearchFilter>;
+}
+
+/// @nodoc
+class _$SearchFilterCopyWithImpl<$Res, $Val extends SearchFilter>
+    implements $SearchFilterCopyWith<$Res> {
+  _$SearchFilterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_NameFilterCopyWith<$Res> {
+  factory _$$_NameFilterCopyWith(
+          _$_NameFilter value, $Res Function(_$_NameFilter) then) =
+      __$$_NameFilterCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NameFilterCopyWithImpl<$Res>
+    extends _$SearchFilterCopyWithImpl<$Res, _$_NameFilter>
+    implements _$$_NameFilterCopyWith<$Res> {
+  __$$_NameFilterCopyWithImpl(
+      _$_NameFilter _value, $Res Function(_$_NameFilter) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NameFilter implements _NameFilter {
+  const _$_NameFilter();
+
+  @override
+  String toString() {
+    return 'SearchFilter.name()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NameFilter);
   }
 
   @override
@@ -254,27 +460,27 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() name,
   }) {
-    return initial();
+    return name();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? name,
   }) {
-    return initial?.call();
+    return name?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? name,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (name != null) {
+      return name();
     }
     return orElse();
   }
@@ -282,32 +488,32 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_NameFilter value) name,
   }) {
-    return initial(this);
+    return name(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_NameFilter value)? name,
   }) {
-    return initial?.call(this);
+    return name?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_NameFilter value)? name,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (name != null) {
+      return name(this);
     }
     return orElse();
   }
 }
 
-abstract class _Initial implements ClientSearchState {
-  const factory _Initial() = _$_Initial;
+abstract class _NameFilter implements SearchFilter {
+  const factory _NameFilter() = _$_NameFilter;
 }

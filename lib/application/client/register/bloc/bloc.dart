@@ -20,8 +20,17 @@ class ClientRegisterBloc
     on<_NameChanged>(_nameChanged);
     on<_Submitted>(_submitted);
   }
+  FutureOr<void> _nameChanged(
+      _NameChanged event, Emitter<ClientRegisterState> emit) {
+    emit(
+      state.copyWith(
+          name: Name(event.name),
+          submissionStatus: const SubmissionStatus.initial()),
+    );
+  }
 
-  FutureOr<void> _submitted(event, emit) async {
+  FutureOr<void> _submitted(
+      _Submitted event, Emitter<ClientRegisterState> emit) async {
     emit(state.copyWith(
         submissionStatus: state.isValid
             ? const SubmissionStatus.inProgress()
@@ -43,14 +52,6 @@ class ClientRegisterBloc
       (r) {
         emit(ClientRegisterState.success());
       },
-    );
-  }
-
-  FutureOr<void> _nameChanged(event, emit) {
-    emit(
-      state.copyWith(
-          name: Name(event.name),
-          submissionStatus: const SubmissionStatus.initial()),
     );
   }
 }

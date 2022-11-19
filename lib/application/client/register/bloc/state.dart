@@ -6,7 +6,7 @@ class ClientRegisterState with _$ClientRegisterState, FormMixin {
 
   const factory ClientRegisterState(
       {required SubmissionStatus submissionStatus,
-      required Name name}) = _ClientFormState;
+      required Name name}) = _ClientRegisterState;
 
   factory ClientRegisterState.initial() => ClientRegisterState(
       submissionStatus: const SubmissionStatus.initial(), name: Name(""));

@@ -1,7 +1,7 @@
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
-import 'package:appointment/infrastructure/core/filters.dart';
+import 'package:appointment/infrastructure/core/filter.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:drift/drift.dart';
 

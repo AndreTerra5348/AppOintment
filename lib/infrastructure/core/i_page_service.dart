@@ -1,5 +1,5 @@
 import 'package:appointment/infrastructure/core/dao.dart';
-import 'package:appointment/infrastructure/core/filters.dart';
+import 'package:appointment/infrastructure/core/filter.dart';
 import 'package:dartz/dartz.dart';
 // Incompatibility with json annotation
 import 'package:drift/drift.dart' as drift;
@@ -31,7 +31,7 @@ abstract class BasePageService<T_Entity, T_Table extends drift.Table,
   Future<Either<PageServiceFailure, int>> getCount(
       {SelectFilter<T_Table, T_Model>? filter}) async {
     try {
-      return Right(await _dao.count(filter: filter?.countFilter));
+      return Right(await _dao.count(filter: filter?.getExpression(_dao.table)));
     } catch (error) {
       return Left(PageServiceFailure.countDbException(error: error));
     }
