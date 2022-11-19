@@ -2,12 +2,16 @@ part of 'bloc.dart';
 
 @freezed
 class ClientSearchState with _$ClientSearchState {
-  const factory ClientSearchState(
-      {required String term,
-      required SearchFilter filter}) = _ClientSearchState;
+  const factory ClientSearchState({
+    required String term,
+    required SearchFilter filter,
+    required Pagination<Client> pagination,
+  }) = _ClientSearchState;
 
-  factory ClientSearchState.initial() =>
-      const ClientSearchState(term: "", filter: SearchFilter.name());
+  factory ClientSearchState.initial() => ClientSearchState(
+      term: "",
+      filter: const SearchFilter.name(),
+      pagination: Pagination.empty());
 }
 
 @freezed

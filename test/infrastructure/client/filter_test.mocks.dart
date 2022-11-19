@@ -3,11 +3,8 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
-import 'package:appointment/domain/common/values.dart' as _i5;
-import 'package:appointment/infrastructure/core/dao.dart' as _i3;
-import 'package:appointment/infrastructure/core/filter.dart' as _i6;
 import 'package:drift/drift.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -74,71 +71,6 @@ class _FakeSelectable_4<T> extends _i1.SmartFake implements _i2.Selectable<T> {
           parent,
           parentInvocation,
         );
-}
-
-/// A class which mocks [Dao].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockDao<T_Table extends _i2.Table, T_Model extends _i2.DataClass>
-    extends _i1.Mock implements _i3.Dao<T_Table, T_Model> {
-  @override
-  T_Table get table => throw UnsupportedError(
-      '\'table\' cannot be used without a mockito fallback generator.');
-  @override
-  _i4.Future<int> insert(_i2.Insertable<T_Model>? model) => (super.noSuchMethod(
-        Invocation.method(
-          #insert,
-          [model],
-        ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
-  @override
-  _i4.Future<T_Model> getByUid(_i5.Uid? uid) => (super.noSuchMethod(
-        Invocation.method(
-          #getByUid,
-          [uid],
-        ),
-        returnValue: _i4.Future<T_Model>.value(null),
-        returnValueForMissingStub: _i4.Future<T_Model>.value(null),
-      ) as _i4.Future<T_Model>);
-  @override
-  _i4.Future<int> count({
-    _i2.Expression<bool>? filter,
-    bool? distinct = false,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #count,
-          [],
-          {
-            #filter: filter,
-            #distinct: distinct,
-          },
-        ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
-  @override
-  _i4.Future<Iterable<T_Model>> getPage({
-    required int? page,
-    required int? size,
-    _i6.SelectFilter<T_Table, T_Model>? filter,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getPage,
-          [],
-          {
-            #page: page,
-            #size: size,
-            #filter: filter,
-          },
-        ),
-        returnValue: _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
-        returnValueForMissingStub:
-            _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
-      ) as _i4.Future<Iterable<T_Model>>);
 }
 
 /// A class which mocks [SimpleSelectStatement].
@@ -247,23 +179,23 @@ class MockSimpleSelectStatement<T extends _i2.HasResultSet, D> extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i4.Future<List<D>> get() => (super.noSuchMethod(
+  _i3.Future<List<D>> get() => (super.noSuchMethod(
         Invocation.method(
           #get,
           [],
         ),
-        returnValue: _i4.Future<List<D>>.value(<D>[]),
-        returnValueForMissingStub: _i4.Future<List<D>>.value(<D>[]),
-      ) as _i4.Future<List<D>>);
+        returnValue: _i3.Future<List<D>>.value(<D>[]),
+        returnValueForMissingStub: _i3.Future<List<D>>.value(<D>[]),
+      ) as _i3.Future<List<D>>);
   @override
-  _i4.Stream<List<D>> watch() => (super.noSuchMethod(
+  _i3.Stream<List<D>> watch() => (super.noSuchMethod(
         Invocation.method(
           #watch,
           [],
         ),
-        returnValue: _i4.Stream<List<D>>.empty(),
-        returnValueForMissingStub: _i4.Stream<List<D>>.empty(),
-      ) as _i4.Stream<List<D>>);
+        returnValue: _i3.Stream<List<D>>.empty(),
+        returnValueForMissingStub: _i3.Stream<List<D>>.empty(),
+      ) as _i3.Stream<List<D>>);
   @override
   _i2.JoinedSelectStatement<_i2.HasResultSet, dynamic> join(
           List<_i2.Join<_i2.HasResultSet, dynamic>>? joins) =>
@@ -372,41 +304,41 @@ class MockSimpleSelectStatement<T extends _i2.HasResultSet, D> extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i4.Future<D> getSingle() => (super.noSuchMethod(
+  _i3.Future<D> getSingle() => (super.noSuchMethod(
         Invocation.method(
           #getSingle,
           [],
         ),
-        returnValue: _i4.Future<D>.value(null),
-        returnValueForMissingStub: _i4.Future<D>.value(null),
-      ) as _i4.Future<D>);
+        returnValue: _i3.Future<D>.value(null),
+        returnValueForMissingStub: _i3.Future<D>.value(null),
+      ) as _i3.Future<D>);
   @override
-  _i4.Stream<D> watchSingle() => (super.noSuchMethod(
+  _i3.Stream<D> watchSingle() => (super.noSuchMethod(
         Invocation.method(
           #watchSingle,
           [],
         ),
-        returnValue: _i4.Stream<D>.empty(),
-        returnValueForMissingStub: _i4.Stream<D>.empty(),
-      ) as _i4.Stream<D>);
+        returnValue: _i3.Stream<D>.empty(),
+        returnValueForMissingStub: _i3.Stream<D>.empty(),
+      ) as _i3.Stream<D>);
   @override
-  _i4.Future<D?> getSingleOrNull() => (super.noSuchMethod(
+  _i3.Future<D?> getSingleOrNull() => (super.noSuchMethod(
         Invocation.method(
           #getSingleOrNull,
           [],
         ),
-        returnValue: _i4.Future<D?>.value(),
-        returnValueForMissingStub: _i4.Future<D?>.value(),
-      ) as _i4.Future<D?>);
+        returnValue: _i3.Future<D?>.value(),
+        returnValueForMissingStub: _i3.Future<D?>.value(),
+      ) as _i3.Future<D?>);
   @override
-  _i4.Stream<D?> watchSingleOrNull() => (super.noSuchMethod(
+  _i3.Stream<D?> watchSingleOrNull() => (super.noSuchMethod(
         Invocation.method(
           #watchSingleOrNull,
           [],
         ),
-        returnValue: _i4.Stream<D?>.empty(),
-        returnValueForMissingStub: _i4.Stream<D?>.empty(),
-      ) as _i4.Stream<D?>);
+        returnValue: _i3.Stream<D?>.empty(),
+        returnValueForMissingStub: _i3.Stream<D?>.empty(),
+      ) as _i3.Stream<D?>);
   @override
   _i2.Selectable<N> map<N>(N Function(D)? mapper) => (super.noSuchMethod(
         Invocation.method(
@@ -429,7 +361,7 @@ class MockSimpleSelectStatement<T extends _i2.HasResultSet, D> extends _i1.Mock
         ),
       ) as _i2.Selectable<N>);
   @override
-  _i2.Selectable<N> asyncMap<N>(_i4.Future<N> Function(D)? mapper) =>
+  _i2.Selectable<N> asyncMap<N>(_i3.Future<N> Function(D)? mapper) =>
       (super.noSuchMethod(
         Invocation.method(
           #asyncMap,

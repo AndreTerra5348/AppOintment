@@ -3,13 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:appointment/domain/common/values.dart' as _i5;
-import 'package:appointment/infrastructure/core/dao.dart' as _i3;
-import 'package:appointment/infrastructure/core/filter.dart' as _i6;
-import 'package:drift/drift.dart' as _i1;
-import 'package:mockito/mockito.dart' as _i2;
+import 'package:appointment/domain/common/values.dart' as _i6;
+import 'package:appointment/infrastructure/core/dao.dart' as _i4;
+import 'package:appointment/infrastructure/core/filter.dart' as _i7;
+import 'package:appointment/infrastructure/core/i_page_service.dart' as _i8;
+import 'package:dartz/dartz.dart' as _i2;
+import 'package:drift/drift.dart' as _i3;
+import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,35 +24,45 @@ import 'package:mockito/mockito.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
+  _FakeEither_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [Dao].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
-    extends _i2.Mock implements _i3.Dao<T_Table, T_Model> {
+class MockDao<T_Table extends _i3.Table, T_Model extends _i3.DataClass>
+    extends _i1.Mock implements _i4.Dao<T_Table, T_Model> {
   @override
   T_Table get table => throw UnsupportedError(
       '\'table\' cannot be used without a mockito fallback generator.');
   @override
-  _i4.Future<int> insert(_i1.Insertable<T_Model>? model) => (super.noSuchMethod(
+  _i5.Future<int> insert(_i3.Insertable<T_Model>? model) => (super.noSuchMethod(
         Invocation.method(
           #insert,
           [model],
         ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
+        returnValue: _i5.Future<int>.value(0),
+        returnValueForMissingStub: _i5.Future<int>.value(0),
+      ) as _i5.Future<int>);
   @override
-  _i4.Future<T_Model> getByUid(_i5.Uid? uid) => (super.noSuchMethod(
+  _i5.Future<T_Model> getByUid(_i6.Uid? uid) => (super.noSuchMethod(
         Invocation.method(
           #getByUid,
           [uid],
         ),
-        returnValue: _i4.Future<T_Model>.value(null),
-        returnValueForMissingStub: _i4.Future<T_Model>.value(null),
-      ) as _i4.Future<T_Model>);
+        returnValue: _i5.Future<T_Model>.value(null),
+        returnValueForMissingStub: _i5.Future<T_Model>.value(null),
+      ) as _i5.Future<T_Model>);
   @override
-  _i4.Future<int> count({
-    _i1.Expression<bool>? filter,
+  _i5.Future<int> count({
+    _i3.Expression<bool>? filter,
     bool? distinct = false,
   }) =>
       (super.noSuchMethod(
@@ -62,14 +74,14 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
             #distinct: distinct,
           },
         ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
+        returnValue: _i5.Future<int>.value(0),
+        returnValueForMissingStub: _i5.Future<int>.value(0),
+      ) as _i5.Future<int>);
   @override
-  _i4.Future<Iterable<T_Model>> getPage({
+  _i5.Future<Iterable<T_Model>> getPage({
     required int? page,
     required int? size,
-    _i6.SelectFilter<T_Table, T_Model>? filter,
+    _i7.SelectFilter<T_Table, T_Model>? filter,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -81,8 +93,90 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
             #filter: filter,
           },
         ),
-        returnValue: _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
+        returnValue: _i5.Future<Iterable<T_Model>>.value(<T_Model>[]),
         returnValueForMissingStub:
-            _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
-      ) as _i4.Future<Iterable<T_Model>>);
+            _i5.Future<Iterable<T_Model>>.value(<T_Model>[]),
+      ) as _i5.Future<Iterable<T_Model>>);
+}
+
+/// A class which mocks [IPageService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIPageService<T_Entity, T_Table extends _i3.Table,
+        T_Model extends _i3.DataClass> extends _i1.Mock
+    implements _i8.IPageService<T_Entity, T_Table, T_Model> {
+  @override
+  _i5.Future<_i2.Either<_i8.PageServiceFailure, int>> getCount(
+          {_i7.SelectFilter<T_Table, T_Model>? filter}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCount,
+          [],
+          {#filter: filter},
+        ),
+        returnValue: _i5.Future<_i2.Either<_i8.PageServiceFailure, int>>.value(
+            _FakeEither_0<_i8.PageServiceFailure, int>(
+          this,
+          Invocation.method(
+            #getCount,
+            [],
+            {#filter: filter},
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i8.PageServiceFailure, int>>.value(
+                _FakeEither_0<_i8.PageServiceFailure, int>(
+          this,
+          Invocation.method(
+            #getCount,
+            [],
+            {#filter: filter},
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i8.PageServiceFailure, int>>);
+  @override
+  _i5.Future<_i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>> getPage({
+    required int? page,
+    required int? size,
+    _i7.SelectFilter<T_Table, T_Model>? filter,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getPage,
+          [],
+          {
+            #page: page,
+            #size: size,
+            #filter: filter,
+          },
+        ),
+        returnValue: _i5.Future<
+                _i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>>.value(
+            _FakeEither_0<_i8.PageServiceFailure, Iterable<T_Entity>>(
+          this,
+          Invocation.method(
+            #getPage,
+            [],
+            {
+              #page: page,
+              #size: size,
+              #filter: filter,
+            },
+          ),
+        )),
+        returnValueForMissingStub: _i5.Future<
+                _i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>>.value(
+            _FakeEither_0<_i8.PageServiceFailure, Iterable<T_Entity>>(
+          this,
+          Invocation.method(
+            #getPage,
+            [],
+            {
+              #page: page,
+              #size: size,
+              #filter: filter,
+            },
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>>);
 }

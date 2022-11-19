@@ -223,6 +223,7 @@ abstract class _TermChanged implements ClientSearchEvent {
 mixin _$ClientSearchState {
   String get term => throw _privateConstructorUsedError;
   SearchFilter get filter => throw _privateConstructorUsedError;
+  Pagination<Client> get pagination => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientSearchStateCopyWith<ClientSearchState> get copyWith =>
@@ -235,9 +236,10 @@ abstract class $ClientSearchStateCopyWith<$Res> {
           ClientSearchState value, $Res Function(ClientSearchState) then) =
       _$ClientSearchStateCopyWithImpl<$Res, ClientSearchState>;
   @useResult
-  $Res call({String term, SearchFilter filter});
+  $Res call({String term, SearchFilter filter, Pagination<Client> pagination});
 
   $SearchFilterCopyWith<$Res> get filter;
+  $PaginationCopyWith<Client, $Res> get pagination;
 }
 
 /// @nodoc
@@ -255,6 +257,7 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
   $Res call({
     Object? term = null,
     Object? filter = null,
+    Object? pagination = null,
   }) {
     return _then(_value.copyWith(
       term: null == term
@@ -265,6 +268,10 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as SearchFilter,
+      pagination: null == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Pagination<Client>,
     ) as $Val);
   }
 
@@ -273,6 +280,14 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
   $SearchFilterCopyWith<$Res> get filter {
     return $SearchFilterCopyWith<$Res>(_value.filter, (value) {
       return _then(_value.copyWith(filter: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginationCopyWith<Client, $Res> get pagination {
+    return $PaginationCopyWith<Client, $Res>(_value.pagination, (value) {
+      return _then(_value.copyWith(pagination: value) as $Val);
     });
   }
 }
@@ -285,10 +300,12 @@ abstract class _$$_ClientSearchStateCopyWith<$Res>
       __$$_ClientSearchStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String term, SearchFilter filter});
+  $Res call({String term, SearchFilter filter, Pagination<Client> pagination});
 
   @override
   $SearchFilterCopyWith<$Res> get filter;
+  @override
+  $PaginationCopyWith<Client, $Res> get pagination;
 }
 
 /// @nodoc
@@ -304,6 +321,7 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
   $Res call({
     Object? term = null,
     Object? filter = null,
+    Object? pagination = null,
   }) {
     return _then(_$_ClientSearchState(
       term: null == term
@@ -314,6 +332,10 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as SearchFilter,
+      pagination: null == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Pagination<Client>,
     ));
   }
 }
@@ -321,16 +343,19 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClientSearchState implements _ClientSearchState {
-  const _$_ClientSearchState({required this.term, required this.filter});
+  const _$_ClientSearchState(
+      {required this.term, required this.filter, required this.pagination});
 
   @override
   final String term;
   @override
   final SearchFilter filter;
+  @override
+  final Pagination<Client> pagination;
 
   @override
   String toString() {
-    return 'ClientSearchState(term: $term, filter: $filter)';
+    return 'ClientSearchState(term: $term, filter: $filter, pagination: $pagination)';
   }
 
   @override
@@ -339,11 +364,13 @@ class _$_ClientSearchState implements _ClientSearchState {
         (other.runtimeType == runtimeType &&
             other is _$_ClientSearchState &&
             (identical(other.term, term) || other.term == term) &&
-            (identical(other.filter, filter) || other.filter == filter));
+            (identical(other.filter, filter) || other.filter == filter) &&
+            (identical(other.pagination, pagination) ||
+                other.pagination == pagination));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, term, filter);
+  int get hashCode => Object.hash(runtimeType, term, filter, pagination);
 
   @JsonKey(ignore: true)
   @override
@@ -356,12 +383,15 @@ class _$_ClientSearchState implements _ClientSearchState {
 abstract class _ClientSearchState implements ClientSearchState {
   const factory _ClientSearchState(
       {required final String term,
-      required final SearchFilter filter}) = _$_ClientSearchState;
+      required final SearchFilter filter,
+      required final Pagination<Client> pagination}) = _$_ClientSearchState;
 
   @override
   String get term;
   @override
   SearchFilter get filter;
+  @override
+  Pagination<Client> get pagination;
   @override
   @JsonKey(ignore: true)
   _$$_ClientSearchStateCopyWith<_$_ClientSearchState> get copyWith =>
