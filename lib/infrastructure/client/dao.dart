@@ -29,22 +29,12 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   }
 
   @override
-  Future<int> count({Expression<bool>? filter, bool distinct = false}) async {
-    final countExp = countAll(filter: filter);
-    final query = selectOnly(clientModels, distinct: distinct)
-      ..addColumns([countExp]);
-    final row = await query.getSingle();
-    return row.read(countExp) ?? 0;
-  }
-
-  @override
   Future<Iterable<ClientModel>> getPage(
-      {required int page,
-      required int size,
+      {required int limit,
+      required int offset,
       SelectFilter<ClientModels, ClientModel>? filter}) {
     return filter == null
-        ? (select(clientModels)..limit(size, offset: page * size)).get()
-        : (filter(select(clientModels))..limit(size, offset: page * size))
-            .get();
+        ? (select(clientModels)..limit(limit, offset: offset)).get()
+        : (filter(select(clientModels))..limit(limit, offset: offset)).get();
   }
 }

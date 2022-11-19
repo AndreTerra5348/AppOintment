@@ -3,14 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
-import 'package:appointment/domain/common/values.dart' as _i6;
-import 'package:appointment/infrastructure/core/dao.dart' as _i4;
+import 'package:appointment/domain/client/entity.dart' as _i6;
+import 'package:appointment/infrastructure/client/page_service.dart' as _i3;
+import 'package:appointment/infrastructure/client/table.dart' as _i8;
 import 'package:appointment/infrastructure/core/filter.dart' as _i7;
-import 'package:appointment/infrastructure/core/i_page_service.dart' as _i8;
+import 'package:appointment/infrastructure/core/i_page_service.dart' as _i5;
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:drift/drift.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -34,149 +34,54 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [Dao].
+/// A class which mocks [ClientPageService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDao<T_Table extends _i3.Table, T_Model extends _i3.DataClass>
-    extends _i1.Mock implements _i4.Dao<T_Table, T_Model> {
+class MockClientPageService extends _i1.Mock implements _i3.ClientPageService {
   @override
-  T_Table get table => throw UnsupportedError(
-      '\'table\' cannot be used without a mockito fallback generator.');
-  @override
-  _i5.Future<int> insert(_i3.Insertable<T_Model>? model) => (super.noSuchMethod(
-        Invocation.method(
-          #insert,
-          [model],
-        ),
-        returnValue: _i5.Future<int>.value(0),
-        returnValueForMissingStub: _i5.Future<int>.value(0),
-      ) as _i5.Future<int>);
-  @override
-  _i5.Future<T_Model> getByUid(_i6.Uid? uid) => (super.noSuchMethod(
-        Invocation.method(
-          #getByUid,
-          [uid],
-        ),
-        returnValue: _i5.Future<T_Model>.value(null),
-        returnValueForMissingStub: _i5.Future<T_Model>.value(null),
-      ) as _i5.Future<T_Model>);
-  @override
-  _i5.Future<int> count({
-    _i3.Expression<bool>? filter,
-    bool? distinct = false,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #count,
-          [],
-          {
-            #filter: filter,
-            #distinct: distinct,
-          },
-        ),
-        returnValue: _i5.Future<int>.value(0),
-        returnValueForMissingStub: _i5.Future<int>.value(0),
-      ) as _i5.Future<int>);
-  @override
-  _i5.Future<Iterable<T_Model>> getPage({
-    required int? page,
-    required int? size,
-    _i7.SelectFilter<T_Table, T_Model>? filter,
+  _i4.Future<_i2.Either<_i5.PageServiceFailure, Iterable<_i6.Client>>> getPage({
+    required int? limit,
+    required int? offset,
+    _i7.SelectFilter<_i8.ClientModels, dynamic>? filter,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPage,
           [],
           {
-            #page: page,
-            #size: size,
+            #limit: limit,
+            #offset: offset,
             #filter: filter,
           },
         ),
-        returnValue: _i5.Future<Iterable<T_Model>>.value(<T_Model>[]),
-        returnValueForMissingStub:
-            _i5.Future<Iterable<T_Model>>.value(<T_Model>[]),
-      ) as _i5.Future<Iterable<T_Model>>);
-}
-
-/// A class which mocks [IPageService].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockIPageService<T_Entity, T_Table extends _i3.Table,
-        T_Model extends _i3.DataClass> extends _i1.Mock
-    implements _i8.IPageService<T_Entity, T_Table, T_Model> {
-  @override
-  _i5.Future<_i2.Either<_i8.PageServiceFailure, int>> getCount(
-          {_i7.SelectFilter<T_Table, T_Model>? filter}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getCount,
-          [],
-          {#filter: filter},
-        ),
-        returnValue: _i5.Future<_i2.Either<_i8.PageServiceFailure, int>>.value(
-            _FakeEither_0<_i8.PageServiceFailure, int>(
-          this,
-          Invocation.method(
-            #getCount,
-            [],
-            {#filter: filter},
-          ),
-        )),
-        returnValueForMissingStub:
-            _i5.Future<_i2.Either<_i8.PageServiceFailure, int>>.value(
-                _FakeEither_0<_i8.PageServiceFailure, int>(
-          this,
-          Invocation.method(
-            #getCount,
-            [],
-            {#filter: filter},
-          ),
-        )),
-      ) as _i5.Future<_i2.Either<_i8.PageServiceFailure, int>>);
-  @override
-  _i5.Future<_i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>> getPage({
-    required int? page,
-    required int? size,
-    _i7.SelectFilter<T_Table, T_Model>? filter,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getPage,
-          [],
-          {
-            #page: page,
-            #size: size,
-            #filter: filter,
-          },
-        ),
-        returnValue: _i5.Future<
-                _i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>>.value(
-            _FakeEither_0<_i8.PageServiceFailure, Iterable<T_Entity>>(
+        returnValue: _i4.Future<
+                _i2.Either<_i5.PageServiceFailure, Iterable<_i6.Client>>>.value(
+            _FakeEither_0<_i5.PageServiceFailure, Iterable<_i6.Client>>(
           this,
           Invocation.method(
             #getPage,
             [],
             {
-              #page: page,
-              #size: size,
+              #limit: limit,
+              #offset: offset,
               #filter: filter,
             },
           ),
         )),
-        returnValueForMissingStub: _i5.Future<
-                _i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>>.value(
-            _FakeEither_0<_i8.PageServiceFailure, Iterable<T_Entity>>(
+        returnValueForMissingStub: _i4.Future<
+                _i2.Either<_i5.PageServiceFailure, Iterable<_i6.Client>>>.value(
+            _FakeEither_0<_i5.PageServiceFailure, Iterable<_i6.Client>>(
           this,
           Invocation.method(
             #getPage,
             [],
             {
-              #page: page,
-              #size: size,
+              #limit: limit,
+              #offset: offset,
               #filter: filter,
             },
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i8.PageServiceFailure, Iterable<T_Entity>>>);
+      ) as _i4
+          .Future<_i2.Either<_i5.PageServiceFailure, Iterable<_i6.Client>>>);
 }

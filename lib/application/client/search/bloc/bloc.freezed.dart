@@ -222,8 +222,10 @@ abstract class _TermChanged implements ClientSearchEvent {
 /// @nodoc
 mixin _$ClientSearchState {
   String get term => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
   SearchFilter get filter => throw _privateConstructorUsedError;
-  Pagination<Client> get pagination => throw _privateConstructorUsedError;
+  Iterable<Client> get clients => throw _privateConstructorUsedError;
+  Pagination get pagination => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientSearchStateCopyWith<ClientSearchState> get copyWith =>
@@ -236,10 +238,15 @@ abstract class $ClientSearchStateCopyWith<$Res> {
           ClientSearchState value, $Res Function(ClientSearchState) then) =
       _$ClientSearchStateCopyWithImpl<$Res, ClientSearchState>;
   @useResult
-  $Res call({String term, SearchFilter filter, Pagination<Client> pagination});
+  $Res call(
+      {String term,
+      bool isLoading,
+      SearchFilter filter,
+      Iterable<Client> clients,
+      Pagination pagination});
 
   $SearchFilterCopyWith<$Res> get filter;
-  $PaginationCopyWith<Client, $Res> get pagination;
+  $PaginationCopyWith<$Res> get pagination;
 }
 
 /// @nodoc
@@ -256,7 +263,9 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
   @override
   $Res call({
     Object? term = null,
+    Object? isLoading = null,
     Object? filter = null,
+    Object? clients = null,
     Object? pagination = null,
   }) {
     return _then(_value.copyWith(
@@ -264,14 +273,22 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
           ? _value.term
           : term // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as SearchFilter,
+      clients: null == clients
+          ? _value.clients
+          : clients // ignore: cast_nullable_to_non_nullable
+              as Iterable<Client>,
       pagination: null == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as Pagination<Client>,
+              as Pagination,
     ) as $Val);
   }
 
@@ -285,8 +302,8 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
 
   @override
   @pragma('vm:prefer-inline')
-  $PaginationCopyWith<Client, $Res> get pagination {
-    return $PaginationCopyWith<Client, $Res>(_value.pagination, (value) {
+  $PaginationCopyWith<$Res> get pagination {
+    return $PaginationCopyWith<$Res>(_value.pagination, (value) {
       return _then(_value.copyWith(pagination: value) as $Val);
     });
   }
@@ -300,12 +317,17 @@ abstract class _$$_ClientSearchStateCopyWith<$Res>
       __$$_ClientSearchStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String term, SearchFilter filter, Pagination<Client> pagination});
+  $Res call(
+      {String term,
+      bool isLoading,
+      SearchFilter filter,
+      Iterable<Client> clients,
+      Pagination pagination});
 
   @override
   $SearchFilterCopyWith<$Res> get filter;
   @override
-  $PaginationCopyWith<Client, $Res> get pagination;
+  $PaginationCopyWith<$Res> get pagination;
 }
 
 /// @nodoc
@@ -320,7 +342,9 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? term = null,
+    Object? isLoading = null,
     Object? filter = null,
+    Object? clients = null,
     Object? pagination = null,
   }) {
     return _then(_$_ClientSearchState(
@@ -328,14 +352,22 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
           ? _value.term
           : term // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as SearchFilter,
+      clients: null == clients
+          ? _value.clients
+          : clients // ignore: cast_nullable_to_non_nullable
+              as Iterable<Client>,
       pagination: null == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as Pagination<Client>,
+              as Pagination,
     ));
   }
 }
@@ -344,18 +376,26 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
 
 class _$_ClientSearchState implements _ClientSearchState {
   const _$_ClientSearchState(
-      {required this.term, required this.filter, required this.pagination});
+      {required this.term,
+      required this.isLoading,
+      required this.filter,
+      required this.clients,
+      required this.pagination});
 
   @override
   final String term;
   @override
+  final bool isLoading;
+  @override
   final SearchFilter filter;
   @override
-  final Pagination<Client> pagination;
+  final Iterable<Client> clients;
+  @override
+  final Pagination pagination;
 
   @override
   String toString() {
-    return 'ClientSearchState(term: $term, filter: $filter, pagination: $pagination)';
+    return 'ClientSearchState(term: $term, isLoading: $isLoading, filter: $filter, clients: $clients, pagination: $pagination)';
   }
 
   @override
@@ -364,13 +404,17 @@ class _$_ClientSearchState implements _ClientSearchState {
         (other.runtimeType == runtimeType &&
             other is _$_ClientSearchState &&
             (identical(other.term, term) || other.term == term) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.filter, filter) || other.filter == filter) &&
+            const DeepCollectionEquality().equals(other.clients, clients) &&
             (identical(other.pagination, pagination) ||
                 other.pagination == pagination));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, term, filter, pagination);
+  int get hashCode => Object.hash(runtimeType, term, isLoading, filter,
+      const DeepCollectionEquality().hash(clients), pagination);
 
   @JsonKey(ignore: true)
   @override
@@ -383,15 +427,21 @@ class _$_ClientSearchState implements _ClientSearchState {
 abstract class _ClientSearchState implements ClientSearchState {
   const factory _ClientSearchState(
       {required final String term,
+      required final bool isLoading,
       required final SearchFilter filter,
-      required final Pagination<Client> pagination}) = _$_ClientSearchState;
+      required final Iterable<Client> clients,
+      required final Pagination pagination}) = _$_ClientSearchState;
 
   @override
   String get term;
   @override
+  bool get isLoading;
+  @override
   SearchFilter get filter;
   @override
-  Pagination<Client> get pagination;
+  Iterable<Client> get clients;
+  @override
+  Pagination get pagination;
   @override
   @JsonKey(ignore: true)
   _$$_ClientSearchStateCopyWith<_$_ClientSearchState> get copyWith =>

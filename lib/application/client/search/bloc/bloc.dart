@@ -4,7 +4,6 @@ import 'package:appointment/application/common/pagination.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/infrastructure/client/filter.dart';
 import 'package:appointment/infrastructure/client/table.dart';
-import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/core/filter.dart';
 import 'package:appointment/infrastructure/core/i_page_service.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
@@ -20,8 +19,21 @@ class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
   ClientSearchBloc(this._pageService) : super(ClientSearchState.initial()) {
     on<_TermChanged>(_termChanged);
   }
-  FutureOr<void> _termChanged(
-      _TermChanged event, Emitter<ClientSearchState> emit) {
-    emit(state.copyWith(term: event.term));
+  Future<FutureOr<void>> _termChanged(
+      _TermChanged event, Emitter<ClientSearchState> emit) async {
+    final page = await _pageService.getPage(
+        limit: state.pagination.limit,
+        offset: state.pagination.offset,
+        filter: state.getFilter());
+
+    page.fold(
+      (failure) => null,
+      (clients) {
+        emit(state.copyWith(
+          term: event.term,
+          clients: clients,
+        ));
+      },
+    );
   }
 }

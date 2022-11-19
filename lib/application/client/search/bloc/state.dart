@@ -4,12 +4,16 @@ part of 'bloc.dart';
 class ClientSearchState with _$ClientSearchState {
   const factory ClientSearchState({
     required String term,
+    required bool isLoading,
     required SearchFilter filter,
-    required Pagination<Client> pagination,
+    required Iterable<Client> clients,
+    required Pagination pagination,
   }) = _ClientSearchState;
 
   factory ClientSearchState.initial() => ClientSearchState(
       term: "",
+      isLoading: true,
+      clients: const Iterable.empty(),
       filter: const SearchFilter.name(),
       pagination: Pagination.empty());
 }
@@ -20,8 +24,7 @@ class SearchFilter with _$SearchFilter {
 }
 
 extension ClientSearchStateExtension on ClientSearchState {
-  SelectFilter<ClientModels, ClientModel> getFilter(
-      Dao<ClientModels, ClientModel> dao) {
+  SelectFilter<ClientModels, ClientModel> getFilter() {
     return filter.map(
       name: (_) => ClientNameFilter(term),
     );

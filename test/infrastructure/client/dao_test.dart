@@ -26,42 +26,8 @@ void main() {
     expect(actual.name, model.name.value);
   });
 
-  test("Should return the number of rows when count is called", () async {
-    // Arrange
-    const count = 5;
-    final sut = ClientDao(db!);
-    Iterable.generate(count)
-        .map((e) => ClientModelsCompanion.insert(name: "Bob"))
-        .forEach(sut.insert);
-
-    // Act
-    final actual = await sut.count();
-
-    // Assert
-    expect(actual, count);
-  });
-
-  test("Should return the number of rows when count with filter is called",
-      () async {
-    // Arrange
-    const count = 5;
-    final sut = ClientDao(db!);
-    Iterable.generate(count)
-        .map((e) => ClientModelsCompanion.insert(name: "Bob"))
-        .forEach(sut.insert);
-
-    final filter = ClientNameFilter("Bob");
-    sut.insert(ClientModelsCompanion.insert(name: "Joe"));
-
-    // Act
-    final actual = await sut.count(filter: filter.getExpression(sut.table));
-
-    // Assert
-    expect(actual, count);
-  });
-
   test(
-      "Should return the 5 first clientModel when getPage is called with page 0 and size 5",
+      "Should return the 5 first clientModel when getPage is called with limit 5 and offset 0",
       () async {
     // Arrange
     const count = 5;
@@ -80,7 +46,7 @@ void main() {
     sut.insert(ClientModelsCompanion.insert(name: "Joe"));
 
     // Act
-    final actual = await sut.getPage(page: 0, size: 5);
+    final actual = await sut.getPage(limit: count, offset: 0);
 
     // Assert
     expect(actual, hasLength(clients.length));
@@ -88,7 +54,33 @@ void main() {
   });
 
   test(
-      "Should return the clientModel which match the filter when getPage is called with page 0 size 5 and NameFilter",
+      "Should return empty when getPage is called with offset greater than the amount of items",
+      () async {
+    // Arrange
+    const count = 5;
+    final clients = Iterable.generate(count).map(
+      (e) => ClientModel(
+        id: e + 1,
+        name: "Bob",
+      ),
+    );
+
+    final sut = ClientDao(db!);
+    clients
+        .map((e) => ClientModelsCompanion.insert(name: e.name))
+        .forEach(sut.insert);
+
+    sut.insert(ClientModelsCompanion.insert(name: "Joe"));
+
+    // Act
+    final actual = await sut.getPage(limit: count, offset: 6);
+
+    // Assert
+    expect(actual, isEmpty);
+  });
+
+  test(
+      "Should return the clientModel which match the filter when getPage is called with offset 0 limit 5 and NameFilter",
       () async {
     // Arrange
     const count = 3;
@@ -107,7 +99,7 @@ void main() {
     sut.insert(ClientModelsCompanion.insert(name: "Joe"));
     final filter = ClientNameFilter("Bob");
     // Act
-    final actual = await sut.getPage(page: 0, size: 5, filter: filter);
+    final actual = await sut.getPage(limit: 5, offset: 0, filter: filter);
 
     // Assert
     expect(actual, hasLength(clients.length));

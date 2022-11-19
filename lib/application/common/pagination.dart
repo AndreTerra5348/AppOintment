@@ -3,18 +3,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'pagination.freezed.dart';
 
 @freezed
-class Pagination<T_Entity> with _$Pagination {
+class Pagination with _$Pagination {
   const factory Pagination({
-    required int page,
-    required int pageCount,
-    required int itensPerPage,
-    required Iterable<T_Entity> items,
+    required int limit,
+    required int offset,
   }) = _Pagination;
 
   factory Pagination.empty() => const Pagination(
-        page: 0,
-        pageCount: 0,
-        itensPerPage: 10,
-        items: Iterable.empty(),
+        limit: 10,
+        offset: 0,
       );
+}
+
+extension PaginationExtension on Pagination {
+  Pagination copyWithNextPage() => copyWith(offset: offset + limit);
+  Pagination copyWithPreviousPage() {
+    final newOffset = offset - limit;
+    return copyWith(offset: newOffset < 0 ? 0 : newOffset);
+  }
 }

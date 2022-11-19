@@ -11,11 +11,9 @@ part 'i_page_service.freezed.dart';
 
 abstract class IPageService<T_Entity, T_Table extends drift.Table,
     T_Model extends drift.DataClass> {
-  Future<Either<PageServiceFailure, int>> getCount(
-      {SelectFilter<T_Table, T_Model>? filter});
   Future<Either<PageServiceFailure, Iterable<T_Entity>>> getPage(
-      {required int page,
-      required int size,
+      {required int limit,
+      required int offset,
       SelectFilter<T_Table, T_Model>? filter});
 }
 
@@ -28,22 +26,13 @@ abstract class BasePageService<T_Entity, T_Table extends drift.Table,
   BasePageService(this._dao, this._converter);
 
   @override
-  Future<Either<PageServiceFailure, int>> getCount(
-      {SelectFilter<T_Table, T_Model>? filter}) async {
-    try {
-      return Right(await _dao.count(filter: filter?.getExpression(_dao.table)));
-    } catch (error) {
-      return Left(PageServiceFailure.countDbException(error: error));
-    }
-  }
-
-  @override
   Future<Either<PageServiceFailure, Iterable<T_Entity>>> getPage(
-      {required int page,
-      required int size,
+      {required int limit,
+      required int offset,
       SelectFilter<T_Table, T_Model>? filter}) async {
     try {
-      final result = await _dao.getPage(page: page, size: size, filter: filter);
+      final result =
+          await _dao.getPage(limit: limit, offset: offset, filter: filter);
       return Right(result.map(_converter.toEntity));
     } catch (error) {
       return Left(PageServiceFailure.getPageDbException(error: error));
