@@ -1,5 +1,5 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/application/common/formz.dart';
+import 'package:appointment/application/common/form.dart';
 import 'package:appointment/di.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';

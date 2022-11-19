@@ -3,7 +3,7 @@ import 'package:appointment/domain/core/i_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'formz.freezed.dart';
+part 'form.freezed.dart';
 
 @freezed
 class SubmissionStatus with _$SubmissionStatus {
