@@ -42,8 +42,6 @@ abstract class BasePageService<T_Entity, T_Table extends drift.Table,
 
 @freezed
 class PageServiceFailure with _$PageServiceFailure {
-  const factory PageServiceFailure.countDbException({required Object error}) =
-      _CountDbException;
   const factory PageServiceFailure.getPageDbException({required Object error}) =
       _GetPageDbException;
 }

@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientSearchEvent {
-  String get term => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String term) termChanged,
+    required TResult Function() nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String term)? termChanged,
+    TResult? Function()? nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String term)? termChanged,
+    TResult Function()? nextPageRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TermChanged value) termChanged,
+    required TResult Function(_NextPageRequested value) nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TermChanged value)? termChanged,
+    TResult? Function(_NextPageRequested value)? nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TermChanged value)? termChanged,
+    TResult Function(_NextPageRequested value)? nextPageRequested,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ClientSearchEventCopyWith<ClientSearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $ClientSearchEventCopyWith<$Res> {
   factory $ClientSearchEventCopyWith(
           ClientSearchEvent value, $Res Function(ClientSearchEvent) then) =
       _$ClientSearchEventCopyWithImpl<$Res, ClientSearchEvent>;
-  @useResult
-  $Res call({String term});
 }
 
 /// @nodoc
@@ -73,28 +72,13 @@ class _$ClientSearchEventCopyWithImpl<$Res, $Val extends ClientSearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? term = null,
-  }) {
-    return _then(_value.copyWith(
-      term: null == term
-          ? _value.term
-          : term // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_TermChangedCopyWith<$Res>
-    implements $ClientSearchEventCopyWith<$Res> {
+abstract class _$$_TermChangedCopyWith<$Res> {
   factory _$$_TermChangedCopyWith(
           _$_TermChanged value, $Res Function(_$_TermChanged) then) =
       __$$_TermChangedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String term});
 }
@@ -155,6 +139,7 @@ class _$_TermChanged implements _TermChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String term) termChanged,
+    required TResult Function() nextPageRequested,
   }) {
     return termChanged(term);
   }
@@ -163,6 +148,7 @@ class _$_TermChanged implements _TermChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String term)? termChanged,
+    TResult? Function()? nextPageRequested,
   }) {
     return termChanged?.call(term);
   }
@@ -171,6 +157,7 @@ class _$_TermChanged implements _TermChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String term)? termChanged,
+    TResult Function()? nextPageRequested,
     required TResult orElse(),
   }) {
     if (termChanged != null) {
@@ -183,6 +170,7 @@ class _$_TermChanged implements _TermChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TermChanged value) termChanged,
+    required TResult Function(_NextPageRequested value) nextPageRequested,
   }) {
     return termChanged(this);
   }
@@ -191,6 +179,7 @@ class _$_TermChanged implements _TermChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TermChanged value)? termChanged,
+    TResult? Function(_NextPageRequested value)? nextPageRequested,
   }) {
     return termChanged?.call(this);
   }
@@ -199,6 +188,7 @@ class _$_TermChanged implements _TermChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TermChanged value)? termChanged,
+    TResult Function(_NextPageRequested value)? nextPageRequested,
     required TResult orElse(),
   }) {
     if (termChanged != null) {
@@ -211,12 +201,112 @@ class _$_TermChanged implements _TermChanged {
 abstract class _TermChanged implements ClientSearchEvent {
   const factory _TermChanged({required final String term}) = _$_TermChanged;
 
-  @override
   String get term;
-  @override
   @JsonKey(ignore: true)
   _$$_TermChangedCopyWith<_$_TermChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_NextPageRequestedCopyWith<$Res> {
+  factory _$$_NextPageRequestedCopyWith(_$_NextPageRequested value,
+          $Res Function(_$_NextPageRequested) then) =
+      __$$_NextPageRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NextPageRequestedCopyWithImpl<$Res>
+    extends _$ClientSearchEventCopyWithImpl<$Res, _$_NextPageRequested>
+    implements _$$_NextPageRequestedCopyWith<$Res> {
+  __$$_NextPageRequestedCopyWithImpl(
+      _$_NextPageRequested _value, $Res Function(_$_NextPageRequested) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NextPageRequested implements _NextPageRequested {
+  const _$_NextPageRequested();
+
+  @override
+  String toString() {
+    return 'ClientSearchEvent.nextPageRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NextPageRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String term) termChanged,
+    required TResult Function() nextPageRequested,
+  }) {
+    return nextPageRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String term)? termChanged,
+    TResult? Function()? nextPageRequested,
+  }) {
+    return nextPageRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String term)? termChanged,
+    TResult Function()? nextPageRequested,
+    required TResult orElse(),
+  }) {
+    if (nextPageRequested != null) {
+      return nextPageRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TermChanged value) termChanged,
+    required TResult Function(_NextPageRequested value) nextPageRequested,
+  }) {
+    return nextPageRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TermChanged value)? termChanged,
+    TResult? Function(_NextPageRequested value)? nextPageRequested,
+  }) {
+    return nextPageRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TermChanged value)? termChanged,
+    TResult Function(_NextPageRequested value)? nextPageRequested,
+    required TResult orElse(),
+  }) {
+    if (nextPageRequested != null) {
+      return nextPageRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NextPageRequested implements ClientSearchEvent {
+  const factory _NextPageRequested() = _$_NextPageRequested;
 }
 
 /// @nodoc

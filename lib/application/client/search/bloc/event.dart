@@ -4,4 +4,6 @@ part of 'bloc.dart';
 class ClientSearchEvent with _$ClientSearchEvent {
   const factory ClientSearchEvent.termChanged({required String term}) =
       _TermChanged;
+
+  const factory ClientSearchEvent.nextPageRequested() = _NextPageRequested;
 }

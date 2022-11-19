@@ -19,38 +19,32 @@ mixin _$PageServiceFailure {
   Object get error => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Object error) countDbException,
     required TResult Function(Object error) getPageDbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Object error)? countDbException,
     TResult? Function(Object error)? getPageDbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Object error)? countDbException,
     TResult Function(Object error)? getPageDbException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CountDbException value) countDbException,
     required TResult Function(_GetPageDbException value) getPageDbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CountDbException value)? countDbException,
     TResult? Function(_GetPageDbException value)? getPageDbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CountDbException value)? countDbException,
     TResult Function(_GetPageDbException value)? getPageDbException,
     required TResult orElse(),
   }) =>
@@ -89,142 +83,6 @@ class _$PageServiceFailureCopyWithImpl<$Res, $Val extends PageServiceFailure>
       error: null == error ? _value.error : error,
     ) as $Val);
   }
-}
-
-/// @nodoc
-abstract class _$$_CountDbExceptionCopyWith<$Res>
-    implements $PageServiceFailureCopyWith<$Res> {
-  factory _$$_CountDbExceptionCopyWith(
-          _$_CountDbException value, $Res Function(_$_CountDbException) then) =
-      __$$_CountDbExceptionCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Object error});
-}
-
-/// @nodoc
-class __$$_CountDbExceptionCopyWithImpl<$Res>
-    extends _$PageServiceFailureCopyWithImpl<$Res, _$_CountDbException>
-    implements _$$_CountDbExceptionCopyWith<$Res> {
-  __$$_CountDbExceptionCopyWithImpl(
-      _$_CountDbException _value, $Res Function(_$_CountDbException) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_CountDbException(
-      error: null == error ? _value.error : error,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_CountDbException implements _CountDbException {
-  const _$_CountDbException({required this.error});
-
-  @override
-  final Object error;
-
-  @override
-  String toString() {
-    return 'PageServiceFailure.countDbException(error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CountDbException &&
-            const DeepCollectionEquality().equals(other.error, error));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_CountDbExceptionCopyWith<_$_CountDbException> get copyWith =>
-      __$$_CountDbExceptionCopyWithImpl<_$_CountDbException>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Object error) countDbException,
-    required TResult Function(Object error) getPageDbException,
-  }) {
-    return countDbException(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Object error)? countDbException,
-    TResult? Function(Object error)? getPageDbException,
-  }) {
-    return countDbException?.call(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Object error)? countDbException,
-    TResult Function(Object error)? getPageDbException,
-    required TResult orElse(),
-  }) {
-    if (countDbException != null) {
-      return countDbException(error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CountDbException value) countDbException,
-    required TResult Function(_GetPageDbException value) getPageDbException,
-  }) {
-    return countDbException(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CountDbException value)? countDbException,
-    TResult? Function(_GetPageDbException value)? getPageDbException,
-  }) {
-    return countDbException?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CountDbException value)? countDbException,
-    TResult Function(_GetPageDbException value)? getPageDbException,
-    required TResult orElse(),
-  }) {
-    if (countDbException != null) {
-      return countDbException(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CountDbException implements PageServiceFailure {
-  const factory _CountDbException({required final Object error}) =
-      _$_CountDbException;
-
-  @override
-  Object get error;
-  @override
-  @JsonKey(ignore: true)
-  _$$_CountDbExceptionCopyWith<_$_CountDbException> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -292,7 +150,6 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Object error) countDbException,
     required TResult Function(Object error) getPageDbException,
   }) {
     return getPageDbException(error);
@@ -301,7 +158,6 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Object error)? countDbException,
     TResult? Function(Object error)? getPageDbException,
   }) {
     return getPageDbException?.call(error);
@@ -310,7 +166,6 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Object error)? countDbException,
     TResult Function(Object error)? getPageDbException,
     required TResult orElse(),
   }) {
@@ -323,7 +178,6 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CountDbException value) countDbException,
     required TResult Function(_GetPageDbException value) getPageDbException,
   }) {
     return getPageDbException(this);
@@ -332,7 +186,6 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CountDbException value)? countDbException,
     TResult? Function(_GetPageDbException value)? getPageDbException,
   }) {
     return getPageDbException?.call(this);
@@ -341,7 +194,6 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CountDbException value)? countDbException,
     TResult Function(_GetPageDbException value)? getPageDbException,
     required TResult orElse(),
   }) {

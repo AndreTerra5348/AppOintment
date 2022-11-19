@@ -51,9 +51,3 @@ class ClientRegisterBloc
     );
   }
 }
-
-@freezed
-class BlocFailure with _$BlocFailure {
-  const factory BlocFailure.repository({required RepositoryFailure failure}) =
-      _Repository;
-}

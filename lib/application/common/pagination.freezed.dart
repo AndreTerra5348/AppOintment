@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Pagination {
   int get limit => throw _privateConstructorUsedError;
   int get offset => throw _privateConstructorUsedError;
+  bool get hasReachedMax => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PaginationCopyWith<Pagination> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $PaginationCopyWith<$Res> {
           Pagination value, $Res Function(Pagination) then) =
       _$PaginationCopyWithImpl<$Res, Pagination>;
   @useResult
-  $Res call({int limit, int offset});
+  $Res call({int limit, int offset, bool hasReachedMax});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$PaginationCopyWithImpl<$Res, $Val extends Pagination>
   $Res call({
     Object? limit = null,
     Object? offset = null,
+    Object? hasReachedMax = null,
   }) {
     return _then(_value.copyWith(
       limit: null == limit
@@ -58,6 +60,10 @@ class _$PaginationCopyWithImpl<$Res, $Val extends Pagination>
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$_PaginationCopyWith<$Res>
       __$$_PaginationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int limit, int offset});
+  $Res call({int limit, int offset, bool hasReachedMax});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$_PaginationCopyWithImpl<$Res>
   $Res call({
     Object? limit = null,
     Object? offset = null,
+    Object? hasReachedMax = null,
   }) {
     return _then(_$_Pagination(
       limit: null == limit
@@ -96,6 +103,10 @@ class __$$_PaginationCopyWithImpl<$Res>
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -103,16 +114,19 @@ class __$$_PaginationCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Pagination implements _Pagination {
-  const _$_Pagination({required this.limit, required this.offset});
+  const _$_Pagination(
+      {required this.limit, required this.offset, required this.hasReachedMax});
 
   @override
   final int limit;
   @override
   final int offset;
+  @override
+  final bool hasReachedMax;
 
   @override
   String toString() {
-    return 'Pagination(limit: $limit, offset: $offset)';
+    return 'Pagination(limit: $limit, offset: $offset, hasReachedMax: $hasReachedMax)';
   }
 
   @override
@@ -121,11 +135,13 @@ class _$_Pagination implements _Pagination {
         (other.runtimeType == runtimeType &&
             other is _$_Pagination &&
             (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.offset, offset) || other.offset == offset));
+            (identical(other.offset, offset) || other.offset == offset) &&
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, limit, offset);
+  int get hashCode => Object.hash(runtimeType, limit, offset, hasReachedMax);
 
   @JsonKey(ignore: true)
   @override
@@ -136,12 +152,16 @@ class _$_Pagination implements _Pagination {
 
 abstract class _Pagination implements Pagination {
   const factory _Pagination(
-      {required final int limit, required final int offset}) = _$_Pagination;
+      {required final int limit,
+      required final int offset,
+      required final bool hasReachedMax}) = _$_Pagination;
 
   @override
   int get limit;
   @override
   int get offset;
+  @override
+  bool get hasReachedMax;
   @override
   @JsonKey(ignore: true)
   _$$_PaginationCopyWith<_$_Pagination> get copyWith =>
