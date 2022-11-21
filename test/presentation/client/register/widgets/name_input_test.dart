@@ -20,7 +20,7 @@ void main() {
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
       when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
       await tester.pumpAndSettle();
 
       expect(find.byType(TextFormField), findsOneWidget);
@@ -34,9 +34,9 @@ void main() {
   });
 }
 
-class MockClientPage extends StatelessWidget {
+class MockClientRegisterPage extends StatelessWidget {
   final ClientRegisterBloc bloc;
-  const MockClientPage({super.key, required this.bloc});
+  const MockClientRegisterPage({super.key, required this.bloc});
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +47,15 @@ class MockClientPage extends StatelessWidget {
       home: Scaffold(
         body: BlocProvider(
           create: (context) => bloc,
-          child: const MockClientRegisterWidget(),
+          child: const MockClientRegisterFormWidget(),
         ),
       ),
     );
   }
 }
 
-class MockClientRegisterWidget extends StatelessWidget {
-  const MockClientRegisterWidget({super.key});
+class MockClientRegisterFormWidget extends StatelessWidget {
+  const MockClientRegisterFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

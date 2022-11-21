@@ -22,7 +22,7 @@ void main() {
       when(mockBloc.state).thenReturn(ClientRegisterState.initial());
       when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
 
       await tester.pumpAndSettle();
 
@@ -46,7 +46,7 @@ void main() {
       );
       when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
 
       await tester.pumpAndSettle();
 
@@ -69,7 +69,7 @@ void main() {
       when(mockBloc.state).thenReturn(state);
       when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
       await tester.pumpAndSettle();
 
       // Act
@@ -88,7 +88,7 @@ void main() {
       ));
       when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
 
       // Act
 
@@ -106,7 +106,7 @@ void main() {
       ));
       when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
 
       // Act
 
@@ -125,7 +125,7 @@ void main() {
       when(mockBloc.state).thenReturn(state);
       when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
       await tester.pump();
 
       // Act
@@ -147,7 +147,7 @@ void main() {
       when(mockBloc.state).thenReturn(state);
       when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
       await tester.pump();
 
       // Act
@@ -180,7 +180,7 @@ void main() {
       when(mockBloc.state).thenReturn(state);
       when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
 
-      await tester.pumpWidget(MockClientPage(bloc: mockBloc));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
       await tester.pump();
 
       // Act
@@ -193,9 +193,9 @@ void main() {
   });
 }
 
-class MockClientPage extends StatelessWidget {
+class MockClientRegisterPage extends StatelessWidget {
   final ClientRegisterBloc bloc;
-  const MockClientPage({super.key, required this.bloc});
+  const MockClientRegisterPage({super.key, required this.bloc});
 
   @override
   Widget build(BuildContext context) {
