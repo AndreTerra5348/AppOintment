@@ -59,7 +59,7 @@ void main() {
       final actual = await sut.getPage(limit: 0, offset: 5);
 
       //Assert
-      expect(actual, Left(PageServiceFailure.getPageDbException(error: error)));
+      expect(actual, Left(PageServiceFailure.dbException(error: error)));
       verify(mockDao.getPage(
               limit: anyNamed("limit"), offset: anyNamed("offset")))
           .called(1);

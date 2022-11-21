@@ -35,13 +35,13 @@ abstract class BasePageService<T_Entity, T_Table extends drift.Table,
           await _dao.getPage(limit: limit, offset: offset, filter: filter);
       return Right(result.map(_converter.toEntity));
     } catch (error) {
-      return Left(PageServiceFailure.getPageDbException(error: error));
+      return Left(PageServiceFailure.dbException(error: error));
     }
   }
 }
 
 @freezed
 class PageServiceFailure with _$PageServiceFailure {
-  const factory PageServiceFailure.getPageDbException({required Object error}) =
+  const factory PageServiceFailure.dbException({required Object error}) =
       _GetPageDbException;
 }

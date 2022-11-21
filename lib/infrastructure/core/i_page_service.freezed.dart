@@ -19,33 +19,33 @@ mixin _$PageServiceFailure {
   Object get error => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Object error) getPageDbException,
+    required TResult Function(Object error) dbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Object error)? getPageDbException,
+    TResult? Function(Object error)? dbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Object error)? getPageDbException,
+    TResult Function(Object error)? dbException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetPageDbException value) getPageDbException,
+    required TResult Function(_GetPageDbException value) dbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetPageDbException value)? getPageDbException,
+    TResult? Function(_GetPageDbException value)? dbException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPageDbException value)? getPageDbException,
+    TResult Function(_GetPageDbException value)? dbException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -125,7 +125,7 @@ class _$_GetPageDbException implements _GetPageDbException {
 
   @override
   String toString() {
-    return 'PageServiceFailure.getPageDbException(error: $error)';
+    return 'PageServiceFailure.dbException(error: $error)';
   }
 
   @override
@@ -150,27 +150,27 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Object error) getPageDbException,
+    required TResult Function(Object error) dbException,
   }) {
-    return getPageDbException(error);
+    return dbException(error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Object error)? getPageDbException,
+    TResult? Function(Object error)? dbException,
   }) {
-    return getPageDbException?.call(error);
+    return dbException?.call(error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Object error)? getPageDbException,
+    TResult Function(Object error)? dbException,
     required TResult orElse(),
   }) {
-    if (getPageDbException != null) {
-      return getPageDbException(error);
+    if (dbException != null) {
+      return dbException(error);
     }
     return orElse();
   }
@@ -178,27 +178,27 @@ class _$_GetPageDbException implements _GetPageDbException {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetPageDbException value) getPageDbException,
+    required TResult Function(_GetPageDbException value) dbException,
   }) {
-    return getPageDbException(this);
+    return dbException(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetPageDbException value)? getPageDbException,
+    TResult? Function(_GetPageDbException value)? dbException,
   }) {
-    return getPageDbException?.call(this);
+    return dbException?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPageDbException value)? getPageDbException,
+    TResult Function(_GetPageDbException value)? dbException,
     required TResult orElse(),
   }) {
-    if (getPageDbException != null) {
-      return getPageDbException(this);
+    if (dbException != null) {
+      return dbException(this);
     }
     return orElse();
   }

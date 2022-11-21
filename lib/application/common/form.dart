@@ -15,12 +15,11 @@ class SubmissionStatus with _$SubmissionStatus {
       _Failure;
   const factory SubmissionStatus.canceled() = _Canceled;
 
-  bool get isInitial => maybeMap(orElse: () => false, initial: (_) => true);
-  bool get isInProgress =>
-      maybeMap(orElse: () => false, inProgress: (_) => true);
-  bool get isSuccess => maybeMap(orElse: () => false, success: (_) => true);
-  bool get isFailure => maybeMap(orElse: () => false, failure: (_) => true);
-  bool get isCanceled => maybeMap(orElse: () => false, canceled: (_) => true);
+  bool get isInitial => this is _Initial;
+  bool get isInProgress => this is _InProgress;
+  bool get isSuccess => this is _Success;
+  bool get isFailure => this is _Failure;
+  bool get isCanceled => this is _Canceled;
 }
 
 @freezed
