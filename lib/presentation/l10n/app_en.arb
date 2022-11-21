@@ -10,5 +10,10 @@
         "placeholders": {
             "error": {}
         }
-    }
+    },
+
+    "@_CLIENT_SEARCH_PAGE": {},
+    "pageClientSearchTitle": "Client Search",
+    "searchTextFormFieldHint": "Search"
+    
 }
