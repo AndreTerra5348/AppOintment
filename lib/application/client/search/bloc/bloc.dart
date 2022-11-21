@@ -14,20 +14,17 @@ part 'bloc.freezed.dart';
 part 'event.dart';
 part 'state.dart';
 
-const int _pageLimit = 10;
-
 class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
   final IPageService<Client, ClientModels, ClientModel> _pageService;
   ClientSearchBloc(this._pageService) : super(ClientSearchState.initial()) {
-    on<_Init>(_onInit);
     on<_FetchRequested>(_onFetchRequested);
     on<_TermChanged>(_onTermChanged);
   }
 
   FutureOr<void> _emitFetched(Emitter<ClientSearchState> emit) async {
     final page = await _pageService.getPage(
-      limit: _pageLimit,
-      offset: state.clients.length,
+      limit: state.limit,
+      offset: state.offset,
       filter: state.getFilter(),
     );
 
@@ -41,7 +38,7 @@ class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
               ? const ClientSearchStatus.empty()
               : const ClientSearchStatus.success(),
           clients: state.clients.followedBy(clients),
-          hasReachedMax: clients.isEmpty,
+          hasReachedMax: clients.isEmpty || clients.length % state.limit != 0,
         ),
       ),
     );
@@ -54,18 +51,13 @@ class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
     await _emitFetched(emit);
   }
 
-  FutureOr<void> _onInit(_Init event, Emitter<ClientSearchState> emit) async {
-    emit(state.copyWith(status: const ClientSearchStatus.loading()));
-    await _emitFetched(emit);
-  }
-
   Future<FutureOr<void>> _onTermChanged(
       _TermChanged event, Emitter<ClientSearchState> emit) async {
     emit(
       state.copyWith(
         status: const ClientSearchStatus.loading(),
-        term: event.term,
         clients: const Iterable.empty(),
+        term: event.term,
       ),
     );
     await _emitFetched(emit);

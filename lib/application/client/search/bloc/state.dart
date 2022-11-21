@@ -30,4 +30,7 @@ extension ClientSearchStateExtension on ClientSearchState {
       name: (_) => ClientNameFilter(term),
     );
   }
+
+  int get offset => clients.length;
+  int get limit => 10;
 }
