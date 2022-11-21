@@ -18,39 +18,45 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ClientSearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchRequested,
     required TResult Function(String term) termChanged,
-    required TResult Function() nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchRequested,
     TResult? Function(String term)? termChanged,
-    TResult? Function()? nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchRequested,
     TResult Function(String term)? termChanged,
-    TResult Function()? nextPageRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchRequested value) fetchRequested,
     required TResult Function(_TermChanged value) termChanged,
-    required TResult Function(_NextPageRequested value) nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchRequested value)? fetchRequested,
     TResult? Function(_TermChanged value)? termChanged,
-    TResult? Function(_NextPageRequested value)? nextPageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchRequested value)? fetchRequested,
     TResult Function(_TermChanged value)? termChanged,
-    TResult Function(_NextPageRequested value)? nextPageRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +78,220 @@ class _$ClientSearchEventCopyWithImpl<$Res, $Val extends ClientSearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_InitCopyWith<$Res> {
+  factory _$$_InitCopyWith(_$_Init value, $Res Function(_$_Init) then) =
+      __$$_InitCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InitCopyWithImpl<$Res>
+    extends _$ClientSearchEventCopyWithImpl<$Res, _$_Init>
+    implements _$$_InitCopyWith<$Res> {
+  __$$_InitCopyWithImpl(_$_Init _value, $Res Function(_$_Init) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Init implements _Init {
+  const _$_Init();
+
+  @override
+  String toString() {
+    return 'ClientSearchEvent.init()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Init);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchRequested,
+    required TResult Function(String term) termChanged,
+  }) {
+    return init();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchRequested,
+    TResult? Function(String term)? termChanged,
+  }) {
+    return init?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchRequested,
+    TResult Function(String term)? termChanged,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchRequested value) fetchRequested,
+    required TResult Function(_TermChanged value) termChanged,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchRequested value)? fetchRequested,
+    TResult? Function(_TermChanged value)? termChanged,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchRequested value)? fetchRequested,
+    TResult Function(_TermChanged value)? termChanged,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements ClientSearchEvent {
+  const factory _Init() = _$_Init;
+}
+
+/// @nodoc
+abstract class _$$_FetchRequestedCopyWith<$Res> {
+  factory _$$_FetchRequestedCopyWith(
+          _$_FetchRequested value, $Res Function(_$_FetchRequested) then) =
+      __$$_FetchRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FetchRequestedCopyWithImpl<$Res>
+    extends _$ClientSearchEventCopyWithImpl<$Res, _$_FetchRequested>
+    implements _$$_FetchRequestedCopyWith<$Res> {
+  __$$_FetchRequestedCopyWithImpl(
+      _$_FetchRequested _value, $Res Function(_$_FetchRequested) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_FetchRequested implements _FetchRequested {
+  const _$_FetchRequested();
+
+  @override
+  String toString() {
+    return 'ClientSearchEvent.fetchRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_FetchRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchRequested,
+    required TResult Function(String term) termChanged,
+  }) {
+    return fetchRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchRequested,
+    TResult? Function(String term)? termChanged,
+  }) {
+    return fetchRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchRequested,
+    TResult Function(String term)? termChanged,
+    required TResult orElse(),
+  }) {
+    if (fetchRequested != null) {
+      return fetchRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchRequested value) fetchRequested,
+    required TResult Function(_TermChanged value) termChanged,
+  }) {
+    return fetchRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchRequested value)? fetchRequested,
+    TResult? Function(_TermChanged value)? termChanged,
+  }) {
+    return fetchRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchRequested value)? fetchRequested,
+    TResult Function(_TermChanged value)? termChanged,
+    required TResult orElse(),
+  }) {
+    if (fetchRequested != null) {
+      return fetchRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchRequested implements ClientSearchEvent {
+  const factory _FetchRequested() = _$_FetchRequested;
 }
 
 /// @nodoc
@@ -138,8 +358,9 @@ class _$_TermChanged implements _TermChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchRequested,
     required TResult Function(String term) termChanged,
-    required TResult Function() nextPageRequested,
   }) {
     return termChanged(term);
   }
@@ -147,8 +368,9 @@ class _$_TermChanged implements _TermChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchRequested,
     TResult? Function(String term)? termChanged,
-    TResult? Function()? nextPageRequested,
   }) {
     return termChanged?.call(term);
   }
@@ -156,8 +378,9 @@ class _$_TermChanged implements _TermChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchRequested,
     TResult Function(String term)? termChanged,
-    TResult Function()? nextPageRequested,
     required TResult orElse(),
   }) {
     if (termChanged != null) {
@@ -169,8 +392,9 @@ class _$_TermChanged implements _TermChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchRequested value) fetchRequested,
     required TResult Function(_TermChanged value) termChanged,
-    required TResult Function(_NextPageRequested value) nextPageRequested,
   }) {
     return termChanged(this);
   }
@@ -178,8 +402,9 @@ class _$_TermChanged implements _TermChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchRequested value)? fetchRequested,
     TResult? Function(_TermChanged value)? termChanged,
-    TResult? Function(_NextPageRequested value)? nextPageRequested,
   }) {
     return termChanged?.call(this);
   }
@@ -187,8 +412,9 @@ class _$_TermChanged implements _TermChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchRequested value)? fetchRequested,
     TResult Function(_TermChanged value)? termChanged,
-    TResult Function(_NextPageRequested value)? nextPageRequested,
     required TResult orElse(),
   }) {
     if (termChanged != null) {
@@ -208,114 +434,12 @@ abstract class _TermChanged implements ClientSearchEvent {
 }
 
 /// @nodoc
-abstract class _$$_NextPageRequestedCopyWith<$Res> {
-  factory _$$_NextPageRequestedCopyWith(_$_NextPageRequested value,
-          $Res Function(_$_NextPageRequested) then) =
-      __$$_NextPageRequestedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_NextPageRequestedCopyWithImpl<$Res>
-    extends _$ClientSearchEventCopyWithImpl<$Res, _$_NextPageRequested>
-    implements _$$_NextPageRequestedCopyWith<$Res> {
-  __$$_NextPageRequestedCopyWithImpl(
-      _$_NextPageRequested _value, $Res Function(_$_NextPageRequested) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_NextPageRequested implements _NextPageRequested {
-  const _$_NextPageRequested();
-
-  @override
-  String toString() {
-    return 'ClientSearchEvent.nextPageRequested()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NextPageRequested);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String term) termChanged,
-    required TResult Function() nextPageRequested,
-  }) {
-    return nextPageRequested();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String term)? termChanged,
-    TResult? Function()? nextPageRequested,
-  }) {
-    return nextPageRequested?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String term)? termChanged,
-    TResult Function()? nextPageRequested,
-    required TResult orElse(),
-  }) {
-    if (nextPageRequested != null) {
-      return nextPageRequested();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_TermChanged value) termChanged,
-    required TResult Function(_NextPageRequested value) nextPageRequested,
-  }) {
-    return nextPageRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_TermChanged value)? termChanged,
-    TResult? Function(_NextPageRequested value)? nextPageRequested,
-  }) {
-    return nextPageRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_TermChanged value)? termChanged,
-    TResult Function(_NextPageRequested value)? nextPageRequested,
-    required TResult orElse(),
-  }) {
-    if (nextPageRequested != null) {
-      return nextPageRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NextPageRequested implements ClientSearchEvent {
-  const factory _NextPageRequested() = _$_NextPageRequested;
-}
-
-/// @nodoc
 mixin _$ClientSearchState {
   String get term => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
+  ClientSearchStatus get status => throw _privateConstructorUsedError;
   SearchFilter get filter => throw _privateConstructorUsedError;
   Iterable<Client> get clients => throw _privateConstructorUsedError;
-  Pagination get pagination => throw _privateConstructorUsedError;
+  bool get hasReachedMax => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientSearchStateCopyWith<ClientSearchState> get copyWith =>
@@ -330,13 +454,13 @@ abstract class $ClientSearchStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String term,
-      bool isLoading,
+      ClientSearchStatus status,
       SearchFilter filter,
       Iterable<Client> clients,
-      Pagination pagination});
+      bool hasReachedMax});
 
+  $ClientSearchStatusCopyWith<$Res> get status;
   $SearchFilterCopyWith<$Res> get filter;
-  $PaginationCopyWith<$Res> get pagination;
 }
 
 /// @nodoc
@@ -353,20 +477,20 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
   @override
   $Res call({
     Object? term = null,
-    Object? isLoading = null,
+    Object? status = null,
     Object? filter = null,
     Object? clients = null,
-    Object? pagination = null,
+    Object? hasReachedMax = null,
   }) {
     return _then(_value.copyWith(
       term: null == term
           ? _value.term
           : term // ignore: cast_nullable_to_non_nullable
               as String,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ClientSearchStatus,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -375,11 +499,19 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
           ? _value.clients
           : clients // ignore: cast_nullable_to_non_nullable
               as Iterable<Client>,
-      pagination: null == pagination
-          ? _value.pagination
-          : pagination // ignore: cast_nullable_to_non_nullable
-              as Pagination,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientSearchStatusCopyWith<$Res> get status {
+    return $ClientSearchStatusCopyWith<$Res>(_value.status, (value) {
+      return _then(_value.copyWith(status: value) as $Val);
+    });
   }
 
   @override
@@ -387,14 +519,6 @@ class _$ClientSearchStateCopyWithImpl<$Res, $Val extends ClientSearchState>
   $SearchFilterCopyWith<$Res> get filter {
     return $SearchFilterCopyWith<$Res>(_value.filter, (value) {
       return _then(_value.copyWith(filter: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginationCopyWith<$Res> get pagination {
-    return $PaginationCopyWith<$Res>(_value.pagination, (value) {
-      return _then(_value.copyWith(pagination: value) as $Val);
     });
   }
 }
@@ -409,15 +533,15 @@ abstract class _$$_ClientSearchStateCopyWith<$Res>
   @useResult
   $Res call(
       {String term,
-      bool isLoading,
+      ClientSearchStatus status,
       SearchFilter filter,
       Iterable<Client> clients,
-      Pagination pagination});
+      bool hasReachedMax});
 
   @override
-  $SearchFilterCopyWith<$Res> get filter;
+  $ClientSearchStatusCopyWith<$Res> get status;
   @override
-  $PaginationCopyWith<$Res> get pagination;
+  $SearchFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -432,20 +556,20 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? term = null,
-    Object? isLoading = null,
+    Object? status = null,
     Object? filter = null,
     Object? clients = null,
-    Object? pagination = null,
+    Object? hasReachedMax = null,
   }) {
     return _then(_$_ClientSearchState(
       term: null == term
           ? _value.term
           : term // ignore: cast_nullable_to_non_nullable
               as String,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ClientSearchStatus,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -454,10 +578,10 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
           ? _value.clients
           : clients // ignore: cast_nullable_to_non_nullable
               as Iterable<Client>,
-      pagination: null == pagination
-          ? _value.pagination
-          : pagination // ignore: cast_nullable_to_non_nullable
-              as Pagination,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -467,25 +591,25 @@ class __$$_ClientSearchStateCopyWithImpl<$Res>
 class _$_ClientSearchState implements _ClientSearchState {
   const _$_ClientSearchState(
       {required this.term,
-      required this.isLoading,
+      required this.status,
       required this.filter,
       required this.clients,
-      required this.pagination});
+      required this.hasReachedMax});
 
   @override
   final String term;
   @override
-  final bool isLoading;
+  final ClientSearchStatus status;
   @override
   final SearchFilter filter;
   @override
   final Iterable<Client> clients;
   @override
-  final Pagination pagination;
+  final bool hasReachedMax;
 
   @override
   String toString() {
-    return 'ClientSearchState(term: $term, isLoading: $isLoading, filter: $filter, clients: $clients, pagination: $pagination)';
+    return 'ClientSearchState(term: $term, status: $status, filter: $filter, clients: $clients, hasReachedMax: $hasReachedMax)';
   }
 
   @override
@@ -494,17 +618,16 @@ class _$_ClientSearchState implements _ClientSearchState {
         (other.runtimeType == runtimeType &&
             other is _$_ClientSearchState &&
             (identical(other.term, term) || other.term == term) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.filter, filter) || other.filter == filter) &&
             const DeepCollectionEquality().equals(other.clients, clients) &&
-            (identical(other.pagination, pagination) ||
-                other.pagination == pagination));
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, term, isLoading, filter,
-      const DeepCollectionEquality().hash(clients), pagination);
+  int get hashCode => Object.hash(runtimeType, term, status, filter,
+      const DeepCollectionEquality().hash(clients), hasReachedMax);
 
   @JsonKey(ignore: true)
   @override
@@ -517,21 +640,21 @@ class _$_ClientSearchState implements _ClientSearchState {
 abstract class _ClientSearchState implements ClientSearchState {
   const factory _ClientSearchState(
       {required final String term,
-      required final bool isLoading,
+      required final ClientSearchStatus status,
       required final SearchFilter filter,
       required final Iterable<Client> clients,
-      required final Pagination pagination}) = _$_ClientSearchState;
+      required final bool hasReachedMax}) = _$_ClientSearchState;
 
   @override
   String get term;
   @override
-  bool get isLoading;
+  ClientSearchStatus get status;
   @override
   SearchFilter get filter;
   @override
   Iterable<Client> get clients;
   @override
-  Pagination get pagination;
+  bool get hasReachedMax;
   @override
   @JsonKey(ignore: true)
   _$$_ClientSearchStateCopyWith<_$_ClientSearchState> get copyWith =>

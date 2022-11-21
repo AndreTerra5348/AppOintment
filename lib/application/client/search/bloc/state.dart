@@ -4,18 +4,19 @@ part of 'bloc.dart';
 class ClientSearchState with _$ClientSearchState {
   const factory ClientSearchState({
     required String term,
-    required bool isLoading,
+    required ClientSearchStatus status,
     required SearchFilter filter,
     required Iterable<Client> clients,
-    required Pagination pagination,
+    required bool hasReachedMax,
   }) = _ClientSearchState;
 
-  factory ClientSearchState.initial() => ClientSearchState(
-      term: "",
-      isLoading: true,
-      clients: const Iterable.empty(),
-      filter: const SearchFilter.name(),
-      pagination: Pagination.empty());
+  factory ClientSearchState.initial() => const ClientSearchState(
+        term: "",
+        status: ClientSearchStatus.loading(),
+        clients: Iterable.empty(),
+        filter: SearchFilter.name(),
+        hasReachedMax: false,
+      );
 }
 
 @freezed
