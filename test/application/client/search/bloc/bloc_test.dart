@@ -87,7 +87,7 @@ void main() {
       late PageServiceFailure failure;
 
       blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchBloc.initial()] "
+        "Given [ClientSearchState.initial()] "
         "When [ClientSearchEvent.fetchRequested()] "
         "Then [ClientSearchState.status] should be [ClientSearchStatus.loading()] "
         "And [ClientSearchState.clients] should empty "
@@ -122,9 +122,9 @@ void main() {
       );
 
       blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchBloc.initial()] "
+        "Given [ClientSearchState.initial()] "
         "When [ClientSearchEvent.termChanged(value)] "
-        "Then [ClientSearchState] should be [ClientSearchState.loading()]"
+        "Then [ClientSearchState.status] should be [ClientSearchStatus.loading()]"
         "And [ClientSearchState.term] should be [value] "
         "And [ClientSearchState.clients] should be empty "
         "And [ClientSearchState.hasReachedMax] should be false "
@@ -158,9 +158,9 @@ void main() {
       );
 
       blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchBloc.initial()] "
+        "Given [ClientSearchState.initial()] "
         "When [ClientSearchEvent.termChanged(value)] "
-        "Skip 1 [ClientSearchState.loading()] "
+        "Skip 1 [ClientSearchState.status] [ClientSearchStatus.loading()]"
         "Then [pageService.getPage()] should be called once and return [empty] "
         "Then [ClientSearchState.status] should be [ClientSearchStatus.empty()] "
         "And [ClientSearchState.clients] should be [empty] "
@@ -186,9 +186,9 @@ void main() {
       );
 
       blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchBloc.initial()] "
+        "Given [ClientSearchState.initial()] "
         "When [ClientSearchEvent.fetchRequested()] "
-        "Skip 1 [ClientSearchState.loading()] "
+        "Skip 1 [ClientSearchState.status] [ClientSearchStatus.loading()]"
         "And [pageService.getPage()] returns [PageServiceFailure] "
         "Then [ClientSearchState.status] should be [ClientSearchStatus.failure()] ",
         setUp: () {
