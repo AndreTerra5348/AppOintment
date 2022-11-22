@@ -658,3 +658,153 @@ abstract class InvalidCharacterFailure implements StringFailure {
   _$$InvalidCharacterFailureCopyWith<_$InvalidCharacterFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$UidFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() invalid,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? invalid,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? invalid,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidUid value) invalid,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InvalidUid value)? invalid,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidUid value)? invalid,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UidFailureCopyWith<$Res> {
+  factory $UidFailureCopyWith(
+          UidFailure value, $Res Function(UidFailure) then) =
+      _$UidFailureCopyWithImpl<$Res, UidFailure>;
+}
+
+/// @nodoc
+class _$UidFailureCopyWithImpl<$Res, $Val extends UidFailure>
+    implements $UidFailureCopyWith<$Res> {
+  _$UidFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InvalidUidCopyWith<$Res> {
+  factory _$$InvalidUidCopyWith(
+          _$InvalidUid value, $Res Function(_$InvalidUid) then) =
+      __$$InvalidUidCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InvalidUidCopyWithImpl<$Res>
+    extends _$UidFailureCopyWithImpl<$Res, _$InvalidUid>
+    implements _$$InvalidUidCopyWith<$Res> {
+  __$$InvalidUidCopyWithImpl(
+      _$InvalidUid _value, $Res Function(_$InvalidUid) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InvalidUid implements InvalidUid {
+  const _$InvalidUid();
+
+  @override
+  String toString() {
+    return 'UidFailure.invalid()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InvalidUid);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() invalid,
+  }) {
+    return invalid();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? invalid,
+  }) {
+    return invalid?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? invalid,
+    required TResult orElse(),
+  }) {
+    if (invalid != null) {
+      return invalid();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidUid value) invalid,
+  }) {
+    return invalid(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InvalidUid value)? invalid,
+  }) {
+    return invalid?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidUid value)? invalid,
+    required TResult orElse(),
+  }) {
+    if (invalid != null) {
+      return invalid(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidUid implements UidFailure {
+  const factory InvalidUid() = _$InvalidUid;
+}

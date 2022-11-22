@@ -12,3 +12,8 @@ class StringFailure with _$StringFailure {
   const factory StringFailure.invalidCharacter({required String value}) =
       InvalidCharacterFailure;
 }
+
+@freezed
+class UidFailure with _$UidFailure {
+  const factory UidFailure.invalid() = InvalidUid;
+}
