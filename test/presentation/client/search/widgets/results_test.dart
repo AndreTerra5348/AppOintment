@@ -85,8 +85,8 @@ void main() {
         "Given [ClientSearchState.initial()] "
         "And [ClientSearchState.status] = [ClientSearchStatus.failure()] "
         "When [ClientSearchResultsWidget] is built "
-        "Then [ClientSearchResultsWidget] should show [Text] with [AppLocalizations.databaseFailure(error)]",
-        (tester) async {
+        "Then [ClientSearchResultsWidget] should show [Text] "
+        "With [AppLocalizations.databaseFailure(error)]", (tester) async {
       // Arrange
       final mockBloc = MockClientSearchBloc();
       final ex = Exception("error");
@@ -110,8 +110,8 @@ void main() {
         "And [ClientSearchState.status] = [ClientSearchStatus.success()] "
         "And [ClientSearchResultsWidget] is built "
         "When [ListView] do not have enough content to fill the screen "
-        "Then [ClientSearchBloc] should add [ClientSearchEvent.fetchRequested()]",
-        (tester) async {
+        "Then [ClientSearchResultsWidget] should add "
+        "[ClientSearchEvent.fetchRequested()] once", (tester) async {
       // Arrange
       final mockBloc = MockClientSearchBloc();
 
@@ -145,8 +145,8 @@ void main() {
         "And [ClientSearchState.status] = [ClientSearchStatus.success()] "
         "And [ClientSearchResultsWidget] is built "
         "When [ListView] ScrollController is scrolled to the end "
-        "Then [ClientSearchBloc] should add [ClientSearchEvent.fetchRequested()]",
-        (tester) async {
+        "Then [ClientSearchResultsWidget] should add "
+        "[ClientSearchEvent.fetchRequested()] once", (tester) async {
       // Arrange
       final mockBloc = MockClientSearchBloc();
       when(mockBloc.state).thenReturn(ClientSearchState.initial().copyWith(
