@@ -1,4 +1,4 @@
-import 'package:appointment/app_ointment.dart';
+import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/application/client/search/bloc/bloc.dart';
 import 'package:appointment/infrastructure/core/i_page_service.dart';
 import 'package:flutter/material.dart';

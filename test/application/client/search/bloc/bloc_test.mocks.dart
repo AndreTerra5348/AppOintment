@@ -10,6 +10,7 @@ import 'package:appointment/infrastructure/client/page_service.dart' as _i3;
 import 'package:appointment/infrastructure/client/table.dart' as _i8;
 import 'package:appointment/infrastructure/core/filter.dart' as _i7;
 import 'package:appointment/infrastructure/core/i_page_service.dart' as _i5;
+import 'package:appointment/infrastructure/drift/db.dart' as _i9;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -42,7 +43,7 @@ class MockClientPageService extends _i1.Mock implements _i3.ClientPageService {
   _i4.Future<_i2.Either<_i5.PageServiceFailure, Iterable<_i6.Client>>> getPage({
     required int? limit,
     required int? offset,
-    _i7.SelectFilter<_i8.ClientModels, dynamic>? filter,
+    _i7.SelectFilter<_i8.ClientModels, _i9.ClientModel>? filter,
   }) =>
       (super.noSuchMethod(
         Invocation.method(

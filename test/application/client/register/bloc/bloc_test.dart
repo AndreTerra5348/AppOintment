@@ -1,11 +1,11 @@
 import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
-import 'package:appointment/di.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/failures.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/repository.dart';
+import 'package:appointment/presentation/config/di.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';

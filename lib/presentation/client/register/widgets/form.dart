@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:appointment/app_ointment.dart';
+import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
