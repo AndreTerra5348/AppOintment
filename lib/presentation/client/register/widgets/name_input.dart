@@ -20,12 +20,11 @@ class NameInputWidget extends StatelessWidget {
             ],
             decoration:
                 InputDecoration(labelText: context.tr.nameTextFormField),
-            validator: (_) => context
-                .read<ClientRegisterBloc>()
-                .state
-                .name
-                .value
-                .fold((l) => l.toErrorText(context), (r) => null),
+            validator: (_) =>
+                context.read<ClientRegisterBloc>().state.name.value.fold(
+                      (failure) => failure.toErrorText(context),
+                      (_) => null,
+                    ),
             onChanged: (value) => context
                 .read<ClientRegisterBloc>()
                 .add(ClientRegisterEvent.nameChanged(name: value)),
