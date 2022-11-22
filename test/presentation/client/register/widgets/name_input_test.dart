@@ -10,7 +10,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @GenerateMocks([ClientRegisterBloc])
 void main() {
-  group("Name input widget", () {
+  group("ClientRegisterPage NameInputWidget - ", () {
     testWidgets(
         "Should add nameChanged event to bloc when TextFormField value change",
         (WidgetTester tester) async {
