@@ -14,6 +14,6 @@
 
     "@_CLIENT_SEARCH_PAGE": {},
     "pageClientSearchTitle": "Client Search",
-    "searchTextFormFieldHint": "Search"
-    
+    "searchTextFormFieldHint": "Search",
+    "searchNoResultsFound": "No results found"    
 }
