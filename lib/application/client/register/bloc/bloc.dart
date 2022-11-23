@@ -36,7 +36,7 @@ class ClientRegisterBloc
         submissionStatus: state.isValid
             ? const SubmissionStatus.inProgress()
             : const SubmissionStatus.failure(
-                failure: SubmissionFailure.invalidField())));
+                failure: SubmissionFailure.invalidFields())));
 
     if (state.isNotValid) {
       return;

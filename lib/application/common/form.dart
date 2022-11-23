@@ -25,5 +25,5 @@ class SubmissionStatus with _$SubmissionStatus {
 class SubmissionFailure with _$SubmissionFailure {
   const factory SubmissionFailure.repository(
       {required RepositoryFailure failure}) = _Repository;
-  const factory SubmissionFailure.invalidField() = _InvalidInput;
+  const factory SubmissionFailure.invalidFields() = _InvalidFields;
 }

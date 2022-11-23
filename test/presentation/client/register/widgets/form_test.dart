@@ -64,7 +64,7 @@ void main() {
       // Arrange
       final mockBloc = MockClientRegisterBloc();
       final state = ClientRegisterState.initial().copyWithFailure(
-        failure: const SubmissionFailure.invalidField(),
+        failure: const SubmissionFailure.invalidFields(),
       );
       when(mockBloc.state).thenReturn(state);
       when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
@@ -141,7 +141,7 @@ void main() {
       // Arrange
       final state = ClientRegisterState.initial().copyWith(
           submissionStatus: const SubmissionStatus.failure(
-        failure: SubmissionFailure.invalidField(),
+        failure: SubmissionFailure.invalidFields(),
       ));
       final mockBloc = MockClientRegisterBloc();
       when(mockBloc.state).thenReturn(state);

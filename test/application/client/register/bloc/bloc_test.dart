@@ -83,7 +83,7 @@ void statesTests() {
       ClientRegisterState(
         name: Name(''),
         submissionStatus: const SubmissionStatus.failure(
-          failure: SubmissionFailure.invalidField(),
+          failure: SubmissionFailure.invalidFields(),
         ),
       )
     ],

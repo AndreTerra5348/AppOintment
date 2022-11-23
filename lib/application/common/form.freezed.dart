@@ -773,38 +773,38 @@ mixin _$SubmissionFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(RepositoryFailure failure) repository,
-    required TResult Function() invalidField,
+    required TResult Function() invalidFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RepositoryFailure failure)? repository,
-    TResult? Function()? invalidField,
+    TResult? Function()? invalidFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RepositoryFailure failure)? repository,
-    TResult Function()? invalidField,
+    TResult Function()? invalidFields,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Repository value) repository,
-    required TResult Function(_InvalidInput value) invalidField,
+    required TResult Function(_InvalidFields value) invalidFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Repository value)? repository,
-    TResult? Function(_InvalidInput value)? invalidField,
+    TResult? Function(_InvalidFields value)? invalidFields,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Repository value)? repository,
-    TResult Function(_InvalidInput value)? invalidField,
+    TResult Function(_InvalidFields value)? invalidFields,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -911,7 +911,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(RepositoryFailure failure) repository,
-    required TResult Function() invalidField,
+    required TResult Function() invalidFields,
   }) {
     return repository(failure);
   }
@@ -920,7 +920,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RepositoryFailure failure)? repository,
-    TResult? Function()? invalidField,
+    TResult? Function()? invalidFields,
   }) {
     return repository?.call(failure);
   }
@@ -929,7 +929,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RepositoryFailure failure)? repository,
-    TResult Function()? invalidField,
+    TResult Function()? invalidFields,
     required TResult orElse(),
   }) {
     if (repository != null) {
@@ -942,7 +942,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Repository value) repository,
-    required TResult Function(_InvalidInput value) invalidField,
+    required TResult Function(_InvalidFields value) invalidFields,
   }) {
     return repository(this);
   }
@@ -951,7 +951,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Repository value)? repository,
-    TResult? Function(_InvalidInput value)? invalidField,
+    TResult? Function(_InvalidFields value)? invalidFields,
   }) {
     return repository?.call(this);
   }
@@ -960,7 +960,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Repository value)? repository,
-    TResult Function(_InvalidInput value)? invalidField,
+    TResult Function(_InvalidFields value)? invalidFields,
     required TResult orElse(),
   }) {
     if (repository != null) {
@@ -981,42 +981,42 @@ abstract class _Repository implements SubmissionFailure {
 }
 
 /// @nodoc
-abstract class _$$_InvalidInputCopyWith<$Res> {
-  factory _$$_InvalidInputCopyWith(
-          _$_InvalidInput value, $Res Function(_$_InvalidInput) then) =
-      __$$_InvalidInputCopyWithImpl<$Res>;
+abstract class _$$_InvalidFieldsCopyWith<$Res> {
+  factory _$$_InvalidFieldsCopyWith(
+          _$_InvalidFields value, $Res Function(_$_InvalidFields) then) =
+      __$$_InvalidFieldsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InvalidInputCopyWithImpl<$Res>
-    extends _$SubmissionFailureCopyWithImpl<$Res, _$_InvalidInput>
-    implements _$$_InvalidInputCopyWith<$Res> {
-  __$$_InvalidInputCopyWithImpl(
-      _$_InvalidInput _value, $Res Function(_$_InvalidInput) _then)
+class __$$_InvalidFieldsCopyWithImpl<$Res>
+    extends _$SubmissionFailureCopyWithImpl<$Res, _$_InvalidFields>
+    implements _$$_InvalidFieldsCopyWith<$Res> {
+  __$$_InvalidFieldsCopyWithImpl(
+      _$_InvalidFields _value, $Res Function(_$_InvalidFields) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_InvalidInput with DiagnosticableTreeMixin implements _InvalidInput {
-  const _$_InvalidInput();
+class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
+  const _$_InvalidFields();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SubmissionFailure.invalidField()';
+    return 'SubmissionFailure.invalidFields()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-        .add(DiagnosticsProperty('type', 'SubmissionFailure.invalidField'));
+        .add(DiagnosticsProperty('type', 'SubmissionFailure.invalidFields'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InvalidInput);
+        (other.runtimeType == runtimeType && other is _$_InvalidFields);
   }
 
   @override
@@ -1026,29 +1026,29 @@ class _$_InvalidInput with DiagnosticableTreeMixin implements _InvalidInput {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(RepositoryFailure failure) repository,
-    required TResult Function() invalidField,
+    required TResult Function() invalidFields,
   }) {
-    return invalidField();
+    return invalidFields();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RepositoryFailure failure)? repository,
-    TResult? Function()? invalidField,
+    TResult? Function()? invalidFields,
   }) {
-    return invalidField?.call();
+    return invalidFields?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RepositoryFailure failure)? repository,
-    TResult Function()? invalidField,
+    TResult Function()? invalidFields,
     required TResult orElse(),
   }) {
-    if (invalidField != null) {
-      return invalidField();
+    if (invalidFields != null) {
+      return invalidFields();
     }
     return orElse();
   }
@@ -1057,34 +1057,34 @@ class _$_InvalidInput with DiagnosticableTreeMixin implements _InvalidInput {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Repository value) repository,
-    required TResult Function(_InvalidInput value) invalidField,
+    required TResult Function(_InvalidFields value) invalidFields,
   }) {
-    return invalidField(this);
+    return invalidFields(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Repository value)? repository,
-    TResult? Function(_InvalidInput value)? invalidField,
+    TResult? Function(_InvalidFields value)? invalidFields,
   }) {
-    return invalidField?.call(this);
+    return invalidFields?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Repository value)? repository,
-    TResult Function(_InvalidInput value)? invalidField,
+    TResult Function(_InvalidFields value)? invalidFields,
     required TResult orElse(),
   }) {
-    if (invalidField != null) {
-      return invalidField(this);
+    if (invalidFields != null) {
+      return invalidFields(this);
     }
     return orElse();
   }
 }
 
-abstract class _InvalidInput implements SubmissionFailure {
-  const factory _InvalidInput() = _$_InvalidInput;
+abstract class _InvalidFields implements SubmissionFailure {
+  const factory _InvalidFields() = _$_InvalidFields;
 }

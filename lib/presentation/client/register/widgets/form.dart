@@ -99,7 +99,7 @@ extension SubmissionFailureExtension on SubmissionFailure {
   String toErrorText(BuildContext context) {
     return map(
       repository: (value) => context.tr.databaseFailure(value.failure.error),
-      invalidField: (value) => context.tr.invalidFieldsFailure,
+      invalidFields: (value) => context.tr.invalidFieldsFailure,
     );
   }
 }
