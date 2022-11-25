@@ -10,4 +10,5 @@ abstract class Dao<T_Table extends Table, T_Model extends DataClass> {
       {required int limit,
       required int offset,
       SelectFilter<T_Table, T_Model>? filter});
+  Future<bool> updateById(Uid uid, Insertable<T_Model> model);
 }

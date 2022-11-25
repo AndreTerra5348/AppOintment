@@ -37,4 +37,12 @@ class ClientDao extends DatabaseAccessor<DriftDb>
         ? (select(clientModels)..limit(limit, offset: offset)).get()
         : (filter(select(clientModels))..limit(limit, offset: offset)).get();
   }
+
+  @override
+  Future<bool> updateById(Uid uid, Insertable<ClientModel> model) {
+    return (update(clientModels)
+          ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
+        .write(model)
+        .then((value) => value > 0);
+  }
 }
