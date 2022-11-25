@@ -41,7 +41,8 @@ void main() {
       expect(sut.state.isEditing, false);
     });
 
-    final client = Client(name: Name('John'), id: Uid.fromInt(1));
+    final johnClient = Client(name: Name('John'), id: Uid.fromInt(1));
+    final bobClient = Client(name: Name('Bob'), id: Uid.fromInt(2));
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
@@ -50,10 +51,11 @@ void main() {
       "And [ClientDetailsState.isEditing] should be false"
       "And [ClientDetailsState.submissionStatus] should be [SubmissionStatus.initial()]",
       build: () => ClientDetailsBloc(),
-      act: (bloc) => bloc.add(ClientDetailsEvent.clientLoaded(client: client)),
+      act: (bloc) =>
+          bloc.add(ClientDetailsEvent.clientLoaded(client: johnClient)),
       expect: () => [
         ClientDetailsState(
-          client: client,
+          client: johnClient,
           isEditing: false,
           submissionStatus: const SubmissionStatus.initial(),
         ),
@@ -114,6 +116,7 @@ void main() {
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
+      "And [ClientDetailsEvent.clientLoaded(Client(name: Name('Bob'), uid: Uid.fromInt(1)))] is added "
       "When [ClientDetailsEvent.nameChanged(name: 'John')], "
       "[ClientDetailsEvent.savePressed()] is added "
       "Then [ClientDetailsState.client] should be [Client(name: Name('John'))]"
@@ -121,17 +124,23 @@ void main() {
       "And [ClientDetailsState.submissionStatus] should be [SubmissionStatus.inProgress()]",
       build: () => ClientDetailsBloc(),
       act: (bloc) {
+        bloc.add(ClientDetailsEvent.clientLoaded(client: bobClient));
         bloc.add(const ClientDetailsEvent.nameChanged(name: 'John'));
         bloc.add(const ClientDetailsEvent.savePressed());
       },
       expect: () => [
         ClientDetailsState(
-          client: Client.withoutUid(name: Name('John')),
+          client: bobClient,
+          isEditing: false,
+          submissionStatus: const SubmissionStatus.initial(),
+        ),
+        ClientDetailsState(
+          client: bobClient.copyWith(name: Name('John')),
           isEditing: true,
           submissionStatus: const SubmissionStatus.initial(),
         ),
         ClientDetailsState(
-          client: Client.withoutUid(name: Name('John')),
+          client: bobClient.copyWith(name: Name('John')),
           isEditing: false,
           submissionStatus: const SubmissionStatus.inProgress(),
         ),

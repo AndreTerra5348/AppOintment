@@ -37,6 +37,7 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
             : const SubmissionStatus.failure(
                 failure: SubmissionFailure.invalidFields(),
               ),
+        isEditing: false,
       ),
     );
 
@@ -51,6 +52,7 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
         client: state.client.copyWith(
           name: Name(event.name),
         ),
+        isEditing: true,
       ),
     );
   }
