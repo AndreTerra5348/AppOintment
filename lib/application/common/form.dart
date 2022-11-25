@@ -1,3 +1,4 @@
+import 'package:appointment/domain/common/value_object.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -26,4 +27,12 @@ class SubmissionFailure with _$SubmissionFailure {
   const factory SubmissionFailure.repository(
       {required RepositoryFailure failure}) = _Repository;
   const factory SubmissionFailure.invalidFields() = _InvalidFields;
+}
+
+mixin FormMixin {
+  bool get isValid => values.every((element) => element.isValid);
+
+  bool get isNotValid => !isValid;
+
+  List<ValueObject<dynamic, dynamic>> get values;
 }

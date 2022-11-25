@@ -1,7 +1,7 @@
 part of 'bloc.dart';
 
 @freezed
-class ClientRegisterState with _$ClientRegisterState, EntityMixin {
+class ClientRegisterState with _$ClientRegisterState, FormMixin {
   const ClientRegisterState._();
 
   const factory ClientRegisterState(

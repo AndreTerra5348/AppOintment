@@ -58,4 +58,21 @@ class MockClientRepository extends _i1.Mock implements _i3.ClientRepository {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, _i6.Client>>);
+  @override
+  _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>> update(
+          _i6.Client? entity) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [entity],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>.value(
+            _FakeEither_0<_i5.RepositoryFailure, bool>(
+          this,
+          Invocation.method(
+            #update,
+            [entity],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>);
 }
