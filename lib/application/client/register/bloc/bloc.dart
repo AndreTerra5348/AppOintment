@@ -3,7 +3,6 @@ import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/value_object.dart';
-import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
