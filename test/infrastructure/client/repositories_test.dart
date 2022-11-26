@@ -91,8 +91,8 @@ void main() {
 
       // Assert
       expect(actual, isA<Left<RepositoryFailure, Client>>());
-      expect((actual as Left<RepositoryFailure, Client>).value.error,
-          isA<Exception>());
+      expect((actual as Left<RepositoryFailure, Client>).value,
+          isA<RepositoryFailure>());
     });
 
     test(
@@ -148,8 +148,8 @@ void main() {
 
       // Assert
       expect(actual, isA<Left<RepositoryFailure, bool>>());
-      expect((actual as Left<RepositoryFailure, bool>).value.error,
-          isA<Exception>());
+      expect((actual as Left<RepositoryFailure, bool>).value,
+          isA<RepositoryFailure>());
     });
   });
 }

@@ -12,4 +12,5 @@ abstract class IRepository<T> {
 class RepositoryFailure with _$RepositoryFailure {
   const factory RepositoryFailure.dbException({required Object error}) =
       _DBException;
+  const factory RepositoryFailure.notFound() = _NotFound;
 }
