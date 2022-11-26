@@ -125,7 +125,7 @@ void main() {
 
     try {
       // Act
-      final actual = await sut.updateById(
+      await sut.updateById(
         Uid.fromInt(model.id),
         const ClientModelsCompanion(
           name: Value(""),

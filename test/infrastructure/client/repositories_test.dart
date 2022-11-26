@@ -5,8 +5,6 @@ import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/client/repository.dart';
-import 'package:appointment/infrastructure/client/table.dart';
-import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
