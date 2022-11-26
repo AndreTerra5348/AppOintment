@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
+import 'package:appointment/domain/core/i_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,7 +12,10 @@ part 'state.dart';
 part 'bloc.freezed.dart';
 
 class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
-  ClientDetailsBloc() : super(ClientDetailsState.initial()) {
+  final IRepository<Client> _clientRepository;
+  ClientDetailsBloc(this._clientRepository)
+      : super(ClientDetailsState.initial()) {
+    // TODO: add edit canceled event
     on<_ClientLoaded>(_onClientLoaded);
     on<_EditPressed>(_onEditPressed);
     on<_SavePressed>(_onSavePressed);
@@ -20,7 +24,11 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
 
   FutureOr<void> _onClientLoaded(
       _ClientLoaded event, Emitter<ClientDetailsState> emit) {
-    emit(state.copyWith(client: event.client));
+    event.client.validity.fold(
+      // TODO: create specific exception
+      () => throw Exception('Invalid client'),
+      (client) => emit(state.copyWith(client: event.client)),
+    );
   }
 
   FutureOr<void> _onEditPressed(
@@ -29,19 +37,51 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
   }
 
   FutureOr<void> _onSavePressed(
-      _SavePressed event, Emitter<ClientDetailsState> emit) {
-    emit(
-      state.copyWith(
-        submissionStatus: state.client.isValid
-            ? const SubmissionStatus.inProgress()
-            : const SubmissionStatus.failure(
-                failure: SubmissionFailure.invalidFields(),
-              ),
-        isEditing: false,
+      _SavePressed event, Emitter<ClientDetailsState> emit) async {
+    state.client.validity.fold(
+      () => emit(
+        state.copyWith(
+          submissionStatus: const SubmissionStatus.failure(
+            failure: SubmissionFailure.invalidFields(),
+          ),
+        ),
       ),
+      (client) {
+        emit(
+          state.copyWith(
+            submissionStatus: const SubmissionStatus.inProgress(),
+          ),
+        );
+      },
     );
 
-    // TODO: save edited client
+    if (state.client.isNotValid) {
+      return;
+    }
+
+    final result = await _clientRepository.update(state.client);
+
+    result.fold(
+      (failure) => emit(
+        state.copyWith(
+          submissionStatus: SubmissionStatus.failure(
+            failure: SubmissionFailure.repository(failure: failure),
+          ),
+        ),
+      ),
+      (completed) => emit(
+        state.copyWith(
+          submissionStatus: completed
+              ? const SubmissionStatus.success()
+              : const SubmissionStatus.failure(
+                  failure: SubmissionFailure.repository(
+                    failure: RepositoryFailure.notFound(),
+                  ),
+                ),
+          isEditing: false,
+        ),
+      ),
+    );
   }
 
   FutureOr<void> _onNameChanged(
@@ -52,7 +92,6 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
         client: state.client.copyWith(
           name: Name(event.name),
         ),
-        isEditing: true,
       ),
     );
   }

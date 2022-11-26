@@ -3,16 +3,23 @@ import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/infrastructure/client/repository.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'bloc_test.mocks.dart';
 
+@GenerateMocks([ClientRepository])
 void main() {
   group("ClientDetailsBloc", () {
+    late MockClientRepository repository;
     test(
         "Given [ClientDetailsState.initial()] "
-        "[Client.isValid] should be false", () {
+        "[client.isValid] should be false", () {
       // Arrange
-      final sut = ClientDetailsBloc();
+      final sut = ClientDetailsBloc(MockClientRepository());
       // Act
 
       // Assert
@@ -21,9 +28,9 @@ void main() {
 
     test(
         "Given [ClientDetailsState.initial()] "
-        "[submissionStatus] should be [SubmissionStatus.initial()]", () {
+        "[submissionStatus] should be [initial()]", () {
       // Arrange
-      final sut = ClientDetailsBloc();
+      final sut = ClientDetailsBloc(MockClientRepository());
       // Act
 
       // Assert
@@ -34,7 +41,7 @@ void main() {
         "Given [ClientDetailsState.initial()] "
         "[isEditing] should be false", () {
       // Arrange
-      final sut = ClientDetailsBloc();
+      final sut = ClientDetailsBloc(MockClientRepository());
       // Act
 
       // Assert
@@ -46,11 +53,11 @@ void main() {
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
-      "When [ClientDetailsEvent.clientLoaded(Client(name: Name('John'), uid: Uid.fromInt(1)))] is added "
-      "Then [ClientDetailsState.client] should be [Client(name: Name('John'), uid: Uid.fromInt(1))]"
+      "When [ClientDetailsEvent.clientLoaded()] is added with valid client"
+      "Then [ClientDetailsState.client] should be valid"
       "And [ClientDetailsState.isEditing] should be false"
-      "And [ClientDetailsState.submissionStatus] should be [SubmissionStatus.initial()]",
-      build: () => ClientDetailsBloc(),
+      "And [ClientDetailsState.submissionStatus] should be [initial()]",
+      build: () => ClientDetailsBloc(MockClientRepository()),
       act: (bloc) =>
           bloc.add(ClientDetailsEvent.clientLoaded(client: johnClient)),
       expect: () => [
@@ -64,14 +71,36 @@ void main() {
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
+      "When [ClientDetailsEvent.clientLoaded()] is added with invalid client"
+      "Then [ClientDetailsBloc] should throw",
+      build: () => ClientDetailsBloc(MockClientRepository()),
+      act: (bloc) {
+        bloc.add(
+          ClientDetailsEvent.clientLoaded(
+            client: Client.withoutUid(
+              name: Name(''),
+            ),
+          ),
+        );
+      },
+      errors: (() => [isA<Exception>()]),
+    );
+
+    blocTest(
+      "Given [ClientDetailsState.initial()] "
+      "With valid [ClientDetailsState.client]"
       "When [ClientDetailsEvent.editPressed()] is added "
       "Then [ClientDetailsState.isEditing] should be true"
-      "And [ClientDetailsState.submissionStatus] should be [SubmissionStatus.initial()]",
-      build: () => ClientDetailsBloc(),
-      act: (bloc) => bloc.add(const ClientDetailsEvent.editPressed()),
+      "And [ClientDetailsState.submissionStatus] should be [initial()]",
+      build: () => ClientDetailsBloc(MockClientRepository()),
+      act: (bloc) {
+        bloc.add(ClientDetailsEvent.clientLoaded(client: johnClient));
+        bloc.add(const ClientDetailsEvent.editPressed());
+      },
+      skip: 1,
       expect: () => [
         ClientDetailsState(
-          client: Client.withoutUid(name: Name('')),
+          client: johnClient,
           isEditing: true,
           submissionStatus: const SubmissionStatus.initial(),
         ),
@@ -80,16 +109,22 @@ void main() {
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
+      "With valid [ClientDetailsState.client]"
+      "And [ClientDetailsState.isEditing] true"
       "When [ClientDetailsEvent.nameChanged(name: 'John')] is added "
       "Then [ClientDetailsState.client] should be [Client(name: Name('John'))]"
       "And [ClientDetailsState.isEditing] should be true"
-      "And [ClientDetailsState.submissionStatus] should be [SubmissionStatus.initial()]",
-      build: () => ClientDetailsBloc(),
-      act: (bloc) =>
-          bloc.add(const ClientDetailsEvent.nameChanged(name: 'John')),
+      "And [ClientDetailsState.submissionStatus] should be [initial()]",
+      build: () => ClientDetailsBloc(MockClientRepository()),
+      act: (bloc) {
+        bloc.add(ClientDetailsEvent.clientLoaded(client: bobClient));
+        bloc.add(const ClientDetailsEvent.editPressed());
+        bloc.add(const ClientDetailsEvent.nameChanged(name: 'John'));
+      },
+      skip: 2,
       expect: () => [
         ClientDetailsState(
-          client: Client.withoutUid(name: Name('John')),
+          client: bobClient.copyWith(name: Name('John')),
           isEditing: true,
           submissionStatus: const SubmissionStatus.initial(),
         ),
@@ -98,15 +133,28 @@ void main() {
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
+      "With invalid [ClientDetailsState.client]"
+      "And [ClientDetailsState.isEditing] true"
       "When [ClientDetailsEvent.savePressed()] is added "
       """Then [ClientDetailsState.submissionStatus] should be 
-      [SubmissionStatus.failure(failure: SubmissionFailure.invalidFields())]""",
-      build: () => ClientDetailsBloc(),
-      act: (bloc) => bloc.add(const ClientDetailsEvent.savePressed()),
+      [failure(failure: SubmissionFailure.invalidFields())]"""
+      "And [ClientDetailsState.isEditing] should be true",
+      setUp: () {
+        repository = MockClientRepository();
+        when(repository.update(any)).thenAnswer((_) async => const Right(true));
+      },
+      build: () => ClientDetailsBloc(repository),
+      act: (bloc) {
+        bloc.add(ClientDetailsEvent.clientLoaded(client: bobClient));
+        bloc.add(const ClientDetailsEvent.editPressed());
+        bloc.add(const ClientDetailsEvent.nameChanged(name: ""));
+        bloc.add(const ClientDetailsEvent.savePressed());
+      },
+      skip: 3,
       expect: () => [
         ClientDetailsState(
-          client: Client.withoutUid(name: Name('')),
-          isEditing: false,
+          client: bobClient.copyWith(name: Name('')),
+          isEditing: true,
           submissionStatus: const SubmissionStatus.failure(
             failure: SubmissionFailure.invalidFields(),
           ),
@@ -116,35 +164,42 @@ void main() {
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
-      "And [ClientDetailsEvent.clientLoaded(Client(name: Name('Bob'), uid: Uid.fromInt(1)))] is added "
-      "When [ClientDetailsEvent.nameChanged(name: 'John')], "
-      "[ClientDetailsEvent.savePressed()] is added "
-      "Then [ClientDetailsState.client] should be [Client(name: Name('John'))]"
-      "And [ClientDetailsState.isEditing] should be false"
-      "And [ClientDetailsState.submissionStatus] should be [SubmissionStatus.inProgress()]",
-      build: () => ClientDetailsBloc(),
+      "With valid [ClientDetailsState.client] "
+      "When [ClientDetailsEvent.savePressed()] is added "
+      "[ClientDetailsState.isEditing] should be false"
+      "And [ClientDetailsState.submissionStatus] should be [inProgress()]"
+      "Then [Repository.update()] should be called once"
+      "Then [ClientDetailsState.submissionStatus] should be [success()]"
+      "And [ClientDetailsState.client] should be valid"
+      "And [ClientDetailsState.isEditing] should be false",
+      setUp: () {
+        repository = MockClientRepository();
+        when(repository.update(any)).thenAnswer((_) async => const Right(true));
+      },
+      build: () => ClientDetailsBloc(repository),
       act: (bloc) {
         bloc.add(ClientDetailsEvent.clientLoaded(client: bobClient));
+        bloc.add(const ClientDetailsEvent.editPressed());
         bloc.add(const ClientDetailsEvent.nameChanged(name: 'John'));
         bloc.add(const ClientDetailsEvent.savePressed());
       },
+      skip: 3,
       expect: () => [
-        ClientDetailsState(
-          client: bobClient,
-          isEditing: false,
-          submissionStatus: const SubmissionStatus.initial(),
-        ),
         ClientDetailsState(
           client: bobClient.copyWith(name: Name('John')),
           isEditing: true,
-          submissionStatus: const SubmissionStatus.initial(),
+          submissionStatus: const SubmissionStatus.inProgress(),
         ),
         ClientDetailsState(
           client: bobClient.copyWith(name: Name('John')),
           isEditing: false,
-          submissionStatus: const SubmissionStatus.inProgress(),
+          submissionStatus: const SubmissionStatus.success(),
         ),
       ],
+      verify: (_) {
+        verify(repository.update(bobClient.copyWith(name: Name('John'))))
+            .called(1);
+      },
     );
   });
 }
