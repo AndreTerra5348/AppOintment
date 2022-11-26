@@ -22,7 +22,7 @@ void main() {
 
     // Act
     final id = await sut.insert(model);
-    final actual = await sut.getByUid(Uid.fromInt(id));
+    final actual = await sut.getById(Uid.fromInt(id));
 
     // Assert
     expect(actual.id, id);

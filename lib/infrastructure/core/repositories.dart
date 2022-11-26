@@ -35,4 +35,14 @@ abstract class BaseRepository<
       return Left(RepositoryFailure.dbException(error: error));
     }
   }
+
+  @override
+  Future<Either<RepositoryFailure, T_Entity>> getById(Uid id) async {
+    try {
+      final model = await _dao.getById(id);
+      return Right(_converter.toEntity(model));
+    } catch (error) {
+      return Left(RepositoryFailure.dbException(error: error));
+    }
+  }
 }

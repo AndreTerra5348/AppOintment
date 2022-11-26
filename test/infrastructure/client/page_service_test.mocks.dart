@@ -40,9 +40,9 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
         returnValueForMissingStub: _i4.Future<int>.value(0),
       ) as _i4.Future<int>);
   @override
-  _i4.Future<T_Model> getByUid(_i5.Uid? uid) => (super.noSuchMethod(
+  _i4.Future<T_Model> getById(_i5.Uid? uid) => (super.noSuchMethod(
         Invocation.method(
-          #getByUid,
+          #getById,
           [uid],
         ),
         returnValue: _i4.Future<T_Model>.value(null),
