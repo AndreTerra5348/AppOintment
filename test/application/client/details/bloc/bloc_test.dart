@@ -109,6 +109,48 @@ void main() {
 
     blocTest(
       "Given [ClientDetailsState.initial()] "
+      "And [ClientDetailsState.clientLoaded] with a client named John "
+      "And [ClientDetailsEvent.NameChanged('Bob')] is added "
+      "When [ClientDetailsEvent.editCanceled()] is added "
+      "Then [ClientDetailsState.submissionStatus] should be [inProgress()] "
+      "And [ClientDetailsState.client] should be named Bob "
+      "And [ClientDetailsState.isEditing] should be true "
+      "Then [Repository.getById()] should be called once "
+      "And [ClientDetailsState.submissionStatus] should be [initial()] "
+      "And [ClientDetailsState.isEditing] should be false "
+      "And [ClientDetailsState.client] should be named John",
+      setUp: () {
+        repository = MockClientRepository();
+        when(repository.getById(any))
+            .thenAnswer((_) async => right(johnClient));
+      },
+      build: () => ClientDetailsBloc(repository),
+      act: (bloc) {
+        bloc.add(ClientDetailsEvent.clientLoaded(client: johnClient));
+        bloc.add(const ClientDetailsEvent.editPressed());
+        bloc.add(const ClientDetailsEvent.nameChanged(name: 'Bob'));
+        bloc.add(const ClientDetailsEvent.editCanceled());
+      },
+      skip: 3,
+      expect: () => [
+        ClientDetailsState(
+          client: johnClient.copyWith(name: Name('Bob')),
+          isEditing: true,
+          submissionStatus: const SubmissionStatus.inProgress(),
+        ),
+        ClientDetailsState(
+          client: johnClient,
+          isEditing: false,
+          submissionStatus: const SubmissionStatus.initial(),
+        ),
+      ],
+      verify: (_) {
+        verify(repository.getById(johnClient.id)).called(1);
+      },
+    );
+
+    blocTest(
+      "Given [ClientDetailsState.initial()] "
       "With valid [ClientDetailsState.client]"
       "And [ClientDetailsState.isEditing] true"
       "When [ClientDetailsEvent.nameChanged(name: 'John')] is added "
@@ -141,7 +183,9 @@ void main() {
       "And [ClientDetailsState.isEditing] should be true",
       setUp: () {
         repository = MockClientRepository();
-        when(repository.update(any)).thenAnswer((_) async => const Right(true));
+        when(repository.update(any)).thenAnswer(
+          (_) async => const Right(true),
+        );
       },
       build: () => ClientDetailsBloc(repository),
       act: (bloc) {
@@ -174,7 +218,9 @@ void main() {
       "And [ClientDetailsState.isEditing] should be false",
       setUp: () {
         repository = MockClientRepository();
-        when(repository.update(any)).thenAnswer((_) async => const Right(true));
+        when(repository.update(any)).thenAnswer(
+          (_) async => const Right(true),
+        );
       },
       build: () => ClientDetailsBloc(repository),
       act: (bloc) {

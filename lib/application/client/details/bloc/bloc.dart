@@ -15,9 +15,9 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
   final IRepository<Client> _clientRepository;
   ClientDetailsBloc(this._clientRepository)
       : super(ClientDetailsState.initial()) {
-    // TODO: add edit canceled event
     on<_ClientLoaded>(_onClientLoaded);
     on<_EditPressed>(_onEditPressed);
+    on<_EditCanceled>(_onEditCanceled);
     on<_SavePressed>(_onSavePressed);
     on<_NameChanged>(_onNameChanged);
   }
@@ -39,48 +39,28 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
   FutureOr<void> _onSavePressed(
       _SavePressed event, Emitter<ClientDetailsState> emit) async {
     state.client.validity.fold(
-      () => emit(
-        state.copyWith(
-          submissionStatus: const SubmissionStatus.failure(
-            failure: SubmissionFailure.invalidFields(),
-          ),
-        ),
-      ),
-      (client) {
-        emit(
-          state.copyWith(
-            submissionStatus: const SubmissionStatus.inProgress(),
+      () => emit(_invalidFieldsState),
+      (client) async {
+        emit(_inProgressState);
+
+        final result = await _clientRepository.update(state.client);
+
+        result.fold(
+          (failure) => emit(_getRepositoryFailureState(failure: failure)),
+          (completed) => emit(
+            state.copyWith(
+              submissionStatus: completed
+                  ? const SubmissionStatus.success()
+                  : const SubmissionStatus.failure(
+                      failure: SubmissionFailure.repository(
+                        failure: RepositoryFailure.notFound(),
+                      ),
+                    ),
+              isEditing: false,
+            ),
           ),
         );
       },
-    );
-
-    if (state.client.isNotValid) {
-      return;
-    }
-
-    final result = await _clientRepository.update(state.client);
-
-    result.fold(
-      (failure) => emit(
-        state.copyWith(
-          submissionStatus: SubmissionStatus.failure(
-            failure: SubmissionFailure.repository(failure: failure),
-          ),
-        ),
-      ),
-      (completed) => emit(
-        state.copyWith(
-          submissionStatus: completed
-              ? const SubmissionStatus.success()
-              : const SubmissionStatus.failure(
-                  failure: SubmissionFailure.repository(
-                    failure: RepositoryFailure.notFound(),
-                  ),
-                ),
-          isEditing: false,
-        ),
-      ),
     );
   }
 
@@ -92,6 +72,43 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
         client: state.client.copyWith(
           name: Name(event.name),
         ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onEditCanceled(
+      _EditCanceled event, Emitter<ClientDetailsState> emit) async {
+    emit(_inProgressState);
+
+    final result = await _clientRepository.getById(state.client.id);
+
+    result.fold(
+      (failure) => emit(_getRepositoryFailureState(failure: failure)),
+      (client) => emit(
+        state.copyWith(
+          submissionStatus: const SubmissionStatus.initial(),
+          isEditing: false,
+          client: client,
+        ),
+      ),
+    );
+  }
+
+  ClientDetailsState get _inProgressState => state.copyWith(
+        submissionStatus: const SubmissionStatus.inProgress(),
+      );
+
+  ClientDetailsState get _invalidFieldsState => state.copyWith(
+        submissionStatus: const SubmissionStatus.failure(
+          failure: SubmissionFailure.invalidFields(),
+        ),
+      );
+
+  ClientDetailsState _getRepositoryFailureState(
+      {required RepositoryFailure failure}) {
+    return state.copyWith(
+      submissionStatus: SubmissionStatus.failure(
+        failure: SubmissionFailure.repository(failure: failure),
       ),
     );
   }

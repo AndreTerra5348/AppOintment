@@ -20,6 +20,7 @@ mixin _$ClientDetailsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
     required TResult Function() editPressed,
+    required TResult Function() editCanceled,
     required TResult Function() savePressed,
     required TResult Function(String name) nameChanged,
   }) =>
@@ -28,6 +29,7 @@ mixin _$ClientDetailsEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
     TResult? Function()? editPressed,
+    TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
     TResult? Function(String name)? nameChanged,
   }) =>
@@ -36,6 +38,7 @@ mixin _$ClientDetailsEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
     TResult Function()? editPressed,
+    TResult Function()? editCanceled,
     TResult Function()? savePressed,
     TResult Function(String name)? nameChanged,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$ClientDetailsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
     required TResult Function(_EditPressed value) editPressed,
+    required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
     required TResult Function(_NameChanged value) nameChanged,
   }) =>
@@ -53,6 +57,7 @@ mixin _$ClientDetailsEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
     TResult? Function(_EditPressed value)? editPressed,
+    TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
     TResult? Function(_NameChanged value)? nameChanged,
   }) =>
@@ -61,6 +66,7 @@ mixin _$ClientDetailsEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
     TResult Function(_EditPressed value)? editPressed,
+    TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
     TResult Function(_NameChanged value)? nameChanged,
     required TResult orElse(),
@@ -162,6 +168,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
     required TResult Function() editPressed,
+    required TResult Function() editCanceled,
     required TResult Function() savePressed,
     required TResult Function(String name) nameChanged,
   }) {
@@ -173,6 +180,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
     TResult? Function()? editPressed,
+    TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
     TResult? Function(String name)? nameChanged,
   }) {
@@ -184,6 +192,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
     TResult Function()? editPressed,
+    TResult Function()? editCanceled,
     TResult Function()? savePressed,
     TResult Function(String name)? nameChanged,
     required TResult orElse(),
@@ -199,6 +208,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
     required TResult Function(_EditPressed value) editPressed,
+    required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
     required TResult Function(_NameChanged value) nameChanged,
   }) {
@@ -210,6 +220,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
     TResult? Function(_EditPressed value)? editPressed,
+    TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
     TResult? Function(_NameChanged value)? nameChanged,
   }) {
@@ -221,6 +232,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
     TResult Function(_EditPressed value)? editPressed,
+    TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
     TResult Function(_NameChanged value)? nameChanged,
     required TResult orElse(),
@@ -281,6 +293,7 @@ class _$_EditPressed implements _EditPressed {
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
     required TResult Function() editPressed,
+    required TResult Function() editCanceled,
     required TResult Function() savePressed,
     required TResult Function(String name) nameChanged,
   }) {
@@ -292,6 +305,7 @@ class _$_EditPressed implements _EditPressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
     TResult? Function()? editPressed,
+    TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
     TResult? Function(String name)? nameChanged,
   }) {
@@ -303,6 +317,7 @@ class _$_EditPressed implements _EditPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
     TResult Function()? editPressed,
+    TResult Function()? editCanceled,
     TResult Function()? savePressed,
     TResult Function(String name)? nameChanged,
     required TResult orElse(),
@@ -318,6 +333,7 @@ class _$_EditPressed implements _EditPressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
     required TResult Function(_EditPressed value) editPressed,
+    required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
     required TResult Function(_NameChanged value) nameChanged,
   }) {
@@ -329,6 +345,7 @@ class _$_EditPressed implements _EditPressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
     TResult? Function(_EditPressed value)? editPressed,
+    TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
     TResult? Function(_NameChanged value)? nameChanged,
   }) {
@@ -340,6 +357,7 @@ class _$_EditPressed implements _EditPressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
     TResult Function(_EditPressed value)? editPressed,
+    TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
     TResult Function(_NameChanged value)? nameChanged,
     required TResult orElse(),
@@ -353,6 +371,126 @@ class _$_EditPressed implements _EditPressed {
 
 abstract class _EditPressed implements ClientDetailsEvent {
   const factory _EditPressed() = _$_EditPressed;
+}
+
+/// @nodoc
+abstract class _$$_EditCanceledCopyWith<$Res> {
+  factory _$$_EditCanceledCopyWith(
+          _$_EditCanceled value, $Res Function(_$_EditCanceled) then) =
+      __$$_EditCanceledCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EditCanceledCopyWithImpl<$Res>
+    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_EditCanceled>
+    implements _$$_EditCanceledCopyWith<$Res> {
+  __$$_EditCanceledCopyWithImpl(
+      _$_EditCanceled _value, $Res Function(_$_EditCanceled) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_EditCanceled implements _EditCanceled {
+  const _$_EditCanceled();
+
+  @override
+  String toString() {
+    return 'ClientDetailsEvent.editCanceled()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_EditCanceled);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Client client) clientLoaded,
+    required TResult Function() editPressed,
+    required TResult Function() editCanceled,
+    required TResult Function() savePressed,
+    required TResult Function(String name) nameChanged,
+  }) {
+    return editCanceled();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? editPressed,
+    TResult? Function()? editCanceled,
+    TResult? Function()? savePressed,
+    TResult? Function(String name)? nameChanged,
+  }) {
+    return editCanceled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Client client)? clientLoaded,
+    TResult Function()? editPressed,
+    TResult Function()? editCanceled,
+    TResult Function()? savePressed,
+    TResult Function(String name)? nameChanged,
+    required TResult orElse(),
+  }) {
+    if (editCanceled != null) {
+      return editCanceled();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_EditPressed value) editPressed,
+    required TResult Function(_EditCanceled value) editCanceled,
+    required TResult Function(_SavePressed value) savePressed,
+    required TResult Function(_NameChanged value) nameChanged,
+  }) {
+    return editCanceled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_EditPressed value)? editPressed,
+    TResult? Function(_EditCanceled value)? editCanceled,
+    TResult? Function(_SavePressed value)? savePressed,
+    TResult? Function(_NameChanged value)? nameChanged,
+  }) {
+    return editCanceled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_EditPressed value)? editPressed,
+    TResult Function(_EditCanceled value)? editCanceled,
+    TResult Function(_SavePressed value)? savePressed,
+    TResult Function(_NameChanged value)? nameChanged,
+    required TResult orElse(),
+  }) {
+    if (editCanceled != null) {
+      return editCanceled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditCanceled implements ClientDetailsEvent {
+  const factory _EditCanceled() = _$_EditCanceled;
 }
 
 /// @nodoc
@@ -395,6 +533,7 @@ class _$_SavePressed implements _SavePressed {
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
     required TResult Function() editPressed,
+    required TResult Function() editCanceled,
     required TResult Function() savePressed,
     required TResult Function(String name) nameChanged,
   }) {
@@ -406,6 +545,7 @@ class _$_SavePressed implements _SavePressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
     TResult? Function()? editPressed,
+    TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
     TResult? Function(String name)? nameChanged,
   }) {
@@ -417,6 +557,7 @@ class _$_SavePressed implements _SavePressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
     TResult Function()? editPressed,
+    TResult Function()? editCanceled,
     TResult Function()? savePressed,
     TResult Function(String name)? nameChanged,
     required TResult orElse(),
@@ -432,6 +573,7 @@ class _$_SavePressed implements _SavePressed {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
     required TResult Function(_EditPressed value) editPressed,
+    required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
     required TResult Function(_NameChanged value) nameChanged,
   }) {
@@ -443,6 +585,7 @@ class _$_SavePressed implements _SavePressed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
     TResult? Function(_EditPressed value)? editPressed,
+    TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
     TResult? Function(_NameChanged value)? nameChanged,
   }) {
@@ -454,6 +597,7 @@ class _$_SavePressed implements _SavePressed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
     TResult Function(_EditPressed value)? editPressed,
+    TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
     TResult Function(_NameChanged value)? nameChanged,
     required TResult orElse(),
@@ -535,6 +679,7 @@ class _$_NameChanged implements _NameChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
     required TResult Function() editPressed,
+    required TResult Function() editCanceled,
     required TResult Function() savePressed,
     required TResult Function(String name) nameChanged,
   }) {
@@ -546,6 +691,7 @@ class _$_NameChanged implements _NameChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
     TResult? Function()? editPressed,
+    TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
     TResult? Function(String name)? nameChanged,
   }) {
@@ -557,6 +703,7 @@ class _$_NameChanged implements _NameChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
     TResult Function()? editPressed,
+    TResult Function()? editCanceled,
     TResult Function()? savePressed,
     TResult Function(String name)? nameChanged,
     required TResult orElse(),
@@ -572,6 +719,7 @@ class _$_NameChanged implements _NameChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
     required TResult Function(_EditPressed value) editPressed,
+    required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
     required TResult Function(_NameChanged value) nameChanged,
   }) {
@@ -583,6 +731,7 @@ class _$_NameChanged implements _NameChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
     TResult? Function(_EditPressed value)? editPressed,
+    TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
     TResult? Function(_NameChanged value)? nameChanged,
   }) {
@@ -594,6 +743,7 @@ class _$_NameChanged implements _NameChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
     TResult Function(_EditPressed value)? editPressed,
+    TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
     TResult Function(_NameChanged value)? nameChanged,
     required TResult orElse(),

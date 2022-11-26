@@ -6,6 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:appointment/domain/client/entity.dart' as _i6;
+import 'package:appointment/domain/common/values.dart' as _i7;
 import 'package:appointment/domain/core/i_repository.dart' as _i5;
 import 'package:appointment/infrastructure/client/repository.dart' as _i3;
 import 'package:dartz/dartz.dart' as _i2;
@@ -75,4 +76,22 @@ class MockClientRepository extends _i1.Mock implements _i3.ClientRepository {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>);
+  @override
+  _i4.Future<_i2.Either<_i5.RepositoryFailure, _i6.Client>> getById(
+          _i7.Uid? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getById,
+          [id],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.RepositoryFailure, _i6.Client>>.value(
+                _FakeEither_0<_i5.RepositoryFailure, _i6.Client>(
+          this,
+          Invocation.method(
+            #getById,
+            [id],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, _i6.Client>>);
 }
