@@ -366,6 +366,15 @@ class MockClientDao extends _i1.Mock implements _i6.ClientDao {
         returnValueForMissingStub: _i7.Future<bool>.value(false),
       ) as _i7.Future<bool>);
   @override
+  _i7.Future<bool> remove(_i8.Uid? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [uid],
+        ),
+        returnValue: _i7.Future<bool>.value(false),
+        returnValueForMissingStub: _i7.Future<bool>.value(false),
+      ) as _i7.Future<bool>);
+  @override
   _i7.Stream<List<Map<String, Object?>>> createStream(
           _i5.QueryStreamFetcher? stmt) =>
       (super.noSuchMethod(

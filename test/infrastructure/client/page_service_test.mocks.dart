@@ -84,4 +84,13 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
         returnValue: _i4.Future<bool>.value(false),
         returnValueForMissingStub: _i4.Future<bool>.value(false),
       ) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> remove(_i5.Uid? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #remove,
+          [uid],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+        returnValueForMissingStub: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 }

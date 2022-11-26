@@ -45,4 +45,12 @@ class ClientDao extends DatabaseAccessor<DriftDb>
         .write(model)
         .then((value) => value > 0);
   }
+
+  @override
+  Future<bool> remove(Uid uid) {
+    return (delete(clientModels)
+          ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
+        .go()
+        .then((value) => value > 0);
+  }
 }

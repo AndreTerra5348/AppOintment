@@ -158,6 +158,21 @@ void main() {
     expect(actual, isFalse);
   });
 
+  test(
+      "Should return true "
+      "when remove is called with a valid id", () async {
+    // Arrange
+    const model = ClientModel(id: 1, name: "Bob");
+    final sut = ClientDao(db!);
+    await sut.insert(model);
+
+    // Act
+    final actual = await sut.remove(Uid.fromInt(model.id));
+
+    // Assert
+    expect(actual, isTrue);
+  });
+
   tearDown(() async {
     await db?.close();
   });
