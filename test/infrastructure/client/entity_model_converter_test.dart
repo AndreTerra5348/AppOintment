@@ -7,60 +7,63 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("ClientConverter", () {
-    group("toEntity", toEntityTests);
-    group("toUpdateCompanion", toUpdateCompanionTests);
-    group("toEntityWithId", toEntityWithIdTests);
-  });
-}
+    test(
+        "Should return [Client] with name and id equal to the model "
+        "When [toEntity] is called with [ClientModel]", () {
+      // Arrange
+      const model = ClientModel(id: 0, name: "Bob");
+      final sut = ClientConveter();
 
-void toEntityTests() {
-  test(
-      "Should return client with right name and id when called with client model",
-      () {
-    // Arrange
-    const model = ClientModel(id: 0, name: "Bob");
-    final sut = ClientConveter();
+      // Act
+      final actual = sut.toEntity(model);
 
-    // Act
-    final actual = sut.toEntity(model);
+      // Assert
+      expect(actual.name.getOrThrow(), model.name);
+      expect(actual.id.getOrThrow(), model.id);
+    });
+    test(
+        "Should return [ClientModelsCompanion] with the same name as the entity "
+        "When toUpdateCompanion called with [Client] ", () {
+      // Arrange
+      final entity = Client.withoutUid(name: Name("Bobo"));
+      final sut = ClientConveter();
 
-    // Assert
-    expect(actual.name.getOrThrow(), model.name);
-    expect(actual.id.getOrThrow(), model.id);
-  });
-}
+      // Act
+      final actual = sut.toUpdateCompanion(entity);
 
-void toUpdateCompanionTests() {
-  test(
-      "Should return ClientUpdateCompanion with right name when called with client",
-      () {
-    // Arrange
-    final entity = Client.withoutUid(name: Name("Bobo"));
-    final sut = ClientConveter();
+      // Assert
+      expect(actual, isA<ClientModelsCompanion>());
+      expect(actual.name.value, entity.name.getOrThrow());
+    });
+    test(
+        "Should return [Client] with same name and id "
+        "When [toEntityWithId] called with [Client] and [Uid]", () {
+      // Arrange
+      final id = Uid.fromInt(0);
+      final entity = Client(name: Name("Bobo"), id: id);
+      final sut = ClientConveter();
 
-    // Act
-    final actual = sut.toUpdateCompanion(entity);
+      // Act
+      final actual = sut.toEntityWithId(entity, id);
 
-    // Assert
-    expect(actual, isA<ClientModelsCompanion>());
-    expect(actual.name.value, entity.name.getOrThrow());
-  });
-}
+      // Assert
+      expect(actual.name, entity.name);
+      expect(actual.id, entity.id);
+    });
 
-void toEntityWithIdTests() {
-  test(
-      "Should return client with same id and name when called with client and id",
-      () {
-    // Arrange
-    final id = Uid.fromInt(0);
-    final entity = Client(name: Name("Bobo"), id: id);
-    final sut = ClientConveter();
+    test(
+        "Should return [ClientModel] with same name and id "
+        "When [toModel] called with [Client]", () {
+      // Arrange
+      final entity = Client(name: Name("Bobo"), id: Uid.fromInt(0));
+      final sut = ClientConveter();
 
-    // Act
-    final actual = sut.toEntityWithId(entity, id);
+      // Act
+      final actual = sut.toModel(entity);
 
-    // Assert
-    expect(actual.name, entity.name);
-    expect(actual.id, entity.id);
+      // Assert
+      expect(actual.name, entity.name.getOrThrow());
+      expect(actual.id, entity.id.getOrThrow());
+    });
   });
 }
