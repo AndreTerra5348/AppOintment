@@ -1,3 +1,4 @@
+import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
@@ -5,7 +6,9 @@ import 'package:appointment/infrastructure/core/entity_model_converter.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
 
-abstract class BaseRepository<T_Entity, T_Table extends Table,
+abstract class BaseRepository<
+    T_Entity extends EntityMixin,
+    T_Table extends Table,
     T_Model extends DataClass> implements IRepository<T_Entity> {
   final Dao<T_Table, T_Model> _dao;
   final EntityModelConverter<T_Entity, T_Model> _converter;
@@ -18,6 +21,16 @@ abstract class BaseRepository<T_Entity, T_Table extends Table,
       final companion = _converter.toUpdateCompanion(entity);
       final id = await _dao.insert(companion);
       return Right(_converter.toEntityWithId(entity, Uid.fromInt(id)));
+    } catch (error) {
+      return Left(RepositoryFailure.dbException(error: error));
+    }
+  }
+
+  @override
+  Future<Either<RepositoryFailure, bool>> update(T_Entity entity) async {
+    try {
+      final companion = _converter.toUpdateCompanion(entity);
+      return Right(await _dao.updateById(entity.id, companion));
     } catch (error) {
       return Left(RepositoryFailure.dbException(error: error));
     }

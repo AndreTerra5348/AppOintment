@@ -5,6 +5,7 @@ part 'i_repository.freezed.dart';
 
 abstract class IRepository<T> {
   Future<Either<RepositoryFailure, T>> insert(T entity);
+  Future<Either<RepositoryFailure, bool>> update(T entity);
 }
 
 @freezed
