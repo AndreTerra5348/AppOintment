@@ -30,7 +30,7 @@ abstract class BaseRepository<
   Future<Either<RepositoryFailure, bool>> update(T_Entity entity) async {
     try {
       final companion = _converter.toUpdateCompanion(entity);
-      return Right(await _dao.updateById(entity.id, companion));
+      return Right(await _dao.save(entity.id, companion));
     } catch (error) {
       return Left(RepositoryFailure.dbException(error: error));
     }

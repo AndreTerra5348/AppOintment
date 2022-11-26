@@ -69,13 +69,13 @@ class MockDao<T_Table extends _i1.Table, T_Model extends _i1.DataClass>
             _i4.Future<Iterable<T_Model>>.value(<T_Model>[]),
       ) as _i4.Future<Iterable<T_Model>>);
   @override
-  _i4.Future<bool> updateById(
+  _i4.Future<bool> save(
     _i5.Uid? uid,
     _i1.Insertable<T_Model>? model,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #updateById,
+          #save,
           [
             uid,
             model,

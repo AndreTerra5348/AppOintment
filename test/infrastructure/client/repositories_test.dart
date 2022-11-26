@@ -108,7 +108,7 @@ void main() {
       await sut.update(client);
 
       // Assert
-      verify(clientDao.updateById(any, any)).called(1);
+      verify(clientDao.save(any, any)).called(1);
     });
 
     test(
@@ -116,8 +116,7 @@ void main() {
         "when update is called", () async {
       // Arrange
       final clientDao = MockClientDao();
-      when(clientDao.updateById(any, any))
-          .thenAnswer((_) => Future.value(true));
+      when(clientDao.save(any, any)).thenAnswer((_) => Future.value(true));
       final client = Client.withoutUid(name: Name("Bob"));
 
       final sut = ClientRepository(clientDao, ClientConveter());
@@ -126,7 +125,7 @@ void main() {
       await sut.update(client);
 
       // Assert
-      expect(verify(clientDao.updateById(any, captureAny)).captured.single,
+      expect(verify(clientDao.save(any, captureAny)).captured.single,
           isA<UpdateCompanion<ClientModel>>());
     });
 
@@ -137,8 +136,7 @@ void main() {
       // Arrange
       final client = Client.withoutUid(name: Name("Bob"));
       final clientDao = MockClientDao();
-      when(clientDao.updateById(any, any))
-          .thenThrow(Exception("Mocked Exception"));
+      when(clientDao.save(any, any)).thenThrow(Exception("Mocked Exception"));
 
       final sut = ClientRepository(clientDao, ClientConveter());
 

@@ -39,7 +39,7 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   }
 
   @override
-  Future<bool> updateById(Uid uid, Insertable<ClientModel> model) {
+  Future<bool> save(Uid uid, Insertable<ClientModel> model) {
     return (update(clientModels)
           ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
         .write(model)

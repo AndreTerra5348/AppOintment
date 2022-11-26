@@ -350,13 +350,13 @@ class MockClientDao extends _i1.Mock implements _i6.ClientDao {
             _i7.Future<Iterable<_i3.ClientModel>>.value(<_i3.ClientModel>[]),
       ) as _i7.Future<Iterable<_i3.ClientModel>>);
   @override
-  _i7.Future<bool> updateById(
+  _i7.Future<bool> save(
     _i8.Uid? uid,
     _i4.Insertable<_i3.ClientModel>? model,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #updateById,
+          #save,
           [
             uid,
             model,

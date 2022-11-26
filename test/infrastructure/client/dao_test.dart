@@ -104,7 +104,7 @@ void main() {
     await sut.insert(ClientModelsCompanion.insert(name: model.name));
 
     // Act
-    final actual = await sut.updateById(
+    final actual = await sut.save(
       Uid.fromInt(model.id),
       const ClientModelsCompanion(
         name: Value("Joe"),
@@ -125,7 +125,7 @@ void main() {
 
     try {
       // Act
-      await sut.updateById(
+      await sut.save(
         Uid.fromInt(model.id),
         const ClientModelsCompanion(
           name: Value(""),
@@ -147,7 +147,7 @@ void main() {
     await sut.insert(ClientModelsCompanion.insert(name: model.name));
 
     // Act
-    final actual = await sut.updateById(
+    final actual = await sut.save(
       Uid.fromInt(2),
       const ClientModelsCompanion(
         name: Value("Joe"),
