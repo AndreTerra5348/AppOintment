@@ -1,23 +1,15 @@
+import 'package:appointment/domain/common/error.dart';
 import 'package:dartz/dartz.dart';
-
-class UnexpectedValueError<T_Failure> extends Error {
-  final T_Failure failure;
-
-  UnexpectedValueError(this.failure);
-
-  @override
-  String toString() {
-    final failuresMessage = failure.toString();
-    return Error.safeToString('Critical Failure: $failuresMessage');
-  }
-}
 
 abstract class ValueObject<T_Failure, T_Value> {
   const ValueObject();
   Either<T_Failure, T_Value> get value;
 
   T_Value getOrThrow() {
-    return value.fold((f) => throw UnexpectedValueError(f), (r) => r);
+    return value.fold(
+      (failure) => throw CriticalError(failure.toString()),
+      (value) => value,
+    );
   }
 
   bool get isValid => value.isRight();
