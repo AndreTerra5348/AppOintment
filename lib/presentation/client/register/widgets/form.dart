@@ -106,6 +106,8 @@ extension SubmissionFailureExtension on SubmissionFailure {
         ),
       ),
       invalidFields: (value) => context.tr.invalidFieldsFailure,
+      // TODO: add context.tr.notFoundFailure to arb file
+      notFound: (value) => "context.tr.notFoundFailure",
     );
   }
 }

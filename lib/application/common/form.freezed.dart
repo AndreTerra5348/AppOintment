@@ -774,18 +774,21 @@ mixin _$SubmissionFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(RepositoryFailure failure) repository,
     required TResult Function() invalidFields,
+    required TResult Function() notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RepositoryFailure failure)? repository,
     TResult? Function()? invalidFields,
+    TResult? Function()? notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RepositoryFailure failure)? repository,
     TResult Function()? invalidFields,
+    TResult Function()? notFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -793,18 +796,21 @@ mixin _$SubmissionFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Repository value) repository,
     required TResult Function(_InvalidFields value) invalidFields,
+    required TResult Function(_NotFound value) notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Repository value)? repository,
     TResult? Function(_InvalidFields value)? invalidFields,
+    TResult? Function(_NotFound value)? notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Repository value)? repository,
     TResult Function(_InvalidFields value)? invalidFields,
+    TResult Function(_NotFound value)? notFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -912,6 +918,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   TResult when<TResult extends Object?>({
     required TResult Function(RepositoryFailure failure) repository,
     required TResult Function() invalidFields,
+    required TResult Function() notFound,
   }) {
     return repository(failure);
   }
@@ -921,6 +928,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RepositoryFailure failure)? repository,
     TResult? Function()? invalidFields,
+    TResult? Function()? notFound,
   }) {
     return repository?.call(failure);
   }
@@ -930,6 +938,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RepositoryFailure failure)? repository,
     TResult Function()? invalidFields,
+    TResult Function()? notFound,
     required TResult orElse(),
   }) {
     if (repository != null) {
@@ -943,6 +952,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   TResult map<TResult extends Object?>({
     required TResult Function(_Repository value) repository,
     required TResult Function(_InvalidFields value) invalidFields,
+    required TResult Function(_NotFound value) notFound,
   }) {
     return repository(this);
   }
@@ -952,6 +962,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Repository value)? repository,
     TResult? Function(_InvalidFields value)? invalidFields,
+    TResult? Function(_NotFound value)? notFound,
   }) {
     return repository?.call(this);
   }
@@ -961,6 +972,7 @@ class _$_Repository with DiagnosticableTreeMixin implements _Repository {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Repository value)? repository,
     TResult Function(_InvalidFields value)? invalidFields,
+    TResult Function(_NotFound value)? notFound,
     required TResult orElse(),
   }) {
     if (repository != null) {
@@ -1027,6 +1039,7 @@ class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
   TResult when<TResult extends Object?>({
     required TResult Function(RepositoryFailure failure) repository,
     required TResult Function() invalidFields,
+    required TResult Function() notFound,
   }) {
     return invalidFields();
   }
@@ -1036,6 +1049,7 @@ class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RepositoryFailure failure)? repository,
     TResult? Function()? invalidFields,
+    TResult? Function()? notFound,
   }) {
     return invalidFields?.call();
   }
@@ -1045,6 +1059,7 @@ class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RepositoryFailure failure)? repository,
     TResult Function()? invalidFields,
+    TResult Function()? notFound,
     required TResult orElse(),
   }) {
     if (invalidFields != null) {
@@ -1058,6 +1073,7 @@ class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
   TResult map<TResult extends Object?>({
     required TResult Function(_Repository value) repository,
     required TResult Function(_InvalidFields value) invalidFields,
+    required TResult Function(_NotFound value) notFound,
   }) {
     return invalidFields(this);
   }
@@ -1067,6 +1083,7 @@ class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Repository value)? repository,
     TResult? Function(_InvalidFields value)? invalidFields,
+    TResult? Function(_NotFound value)? notFound,
   }) {
     return invalidFields?.call(this);
   }
@@ -1076,6 +1093,7 @@ class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Repository value)? repository,
     TResult Function(_InvalidFields value)? invalidFields,
+    TResult Function(_NotFound value)? notFound,
     required TResult orElse(),
   }) {
     if (invalidFields != null) {
@@ -1087,4 +1105,118 @@ class _$_InvalidFields with DiagnosticableTreeMixin implements _InvalidFields {
 
 abstract class _InvalidFields implements SubmissionFailure {
   const factory _InvalidFields() = _$_InvalidFields;
+}
+
+/// @nodoc
+abstract class _$$_NotFoundCopyWith<$Res> {
+  factory _$$_NotFoundCopyWith(
+          _$_NotFound value, $Res Function(_$_NotFound) then) =
+      __$$_NotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NotFoundCopyWithImpl<$Res>
+    extends _$SubmissionFailureCopyWithImpl<$Res, _$_NotFound>
+    implements _$$_NotFoundCopyWith<$Res> {
+  __$$_NotFoundCopyWithImpl(
+      _$_NotFound _value, $Res Function(_$_NotFound) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NotFound with DiagnosticableTreeMixin implements _NotFound {
+  const _$_NotFound();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SubmissionFailure.notFound()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'SubmissionFailure.notFound'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RepositoryFailure failure) repository,
+    required TResult Function() invalidFields,
+    required TResult Function() notFound,
+  }) {
+    return notFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RepositoryFailure failure)? repository,
+    TResult? Function()? invalidFields,
+    TResult? Function()? notFound,
+  }) {
+    return notFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RepositoryFailure failure)? repository,
+    TResult Function()? invalidFields,
+    TResult Function()? notFound,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Repository value) repository,
+    required TResult Function(_InvalidFields value) invalidFields,
+    required TResult Function(_NotFound value) notFound,
+  }) {
+    return notFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Repository value)? repository,
+    TResult? Function(_InvalidFields value)? invalidFields,
+    TResult? Function(_NotFound value)? notFound,
+  }) {
+    return notFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Repository value)? repository,
+    TResult Function(_InvalidFields value)? invalidFields,
+    TResult Function(_NotFound value)? notFound,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotFound implements SubmissionFailure {
+  const factory _NotFound() = _$_NotFound;
 }

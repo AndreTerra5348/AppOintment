@@ -14,6 +14,7 @@ part 'bloc.freezed.dart';
 part 'event.dart';
 part 'state.dart';
 
+// TODO: add debounce
 class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
   final IPageService<Client, ClientModels, ClientModel> _pageService;
   ClientSearchBloc(this._pageService) : super(ClientSearchState.initial()) {
