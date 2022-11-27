@@ -4,6 +4,7 @@ part of 'bloc.dart';
 class ClientDetailsEvent with _$ClientDetailsEvent {
   const factory ClientDetailsEvent.clientLoaded({required Client client}) =
       _ClientLoaded;
+  const factory ClientDetailsEvent.deletePressed() = _DeletePressed;
   const factory ClientDetailsEvent.editPressed() = _EditPressed;
   const factory ClientDetailsEvent.editCanceled() = _EditCanceled;
   const factory ClientDetailsEvent.savePressed() = _SavePressed;

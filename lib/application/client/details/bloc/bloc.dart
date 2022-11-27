@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:appointment/application/client/details/status.dart';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
+import 'package:appointment/domain/common/error.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,6 +18,7 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
   ClientDetailsBloc(this._clientRepository)
       : super(ClientDetailsState.initial()) {
     on<_ClientLoaded>(_onClientLoaded);
+    on<_DeletePressed>(_onDeletePressed);
     on<_EditPressed>(_onEditPressed);
     on<_EditCanceled>(_onEditCanceled);
     on<_SavePressed>(_onSavePressed);
@@ -25,11 +28,18 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
   FutureOr<void> _onClientLoaded(
       _ClientLoaded event, Emitter<ClientDetailsState> emit) {
     event.client.validity.fold(
-      // TODO: create specific exception
-      () => throw Exception('Invalid client'),
-      (client) => emit(state.copyWith(client: event.client)),
+      () => throw CriticalError('Invalid client'),
+      (client) => emit(
+        state.copyWith(
+          client: event.client,
+          status: const ClientDetailsStatus.ready(),
+        ),
+      ),
     );
   }
+
+  FutureOr<void> _onDeletePressed(
+      _DeletePressed event, Emitter<ClientDetailsState> emit) {}
 
   FutureOr<void> _onEditPressed(
       _EditPressed event, Emitter<ClientDetailsState> emit) {
@@ -39,25 +49,16 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
   FutureOr<void> _onSavePressed(
       _SavePressed event, Emitter<ClientDetailsState> emit) async {
     state.client.validity.fold(
-      () => emit(_invalidFieldsState),
+      () => emit(state.asInvalidFieldsFailure),
       (client) async {
-        emit(_inProgressState);
+        emit(state.asInProgress);
 
         final result = await _clientRepository.update(state.client);
 
         result.fold(
-          (failure) => emit(_getRepositoryFailureState(failure: failure)),
+          (failure) => emit(state.copyWithRepositoryFailure(failure: failure)),
           (completed) => emit(
-            state.copyWith(
-              submissionStatus: completed
-                  ? const SubmissionStatus.success()
-                  : const SubmissionStatus.failure(
-                      failure: SubmissionFailure.repository(
-                        failure: RepositoryFailure.notFound(),
-                      ),
-                    ),
-              isEditing: false,
-            ),
+            completed ? state.asSuccess : state.asNotFoundFailure,
           ),
         );
       },
@@ -78,37 +79,18 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
 
   FutureOr<void> _onEditCanceled(
       _EditCanceled event, Emitter<ClientDetailsState> emit) async {
-    emit(_inProgressState);
+    emit(state.asInProgress);
 
     final result = await _clientRepository.getById(state.client.id);
 
     result.fold(
-      (failure) => emit(_getRepositoryFailureState(failure: failure)),
+      (failure) => emit(state.copyWithRepositoryFailure(failure: failure)),
       (client) => emit(
         state.copyWith(
           submissionStatus: const SubmissionStatus.initial(),
           isEditing: false,
           client: client,
         ),
-      ),
-    );
-  }
-
-  ClientDetailsState get _inProgressState => state.copyWith(
-        submissionStatus: const SubmissionStatus.inProgress(),
-      );
-
-  ClientDetailsState get _invalidFieldsState => state.copyWith(
-        submissionStatus: const SubmissionStatus.failure(
-          failure: SubmissionFailure.invalidFields(),
-        ),
-      );
-
-  ClientDetailsState _getRepositoryFailureState(
-      {required RepositoryFailure failure}) {
-    return state.copyWith(
-      submissionStatus: SubmissionStatus.failure(
-        failure: SubmissionFailure.repository(failure: failure),
       ),
     );
   }

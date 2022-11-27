@@ -19,6 +19,7 @@ mixin _$ClientDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
+    required TResult Function() deletePressed,
     required TResult Function() editPressed,
     required TResult Function() editCanceled,
     required TResult Function() savePressed,
@@ -28,6 +29,7 @@ mixin _$ClientDetailsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? deletePressed,
     TResult? Function()? editPressed,
     TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
@@ -37,6 +39,7 @@ mixin _$ClientDetailsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
+    TResult Function()? deletePressed,
     TResult Function()? editPressed,
     TResult Function()? editCanceled,
     TResult Function()? savePressed,
@@ -47,6 +50,7 @@ mixin _$ClientDetailsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_DeletePressed value) deletePressed,
     required TResult Function(_EditPressed value) editPressed,
     required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
@@ -56,6 +60,7 @@ mixin _$ClientDetailsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_DeletePressed value)? deletePressed,
     TResult? Function(_EditPressed value)? editPressed,
     TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
@@ -65,6 +70,7 @@ mixin _$ClientDetailsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_DeletePressed value)? deletePressed,
     TResult Function(_EditPressed value)? editPressed,
     TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
@@ -167,6 +173,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
+    required TResult Function() deletePressed,
     required TResult Function() editPressed,
     required TResult Function() editCanceled,
     required TResult Function() savePressed,
@@ -179,6 +186,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? deletePressed,
     TResult? Function()? editPressed,
     TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
@@ -191,6 +199,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
+    TResult Function()? deletePressed,
     TResult Function()? editPressed,
     TResult Function()? editCanceled,
     TResult Function()? savePressed,
@@ -207,6 +216,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_DeletePressed value) deletePressed,
     required TResult Function(_EditPressed value) editPressed,
     required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
@@ -219,6 +229,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_DeletePressed value)? deletePressed,
     TResult? Function(_EditPressed value)? editPressed,
     TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
@@ -231,6 +242,7 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_DeletePressed value)? deletePressed,
     TResult Function(_EditPressed value)? editPressed,
     TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
@@ -251,6 +263,132 @@ abstract class _ClientLoaded implements ClientDetailsEvent {
   @JsonKey(ignore: true)
   _$$_ClientLoadedCopyWith<_$_ClientLoaded> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_DeletePressedCopyWith<$Res> {
+  factory _$$_DeletePressedCopyWith(
+          _$_DeletePressed value, $Res Function(_$_DeletePressed) then) =
+      __$$_DeletePressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeletePressedCopyWithImpl<$Res>
+    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_DeletePressed>
+    implements _$$_DeletePressedCopyWith<$Res> {
+  __$$_DeletePressedCopyWithImpl(
+      _$_DeletePressed _value, $Res Function(_$_DeletePressed) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_DeletePressed implements _DeletePressed {
+  const _$_DeletePressed();
+
+  @override
+  String toString() {
+    return 'ClientDetailsEvent.deletePressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_DeletePressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Client client) clientLoaded,
+    required TResult Function() deletePressed,
+    required TResult Function() editPressed,
+    required TResult Function() editCanceled,
+    required TResult Function() savePressed,
+    required TResult Function(String name) nameChanged,
+  }) {
+    return deletePressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? deletePressed,
+    TResult? Function()? editPressed,
+    TResult? Function()? editCanceled,
+    TResult? Function()? savePressed,
+    TResult? Function(String name)? nameChanged,
+  }) {
+    return deletePressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Client client)? clientLoaded,
+    TResult Function()? deletePressed,
+    TResult Function()? editPressed,
+    TResult Function()? editCanceled,
+    TResult Function()? savePressed,
+    TResult Function(String name)? nameChanged,
+    required TResult orElse(),
+  }) {
+    if (deletePressed != null) {
+      return deletePressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_DeletePressed value) deletePressed,
+    required TResult Function(_EditPressed value) editPressed,
+    required TResult Function(_EditCanceled value) editCanceled,
+    required TResult Function(_SavePressed value) savePressed,
+    required TResult Function(_NameChanged value) nameChanged,
+  }) {
+    return deletePressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_DeletePressed value)? deletePressed,
+    TResult? Function(_EditPressed value)? editPressed,
+    TResult? Function(_EditCanceled value)? editCanceled,
+    TResult? Function(_SavePressed value)? savePressed,
+    TResult? Function(_NameChanged value)? nameChanged,
+  }) {
+    return deletePressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_DeletePressed value)? deletePressed,
+    TResult Function(_EditPressed value)? editPressed,
+    TResult Function(_EditCanceled value)? editCanceled,
+    TResult Function(_SavePressed value)? savePressed,
+    TResult Function(_NameChanged value)? nameChanged,
+    required TResult orElse(),
+  }) {
+    if (deletePressed != null) {
+      return deletePressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeletePressed implements ClientDetailsEvent {
+  const factory _DeletePressed() = _$_DeletePressed;
 }
 
 /// @nodoc
@@ -292,6 +430,7 @@ class _$_EditPressed implements _EditPressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
+    required TResult Function() deletePressed,
     required TResult Function() editPressed,
     required TResult Function() editCanceled,
     required TResult Function() savePressed,
@@ -304,6 +443,7 @@ class _$_EditPressed implements _EditPressed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? deletePressed,
     TResult? Function()? editPressed,
     TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
@@ -316,6 +456,7 @@ class _$_EditPressed implements _EditPressed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
+    TResult Function()? deletePressed,
     TResult Function()? editPressed,
     TResult Function()? editCanceled,
     TResult Function()? savePressed,
@@ -332,6 +473,7 @@ class _$_EditPressed implements _EditPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_DeletePressed value) deletePressed,
     required TResult Function(_EditPressed value) editPressed,
     required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
@@ -344,6 +486,7 @@ class _$_EditPressed implements _EditPressed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_DeletePressed value)? deletePressed,
     TResult? Function(_EditPressed value)? editPressed,
     TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
@@ -356,6 +499,7 @@ class _$_EditPressed implements _EditPressed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_DeletePressed value)? deletePressed,
     TResult Function(_EditPressed value)? editPressed,
     TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
@@ -412,6 +556,7 @@ class _$_EditCanceled implements _EditCanceled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
+    required TResult Function() deletePressed,
     required TResult Function() editPressed,
     required TResult Function() editCanceled,
     required TResult Function() savePressed,
@@ -424,6 +569,7 @@ class _$_EditCanceled implements _EditCanceled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? deletePressed,
     TResult? Function()? editPressed,
     TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
@@ -436,6 +582,7 @@ class _$_EditCanceled implements _EditCanceled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
+    TResult Function()? deletePressed,
     TResult Function()? editPressed,
     TResult Function()? editCanceled,
     TResult Function()? savePressed,
@@ -452,6 +599,7 @@ class _$_EditCanceled implements _EditCanceled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_DeletePressed value) deletePressed,
     required TResult Function(_EditPressed value) editPressed,
     required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
@@ -464,6 +612,7 @@ class _$_EditCanceled implements _EditCanceled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_DeletePressed value)? deletePressed,
     TResult? Function(_EditPressed value)? editPressed,
     TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
@@ -476,6 +625,7 @@ class _$_EditCanceled implements _EditCanceled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_DeletePressed value)? deletePressed,
     TResult Function(_EditPressed value)? editPressed,
     TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
@@ -532,6 +682,7 @@ class _$_SavePressed implements _SavePressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
+    required TResult Function() deletePressed,
     required TResult Function() editPressed,
     required TResult Function() editCanceled,
     required TResult Function() savePressed,
@@ -544,6 +695,7 @@ class _$_SavePressed implements _SavePressed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? deletePressed,
     TResult? Function()? editPressed,
     TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
@@ -556,6 +708,7 @@ class _$_SavePressed implements _SavePressed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
+    TResult Function()? deletePressed,
     TResult Function()? editPressed,
     TResult Function()? editCanceled,
     TResult Function()? savePressed,
@@ -572,6 +725,7 @@ class _$_SavePressed implements _SavePressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_DeletePressed value) deletePressed,
     required TResult Function(_EditPressed value) editPressed,
     required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
@@ -584,6 +738,7 @@ class _$_SavePressed implements _SavePressed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_DeletePressed value)? deletePressed,
     TResult? Function(_EditPressed value)? editPressed,
     TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
@@ -596,6 +751,7 @@ class _$_SavePressed implements _SavePressed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_DeletePressed value)? deletePressed,
     TResult Function(_EditPressed value)? editPressed,
     TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
@@ -678,6 +834,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
+    required TResult Function() deletePressed,
     required TResult Function() editPressed,
     required TResult Function() editCanceled,
     required TResult Function() savePressed,
@@ -690,6 +847,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
+    TResult? Function()? deletePressed,
     TResult? Function()? editPressed,
     TResult? Function()? editCanceled,
     TResult? Function()? savePressed,
@@ -702,6 +860,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
+    TResult Function()? deletePressed,
     TResult Function()? editPressed,
     TResult Function()? editCanceled,
     TResult Function()? savePressed,
@@ -718,6 +877,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
+    required TResult Function(_DeletePressed value) deletePressed,
     required TResult Function(_EditPressed value) editPressed,
     required TResult Function(_EditCanceled value) editCanceled,
     required TResult Function(_SavePressed value) savePressed,
@@ -730,6 +890,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
+    TResult? Function(_DeletePressed value)? deletePressed,
     TResult? Function(_EditPressed value)? editPressed,
     TResult? Function(_EditCanceled value)? editCanceled,
     TResult? Function(_SavePressed value)? savePressed,
@@ -742,6 +903,7 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
+    TResult Function(_DeletePressed value)? deletePressed,
     TResult Function(_EditPressed value)? editPressed,
     TResult Function(_EditCanceled value)? editCanceled,
     TResult Function(_SavePressed value)? savePressed,
@@ -769,6 +931,7 @@ mixin _$ClientDetailsState {
   Client get client => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   SubmissionStatus get submissionStatus => throw _privateConstructorUsedError;
+  ClientDetailsStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientDetailsStateCopyWith<ClientDetailsState> get copyWith =>
@@ -781,10 +944,15 @@ abstract class $ClientDetailsStateCopyWith<$Res> {
           ClientDetailsState value, $Res Function(ClientDetailsState) then) =
       _$ClientDetailsStateCopyWithImpl<$Res, ClientDetailsState>;
   @useResult
-  $Res call({Client client, bool isEditing, SubmissionStatus submissionStatus});
+  $Res call(
+      {Client client,
+      bool isEditing,
+      SubmissionStatus submissionStatus,
+      ClientDetailsStatus status});
 
   $ClientCopyWith<$Res> get client;
   $SubmissionStatusCopyWith<$Res> get submissionStatus;
+  $ClientDetailsStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -803,6 +971,7 @@ class _$ClientDetailsStateCopyWithImpl<$Res, $Val extends ClientDetailsState>
     Object? client = null,
     Object? isEditing = null,
     Object? submissionStatus = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       client: null == client
@@ -817,6 +986,10 @@ class _$ClientDetailsStateCopyWithImpl<$Res, $Val extends ClientDetailsState>
           ? _value.submissionStatus
           : submissionStatus // ignore: cast_nullable_to_non_nullable
               as SubmissionStatus,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ClientDetailsStatus,
     ) as $Val);
   }
 
@@ -835,6 +1008,14 @@ class _$ClientDetailsStateCopyWithImpl<$Res, $Val extends ClientDetailsState>
       return _then(_value.copyWith(submissionStatus: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientDetailsStatusCopyWith<$Res> get status {
+    return $ClientDetailsStatusCopyWith<$Res>(_value.status, (value) {
+      return _then(_value.copyWith(status: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -845,12 +1026,18 @@ abstract class _$$_ClientDetailsStateCopyWith<$Res>
       __$$_ClientDetailsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Client client, bool isEditing, SubmissionStatus submissionStatus});
+  $Res call(
+      {Client client,
+      bool isEditing,
+      SubmissionStatus submissionStatus,
+      ClientDetailsStatus status});
 
   @override
   $ClientCopyWith<$Res> get client;
   @override
   $SubmissionStatusCopyWith<$Res> get submissionStatus;
+  @override
+  $ClientDetailsStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -867,6 +1054,7 @@ class __$$_ClientDetailsStateCopyWithImpl<$Res>
     Object? client = null,
     Object? isEditing = null,
     Object? submissionStatus = null,
+    Object? status = null,
   }) {
     return _then(_$_ClientDetailsState(
       client: null == client
@@ -881,6 +1069,10 @@ class __$$_ClientDetailsStateCopyWithImpl<$Res>
           ? _value.submissionStatus
           : submissionStatus // ignore: cast_nullable_to_non_nullable
               as SubmissionStatus,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ClientDetailsStatus,
     ));
   }
 }
@@ -891,7 +1083,8 @@ class _$_ClientDetailsState implements _ClientDetailsState {
   const _$_ClientDetailsState(
       {required this.client,
       required this.isEditing,
-      required this.submissionStatus});
+      required this.submissionStatus,
+      required this.status});
 
   @override
   final Client client;
@@ -899,10 +1092,12 @@ class _$_ClientDetailsState implements _ClientDetailsState {
   final bool isEditing;
   @override
   final SubmissionStatus submissionStatus;
+  @override
+  final ClientDetailsStatus status;
 
   @override
   String toString() {
-    return 'ClientDetailsState(client: $client, isEditing: $isEditing, submissionStatus: $submissionStatus)';
+    return 'ClientDetailsState(client: $client, isEditing: $isEditing, submissionStatus: $submissionStatus, status: $status)';
   }
 
   @override
@@ -914,12 +1109,13 @@ class _$_ClientDetailsState implements _ClientDetailsState {
             (identical(other.isEditing, isEditing) ||
                 other.isEditing == isEditing) &&
             (identical(other.submissionStatus, submissionStatus) ||
-                other.submissionStatus == submissionStatus));
+                other.submissionStatus == submissionStatus) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, client, isEditing, submissionStatus);
+      Object.hash(runtimeType, client, isEditing, submissionStatus, status);
 
   @JsonKey(ignore: true)
   @override
@@ -931,10 +1127,10 @@ class _$_ClientDetailsState implements _ClientDetailsState {
 
 abstract class _ClientDetailsState implements ClientDetailsState {
   const factory _ClientDetailsState(
-          {required final Client client,
-          required final bool isEditing,
-          required final SubmissionStatus submissionStatus}) =
-      _$_ClientDetailsState;
+      {required final Client client,
+      required final bool isEditing,
+      required final SubmissionStatus submissionStatus,
+      required final ClientDetailsStatus status}) = _$_ClientDetailsState;
 
   @override
   Client get client;
@@ -942,6 +1138,8 @@ abstract class _ClientDetailsState implements ClientDetailsState {
   bool get isEditing;
   @override
   SubmissionStatus get submissionStatus;
+  @override
+  ClientDetailsStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_ClientDetailsStateCopyWith<_$_ClientDetailsState> get copyWith =>
