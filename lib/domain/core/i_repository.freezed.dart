@@ -16,43 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RepositoryFailure {
+  Object get error => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Object error) dbException,
-    required TResult Function() notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Object error)? dbException,
-    TResult? Function()? notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Object error)? dbException,
-    TResult Function()? notFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_DBException value) dbException,
-    required TResult Function(_NotFound value) notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DBException value)? dbException,
-    TResult? Function(_NotFound value)? notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DBException value)? dbException,
-    TResult Function(_NotFound value)? notFound,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RepositoryFailureCopyWith<RepositoryFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +60,8 @@ abstract class $RepositoryFailureCopyWith<$Res> {
   factory $RepositoryFailureCopyWith(
           RepositoryFailure value, $Res Function(RepositoryFailure) then) =
       _$RepositoryFailureCopyWithImpl<$Res, RepositoryFailure>;
+  @useResult
+  $Res call({Object error});
 }
 
 /// @nodoc
@@ -72,13 +73,25 @@ class _$RepositoryFailureCopyWithImpl<$Res, $Val extends RepositoryFailure>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_value.copyWith(
+      error: null == error ? _value.error : error,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_DBExceptionCopyWith<$Res> {
+abstract class _$$_DBExceptionCopyWith<$Res>
+    implements $RepositoryFailureCopyWith<$Res> {
   factory _$$_DBExceptionCopyWith(
           _$_DBException value, $Res Function(_$_DBException) then) =
       __$$_DBExceptionCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({Object error});
 }
@@ -137,7 +150,6 @@ class _$_DBException implements _DBException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Object error) dbException,
-    required TResult Function() notFound,
   }) {
     return dbException(error);
   }
@@ -146,7 +158,6 @@ class _$_DBException implements _DBException {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Object error)? dbException,
-    TResult? Function()? notFound,
   }) {
     return dbException?.call(error);
   }
@@ -155,7 +166,6 @@ class _$_DBException implements _DBException {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Object error)? dbException,
-    TResult Function()? notFound,
     required TResult orElse(),
   }) {
     if (dbException != null) {
@@ -168,7 +178,6 @@ class _$_DBException implements _DBException {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_DBException value) dbException,
-    required TResult Function(_NotFound value) notFound,
   }) {
     return dbException(this);
   }
@@ -177,7 +186,6 @@ class _$_DBException implements _DBException {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DBException value)? dbException,
-    TResult? Function(_NotFound value)? notFound,
   }) {
     return dbException?.call(this);
   }
@@ -186,7 +194,6 @@ class _$_DBException implements _DBException {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DBException value)? dbException,
-    TResult Function(_NotFound value)? notFound,
     required TResult orElse(),
   }) {
     if (dbException != null) {
@@ -199,110 +206,10 @@ class _$_DBException implements _DBException {
 abstract class _DBException implements RepositoryFailure {
   const factory _DBException({required final Object error}) = _$_DBException;
 
+  @override
   Object get error;
+  @override
   @JsonKey(ignore: true)
   _$$_DBExceptionCopyWith<_$_DBException> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_NotFoundCopyWith<$Res> {
-  factory _$$_NotFoundCopyWith(
-          _$_NotFound value, $Res Function(_$_NotFound) then) =
-      __$$_NotFoundCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_NotFoundCopyWithImpl<$Res>
-    extends _$RepositoryFailureCopyWithImpl<$Res, _$_NotFound>
-    implements _$$_NotFoundCopyWith<$Res> {
-  __$$_NotFoundCopyWithImpl(
-      _$_NotFound _value, $Res Function(_$_NotFound) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_NotFound implements _NotFound {
-  const _$_NotFound();
-
-  @override
-  String toString() {
-    return 'RepositoryFailure.notFound()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NotFound);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Object error) dbException,
-    required TResult Function() notFound,
-  }) {
-    return notFound();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Object error)? dbException,
-    TResult? Function()? notFound,
-  }) {
-    return notFound?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Object error)? dbException,
-    TResult Function()? notFound,
-    required TResult orElse(),
-  }) {
-    if (notFound != null) {
-      return notFound();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DBException value) dbException,
-    required TResult Function(_NotFound value) notFound,
-  }) {
-    return notFound(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DBException value)? dbException,
-    TResult? Function(_NotFound value)? notFound,
-  }) {
-    return notFound?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DBException value)? dbException,
-    TResult Function(_NotFound value)? notFound,
-    required TResult orElse(),
-  }) {
-    if (notFound != null) {
-      return notFound(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NotFound implements RepositoryFailure {
-  const factory _NotFound() = _$_NotFound;
 }
