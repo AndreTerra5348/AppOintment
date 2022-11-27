@@ -16,67 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ClientDetailsEvent {
+  Client get client => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
-    required TResult Function() deletePressed,
-    required TResult Function() editPressed,
-    required TResult Function() editCanceled,
-    required TResult Function() savePressed,
-    required TResult Function(String name) nameChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
-    TResult? Function()? deletePressed,
-    TResult? Function()? editPressed,
-    TResult? Function()? editCanceled,
-    TResult? Function()? savePressed,
-    TResult? Function(String name)? nameChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
-    TResult Function()? deletePressed,
-    TResult Function()? editPressed,
-    TResult Function()? editCanceled,
-    TResult Function()? savePressed,
-    TResult Function(String name)? nameChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_EditPressed value) editPressed,
-    required TResult Function(_EditCanceled value) editCanceled,
-    required TResult Function(_SavePressed value) savePressed,
-    required TResult Function(_NameChanged value) nameChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
-    TResult? Function(_DeletePressed value)? deletePressed,
-    TResult? Function(_EditPressed value)? editPressed,
-    TResult? Function(_EditCanceled value)? editCanceled,
-    TResult? Function(_SavePressed value)? savePressed,
-    TResult? Function(_NameChanged value)? nameChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_EditPressed value)? editPressed,
-    TResult Function(_EditCanceled value)? editCanceled,
-    TResult Function(_SavePressed value)? savePressed,
-    TResult Function(_NameChanged value)? nameChanged,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ClientDetailsEventCopyWith<ClientDetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -85,6 +60,10 @@ abstract class $ClientDetailsEventCopyWith<$Res> {
   factory $ClientDetailsEventCopyWith(
           ClientDetailsEvent value, $Res Function(ClientDetailsEvent) then) =
       _$ClientDetailsEventCopyWithImpl<$Res, ClientDetailsEvent>;
+  @useResult
+  $Res call({Client client});
+
+  $ClientCopyWith<$Res> get client;
 }
 
 /// @nodoc
@@ -96,16 +75,40 @@ class _$ClientDetailsEventCopyWithImpl<$Res, $Val extends ClientDetailsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? client = null,
+  }) {
+    return _then(_value.copyWith(
+      client: null == client
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
+              as Client,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientCopyWith<$Res> get client {
+    return $ClientCopyWith<$Res>(_value.client, (value) {
+      return _then(_value.copyWith(client: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_ClientLoadedCopyWith<$Res> {
+abstract class _$$_ClientLoadedCopyWith<$Res>
+    implements $ClientDetailsEventCopyWith<$Res> {
   factory _$$_ClientLoadedCopyWith(
           _$_ClientLoaded value, $Res Function(_$_ClientLoaded) then) =
       __$$_ClientLoadedCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({Client client});
 
+  @override
   $ClientCopyWith<$Res> get client;
 }
 
@@ -128,14 +131,6 @@ class __$$_ClientLoadedCopyWithImpl<$Res>
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ClientCopyWith<$Res> get client {
-    return $ClientCopyWith<$Res>(_value.client, (value) {
-      return _then(_value.copyWith(client: value));
-    });
   }
 }
 
@@ -173,11 +168,6 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Client client) clientLoaded,
-    required TResult Function() deletePressed,
-    required TResult Function() editPressed,
-    required TResult Function() editCanceled,
-    required TResult Function() savePressed,
-    required TResult Function(String name) nameChanged,
   }) {
     return clientLoaded(client);
   }
@@ -186,11 +176,6 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Client client)? clientLoaded,
-    TResult? Function()? deletePressed,
-    TResult? Function()? editPressed,
-    TResult? Function()? editCanceled,
-    TResult? Function()? savePressed,
-    TResult? Function(String name)? nameChanged,
   }) {
     return clientLoaded?.call(client);
   }
@@ -199,11 +184,6 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Client client)? clientLoaded,
-    TResult Function()? deletePressed,
-    TResult Function()? editPressed,
-    TResult Function()? editCanceled,
-    TResult Function()? savePressed,
-    TResult Function(String name)? nameChanged,
     required TResult orElse(),
   }) {
     if (clientLoaded != null) {
@@ -216,11 +196,6 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientLoaded value) clientLoaded,
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_EditPressed value) editPressed,
-    required TResult Function(_EditCanceled value) editCanceled,
-    required TResult Function(_SavePressed value) savePressed,
-    required TResult Function(_NameChanged value) nameChanged,
   }) {
     return clientLoaded(this);
   }
@@ -229,11 +204,6 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientLoaded value)? clientLoaded,
-    TResult? Function(_DeletePressed value)? deletePressed,
-    TResult? Function(_EditPressed value)? editPressed,
-    TResult? Function(_EditCanceled value)? editCanceled,
-    TResult? Function(_SavePressed value)? savePressed,
-    TResult? Function(_NameChanged value)? nameChanged,
   }) {
     return clientLoaded?.call(this);
   }
@@ -242,11 +212,6 @@ class _$_ClientLoaded implements _ClientLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientLoaded value)? clientLoaded,
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_EditPressed value)? editPressed,
-    TResult Function(_EditCanceled value)? editCanceled,
-    TResult Function(_SavePressed value)? savePressed,
-    TResult Function(_NameChanged value)? nameChanged,
     required TResult orElse(),
   }) {
     if (clientLoaded != null) {
@@ -259,678 +224,17 @@ class _$_ClientLoaded implements _ClientLoaded {
 abstract class _ClientLoaded implements ClientDetailsEvent {
   const factory _ClientLoaded({required final Client client}) = _$_ClientLoaded;
 
+  @override
   Client get client;
+  @override
   @JsonKey(ignore: true)
   _$$_ClientLoadedCopyWith<_$_ClientLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeletePressedCopyWith<$Res> {
-  factory _$$_DeletePressedCopyWith(
-          _$_DeletePressed value, $Res Function(_$_DeletePressed) then) =
-      __$$_DeletePressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_DeletePressedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_DeletePressed>
-    implements _$$_DeletePressedCopyWith<$Res> {
-  __$$_DeletePressedCopyWithImpl(
-      _$_DeletePressed _value, $Res Function(_$_DeletePressed) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_DeletePressed implements _DeletePressed {
-  const _$_DeletePressed();
-
-  @override
-  String toString() {
-    return 'ClientDetailsEvent.deletePressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DeletePressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Client client) clientLoaded,
-    required TResult Function() deletePressed,
-    required TResult Function() editPressed,
-    required TResult Function() editCanceled,
-    required TResult Function() savePressed,
-    required TResult Function(String name) nameChanged,
-  }) {
-    return deletePressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Client client)? clientLoaded,
-    TResult? Function()? deletePressed,
-    TResult? Function()? editPressed,
-    TResult? Function()? editCanceled,
-    TResult? Function()? savePressed,
-    TResult? Function(String name)? nameChanged,
-  }) {
-    return deletePressed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Client client)? clientLoaded,
-    TResult Function()? deletePressed,
-    TResult Function()? editPressed,
-    TResult Function()? editCanceled,
-    TResult Function()? savePressed,
-    TResult Function(String name)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (deletePressed != null) {
-      return deletePressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ClientLoaded value) clientLoaded,
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_EditPressed value) editPressed,
-    required TResult Function(_EditCanceled value) editCanceled,
-    required TResult Function(_SavePressed value) savePressed,
-    required TResult Function(_NameChanged value) nameChanged,
-  }) {
-    return deletePressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ClientLoaded value)? clientLoaded,
-    TResult? Function(_DeletePressed value)? deletePressed,
-    TResult? Function(_EditPressed value)? editPressed,
-    TResult? Function(_EditCanceled value)? editCanceled,
-    TResult? Function(_SavePressed value)? savePressed,
-    TResult? Function(_NameChanged value)? nameChanged,
-  }) {
-    return deletePressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ClientLoaded value)? clientLoaded,
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_EditPressed value)? editPressed,
-    TResult Function(_EditCanceled value)? editCanceled,
-    TResult Function(_SavePressed value)? savePressed,
-    TResult Function(_NameChanged value)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (deletePressed != null) {
-      return deletePressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DeletePressed implements ClientDetailsEvent {
-  const factory _DeletePressed() = _$_DeletePressed;
-}
-
-/// @nodoc
-abstract class _$$_EditPressedCopyWith<$Res> {
-  factory _$$_EditPressedCopyWith(
-          _$_EditPressed value, $Res Function(_$_EditPressed) then) =
-      __$$_EditPressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_EditPressedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_EditPressed>
-    implements _$$_EditPressedCopyWith<$Res> {
-  __$$_EditPressedCopyWithImpl(
-      _$_EditPressed _value, $Res Function(_$_EditPressed) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_EditPressed implements _EditPressed {
-  const _$_EditPressed();
-
-  @override
-  String toString() {
-    return 'ClientDetailsEvent.editPressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_EditPressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Client client) clientLoaded,
-    required TResult Function() deletePressed,
-    required TResult Function() editPressed,
-    required TResult Function() editCanceled,
-    required TResult Function() savePressed,
-    required TResult Function(String name) nameChanged,
-  }) {
-    return editPressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Client client)? clientLoaded,
-    TResult? Function()? deletePressed,
-    TResult? Function()? editPressed,
-    TResult? Function()? editCanceled,
-    TResult? Function()? savePressed,
-    TResult? Function(String name)? nameChanged,
-  }) {
-    return editPressed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Client client)? clientLoaded,
-    TResult Function()? deletePressed,
-    TResult Function()? editPressed,
-    TResult Function()? editCanceled,
-    TResult Function()? savePressed,
-    TResult Function(String name)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (editPressed != null) {
-      return editPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ClientLoaded value) clientLoaded,
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_EditPressed value) editPressed,
-    required TResult Function(_EditCanceled value) editCanceled,
-    required TResult Function(_SavePressed value) savePressed,
-    required TResult Function(_NameChanged value) nameChanged,
-  }) {
-    return editPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ClientLoaded value)? clientLoaded,
-    TResult? Function(_DeletePressed value)? deletePressed,
-    TResult? Function(_EditPressed value)? editPressed,
-    TResult? Function(_EditCanceled value)? editCanceled,
-    TResult? Function(_SavePressed value)? savePressed,
-    TResult? Function(_NameChanged value)? nameChanged,
-  }) {
-    return editPressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ClientLoaded value)? clientLoaded,
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_EditPressed value)? editPressed,
-    TResult Function(_EditCanceled value)? editCanceled,
-    TResult Function(_SavePressed value)? savePressed,
-    TResult Function(_NameChanged value)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (editPressed != null) {
-      return editPressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EditPressed implements ClientDetailsEvent {
-  const factory _EditPressed() = _$_EditPressed;
-}
-
-/// @nodoc
-abstract class _$$_EditCanceledCopyWith<$Res> {
-  factory _$$_EditCanceledCopyWith(
-          _$_EditCanceled value, $Res Function(_$_EditCanceled) then) =
-      __$$_EditCanceledCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_EditCanceledCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_EditCanceled>
-    implements _$$_EditCanceledCopyWith<$Res> {
-  __$$_EditCanceledCopyWithImpl(
-      _$_EditCanceled _value, $Res Function(_$_EditCanceled) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_EditCanceled implements _EditCanceled {
-  const _$_EditCanceled();
-
-  @override
-  String toString() {
-    return 'ClientDetailsEvent.editCanceled()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_EditCanceled);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Client client) clientLoaded,
-    required TResult Function() deletePressed,
-    required TResult Function() editPressed,
-    required TResult Function() editCanceled,
-    required TResult Function() savePressed,
-    required TResult Function(String name) nameChanged,
-  }) {
-    return editCanceled();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Client client)? clientLoaded,
-    TResult? Function()? deletePressed,
-    TResult? Function()? editPressed,
-    TResult? Function()? editCanceled,
-    TResult? Function()? savePressed,
-    TResult? Function(String name)? nameChanged,
-  }) {
-    return editCanceled?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Client client)? clientLoaded,
-    TResult Function()? deletePressed,
-    TResult Function()? editPressed,
-    TResult Function()? editCanceled,
-    TResult Function()? savePressed,
-    TResult Function(String name)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (editCanceled != null) {
-      return editCanceled();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ClientLoaded value) clientLoaded,
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_EditPressed value) editPressed,
-    required TResult Function(_EditCanceled value) editCanceled,
-    required TResult Function(_SavePressed value) savePressed,
-    required TResult Function(_NameChanged value) nameChanged,
-  }) {
-    return editCanceled(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ClientLoaded value)? clientLoaded,
-    TResult? Function(_DeletePressed value)? deletePressed,
-    TResult? Function(_EditPressed value)? editPressed,
-    TResult? Function(_EditCanceled value)? editCanceled,
-    TResult? Function(_SavePressed value)? savePressed,
-    TResult? Function(_NameChanged value)? nameChanged,
-  }) {
-    return editCanceled?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ClientLoaded value)? clientLoaded,
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_EditPressed value)? editPressed,
-    TResult Function(_EditCanceled value)? editCanceled,
-    TResult Function(_SavePressed value)? savePressed,
-    TResult Function(_NameChanged value)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (editCanceled != null) {
-      return editCanceled(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EditCanceled implements ClientDetailsEvent {
-  const factory _EditCanceled() = _$_EditCanceled;
-}
-
-/// @nodoc
-abstract class _$$_SavePressedCopyWith<$Res> {
-  factory _$$_SavePressedCopyWith(
-          _$_SavePressed value, $Res Function(_$_SavePressed) then) =
-      __$$_SavePressedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_SavePressedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_SavePressed>
-    implements _$$_SavePressedCopyWith<$Res> {
-  __$$_SavePressedCopyWithImpl(
-      _$_SavePressed _value, $Res Function(_$_SavePressed) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_SavePressed implements _SavePressed {
-  const _$_SavePressed();
-
-  @override
-  String toString() {
-    return 'ClientDetailsEvent.savePressed()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SavePressed);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Client client) clientLoaded,
-    required TResult Function() deletePressed,
-    required TResult Function() editPressed,
-    required TResult Function() editCanceled,
-    required TResult Function() savePressed,
-    required TResult Function(String name) nameChanged,
-  }) {
-    return savePressed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Client client)? clientLoaded,
-    TResult? Function()? deletePressed,
-    TResult? Function()? editPressed,
-    TResult? Function()? editCanceled,
-    TResult? Function()? savePressed,
-    TResult? Function(String name)? nameChanged,
-  }) {
-    return savePressed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Client client)? clientLoaded,
-    TResult Function()? deletePressed,
-    TResult Function()? editPressed,
-    TResult Function()? editCanceled,
-    TResult Function()? savePressed,
-    TResult Function(String name)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (savePressed != null) {
-      return savePressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ClientLoaded value) clientLoaded,
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_EditPressed value) editPressed,
-    required TResult Function(_EditCanceled value) editCanceled,
-    required TResult Function(_SavePressed value) savePressed,
-    required TResult Function(_NameChanged value) nameChanged,
-  }) {
-    return savePressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ClientLoaded value)? clientLoaded,
-    TResult? Function(_DeletePressed value)? deletePressed,
-    TResult? Function(_EditPressed value)? editPressed,
-    TResult? Function(_EditCanceled value)? editCanceled,
-    TResult? Function(_SavePressed value)? savePressed,
-    TResult? Function(_NameChanged value)? nameChanged,
-  }) {
-    return savePressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ClientLoaded value)? clientLoaded,
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_EditPressed value)? editPressed,
-    TResult Function(_EditCanceled value)? editCanceled,
-    TResult Function(_SavePressed value)? savePressed,
-    TResult Function(_NameChanged value)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (savePressed != null) {
-      return savePressed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SavePressed implements ClientDetailsEvent {
-  const factory _SavePressed() = _$_SavePressed;
-}
-
-/// @nodoc
-abstract class _$$_NameChangedCopyWith<$Res> {
-  factory _$$_NameChangedCopyWith(
-          _$_NameChanged value, $Res Function(_$_NameChanged) then) =
-      __$$_NameChangedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String name});
-}
-
-/// @nodoc
-class __$$_NameChangedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_NameChanged>
-    implements _$$_NameChangedCopyWith<$Res> {
-  __$$_NameChangedCopyWithImpl(
-      _$_NameChanged _value, $Res Function(_$_NameChanged) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_$_NameChanged(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_NameChanged implements _NameChanged {
-  const _$_NameChanged({required this.name});
-
-  @override
-  final String name;
-
-  @override
-  String toString() {
-    return 'ClientDetailsEvent.nameChanged(name: $name)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NameChanged &&
-            (identical(other.name, name) || other.name == name));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, name);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_NameChangedCopyWith<_$_NameChanged> get copyWith =>
-      __$$_NameChangedCopyWithImpl<_$_NameChanged>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Client client) clientLoaded,
-    required TResult Function() deletePressed,
-    required TResult Function() editPressed,
-    required TResult Function() editCanceled,
-    required TResult Function() savePressed,
-    required TResult Function(String name) nameChanged,
-  }) {
-    return nameChanged(name);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Client client)? clientLoaded,
-    TResult? Function()? deletePressed,
-    TResult? Function()? editPressed,
-    TResult? Function()? editCanceled,
-    TResult? Function()? savePressed,
-    TResult? Function(String name)? nameChanged,
-  }) {
-    return nameChanged?.call(name);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Client client)? clientLoaded,
-    TResult Function()? deletePressed,
-    TResult Function()? editPressed,
-    TResult Function()? editCanceled,
-    TResult Function()? savePressed,
-    TResult Function(String name)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (nameChanged != null) {
-      return nameChanged(name);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ClientLoaded value) clientLoaded,
-    required TResult Function(_DeletePressed value) deletePressed,
-    required TResult Function(_EditPressed value) editPressed,
-    required TResult Function(_EditCanceled value) editCanceled,
-    required TResult Function(_SavePressed value) savePressed,
-    required TResult Function(_NameChanged value) nameChanged,
-  }) {
-    return nameChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ClientLoaded value)? clientLoaded,
-    TResult? Function(_DeletePressed value)? deletePressed,
-    TResult? Function(_EditPressed value)? editPressed,
-    TResult? Function(_EditCanceled value)? editCanceled,
-    TResult? Function(_SavePressed value)? savePressed,
-    TResult? Function(_NameChanged value)? nameChanged,
-  }) {
-    return nameChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ClientLoaded value)? clientLoaded,
-    TResult Function(_DeletePressed value)? deletePressed,
-    TResult Function(_EditPressed value)? editPressed,
-    TResult Function(_EditCanceled value)? editCanceled,
-    TResult Function(_SavePressed value)? savePressed,
-    TResult Function(_NameChanged value)? nameChanged,
-    required TResult orElse(),
-  }) {
-    if (nameChanged != null) {
-      return nameChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NameChanged implements ClientDetailsEvent {
-  const factory _NameChanged({required final String name}) = _$_NameChanged;
-
-  String get name;
-  @JsonKey(ignore: true)
-  _$$_NameChangedCopyWith<_$_NameChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$ClientDetailsState {
   Client get client => throw _privateConstructorUsedError;
-  bool get isEditing => throw _privateConstructorUsedError;
-  SubmissionStatus get submissionStatus => throw _privateConstructorUsedError;
   ClientDetailsStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -944,14 +248,9 @@ abstract class $ClientDetailsStateCopyWith<$Res> {
           ClientDetailsState value, $Res Function(ClientDetailsState) then) =
       _$ClientDetailsStateCopyWithImpl<$Res, ClientDetailsState>;
   @useResult
-  $Res call(
-      {Client client,
-      bool isEditing,
-      SubmissionStatus submissionStatus,
-      ClientDetailsStatus status});
+  $Res call({Client client, ClientDetailsStatus status});
 
   $ClientCopyWith<$Res> get client;
-  $SubmissionStatusCopyWith<$Res> get submissionStatus;
   $ClientDetailsStatusCopyWith<$Res> get status;
 }
 
@@ -969,8 +268,6 @@ class _$ClientDetailsStateCopyWithImpl<$Res, $Val extends ClientDetailsState>
   @override
   $Res call({
     Object? client = null,
-    Object? isEditing = null,
-    Object? submissionStatus = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
@@ -978,14 +275,6 @@ class _$ClientDetailsStateCopyWithImpl<$Res, $Val extends ClientDetailsState>
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
-      isEditing: null == isEditing
-          ? _value.isEditing
-          : isEditing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      submissionStatus: null == submissionStatus
-          ? _value.submissionStatus
-          : submissionStatus // ignore: cast_nullable_to_non_nullable
-              as SubmissionStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -998,14 +287,6 @@ class _$ClientDetailsStateCopyWithImpl<$Res, $Val extends ClientDetailsState>
   $ClientCopyWith<$Res> get client {
     return $ClientCopyWith<$Res>(_value.client, (value) {
       return _then(_value.copyWith(client: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SubmissionStatusCopyWith<$Res> get submissionStatus {
-    return $SubmissionStatusCopyWith<$Res>(_value.submissionStatus, (value) {
-      return _then(_value.copyWith(submissionStatus: value) as $Val);
     });
   }
 
@@ -1026,16 +307,10 @@ abstract class _$$_ClientDetailsStateCopyWith<$Res>
       __$$_ClientDetailsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Client client,
-      bool isEditing,
-      SubmissionStatus submissionStatus,
-      ClientDetailsStatus status});
+  $Res call({Client client, ClientDetailsStatus status});
 
   @override
   $ClientCopyWith<$Res> get client;
-  @override
-  $SubmissionStatusCopyWith<$Res> get submissionStatus;
   @override
   $ClientDetailsStatusCopyWith<$Res> get status;
 }
@@ -1052,8 +327,6 @@ class __$$_ClientDetailsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? client = null,
-    Object? isEditing = null,
-    Object? submissionStatus = null,
     Object? status = null,
   }) {
     return _then(_$_ClientDetailsState(
@@ -1061,14 +334,6 @@ class __$$_ClientDetailsStateCopyWithImpl<$Res>
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
               as Client,
-      isEditing: null == isEditing
-          ? _value.isEditing
-          : isEditing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      submissionStatus: null == submissionStatus
-          ? _value.submissionStatus
-          : submissionStatus // ignore: cast_nullable_to_non_nullable
-              as SubmissionStatus,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -1080,24 +345,16 @@ class __$$_ClientDetailsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ClientDetailsState implements _ClientDetailsState {
-  const _$_ClientDetailsState(
-      {required this.client,
-      required this.isEditing,
-      required this.submissionStatus,
-      required this.status});
+  const _$_ClientDetailsState({required this.client, required this.status});
 
   @override
   final Client client;
-  @override
-  final bool isEditing;
-  @override
-  final SubmissionStatus submissionStatus;
   @override
   final ClientDetailsStatus status;
 
   @override
   String toString() {
-    return 'ClientDetailsState(client: $client, isEditing: $isEditing, submissionStatus: $submissionStatus, status: $status)';
+    return 'ClientDetailsState(client: $client, status: $status)';
   }
 
   @override
@@ -1106,16 +363,11 @@ class _$_ClientDetailsState implements _ClientDetailsState {
         (other.runtimeType == runtimeType &&
             other is _$_ClientDetailsState &&
             (identical(other.client, client) || other.client == client) &&
-            (identical(other.isEditing, isEditing) ||
-                other.isEditing == isEditing) &&
-            (identical(other.submissionStatus, submissionStatus) ||
-                other.submissionStatus == submissionStatus) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, client, isEditing, submissionStatus, status);
+  int get hashCode => Object.hash(runtimeType, client, status);
 
   @JsonKey(ignore: true)
   @override
@@ -1128,16 +380,10 @@ class _$_ClientDetailsState implements _ClientDetailsState {
 abstract class _ClientDetailsState implements ClientDetailsState {
   const factory _ClientDetailsState(
       {required final Client client,
-      required final bool isEditing,
-      required final SubmissionStatus submissionStatus,
       required final ClientDetailsStatus status}) = _$_ClientDetailsState;
 
   @override
   Client get client;
-  @override
-  bool get isEditing;
-  @override
-  SubmissionStatus get submissionStatus;
   @override
   ClientDetailsStatus get status;
   @override
