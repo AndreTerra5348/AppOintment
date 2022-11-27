@@ -27,6 +27,7 @@ class SubmissionFailure with _$SubmissionFailure {
   const factory SubmissionFailure.repository(
       {required RepositoryFailure failure}) = _Repository;
   const factory SubmissionFailure.invalidFields() = _InvalidFields;
+  const factory SubmissionFailure.notFound() = _NotFound;
 }
 
 mixin FormMixin {
