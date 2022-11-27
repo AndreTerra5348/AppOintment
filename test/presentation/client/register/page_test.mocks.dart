@@ -94,4 +94,20 @@ class MockClientRepository extends _i1.Mock implements _i3.ClientRepository {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, _i6.Client>>);
+  @override
+  _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>> delete(_i7.Uid? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [id],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>.value(
+            _FakeEither_0<_i5.RepositoryFailure, bool>(
+          this,
+          Invocation.method(
+            #delete,
+            [id],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>);
 }

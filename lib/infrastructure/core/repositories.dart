@@ -45,4 +45,13 @@ abstract class BaseRepository<
       return Left(RepositoryFailure.dbException(error: error));
     }
   }
+
+  @override
+  Future<Either<RepositoryFailure, bool>> delete(Uid id) async {
+    try {
+      return Right(await _dao.remove(id));
+    } catch (error) {
+      return Left(RepositoryFailure.dbException(error: error));
+    }
+  }
 }

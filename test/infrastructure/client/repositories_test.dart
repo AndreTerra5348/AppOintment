@@ -20,7 +20,7 @@ import 'repositories_test.mocks.dart';
 void main() {
   group("Client Repository", () {
     test(
-        "Should call [ClientDao] insert only once "
+        "Should call [Dao] insert only once "
         "when insert is called", () async {
       // Arrange
       final clientDao = MockClientDao();
@@ -36,7 +36,7 @@ void main() {
     });
 
     test(
-        "Should call [ClientDao] insert with clientModelsCompanion"
+        "Should call [Dao] insert with clientModelsCompanion"
         "when insert is called", () async {
       // Arrange
       final clientDao = MockClientDao();
@@ -77,7 +77,7 @@ void main() {
     test(
         "Should return RepositoryFailure "
         "when insert is called "
-        "and [ClientDao] throws exception", () async {
+        "and [Dao] throws exception", () async {
       // Arrange
       final client = Client.withoutUid(name: Name("Bob"));
       final clientDao = MockClientDao();
@@ -95,7 +95,7 @@ void main() {
     });
 
     test(
-        "Should call [ClientDao] updateById only once "
+        "Should call [Dao] updateById only once "
         "when update is called", () async {
       // Arrange
       final clientDao = MockClientDao();
@@ -112,7 +112,7 @@ void main() {
     });
 
     test(
-        "Should call [ClientDao] updateById with clientModelsCompanion"
+        "Should call [Dao] updateById with clientModelsCompanion"
         "when update is called", () async {
       // Arrange
       final clientDao = MockClientDao();
@@ -132,7 +132,7 @@ void main() {
     test(
         "Should return [RepositoryFailure] "
         "when updateById is called "
-        "and [ClientDao] throws exception", () async {
+        "and [Dao] throws exception", () async {
       // Arrange
       final client = Client.withoutUid(name: Name("Bob"));
       final clientDao = MockClientDao();
@@ -150,9 +150,9 @@ void main() {
     });
 
     test(
-        "Should call [ClientDao] getById only once "
+        "Should call [Dao] getById only once "
         "when getById is called "
-        "and [ClientDao] returns client", () async {
+        "and [Dao] returns client", () async {
       // Arrange
       final uid = Uid.fromInt(1);
 
@@ -176,10 +176,64 @@ void main() {
       expect(actual.value.name, Name(model.name));
       verify(clientDao.getById(uid)).called(1);
     });
-  });
-}
 
-extension Test on Either {
-  T left<T>() => (this as Left).value;
-  T right<T>() => (this as Right).value;
+    test(
+        "Should return [RepositoryFailure] "
+        "when getById is called "
+        "and [Dao] throws exception", () async {
+      // Arrange
+      final uid = Uid.fromInt(1);
+      final clientDao = MockClientDao();
+      when(clientDao.getById(any)).thenThrow(Exception("Mocked Exception"));
+
+      final sut = ClientRepository(clientDao, ClientConveter());
+
+      // Act
+      final actual = await sut.getById(uid);
+
+      // Assert
+      expect(actual, isA<Left<RepositoryFailure, Client>>());
+      expect((actual as Left<RepositoryFailure, Client>).value,
+          isA<RepositoryFailure>());
+    });
+
+    test(
+        "Should call [Dao] remove only once "
+        "when delete is called", () async {
+      // Arrange
+      final clientDao = MockClientDao();
+      final uid = Uid.fromInt(1);
+      when(clientDao.remove(any)).thenAnswer(
+        (_) => Future.value(true),
+      );
+
+      final sut = ClientRepository(clientDao, ClientConveter());
+
+      // Act
+      await sut.delete(uid);
+
+      // Assert
+      verify(clientDao.remove(uid)).called(1);
+    });
+
+    test(
+        "Should return [RepositoryFailure] "
+        "when delete is called "
+        "and [Dao] throws exception", () async {
+      // Arrange
+      final uid = Uid.fromInt(1);
+      final clientDao = MockClientDao();
+      when(clientDao.remove(any)).thenThrow(Exception("Mocked Exception"));
+
+      final sut = ClientRepository(clientDao, ClientConveter());
+
+      // Act
+      final actual = await sut.delete(uid);
+
+      // Assert
+      expect(actual, isA<Left<RepositoryFailure, bool>>());
+      expect((actual as Left<RepositoryFailure, bool>).value,
+          isA<RepositoryFailure>());
+    });
+  });
 }

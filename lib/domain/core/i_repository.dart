@@ -9,6 +9,7 @@ abstract class IRepository<T extends EntityMixin> {
   Future<Either<RepositoryFailure, T>> insert(T entity);
   Future<Either<RepositoryFailure, bool>> update(T entity);
   Future<Either<RepositoryFailure, T>> getById(Uid id);
+  Future<Either<RepositoryFailure, bool>> delete(Uid id);
 }
 
 @freezed
