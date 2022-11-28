@@ -60,7 +60,7 @@ void main() {
         "Then [State.isEditing] should be true",
         build: () => ClientDetailsEditBloc(MockClientRepository()),
         act: (bloc) =>
-            bloc.add(ClientDetailsEditEvent.started(client: johnClient)),
+            bloc.add(ClientDetailsEditEvent.editPressed(client: johnClient)),
         expect: () => [johnClientEditingState],
       );
 
@@ -70,7 +70,7 @@ void main() {
         "Then [State.client] should be valid",
         build: () => ClientDetailsEditBloc(MockClientRepository()),
         act: (bloc) =>
-            bloc.add(ClientDetailsEditEvent.started(client: johnClient)),
+            bloc.add(ClientDetailsEditEvent.editPressed(client: johnClient)),
         verify: (bloc) {
           expect(bloc.state.client.isValid, isTrue);
         },
@@ -82,7 +82,7 @@ void main() {
         "Then [State.client] should be [client]",
         build: () => ClientDetailsEditBloc(MockClientRepository()),
         act: (bloc) =>
-            bloc.add(ClientDetailsEditEvent.started(client: johnClient)),
+            bloc.add(ClientDetailsEditEvent.editPressed(client: johnClient)),
         expect: () => [
           johnClientEditingState,
         ],
@@ -94,7 +94,7 @@ void main() {
         "Then [ClientDetailsEditBloc] should throw [CriticalError]",
         build: () => ClientDetailsEditBloc(MockClientRepository()),
         act: (bloc) => bloc.add(
-          ClientDetailsEditEvent.started(
+          ClientDetailsEditEvent.editPressed(
             client: johnClient.copyWith(
               name: Name(''),
             ),
@@ -128,7 +128,7 @@ void main() {
         },
         build: () => ClientDetailsEditBloc(repository),
         seed: () => johnClientEditingState,
-        act: (bloc) => bloc.add(const ClientDetailsEditEvent.editCanceled()),
+        act: (bloc) => bloc.add(const ClientDetailsEditEvent.cancelPressed()),
         expect: () => [
           johnClientEditingState.asInProgress,
           johnClientEditingState.copyWith(
@@ -149,7 +149,7 @@ void main() {
         },
         build: () => ClientDetailsEditBloc(repository),
         seed: () => johnClientEditingState,
-        act: (bloc) => bloc.add(const ClientDetailsEditEvent.editCanceled()),
+        act: (bloc) => bloc.add(const ClientDetailsEditEvent.cancelPressed()),
         verify: (_) {
           verify(repository.getById(any)).called(1);
         },
@@ -168,7 +168,7 @@ void main() {
         },
         build: () => ClientDetailsEditBloc(repository),
         seed: () => invalidEditingState,
-        act: (bloc) => bloc.add(const ClientDetailsEditEvent.editCanceled()),
+        act: (bloc) => bloc.add(const ClientDetailsEditEvent.cancelPressed()),
         expect: () => [
           invalidEditingState.asInProgress,
           invalidEditingState.copyWith(
@@ -196,7 +196,7 @@ void main() {
         seed: () => johnClientEditingState.copyWith(
           client: johnClient.copyWith(name: Name('Bob')),
         ),
-        act: (bloc) => bloc.add(const ClientDetailsEditEvent.editCanceled()),
+        act: (bloc) => bloc.add(const ClientDetailsEditEvent.cancelPressed()),
         skip: 1,
         expect: () => [johnClientEditingState.copyWith(isEditing: false)],
       );
