@@ -17,14 +17,14 @@ class ClientDetailsEditBloc
   final IRepository<Client> _clientRepository;
   ClientDetailsEditBloc(this._clientRepository)
       : super(ClientDetailsEditState.initial()) {
-    on<_Started>(_onStarted);
-    on<_Canceled>(_onCanceled);
+    on<_EditPressed>(_onEditPressed);
+    on<_CancelPressed>(_onCancelPressed);
     on<_SavePressed>(_onSavePressed);
     on<_NameChanged>(_onNameChanged);
   }
 
-  FutureOr<void> _onStarted(
-      _Started event, Emitter<ClientDetailsEditState> emit) {
+  FutureOr<void> _onEditPressed(
+      _EditPressed event, Emitter<ClientDetailsEditState> emit) {
     event.client.validity.fold(
       () => throw CriticalError('Invalid client'),
       (client) => emit(
@@ -56,20 +56,8 @@ class ClientDetailsEditBloc
     );
   }
 
-  FutureOr<void> _onNameChanged(
-      _NameChanged event, Emitter<ClientDetailsEditState> emit) {
-    emit(
-      state.copyWith(
-        submissionStatus: const SubmissionStatus.initial(),
-        client: state.client.copyWith(
-          name: Name(event.name),
-        ),
-      ),
-    );
-  }
-
-  FutureOr<void> _onCanceled(
-      _Canceled event, Emitter<ClientDetailsEditState> emit) async {
+  FutureOr<void> _onCancelPressed(
+      _CancelPressed event, Emitter<ClientDetailsEditState> emit) async {
     emit(state.asInProgress);
 
     final result = await _clientRepository.getById(state.client.id);
@@ -81,6 +69,18 @@ class ClientDetailsEditBloc
           submissionStatus: const SubmissionStatus.initial(),
           isEditing: false,
           client: client,
+        ),
+      ),
+    );
+  }
+
+  FutureOr<void> _onNameChanged(
+      _NameChanged event, Emitter<ClientDetailsEditState> emit) {
+    emit(
+      state.copyWith(
+        submissionStatus: const SubmissionStatus.initial(),
+        client: state.client.copyWith(
+          name: Name(event.name),
         ),
       ),
     );
