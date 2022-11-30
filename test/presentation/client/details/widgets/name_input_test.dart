@@ -6,13 +6,12 @@ import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/details/widgets/name_input.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 import 'name_input_test.mocks.dart';
+import 'page_mock.dart';
 
 @GenerateMocks(
     [ClientDetailsBloc, ClientDetailsEditBloc, ClientDetailsDeleteBloc])
@@ -51,6 +50,7 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
+          child: const NameInputWidget(),
         ),
       );
       // act
@@ -68,6 +68,7 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
+          child: const NameInputWidget(),
         ),
       );
       // act
@@ -87,6 +88,7 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
+          child: const NameInputWidget(),
         ),
       );
       // act
@@ -104,6 +106,7 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
+          child: const NameInputWidget(),
         ),
       );
       // act
@@ -125,6 +128,7 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
+          child: const NameInputWidget(),
         ),
       );
       // act
@@ -134,45 +138,4 @@ void main() {
       expect(nameInputWidget.enabled, isTrue);
     });
   });
-}
-
-class MockClientDetailPage extends StatelessWidget {
-  final ClientDetailsBloc clientDetailsBloc;
-  final ClientDetailsDeleteBloc clientDetailsDeleteBloc;
-  final ClientDetailsEditBloc clientDetailsEditBloc;
-  final Client client;
-  const MockClientDetailPage(
-      {super.key,
-      required this.client,
-      required this.clientDetailsBloc,
-      required this.clientDetailsDeleteBloc,
-      required this.clientDetailsEditBloc});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      locale: const Locale('en'),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => clientDetailsBloc
-                ..add(
-                  ClientDetailsEvent.clientLoaded(client: client),
-                ),
-            ),
-            BlocProvider(
-              create: (context) => clientDetailsDeleteBloc,
-            ),
-            BlocProvider(
-              create: (context) => clientDetailsEditBloc,
-            ),
-          ],
-          child: const NameInputWidget(),
-        ),
-      ),
-    );
-  }
 }
