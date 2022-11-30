@@ -1,4 +1,3 @@
-import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:drift/drift.dart';
 

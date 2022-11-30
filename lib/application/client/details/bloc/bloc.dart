@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:appointment/application/client/details/status.dart';
-import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/error.dart';
