@@ -1,19 +1,27 @@
 {
-    "@_CLIENT_REGISTER_PAGE": {},
-    "pageClientRegisterTitle": "Client Registration",
-    "nameTextFormField": "Name",
-    "registrationCompleted": "Registration Completed",
+    "@_FAILURES": {},
     "emptyNameFailure": "Name cannot be empty",
     "invalidFieldsFailure": "Invalid Fields",
     "databaseFailure": "Database error: {error}",
     "@databaseFailure": {
-        "placeholders": {
-            "error": {}
-        }
-    },
+            "placeholders": {
+                "error": {}
+            }
+        },
+    "notFoundFailure": "Not found",
+
+    "@_FORMS": {},
+    "nameTextFormField": "Name",
+
+    "@_COMMON": {},
+    "noResultsFound": "No results found",
+
+
+    "@_CLIENT_REGISTER_PAGE": {},
+    "pageClientRegisterTitle": "Client Registration",
+    "registrationCompleted": "Registration Completed",
 
     "@_CLIENT_SEARCH_PAGE": {},
     "pageClientSearchTitle": "Client Search",
-    "searchTextFormFieldHint": "Search",
-    "searchNoResultsFound": "No results found"    
+    "searchTextFormFieldHint": "Search"
 }

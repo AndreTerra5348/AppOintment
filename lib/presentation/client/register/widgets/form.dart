@@ -99,15 +99,12 @@ extension SubmissionFailureExtension on SubmissionFailure {
   String toErrorText(BuildContext context) {
     return map(
       repository: (value) => context.tr.databaseFailure(
-        value.failure.maybeMap(
-          // TODO: add context.tr.unknownFailure to arb file
-          orElse: () => "context.tr.unknownFailure",
+        value.failure.map(
           dbException: (value) => value.error.toString(),
         ),
       ),
       invalidFields: (value) => context.tr.invalidFieldsFailure,
-      // TODO: add context.tr.notFoundFailure to arb file
-      notFound: (value) => "context.tr.notFoundFailure",
+      notFound: (value) => context.tr.notFoundFailure,
     );
   }
 }

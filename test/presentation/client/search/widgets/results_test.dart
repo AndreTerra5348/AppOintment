@@ -77,8 +77,7 @@ void main() {
 
       // Act
       // Assert
-      expect(
-          find.text(AppLocalizationsEn().searchNoResultsFound), findsOneWidget);
+      expect(find.text(AppLocalizationsEn().noResultsFound), findsOneWidget);
     });
 
     testWidgets(

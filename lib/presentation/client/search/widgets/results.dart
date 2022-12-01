@@ -36,8 +36,7 @@ class _ClientSearchResultsWidgetState extends State<ClientSearchResultsWidget>
           builder: (context, state) {
             return state.status.map(
               loading: (_) => const Center(child: CircularProgressIndicator()),
-              empty: (_) =>
-                  Center(child: Text(context.tr.searchNoResultsFound)),
+              empty: (_) => Center(child: Text(context.tr.noResultsFound)),
               success: (_) => ListView.builder(
                 itemCount: state.clients.length,
                 itemBuilder: (context, index) {
