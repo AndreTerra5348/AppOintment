@@ -42,22 +42,6 @@ void main() {
       when(mockClientDetailsDeleteBloc.stream)
           .thenAnswer((_) => const Stream.empty());
     });
-    testWidgets("renders a TextFormField", (WidgetTester tester) async {
-      // arrange
-      await tester.pumpWidget(
-        MockClientDetailPage(
-          client: client,
-          clientDetailsBloc: mockClientDetailsBloc,
-          clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
-          clientDetailsEditBloc: mockClientDetailsEditBloc,
-          child: const NameInputWidget(),
-        ),
-      );
-      // act
-      final nameInputFinder = find.byType(TextFormField);
-      // assert
-      expect(nameInputFinder, findsOneWidget);
-    });
 
     testWidgets("renders a TextFormField with initial value",
         (WidgetTester tester) async {
@@ -68,7 +52,9 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
-          child: const NameInputWidget(),
+          child: NameInputWidget(
+            isEditing: mockClientDetailsEditBloc.state.isEditing,
+          ),
         ),
       );
       // act
@@ -79,7 +65,7 @@ void main() {
       expect(nameInputWidget.initialValue, client.name.getOrThrow());
     });
 
-    testWidgets("renders a TextFormField with correct label",
+    testWidgets("renders a TextFormField with name label",
         (WidgetTester tester) async {
       // arrange
       await tester.pumpWidget(
@@ -88,7 +74,9 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
-          child: const NameInputWidget(),
+          child: NameInputWidget(
+            isEditing: mockClientDetailsEditBloc.state.isEditing,
+          ),
         ),
       );
       // act
@@ -97,8 +85,8 @@ void main() {
     });
 
     testWidgets(
-        "Given initial state, "
-        "renders a TextFormField with enable equal to false",
+        "renders a TextFormField with enable equal to false "
+        "When isEditing final field is set to false",
         (WidgetTester tester) async {
       // arrange
       await tester.pumpWidget(
@@ -107,7 +95,7 @@ void main() {
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
-          child: const NameInputWidget(),
+          child: const NameInputWidget(isEditing: false),
         ),
       );
       // act
@@ -118,18 +106,17 @@ void main() {
     });
 
     testWidgets(
-        "Given [ClientDetailsEditState.isEditing] true, "
-        "renders a TextFormField with enabled", (WidgetTester tester) async {
+        "renders a TextFormField with enable equal to true "
+        "When isEditing final field is set to true ",
+        (WidgetTester tester) async {
       // arrange
-      when(mockClientDetailsEditBloc.state).thenReturn(
-          ClientDetailsEditState.initial().copyWith(isEditing: true));
       await tester.pumpWidget(
         MockClientDetailPage(
           client: client,
           clientDetailsBloc: mockClientDetailsBloc,
           clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
           clientDetailsEditBloc: mockClientDetailsEditBloc,
-          child: const NameInputWidget(),
+          child: const NameInputWidget(isEditing: true),
         ),
       );
       // act
