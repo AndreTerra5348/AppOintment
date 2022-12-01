@@ -98,7 +98,8 @@ void main() {
 
     testWidgets(
         "Given initial state, "
-        "renders a TextFormField with disabled", (WidgetTester tester) async {
+        "renders a TextFormField with enable equal to false",
+        (WidgetTester tester) async {
       // arrange
       await tester.pumpWidget(
         MockClientDetailPage(
