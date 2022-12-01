@@ -23,7 +23,7 @@ class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
       (client) => emit(
         state.copyWith(
           client: event.client,
-          status: const ClientDetailsStatus.ready(),
+          status: const ClientDetailsStatus.loaded(),
         ),
       ),
     );

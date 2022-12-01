@@ -5,5 +5,5 @@ part 'status.freezed.dart';
 @freezed
 class ClientDetailsStatus with _$ClientDetailsStatus {
   const factory ClientDetailsStatus.loading() = _Loading;
-  const factory ClientDetailsStatus.ready() = _Ready;
+  const factory ClientDetailsStatus.loaded() = _Loaded;
 }

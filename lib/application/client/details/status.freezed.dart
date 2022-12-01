@@ -19,38 +19,38 @@ mixin _$ClientDetailsStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() ready,
+    required TResult Function() loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? ready,
+    TResult? Function()? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? ready,
+    TResult Function()? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,7 +112,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() ready,
+    required TResult Function() loaded,
   }) {
     return loading();
   }
@@ -121,7 +121,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? ready,
+    TResult? Function()? loaded,
   }) {
     return loading?.call();
   }
@@ -130,7 +130,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? ready,
+    TResult Function()? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -143,7 +143,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return loading(this);
   }
@@ -152,7 +152,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -161,7 +161,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -176,33 +176,33 @@ abstract class _Loading implements ClientDetailsStatus {
 }
 
 /// @nodoc
-abstract class _$$_ReadyCopyWith<$Res> {
-  factory _$$_ReadyCopyWith(_$_Ready value, $Res Function(_$_Ready) then) =
-      __$$_ReadyCopyWithImpl<$Res>;
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ReadyCopyWithImpl<$Res>
-    extends _$ClientDetailsStatusCopyWithImpl<$Res, _$_Ready>
-    implements _$$_ReadyCopyWith<$Res> {
-  __$$_ReadyCopyWithImpl(_$_Ready _value, $Res Function(_$_Ready) _then)
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$ClientDetailsStatusCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Ready implements _Ready {
-  const _$_Ready();
+class _$_Loaded implements _Loaded {
+  const _$_Loaded();
 
   @override
   String toString() {
-    return 'ClientDetailsStatus.ready()';
+    return 'ClientDetailsStatus.loaded()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Ready);
+        (other.runtimeType == runtimeType && other is _$_Loaded);
   }
 
   @override
@@ -212,29 +212,29 @@ class _$_Ready implements _Ready {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() ready,
+    required TResult Function() loaded,
   }) {
-    return ready();
+    return loaded();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? ready,
+    TResult? Function()? loaded,
   }) {
-    return ready?.call();
+    return loaded?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? ready,
+    TResult Function()? loaded,
     required TResult orElse(),
   }) {
-    if (ready != null) {
-      return ready();
+    if (loaded != null) {
+      return loaded();
     }
     return orElse();
   }
@@ -243,34 +243,34 @@ class _$_Ready implements _Ready {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Ready value) ready,
+    required TResult Function(_Loaded value) loaded,
   }) {
-    return ready(this);
+    return loaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Ready value)? ready,
+    TResult? Function(_Loaded value)? loaded,
   }) {
-    return ready?.call(this);
+    return loaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Ready value)? ready,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
-    if (ready != null) {
-      return ready(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _Ready implements ClientDetailsStatus {
-  const factory _Ready() = _$_Ready;
+abstract class _Loaded implements ClientDetailsStatus {
+  const factory _Loaded() = _$_Loaded;
 }

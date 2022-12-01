@@ -46,7 +46,7 @@ void main() {
         expect: () => [
           ClientDetailsState.initial().copyWith(
             client: johnClient,
-            status: const ClientDetailsStatus.ready(),
+            status: const ClientDetailsStatus.loaded(),
           ),
         ],
       );
