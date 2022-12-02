@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/application/client/register/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
+import 'package:appointment/presentation/common/build_context_extensions.dart';
+import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -92,19 +93,5 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   void dispose() {
     super.dispose();
     _timer?.cancel();
-  }
-}
-
-extension SubmissionFailureExtension on SubmissionFailure {
-  String toErrorText(BuildContext context) {
-    return map(
-      repository: (value) => context.tr.databaseFailure(
-        value.failure.map(
-          dbException: (value) => value.error.toString(),
-        ),
-      ),
-      invalidFields: (value) => context.tr.invalidFieldsFailure,
-      notFound: (value) => context.tr.notFoundFailure,
-    );
   }
 }
