@@ -45,9 +45,9 @@ class ClientRegisterBloc
         await _repository.insert(Client.withoutUid(name: state.name));
 
     result.fold(
-      (l) => emit(state.copyWithFailure(
-          failure: SubmissionFailure.repository(failure: l))),
-      (r) => emit(ClientRegisterState.success()),
+      (failure) => emit(state.copyWithFailure(
+          failure: SubmissionFailure.repository(failure: failure))),
+      (_) => emit(ClientRegisterState.success()),
     );
   }
 }
