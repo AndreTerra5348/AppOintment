@@ -27,7 +27,3 @@ class AppOintment extends StatelessWidget {
     // );
   }
 }
-
-extension LocalizedBuildContext on BuildContext {
-  AppLocalizations get tr => AppLocalizations.of(this);
-}
