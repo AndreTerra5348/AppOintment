@@ -11,7 +11,10 @@ class AppOintment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ClientRegisterPage(bloc: getIt()),
+      home: ClientRegisterPage(
+        registerBloc: getIt(),
+        clientBloc: getIt(),
+      ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
     );

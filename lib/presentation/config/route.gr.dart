@@ -14,8 +14,10 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 
-import '../../application/client/register/bloc/bloc.dart' as _i6;
+import '../../application/client/bloc/bloc.dart' as _i8;
 import '../../application/client/search/bloc/bloc.dart' as _i5;
+import '../../application/register/bloc/bloc.dart' as _i6;
+import '../../domain/client/entity.dart' as _i7;
 import '../client/register/page.dart' as _i2;
 import '../client/search/page.dart' as _i1;
 
@@ -41,7 +43,8 @@ class AppRouter extends _i3.RootStackRouter {
         routeData: routeData,
         child: _i2.ClientRegisterPage(
           key: args.key,
-          bloc: args.bloc,
+          registerBloc: args.registerBloc,
+          clientBloc: args.clientBloc,
         ),
       );
     },
@@ -101,13 +104,15 @@ class ClientRegisterPageRoute
     extends _i3.PageRouteInfo<ClientRegisterPageRouteArgs> {
   ClientRegisterPageRoute({
     _i4.Key? key,
-    required _i6.ClientRegisterBloc bloc,
+    required _i6.RegisterBloc<_i7.Client> registerBloc,
+    required _i8.ClientBloc clientBloc,
   }) : super(
           ClientRegisterPageRoute.name,
           path: '/client-register-page',
           args: ClientRegisterPageRouteArgs(
             key: key,
-            bloc: bloc,
+            registerBloc: registerBloc,
+            clientBloc: clientBloc,
           ),
         );
 
@@ -117,15 +122,18 @@ class ClientRegisterPageRoute
 class ClientRegisterPageRouteArgs {
   const ClientRegisterPageRouteArgs({
     this.key,
-    required this.bloc,
+    required this.registerBloc,
+    required this.clientBloc,
   });
 
   final _i4.Key? key;
 
-  final _i6.ClientRegisterBloc bloc;
+  final _i6.RegisterBloc<_i7.Client> registerBloc;
+
+  final _i8.ClientBloc clientBloc;
 
   @override
   String toString() {
-    return 'ClientRegisterPageRouteArgs{key: $key, bloc: $bloc}';
+    return 'ClientRegisterPageRouteArgs{key: $key, registerBloc: $registerBloc, clientBloc: $clientBloc}';
   }
 }

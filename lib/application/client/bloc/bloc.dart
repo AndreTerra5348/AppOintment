@@ -2,11 +2,13 @@ import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
+@injectable
 class ClientBloc extends Bloc<ClientEvent, ClientState> {
   ClientBloc() : super(ClientState.initial()) {
     on<_Loaded>((event, emit) {

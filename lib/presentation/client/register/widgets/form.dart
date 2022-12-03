@@ -1,7 +1,9 @@
 import 'dart:async';
 
-import 'package:appointment/application/client/register/bloc/bloc.dart';
+import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
+import 'package:appointment/application/register/bloc/bloc.dart';
+import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
@@ -22,42 +24,50 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ClientRegisterBloc, ClientRegisterState>(
-      listenWhen: (previous, current) =>
-          current.submissionStatus.isFailure ||
-          current.submissionStatus.isSuccess,
-      listener: (context, state) {
-        state.submissionStatus.maybeMap(
+    return BlocConsumer<RegisterBloc<Client>, RegisterState>(
+      listenWhen: (previous, current) => current.isFailure || current.isSuccess,
+      listener: (context, registerState) {
+        registerState.maybeMap(
           orElse: () {},
           success: (_) => _handleSuccess(context),
-          failure: (failureStatus) =>
-              _handleFailure(context, failureStatus.failure),
+          failure: (failureStatus) => _handleFailure(
+            context,
+            failureStatus.failure,
+          ),
         );
-        _timer =
-            Timer(const Duration(seconds: 1), () => Navigator.pop(context));
+        _timer = Timer(
+          const Duration(seconds: 1),
+          () => Navigator.pop(
+            context,
+          ),
+        );
       },
-      builder: (context, state) {
+      builder: (context, registerState) {
         return Form(
           key: _formKey,
-          autovalidateMode: state.submissionStatus.isFailure
+          autovalidateMode: registerState.isFailure
               ? AutovalidateMode.always
               : AutovalidateMode.onUserInteraction,
-          child: Stack(
-            children: [
-              Column(
+          child: BlocBuilder<ClientBloc, ClientState>(
+            builder: (context, clientState) {
+              return Stack(
                 children: [
-                  const NameInputWidget(),
-                  ElevatedButton(
-                    onPressed: () => context
-                        .read<ClientRegisterBloc>()
-                        .add(const ClientRegisterEvent.submitted()),
-                    child: const Icon(Icons.add_circle),
-                  )
+                  Column(
+                    children: [
+                      const NameInputWidget(),
+                      ElevatedButton(
+                        onPressed: () => context.submitted(
+                          client: clientState.client,
+                        ),
+                        child: const Icon(Icons.add_circle),
+                      )
+                    ],
+                  ),
+                  if (registerState.isInProgress)
+                    const CircularProgressIndicator(value: null)
                 ],
-              ),
-              if (state.submissionStatus.isInProgress)
-                const CircularProgressIndicator(value: null)
-            ],
+              );
+            },
           ),
         );
       },
@@ -94,4 +104,10 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     super.dispose();
     _timer?.cancel();
   }
+}
+
+extension BuildContextExtensions on BuildContext {
+  void submitted({required Client client}) => read<RegisterBloc<Client>>().add(
+        RegisterEvent<Client>.submitted(entity: client),
+      );
 }

@@ -1,7 +1,6 @@
-import 'package:appointment/application/client/register/bloc/bloc.dart';
-import 'package:appointment/application/common/form.dart';
-import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/core/i_repository.dart';
+import 'package:appointment/application/client/bloc/bloc.dart';
+import 'package:appointment/application/register/bloc/bloc.dart';
+import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,204 +10,208 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
-import 'name_input_test.mocks.dart';
+import '../../../../common/mock_submission_failure.dart'
+    as mock_submission_failure;
+import 'form_test.mocks.dart';
 
-@GenerateMocks([ClientRegisterBloc])
+@GenerateMocks([RegisterBloc, ClientBloc])
 void main() {
   group("ClientRegisterFormWidget", () {
-    testWidgets("Should have a [Form] and a [ElevatedButton]", (tester) async {
+    late MockClientBloc clientBloc;
+    late MockRegisterBloc<Client> registerBloc;
+    late MockClientRegisterPage mockPage;
+    setUp(() {
+      clientBloc = MockClientBloc();
+      when(clientBloc.state).thenReturn(ClientState.initial());
+      when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
+
+      registerBloc = MockRegisterBloc<Client>();
+      when(registerBloc.state).thenReturn(RegisterState.initial());
+      when(registerBloc.stream).thenAnswer((_) => const Stream.empty());
+
+      mockPage = MockClientRegisterPage(
+        registerBloc: registerBloc,
+        clientBloc: clientBloc,
+        child: const ClientRegisterFormWidget(),
+      );
+    });
+    testWidgets("Render [Form]", (tester) async {
       // Arrange
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial());
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
-
-      await tester.pumpAndSettle();
+      await tester.pumpWidget(mockPage);
 
       // Act
-
       // Assert
       expect(find.byType(Form), findsOneWidget);
-      expect(find.byType(ElevatedButton), findsOneWidget);
+    });
+
+    testWidgets("Render Submit ElevatedButton", (tester) async {
+      // Arrange
+      await tester.pumpWidget(mockPage);
+
+      // Act
+      // Assert
+      expect(find.widgetWithIcon(ElevatedButton, Icons.add_circle),
+          findsOneWidget);
     });
 
     testWidgets(
-        "Should Add [Submitted] event to bloc when [Form] is valid and [ElevatedButton] is tapped",
-        (tester) async {
+        "Add [ClientRegisterEvent.submitted()] "
+        "when Submit ElevatedButton is pressed", (tester) async {
       // Arrange
-      const name = "Bob";
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(
-        ClientRegisterState.initial().copyWith(
-          name: Name(name),
-        ),
-      );
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
-
-      await tester.pumpAndSettle();
+      final client = ClientState.initial().client;
+      await tester.pumpWidget(mockPage);
 
       // Act
       await tester.tap(find.byType(ElevatedButton));
       await tester.pump();
 
       // Assert
-      verify(mockBloc.add(const ClientRegisterEvent.submitted())).called(1);
+      verify(
+        registerBloc.add(
+          RegisterEvent<Client>.submitted(
+            entity: client,
+          ),
+        ),
+      ).called(1);
     });
 
     testWidgets(
-        "Show error message when [ClientRegisterForm] submissionStatus is failure because of invalid fileds",
+        "Show [Icons.error_outline] for 1 second"
+        "When [ClientRegisterState.submissionStatus] is [failure()] ",
         (tester) async {
       // Arrange
-      final mockBloc = MockClientRegisterBloc();
-      final state = ClientRegisterState.initial().copyWithFailure(
-        failure: const SubmissionFailure.invalidFields(),
-      );
-      when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
+      final state = RegisterState.invalidFieldFailure();
+      when(registerBloc.state).thenReturn(state);
+      when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
 
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
-      await tester.pumpAndSettle();
+      await tester.pumpWidget(mockPage);
+      await tester.pump();
 
       // Act
+      // Assert
+      expect(find.byIcon(Icons.error_outline), findsOneWidget);
 
+      await tester.pump(const Duration(seconds: 1));
+
+      expect(find.byIcon(Icons.error_outline), findsNothing);
+    });
+
+    testWidgets(
+        "Show emptyNameFailure translation message"
+        "When [ClientRegisterState.submissionStatus] is [failure()] "
+        "And [ClientRegisterState.failure] is [emptyNameFailure()]",
+        (tester) async {
+      // Arrange
+      final state = RegisterState.invalidFieldFailure();
+      when(registerBloc.state).thenReturn(state);
+      when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
+
+      await tester.pumpWidget(mockPage);
+      await tester.pump();
+
+      // Act
       // Assert
       expect(find.text(AppLocalizationsEn().emptyNameFailure), findsOneWidget);
     });
 
     testWidgets(
-        "Should show [ProgressIndicator] when [ClientRegisterForm] submissionStatus is inProgress",
-        (tester) async {
+        "Show error [dbErrorMessage] translation message "
+        "When [ClientRegisterState.submissionStatus] is [failure()] "
+        "And [SubmissionFailure] is [repository()] "
+        "And [RepositoryFailure] is [dbException()]", (tester) async {
       // Arrange
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
-        submissionStatus: const SubmissionStatus.inProgress(),
-      ));
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+      final state = RegisterState.repositoryFailure(
+          failure: mock_submission_failure.dbErrorRepositoryFailure);
+      when(registerBloc.state).thenReturn(state);
+      when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
 
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
+      await tester.pumpWidget(mockPage);
+      await tester.pump();
 
       // Act
+      // Assert
+      expect(find.text(mock_submission_failure.dbErrorLocalizedMessage),
+          findsOneWidget);
+    });
 
+    testWidgets(
+        "Show [CircularProgressIndicator] "
+        "When [ClientRegisterState.submissionStatus] is [inProgress()]",
+        (tester) async {
+      // Arrange
+      when(registerBloc.state).thenReturn(RegisterState.inProgress());
+
+      await tester.pumpWidget(mockPage);
+
+      // Act
       // Assert
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets(
-        "Should NOT show [ProgressIndicator] when [ClientRegisterForm] submissionStatus is NOT inProgress",
+        "NOT show [CircularProgressIndicator] "
+        "When [ClientRegisterState.submissionStatus] is NOT [inProgress()]",
         (tester) async {
       // Arrange
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(ClientRegisterState.initial().copyWith(
-        submissionStatus: const SubmissionStatus.initial(),
-      ));
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
+      await tester.pumpWidget(mockPage);
 
       // Act
-
       // Assert
       expect(find.byType(CircularProgressIndicator), findsNothing);
     });
 
     testWidgets(
-        "Should show [Icons.check_circle_outline] when [ClientRegisterForm] submissionStatus is success",
+        "Show [Icons.check_circle_outline] for 1 second"
+        "When [ClientRegisterState.submissionStatus] is [success()]",
         (tester) async {
       // Arrange
-      final state = ClientRegisterState.initial().copyWith(
-        submissionStatus: const SubmissionStatus.success(),
-      );
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
+      final state = RegisterState.success();
+      when(registerBloc.state).thenReturn(state);
+      when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
 
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
+      await tester.pumpWidget(mockPage);
       await tester.pump();
 
       // Act
-
       // Assert
       expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
-    });
 
-    testWidgets("""Should show [Icons.error_outline] with 
-        SubmissionFailure.invalidField() error text
-        when [ClientRegisterForm] submissionStatus is SubmissionFailure.invalidField()""",
-        (tester) async {
-      // Arrange
-      final state = ClientRegisterState.initial().copyWith(
-          submissionStatus: const SubmissionStatus.failure(
-        failure: SubmissionFailure.invalidFields(),
-      ));
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
+      await tester.pump(const Duration(seconds: 1));
 
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
-      await tester.pump();
-
-      // Act
-
-      // Assert
-      expect(find.byIcon(Icons.error_outline), findsOneWidget);
-      expect(
-          find.text(AppLocalizationsEn().invalidFieldsFailure), findsOneWidget);
-    });
-
-    const dbErrorMessage = "Error";
-    const repositoryFailure =
-        RepositoryFailure.dbException(error: dbErrorMessage);
-    const submissionFailure =
-        SubmissionFailure.repository(failure: repositoryFailure);
-
-    testWidgets("""Should show [Icons.error_outline] with 
-        SubmissionFailure.repository(RepositoryFailure
-          .dbFailure(errorMessage)) error text
-        when [ClientRegisterForm] submissionStatus is 
-        SubmissionFailure.repository(RepositoryFailure
-          .dbFailure(errorMessage))""", (tester) async {
-      // Arrange
-      final state = ClientRegisterState.initial().copyWith(
-        submissionStatus: const SubmissionStatus.failure(
-          failure: submissionFailure,
-        ),
-      );
-      final mockBloc = MockClientRegisterBloc();
-      when(mockBloc.state).thenReturn(state);
-      when(mockBloc.stream).thenAnswer((_) => Stream.value(state));
-
-      await tester.pumpWidget(MockClientRegisterPage(bloc: mockBloc));
-      await tester.pump();
-
-      // Act
-
-      // Assert
-      expect(find.byIcon(Icons.error_outline), findsOneWidget);
-      expect(find.text(AppLocalizationsEn().databaseFailure(dbErrorMessage)),
-          findsOneWidget);
+      expect(find.byIcon(Icons.check_circle_outline), findsNothing);
     });
   });
 }
 
 class MockClientRegisterPage extends StatelessWidget {
-  final ClientRegisterBloc bloc;
-  const MockClientRegisterPage({super.key, required this.bloc});
+  final RegisterBloc<Client> registerBloc;
+  final ClientBloc clientBloc;
+  final Widget child;
+  const MockClientRegisterPage({
+    super.key,
+    required this.registerBloc,
+    required this.clientBloc,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: const Locale('en'),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(
-        body: BlocProvider(
-          create: (context) => bloc,
-          child: const ClientRegisterFormWidget(),
-        ),
-      ),
-    );
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: Scaffold(
+          body: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => clientBloc,
+              ),
+              BlocProvider(
+                create: (context) => registerBloc,
+              ),
+            ],
+            child: child,
+          ),
+        ));
   }
 }

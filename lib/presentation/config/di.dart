@@ -1,4 +1,7 @@
+import 'package:appointment/application/client/register/validator.dart';
 import 'package:appointment/application/client/search/bloc/bloc.dart';
+import 'package:appointment/application/register/bloc/bloc.dart';
+import 'package:appointment/application/register/validator.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
@@ -30,6 +33,10 @@ void servicesConfiguration() {
 
   getIt.registerSingleton<IRepository<Client>>(
       ClientRepository(getIt(), getIt()));
+
+  getIt.registerSingleton<RegisterValidator<Client>>(ClientRegisterValidator());
+
+  getIt.registerSingleton(RegisterBloc<Client>(getIt(), getIt()));
 
   getIt.registerSingleton(ClientSearchBloc(getIt()));
 }

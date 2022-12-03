@@ -3,11 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i6;
 
-import 'package:appointment/application/client/register/bloc/bloc.dart' as _i2;
-import 'package:bloc/bloc.dart' as _i4;
-import 'package:mockito/mockito.dart' as _i1;
+import 'package:appointment/application/client/bloc/bloc.dart' as _i5;
+import 'package:appointment/application/register/bloc/bloc.dart' as _i4;
+import 'package:appointment/application/register/validator.dart' as _i3;
+import 'package:appointment/domain/common/entity_mixin.dart' as _i1;
+import 'package:bloc/bloc.dart' as _i7;
+import 'package:mockito/mockito.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -20,9 +23,9 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeClientRegisterState_0 extends _i1.SmartFake
-    implements _i2.ClientRegisterState {
-  _FakeClientRegisterState_0(
+class _FakeRegisterValidator_0<T extends _i1.EntityMixin> extends _i2.SmartFake
+    implements _i3.RegisterValidator<T> {
+  _FakeRegisterValidator_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -31,35 +34,63 @@ class _FakeClientRegisterState_0 extends _i1.SmartFake
         );
 }
 
-/// A class which mocks [ClientRegisterBloc].
+class _FakeRegisterState_1 extends _i2.SmartFake implements _i4.RegisterState {
+  _FakeRegisterState_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeClientState_2 extends _i2.SmartFake implements _i5.ClientState {
+  _FakeClientState_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [RegisterBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockClientRegisterBloc extends _i1.Mock
-    implements _i2.ClientRegisterBloc {
-  MockClientRegisterBloc() {
-    _i1.throwOnMissingStub(this);
+class MockRegisterBloc<T extends _i1.EntityMixin> extends _i2.Mock
+    implements _i4.RegisterBloc<T> {
+  MockRegisterBloc() {
+    _i2.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ClientRegisterState get state => (super.noSuchMethod(
+  _i3.RegisterValidator<T> get validator => (super.noSuchMethod(
+        Invocation.getter(#validator),
+        returnValue: _FakeRegisterValidator_0<T>(
+          this,
+          Invocation.getter(#validator),
+        ),
+      ) as _i3.RegisterValidator<T>);
+  @override
+  _i4.RegisterState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeClientRegisterState_0(
+        returnValue: _FakeRegisterState_1(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i2.ClientRegisterState);
+      ) as _i4.RegisterState);
   @override
-  _i3.Stream<_i2.ClientRegisterState> get stream => (super.noSuchMethod(
+  _i6.Stream<_i4.RegisterState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i3.Stream<_i2.ClientRegisterState>.empty(),
-      ) as _i3.Stream<_i2.ClientRegisterState>);
+        returnValue: _i6.Stream<_i4.RegisterState>.empty(),
+      ) as _i6.Stream<_i4.RegisterState>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
       ) as bool);
   @override
-  void add(_i2.ClientRegisterEvent? event) => super.noSuchMethod(
+  void add(_i4.RegisterEvent<T>? event) => super.noSuchMethod(
         Invocation.method(
           #add,
           [event],
@@ -67,7 +98,7 @@ class MockClientRegisterBloc extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void onEvent(_i2.ClientRegisterEvent? event) => super.noSuchMethod(
+  void onEvent(_i4.RegisterEvent<T>? event) => super.noSuchMethod(
         Invocation.method(
           #onEvent,
           [event],
@@ -75,7 +106,7 @@ class MockClientRegisterBloc extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void emit(_i2.ClientRegisterState? state) => super.noSuchMethod(
+  void emit(_i4.RegisterState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -83,9 +114,9 @@ class MockClientRegisterBloc extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void on<E extends _i2.ClientRegisterEvent>(
-    _i4.EventHandler<E, _i2.ClientRegisterState>? handler, {
-    _i4.EventTransformer<E>? transformer,
+  void on<E extends _i4.RegisterEvent<T>>(
+    _i7.EventHandler<E, _i4.RegisterState>? handler, {
+    _i7.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -97,7 +128,7 @@ class MockClientRegisterBloc extends _i1.Mock
       );
   @override
   void onTransition(
-          _i4.Transition<_i2.ClientRegisterEvent, _i2.ClientRegisterState>?
+          _i7.Transition<_i4.RegisterEvent<T>, _i4.RegisterState>?
               transition) =>
       super.noSuchMethod(
         Invocation.method(
@@ -107,17 +138,138 @@ class MockClientRegisterBloc extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i3.Future<void> close() => (super.noSuchMethod(
+  _i6.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
   @override
-  void onChange(_i4.Change<_i2.ClientRegisterState>? change) =>
+  void onChange(_i7.Change<_i4.RegisterState>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
       super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [ClientBloc].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockClientBloc extends _i2.Mock implements _i5.ClientBloc {
+  MockClientBloc() {
+    _i2.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.ClientState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeClientState_2(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i5.ClientState);
+  @override
+  _i6.Stream<_i5.ClientState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i6.Stream<_i5.ClientState>.empty(),
+      ) as _i6.Stream<_i5.ClientState>);
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+  @override
+  void add(_i5.ClientEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onEvent(_i5.ClientEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #onEvent,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void emit(_i5.ClientState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void on<E extends _i5.ClientEvent>(
+    _i7.EventHandler<E, _i5.ClientState>? handler, {
+    _i7.EventTransformer<E>? transformer,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #on,
+          [handler],
+          {#transformer: transformer},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onTransition(
+          _i7.Transition<_i5.ClientEvent, _i5.ClientState>? transition) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onTransition,
+          [transition],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i6.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
+  @override
+  void onChange(_i7.Change<_i5.ClientState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
