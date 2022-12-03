@@ -4,64 +4,84 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group("Validators", () {
-    group("nonEmptyStringValidation", nonEmptyValidatorstringCallTests);
-    group("lettersAndAccentsValidation", lettersAndAccentsValidationTests);
-  });
-}
+  group("nonEmptyStringValidation", () {
+    // Non Empty
+    test(
+        "Return [Right(String)] "
+        "When [String] is not empty", () {
+      // Arrange
+      const value = "test";
 
-void nonEmptyValidatorstringCallTests() {
-  // Non Empty
-  test(
-      "Should return the testing [Right(value)] when validate is call with a non empty string",
-      () {
-    // Arrange
-    const value = "test";
+      // Act
+      final actual = nonEmptyStringValidation(value);
 
-    // Act
-    final actual = nonEmptyStringValidation(value);
+      // Assert
+      expect(actual, const Right(value));
+    });
 
-    // Assert
-    expect(actual, const Right(value));
-  });
+    // Empty
+    test(
+        "Return [Left(StringFailure.empty())] "
+        "When [String] is empty", () {
+      // Arrange
+      const value = "";
 
-  // Empty
-  test(
-      "Should return [Left(StringFailure.empty())] when validate is call with a empty string",
-      () {
-    // Arrange
-    const value = "";
+      // Act
+      final actual = nonEmptyStringValidation(value);
 
-    // Act
-    final actual = nonEmptyStringValidation(value);
-
-    // Assert
-    expect(actual, const Left(StringFailure.empty()));
-  });
-}
-
-void lettersAndAccentsValidationTests() {
-  test("Should return [Right(value)] when validate is call with valid string",
-      () {
-    // Arrange
-    const value = "a";
-
-    // Act
-    final actual = lettersAndAccentsValidation(value);
-
-    // Assert
-    expect(actual, const Right(value));
+      // Assert
+      expect(actual, const Left(StringFailure.empty()));
+    });
   });
 
-  test("""Should return [Left(StringFailure.invalidCharacter(value))] 
-          when validate is call with invalid string""", () {
-    // Arrange
-    const value = "A0";
+  group("lettersAndAccentsValidation", () {
+    test(
+        "Return [Right(value)] "
+        "When [String] contains only letters and accents", () {
+      // Arrange
+      const value = "Bób";
 
-    // Act
-    final actual = lettersAndAccentsValidation(value);
+      // Act
+      final actual = lettersAndAccentsValidation(value);
 
-    // Assert
-    expect(actual, const Left(StringFailure.invalidCharacter(value: value)));
+      // Assert
+      expect(actual, const Right(value));
+    });
+
+    test(
+        "Return [Left(StringFailure.invalidCharacter(String))] "
+        "When [String] contains number", () {
+      // Arrange
+      const value = "A0";
+
+      // Act
+      final actual = lettersAndAccentsValidation(value);
+
+      // Assert
+      expect(
+        actual,
+        const Left(
+          StringFailure.invalidCharacter(value: value),
+        ),
+      );
+    });
+
+    test(
+        "Return [Left(StringFailure.invalidCharacter(String))] "
+        "When [String] contains space", () {
+      // Arrange
+      const value = "A0 ";
+
+      // Act
+      final actual = lettersAndAccentsValidation(value);
+
+      // Assert
+      expect(
+        actual,
+        const Left(
+          StringFailure.invalidCharacter(value: value),
+        ),
+      );
+    });
   });
 }
