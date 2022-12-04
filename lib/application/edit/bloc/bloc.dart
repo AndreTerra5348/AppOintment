@@ -10,15 +10,15 @@ part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
-class EditBloc<T extends EntityMixin> extends Bloc<EditEvent, EditState> {
+class EditBloc<T extends EntityMixin> extends Bloc<EditEvent<T>, EditState> {
   final IRepository<T> _repository;
   EditBloc(this._repository) : super(const _Initial()) {
-    on<_EditPressed>(_onEditPressed);
+    on<_EditPressed<T>>(_onEditPressed);
     on<_SavePressed<T>>(_onSavePressed);
   }
 
   FutureOr<void> _onEditPressed(
-      _EditPressed<EntityMixin> event, Emitter<EditState> emit) {
+      _EditPressed<T> event, Emitter<EditState> emit) {
     emit(const EditState.editing());
   }
 

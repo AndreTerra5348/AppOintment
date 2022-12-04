@@ -11,14 +11,14 @@ part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
-class DeleteBloc<T extends EntityMixin> extends Bloc<DeleteEvent, DeleteState> {
+class DeleteBloc<T extends EntityMixin>
+    extends Bloc<DeleteEvent<T>, DeleteState> {
   final IRepository<T> _repository;
   DeleteBloc(this._repository) : super(_Initial()) {
-    on<_Deleted>(_deleted);
+    on<_Deleted<T>>(_deleted);
   }
 
-  FutureOr<void> _deleted(
-      _Deleted<EntityMixin> event, Emitter<DeleteState> emit) async {
+  FutureOr<void> _deleted(_Deleted<T> event, Emitter<DeleteState> emit) async {
     event.entity.validity.fold(
       () => throw CriticalError('Invalid client'),
       (client) => emit(DeleteState.inProgress()),
