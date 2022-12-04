@@ -310,7 +310,7 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial extends _Initial {
-  _$_Initial() : super._();
+  const _$_Initial() : super._();
 
   @override
   String toString() {
@@ -402,8 +402,8 @@ class _$_Initial extends _Initial {
 }
 
 abstract class _Initial extends DeleteState {
-  factory _Initial() = _$_Initial;
-  _Initial._() : super._();
+  const factory _Initial() = _$_Initial;
+  const _Initial._() : super._();
 }
 
 /// @nodoc
@@ -424,7 +424,7 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success extends _Success {
-  _$_Success() : super._();
+  const _$_Success() : super._();
 
   @override
   String toString() {
@@ -516,8 +516,8 @@ class _$_Success extends _Success {
 }
 
 abstract class _Success extends DeleteState {
-  factory _Success() = _$_Success;
-  _Success._() : super._();
+  const factory _Success() = _$_Success;
+  const _Success._() : super._();
 }
 
 /// @nodoc
@@ -539,7 +539,7 @@ class __$$_InProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_InProgress extends _InProgress {
-  _$_InProgress() : super._();
+  const _$_InProgress() : super._();
 
   @override
   String toString() {
@@ -631,8 +631,8 @@ class _$_InProgress extends _InProgress {
 }
 
 abstract class _InProgress extends DeleteState {
-  factory _InProgress() = _$_InProgress;
-  _InProgress._() : super._();
+  const factory _InProgress() = _$_InProgress;
+  const _InProgress._() : super._();
 }
 
 /// @nodoc
@@ -678,7 +678,7 @@ class __$$_FailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Failure extends _Failure {
-  _$_Failure({required this.failure}) : super._();
+  const _$_Failure({required this.failure}) : super._();
 
   @override
   final SubmissionFailure failure;
@@ -781,8 +781,9 @@ class _$_Failure extends _Failure {
 }
 
 abstract class _Failure extends DeleteState {
-  factory _Failure({required final SubmissionFailure failure}) = _$_Failure;
-  _Failure._() : super._();
+  const factory _Failure({required final SubmissionFailure failure}) =
+      _$_Failure;
+  const _Failure._() : super._();
 
   SubmissionFailure get failure;
   @JsonKey(ignore: true)

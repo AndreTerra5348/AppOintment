@@ -3,17 +3,14 @@ part of 'bloc.dart';
 @freezed
 class DeleteState with _$DeleteState {
   const DeleteState._();
-
-  factory DeleteState.initial() = _Initial;
-
-  factory DeleteState.success() = _Success;
-
-  factory DeleteState.inProgress() = _InProgress;
-
-  factory DeleteState.failure({required SubmissionFailure failure}) = _Failure;
+  const factory DeleteState.initial() = _Initial;
+  const factory DeleteState.success() = _Success;
+  const factory DeleteState.inProgress() = _InProgress;
+  const factory DeleteState.failure({required SubmissionFailure failure}) =
+      _Failure;
 
   factory DeleteState.notFoundFailure() =>
-      DeleteState.failure(failure: const SubmissionFailure.notFound());
+      const DeleteState.failure(failure: SubmissionFailure.notFound());
 
   factory DeleteState.repositoryFailure({required RepositoryFailure failure}) =>
       DeleteState.failure(
