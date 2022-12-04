@@ -1,7 +1,7 @@
 part of 'bloc.dart';
 
 @freezed
-class DetailsState<T extends EntityMixin> with _$DetailsState {
+class DetailsState<T extends EntityMixin> with _$DetailsState<T> {
   const factory DetailsState({
     required Option<T> optionEntity,
     required bool isLoading,
