@@ -108,6 +108,6 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
 
 extension BuildContextExtensions on BuildContext {
   void submitted({required Client client}) => read<RegisterBloc<Client>>().add(
-        RegisterEvent<Client>.submitted(entity: client),
+        RegisterEvent<Client>.registered(entity: client),
       );
 }

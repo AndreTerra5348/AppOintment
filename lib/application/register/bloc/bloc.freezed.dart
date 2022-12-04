@@ -19,33 +19,33 @@ mixin _$RegisterEvent<T extends EntityMixin> {
   T get entity => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T entity) submitted,
+    required TResult Function(T entity) registered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T entity)? submitted,
+    TResult? Function(T entity)? registered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T entity)? submitted,
+    TResult Function(T entity)? registered,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Submitted<T> value) submitted,
+    required TResult Function(_Registered<T> value) registered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Submitted<T> value)? submitted,
+    TResult? Function(_Registered<T> value)? registered,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Submitted<T> value)? submitted,
+    TResult Function(_Registered<T> value)? registered,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,22 +89,22 @@ class _$RegisterEventCopyWithImpl<T extends EntityMixin, $Res,
 }
 
 /// @nodoc
-abstract class _$$_SubmittedCopyWith<T extends EntityMixin, $Res>
+abstract class _$$_RegisteredCopyWith<T extends EntityMixin, $Res>
     implements $RegisterEventCopyWith<T, $Res> {
-  factory _$$_SubmittedCopyWith(
-          _$_Submitted<T> value, $Res Function(_$_Submitted<T>) then) =
-      __$$_SubmittedCopyWithImpl<T, $Res>;
+  factory _$$_RegisteredCopyWith(
+          _$_Registered<T> value, $Res Function(_$_Registered<T>) then) =
+      __$$_RegisteredCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({T entity});
 }
 
 /// @nodoc
-class __$$_SubmittedCopyWithImpl<T extends EntityMixin, $Res>
-    extends _$RegisterEventCopyWithImpl<T, $Res, _$_Submitted<T>>
-    implements _$$_SubmittedCopyWith<T, $Res> {
-  __$$_SubmittedCopyWithImpl(
-      _$_Submitted<T> _value, $Res Function(_$_Submitted<T>) _then)
+class __$$_RegisteredCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$RegisterEventCopyWithImpl<T, $Res, _$_Registered<T>>
+    implements _$$_RegisteredCopyWith<T, $Res> {
+  __$$_RegisteredCopyWithImpl(
+      _$_Registered<T> _value, $Res Function(_$_Registered<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +112,7 @@ class __$$_SubmittedCopyWithImpl<T extends EntityMixin, $Res>
   $Res call({
     Object? entity = null,
   }) {
-    return _then(_$_Submitted<T>(
+    return _then(_$_Registered<T>(
       entity: null == entity
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
@@ -123,22 +123,22 @@ class __$$_SubmittedCopyWithImpl<T extends EntityMixin, $Res>
 
 /// @nodoc
 
-class _$_Submitted<T extends EntityMixin> implements _Submitted<T> {
-  const _$_Submitted({required this.entity});
+class _$_Registered<T extends EntityMixin> implements _Registered<T> {
+  const _$_Registered({required this.entity});
 
   @override
   final T entity;
 
   @override
   String toString() {
-    return 'RegisterEvent<$T>.submitted(entity: $entity)';
+    return 'RegisterEvent<$T>.registered(entity: $entity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Submitted<T> &&
+            other is _$_Registered<T> &&
             const DeepCollectionEquality().equals(other.entity, entity));
   }
 
@@ -149,33 +149,33 @@ class _$_Submitted<T extends EntityMixin> implements _Submitted<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SubmittedCopyWith<T, _$_Submitted<T>> get copyWith =>
-      __$$_SubmittedCopyWithImpl<T, _$_Submitted<T>>(this, _$identity);
+  _$$_RegisteredCopyWith<T, _$_Registered<T>> get copyWith =>
+      __$$_RegisteredCopyWithImpl<T, _$_Registered<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T entity) submitted,
+    required TResult Function(T entity) registered,
   }) {
-    return submitted(entity);
+    return registered(entity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T entity)? submitted,
+    TResult? Function(T entity)? registered,
   }) {
-    return submitted?.call(entity);
+    return registered?.call(entity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T entity)? submitted,
+    TResult Function(T entity)? registered,
     required TResult orElse(),
   }) {
-    if (submitted != null) {
-      return submitted(entity);
+    if (registered != null) {
+      return registered(entity);
     }
     return orElse();
   }
@@ -183,40 +183,40 @@ class _$_Submitted<T extends EntityMixin> implements _Submitted<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Submitted<T> value) submitted,
+    required TResult Function(_Registered<T> value) registered,
   }) {
-    return submitted(this);
+    return registered(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Submitted<T> value)? submitted,
+    TResult? Function(_Registered<T> value)? registered,
   }) {
-    return submitted?.call(this);
+    return registered?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Submitted<T> value)? submitted,
+    TResult Function(_Registered<T> value)? registered,
     required TResult orElse(),
   }) {
-    if (submitted != null) {
-      return submitted(this);
+    if (registered != null) {
+      return registered(this);
     }
     return orElse();
   }
 }
 
-abstract class _Submitted<T extends EntityMixin> implements RegisterEvent<T> {
-  const factory _Submitted({required final T entity}) = _$_Submitted<T>;
+abstract class _Registered<T extends EntityMixin> implements RegisterEvent<T> {
+  const factory _Registered({required final T entity}) = _$_Registered<T>;
 
   @override
   T get entity;
   @override
   @JsonKey(ignore: true)
-  _$$_SubmittedCopyWith<T, _$_Submitted<T>> get copyWith =>
+  _$$_RegisteredCopyWith<T, _$_Registered<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

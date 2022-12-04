@@ -68,7 +68,7 @@ void main() {
       // Assert
       verify(
         registerBloc.add(
-          RegisterEvent<Client>.submitted(
+          RegisterEvent<Client>.registered(
             entity: client,
           ),
         ),

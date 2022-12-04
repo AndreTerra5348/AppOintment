@@ -11,8 +11,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'bloc_test.mocks.dart';
-import '../../../../common/mock_submission_failure.dart'
-    as mock_submission_failure;
+import '../../../common/mock_submission_failure.dart' as mock_failure;
 
 @GenerateMocks([ClientRepository])
 void main() {
@@ -45,7 +44,7 @@ void main() {
       "Then [ClientRegisterState.submissionStatus] is [failure()] "
       "And [SubmissionFailure] is [invalidFields()]",
       build: () => RegisterBloc(repository, validator),
-      act: (bloc) => bloc.add(RegisterEvent.submitted(entity: invalidClient)),
+      act: (bloc) => bloc.add(RegisterEvent.registered(entity: invalidClient)),
       expect: () => [RegisterState.invalidFieldFailure()],
     );
 
@@ -54,7 +53,7 @@ void main() {
       "Then [ClientRegisterState.submissionStatus] "
       "Then [Repository.insert()] should NOT be called",
       build: () => RegisterBloc(repository, validator),
-      act: (bloc) => bloc.add(RegisterEvent.submitted(entity: invalidClient)),
+      act: (bloc) => bloc.add(RegisterEvent.registered(entity: invalidClient)),
       verify: (_) => verifyNever(repository.insert(invalidClient)),
     );
 
@@ -66,7 +65,7 @@ void main() {
             .thenAnswer((_) async => right(validClient));
       },
       build: () => RegisterBloc(repository, validator),
-      act: (bloc) => bloc.add(RegisterEvent.submitted(entity: validClient)),
+      act: (bloc) => bloc.add(RegisterEvent.registered(entity: validClient)),
       verify: (_) => verify(repository.insert(any)).called(1),
     );
 
@@ -79,7 +78,7 @@ void main() {
             .thenAnswer((_) async => right(validClient));
       },
       build: () => RegisterBloc(repository, validator),
-      act: (bloc) => bloc.add(RegisterEvent.submitted(entity: validClient)),
+      act: (bloc) => bloc.add(RegisterEvent.registered(entity: validClient)),
       expect: () => [
         RegisterState.inProgress(),
         RegisterState.success(),
@@ -94,16 +93,16 @@ void main() {
       setUp: () {
         when(repository.insert(any)).thenAnswer(
           (_) async => const Left(
-            mock_submission_failure.dbErrorRepositoryFailure,
+            mock_failure.dbErrorRepositoryFailure,
           ),
         );
       },
       build: () => RegisterBloc(repository, validator),
-      act: (bloc) => bloc.add(RegisterEvent.submitted(entity: validClient)),
+      act: (bloc) => bloc.add(RegisterEvent.registered(entity: validClient)),
       skip: 1,
       expect: () => [
         RegisterState.repositoryFailure(
-          failure: mock_submission_failure.dbErrorRepositoryFailure,
+          failure: mock_failure.dbErrorRepositoryFailure,
         ),
       ],
     );

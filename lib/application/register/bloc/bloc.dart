@@ -16,11 +16,11 @@ class RegisterBloc<T extends EntityMixin>
   final RegisterValidator<T> validator;
   RegisterBloc(this._repository, this.validator)
       : super(RegisterState.initial()) {
-    on<_Submitted<T>>(_submitted);
+    on<_Registered<T>>(_registered);
   }
 
-  FutureOr<void> _submitted(
-      _Submitted<T> event, Emitter<RegisterState> emit) async {
+  FutureOr<void> _registered(
+      _Registered<T> event, Emitter<RegisterState> emit) async {
     emit(
       validator.validate(event.entity).fold(
             () => RegisterState.invalidFieldFailure(),
