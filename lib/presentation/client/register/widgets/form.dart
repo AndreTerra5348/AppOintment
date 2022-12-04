@@ -4,7 +4,7 @@ import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/application/register/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/presentation/client/register/widgets/name_input.dart';
+import 'package:appointment/presentation/client/common/widgets/name_input.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:flutter/material.dart';

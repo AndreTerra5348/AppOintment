@@ -1,6 +1,5 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
-import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/presentation/client/register/widgets/name_input.dart';
+import 'package:appointment/presentation/client/common/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,16 +14,16 @@ void main() {
   // TODO: test decoration > labelText
   // TODO: test validator > failure
   group("NameInputWidget ", () {
-    late MockClientBloc sut;
+    late MockClientBloc clientBloc;
     setUp(() {
-      sut = MockClientBloc();
-      when(sut.state).thenReturn(ClientState.initial());
-      when(sut.stream).thenAnswer((_) => const Stream.empty());
+      clientBloc = MockClientBloc();
+      when(clientBloc.state).thenReturn(ClientState.initial());
+      when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
     });
 
     testWidgets("Render TextFormField", (tester) async {
       // Arrange
-      await tester.pumpWidget(MockClientRegisterPage(bloc: sut));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: clientBloc));
 
       // Act
       // Assert
@@ -34,7 +33,7 @@ void main() {
     testWidgets("Render nameTextFormField translation", (tester) async {
       // Arrange
       const text = '123';
-      await tester.pumpWidget(MockClientRegisterPage(bloc: sut));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: clientBloc));
 
       // Act
       await tester.enterText(find.byType(TextFormField), text);
@@ -49,7 +48,7 @@ void main() {
       // Arrange
       const name = "Bob";
 
-      await tester.pumpWidget(MockClientRegisterPage(bloc: sut));
+      await tester.pumpWidget(MockClientRegisterPage(bloc: clientBloc));
       await tester.pumpAndSettle();
 
       expect(find.byType(TextFormField), findsOneWidget);
@@ -58,7 +57,8 @@ void main() {
       await tester.enterText(find.byType(TextFormField), name);
 
       // Assert
-      verify(sut.add(const ClientEvent.nameChanged(name: name))).called(1);
+      verify(clientBloc.add(const ClientEvent.nameChanged(name: name)))
+          .called(1);
     });
   });
 }

@@ -8,13 +8,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NameInputWidget extends StatelessWidget {
-  const NameInputWidget({super.key});
+  final bool isEditing;
+  const NameInputWidget({super.key, this.isEditing = false});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ClientBloc, ClientState>(
       builder: (context, state) {
         return TextFormField(
+          initialValue: state.client.name.value.fold(
+            (_) => null,
+            (value) => value,
+          ),
+          enabled: isEditing,
           inputFormatters: [
             FilteringTextInputFormatter.deny(validators.lettersAndAccentsRegex),
           ],
