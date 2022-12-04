@@ -26,7 +26,6 @@ class EditState with _$EditState {
   bool get isInitial => this is _Initial;
   bool get isEditing => this is _Editing;
   bool get isInProgress => this is _InProgress;
-  bool get isSaving => this is _Saving;
   bool get isSuccess => this is _Success;
   bool get isFailure => this is _Failure;
 }

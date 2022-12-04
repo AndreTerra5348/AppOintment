@@ -317,7 +317,6 @@ mixin _$EditState {
     required TResult Function() initial,
     required TResult Function() editing,
     required TResult Function() inProgress,
-    required TResult Function() saving,
     required TResult Function() success,
     required TResult Function(SubmissionFailure failure) failure,
   }) =>
@@ -327,7 +326,6 @@ mixin _$EditState {
     TResult? Function()? initial,
     TResult? Function()? editing,
     TResult? Function()? inProgress,
-    TResult? Function()? saving,
     TResult? Function()? success,
     TResult? Function(SubmissionFailure failure)? failure,
   }) =>
@@ -337,7 +335,6 @@ mixin _$EditState {
     TResult Function()? initial,
     TResult Function()? editing,
     TResult Function()? inProgress,
-    TResult Function()? saving,
     TResult Function()? success,
     TResult Function(SubmissionFailure failure)? failure,
     required TResult orElse(),
@@ -348,7 +345,6 @@ mixin _$EditState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Editing value) editing,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Saving value) saving,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) =>
@@ -358,7 +354,6 @@ mixin _$EditState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Editing value)? editing,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Saving value)? saving,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) =>
@@ -368,7 +363,6 @@ mixin _$EditState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Editing value)? editing,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Saving value)? saving,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
@@ -433,7 +427,6 @@ class _$_Initial extends _Initial {
     required TResult Function() initial,
     required TResult Function() editing,
     required TResult Function() inProgress,
-    required TResult Function() saving,
     required TResult Function() success,
     required TResult Function(SubmissionFailure failure) failure,
   }) {
@@ -446,7 +439,6 @@ class _$_Initial extends _Initial {
     TResult? Function()? initial,
     TResult? Function()? editing,
     TResult? Function()? inProgress,
-    TResult? Function()? saving,
     TResult? Function()? success,
     TResult? Function(SubmissionFailure failure)? failure,
   }) {
@@ -459,7 +451,6 @@ class _$_Initial extends _Initial {
     TResult Function()? initial,
     TResult Function()? editing,
     TResult Function()? inProgress,
-    TResult Function()? saving,
     TResult Function()? success,
     TResult Function(SubmissionFailure failure)? failure,
     required TResult orElse(),
@@ -476,7 +467,6 @@ class _$_Initial extends _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Editing value) editing,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Saving value) saving,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
@@ -489,7 +479,6 @@ class _$_Initial extends _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Editing value)? editing,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Saving value)? saving,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
@@ -502,7 +491,6 @@ class _$_Initial extends _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Editing value)? editing,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Saving value)? saving,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
@@ -559,7 +547,6 @@ class _$_Editing extends _Editing {
     required TResult Function() initial,
     required TResult Function() editing,
     required TResult Function() inProgress,
-    required TResult Function() saving,
     required TResult Function() success,
     required TResult Function(SubmissionFailure failure) failure,
   }) {
@@ -572,7 +559,6 @@ class _$_Editing extends _Editing {
     TResult? Function()? initial,
     TResult? Function()? editing,
     TResult? Function()? inProgress,
-    TResult? Function()? saving,
     TResult? Function()? success,
     TResult? Function(SubmissionFailure failure)? failure,
   }) {
@@ -585,7 +571,6 @@ class _$_Editing extends _Editing {
     TResult Function()? initial,
     TResult Function()? editing,
     TResult Function()? inProgress,
-    TResult Function()? saving,
     TResult Function()? success,
     TResult Function(SubmissionFailure failure)? failure,
     required TResult orElse(),
@@ -602,7 +587,6 @@ class _$_Editing extends _Editing {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Editing value) editing,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Saving value) saving,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
@@ -615,7 +599,6 @@ class _$_Editing extends _Editing {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Editing value)? editing,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Saving value)? saving,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
@@ -628,7 +611,6 @@ class _$_Editing extends _Editing {
     TResult Function(_Initial value)? initial,
     TResult Function(_Editing value)? editing,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Saving value)? saving,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
@@ -686,7 +668,6 @@ class _$_InProgress extends _InProgress {
     required TResult Function() initial,
     required TResult Function() editing,
     required TResult Function() inProgress,
-    required TResult Function() saving,
     required TResult Function() success,
     required TResult Function(SubmissionFailure failure) failure,
   }) {
@@ -699,7 +680,6 @@ class _$_InProgress extends _InProgress {
     TResult? Function()? initial,
     TResult? Function()? editing,
     TResult? Function()? inProgress,
-    TResult? Function()? saving,
     TResult? Function()? success,
     TResult? Function(SubmissionFailure failure)? failure,
   }) {
@@ -712,7 +692,6 @@ class _$_InProgress extends _InProgress {
     TResult Function()? initial,
     TResult Function()? editing,
     TResult Function()? inProgress,
-    TResult Function()? saving,
     TResult Function()? success,
     TResult Function(SubmissionFailure failure)? failure,
     required TResult orElse(),
@@ -729,7 +708,6 @@ class _$_InProgress extends _InProgress {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Editing value) editing,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Saving value) saving,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
@@ -742,7 +720,6 @@ class _$_InProgress extends _InProgress {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Editing value)? editing,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Saving value)? saving,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
@@ -755,7 +732,6 @@ class _$_InProgress extends _InProgress {
     TResult Function(_Initial value)? initial,
     TResult Function(_Editing value)? editing,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Saving value)? saving,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
@@ -770,131 +746,6 @@ class _$_InProgress extends _InProgress {
 abstract class _InProgress extends EditState {
   const factory _InProgress() = _$_InProgress;
   const _InProgress._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_SavingCopyWith<$Res> {
-  factory _$$_SavingCopyWith(_$_Saving value, $Res Function(_$_Saving) then) =
-      __$$_SavingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_SavingCopyWithImpl<$Res>
-    extends _$EditStateCopyWithImpl<$Res, _$_Saving>
-    implements _$$_SavingCopyWith<$Res> {
-  __$$_SavingCopyWithImpl(_$_Saving _value, $Res Function(_$_Saving) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Saving extends _Saving {
-  const _$_Saving() : super._();
-
-  @override
-  String toString() {
-    return 'EditState.saving()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Saving);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() editing,
-    required TResult Function() inProgress,
-    required TResult Function() saving,
-    required TResult Function() success,
-    required TResult Function(SubmissionFailure failure) failure,
-  }) {
-    return saving();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? editing,
-    TResult? Function()? inProgress,
-    TResult? Function()? saving,
-    TResult? Function()? success,
-    TResult? Function(SubmissionFailure failure)? failure,
-  }) {
-    return saving?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? editing,
-    TResult Function()? inProgress,
-    TResult Function()? saving,
-    TResult Function()? success,
-    TResult Function(SubmissionFailure failure)? failure,
-    required TResult orElse(),
-  }) {
-    if (saving != null) {
-      return saving();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Editing value) editing,
-    required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Saving value) saving,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return saving(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Editing value)? editing,
-    TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Saving value)? saving,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return saving?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Editing value)? editing,
-    TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Saving value)? saving,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (saving != null) {
-      return saving(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Saving extends EditState {
-  const factory _Saving() = _$_Saving;
-  const _Saving._() : super._();
 }
 
 /// @nodoc
@@ -937,7 +788,6 @@ class _$_Success extends _Success {
     required TResult Function() initial,
     required TResult Function() editing,
     required TResult Function() inProgress,
-    required TResult Function() saving,
     required TResult Function() success,
     required TResult Function(SubmissionFailure failure) failure,
   }) {
@@ -950,7 +800,6 @@ class _$_Success extends _Success {
     TResult? Function()? initial,
     TResult? Function()? editing,
     TResult? Function()? inProgress,
-    TResult? Function()? saving,
     TResult? Function()? success,
     TResult? Function(SubmissionFailure failure)? failure,
   }) {
@@ -963,7 +812,6 @@ class _$_Success extends _Success {
     TResult Function()? initial,
     TResult Function()? editing,
     TResult Function()? inProgress,
-    TResult Function()? saving,
     TResult Function()? success,
     TResult Function(SubmissionFailure failure)? failure,
     required TResult orElse(),
@@ -980,7 +828,6 @@ class _$_Success extends _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Editing value) editing,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Saving value) saving,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
@@ -993,7 +840,6 @@ class _$_Success extends _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Editing value)? editing,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Saving value)? saving,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
@@ -1006,7 +852,6 @@ class _$_Success extends _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Editing value)? editing,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Saving value)? saving,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
@@ -1099,7 +944,6 @@ class _$_Failure extends _Failure {
     required TResult Function() initial,
     required TResult Function() editing,
     required TResult Function() inProgress,
-    required TResult Function() saving,
     required TResult Function() success,
     required TResult Function(SubmissionFailure failure) failure,
   }) {
@@ -1112,7 +956,6 @@ class _$_Failure extends _Failure {
     TResult? Function()? initial,
     TResult? Function()? editing,
     TResult? Function()? inProgress,
-    TResult? Function()? saving,
     TResult? Function()? success,
     TResult? Function(SubmissionFailure failure)? failure,
   }) {
@@ -1125,7 +968,6 @@ class _$_Failure extends _Failure {
     TResult Function()? initial,
     TResult Function()? editing,
     TResult Function()? inProgress,
-    TResult Function()? saving,
     TResult Function()? success,
     TResult Function(SubmissionFailure failure)? failure,
     required TResult orElse(),
@@ -1142,7 +984,6 @@ class _$_Failure extends _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Editing value) editing,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Saving value) saving,
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
   }) {
@@ -1155,7 +996,6 @@ class _$_Failure extends _Failure {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Editing value)? editing,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Saving value)? saving,
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
   }) {
@@ -1168,7 +1008,6 @@ class _$_Failure extends _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_Editing value)? editing,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Saving value)? saving,
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
