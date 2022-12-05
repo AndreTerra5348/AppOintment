@@ -15,58 +15,58 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DeleteEvent<T extends EntityMixin> {
-  T get entity => throw _privateConstructorUsedError;
+mixin _$DeleteEvent {
+  Uid get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T entity) deleted,
+    required TResult Function(Uid id) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T entity)? deleted,
+    TResult? Function(Uid id)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T entity)? deleted,
+    TResult Function(Uid id)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Deleted<T> value) deleted,
+    required TResult Function(_Deleted value) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Deleted<T> value)? deleted,
+    TResult? Function(_Deleted value)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Deleted<T> value)? deleted,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DeleteEventCopyWith<T, DeleteEvent<T>> get copyWith =>
+  $DeleteEventCopyWith<DeleteEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeleteEventCopyWith<T extends EntityMixin, $Res> {
+abstract class $DeleteEventCopyWith<$Res> {
   factory $DeleteEventCopyWith(
-          DeleteEvent<T> value, $Res Function(DeleteEvent<T>) then) =
-      _$DeleteEventCopyWithImpl<T, $Res, DeleteEvent<T>>;
+          DeleteEvent value, $Res Function(DeleteEvent) then) =
+      _$DeleteEventCopyWithImpl<$Res, DeleteEvent>;
   @useResult
-  $Res call({T entity});
+  $Res call({Uid id});
 }
 
 /// @nodoc
-class _$DeleteEventCopyWithImpl<T extends EntityMixin, $Res,
-    $Val extends DeleteEvent<T>> implements $DeleteEventCopyWith<T, $Res> {
+class _$DeleteEventCopyWithImpl<$Res, $Val extends DeleteEvent>
+    implements $DeleteEventCopyWith<$Res> {
   _$DeleteEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -77,105 +77,102 @@ class _$DeleteEventCopyWithImpl<T extends EntityMixin, $Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? entity = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
-      entity: null == entity
-          ? _value.entity
-          : entity // ignore: cast_nullable_to_non_nullable
-              as T,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as Uid,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_DeletedCopyWith<T extends EntityMixin, $Res>
-    implements $DeleteEventCopyWith<T, $Res> {
+abstract class _$$_DeletedCopyWith<$Res> implements $DeleteEventCopyWith<$Res> {
   factory _$$_DeletedCopyWith(
-          _$_Deleted<T> value, $Res Function(_$_Deleted<T>) then) =
-      __$$_DeletedCopyWithImpl<T, $Res>;
+          _$_Deleted value, $Res Function(_$_Deleted) then) =
+      __$$_DeletedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({T entity});
+  $Res call({Uid id});
 }
 
 /// @nodoc
-class __$$_DeletedCopyWithImpl<T extends EntityMixin, $Res>
-    extends _$DeleteEventCopyWithImpl<T, $Res, _$_Deleted<T>>
-    implements _$$_DeletedCopyWith<T, $Res> {
-  __$$_DeletedCopyWithImpl(
-      _$_Deleted<T> _value, $Res Function(_$_Deleted<T>) _then)
+class __$$_DeletedCopyWithImpl<$Res>
+    extends _$DeleteEventCopyWithImpl<$Res, _$_Deleted>
+    implements _$$_DeletedCopyWith<$Res> {
+  __$$_DeletedCopyWithImpl(_$_Deleted _value, $Res Function(_$_Deleted) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? entity = null,
+    Object? id = null,
   }) {
-    return _then(_$_Deleted<T>(
-      entity: null == entity
-          ? _value.entity
-          : entity // ignore: cast_nullable_to_non_nullable
-              as T,
+    return _then(_$_Deleted(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as Uid,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Deleted<T extends EntityMixin> implements _Deleted<T> {
-  const _$_Deleted({required this.entity});
+class _$_Deleted implements _Deleted {
+  const _$_Deleted({required this.id});
 
   @override
-  final T entity;
+  final Uid id;
 
   @override
   String toString() {
-    return 'DeleteEvent<$T>.deleted(entity: $entity)';
+    return 'DeleteEvent.deleted(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Deleted<T> &&
-            const DeepCollectionEquality().equals(other.entity, entity));
+            other is _$_Deleted &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(entity));
+  int get hashCode => Object.hash(runtimeType, id);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeletedCopyWith<T, _$_Deleted<T>> get copyWith =>
-      __$$_DeletedCopyWithImpl<T, _$_Deleted<T>>(this, _$identity);
+  _$$_DeletedCopyWith<_$_Deleted> get copyWith =>
+      __$$_DeletedCopyWithImpl<_$_Deleted>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T entity) deleted,
+    required TResult Function(Uid id) deleted,
   }) {
-    return deleted(entity);
+    return deleted(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T entity)? deleted,
+    TResult? Function(Uid id)? deleted,
   }) {
-    return deleted?.call(entity);
+    return deleted?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T entity)? deleted,
+    TResult Function(Uid id)? deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
-      return deleted(entity);
+      return deleted(id);
     }
     return orElse();
   }
@@ -183,7 +180,7 @@ class _$_Deleted<T extends EntityMixin> implements _Deleted<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Deleted<T> value) deleted,
+    required TResult Function(_Deleted value) deleted,
   }) {
     return deleted(this);
   }
@@ -191,7 +188,7 @@ class _$_Deleted<T extends EntityMixin> implements _Deleted<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Deleted<T> value)? deleted,
+    TResult? Function(_Deleted value)? deleted,
   }) {
     return deleted?.call(this);
   }
@@ -199,7 +196,7 @@ class _$_Deleted<T extends EntityMixin> implements _Deleted<T> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Deleted<T> value)? deleted,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -209,14 +206,14 @@ class _$_Deleted<T extends EntityMixin> implements _Deleted<T> {
   }
 }
 
-abstract class _Deleted<T extends EntityMixin> implements DeleteEvent<T> {
-  const factory _Deleted({required final T entity}) = _$_Deleted<T>;
+abstract class _Deleted implements DeleteEvent {
+  const factory _Deleted({required final Uid id}) = _$_Deleted;
 
   @override
-  T get entity;
+  Uid get id;
   @override
   @JsonKey(ignore: true)
-  _$$_DeletedCopyWith<T, _$_Deleted<T>> get copyWith =>
+  _$$_DeletedCopyWith<_$_Deleted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

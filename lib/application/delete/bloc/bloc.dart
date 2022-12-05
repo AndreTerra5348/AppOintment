@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/error.dart';
+import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,27 +12,26 @@ part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
-class DeleteBloc<T extends EntityMixin>
-    extends Bloc<DeleteEvent<T>, DeleteState> {
+class DeleteBloc<T extends EntityMixin> extends Bloc<DeleteEvent, DeleteState> {
   final IRepository<T> _repository;
-  DeleteBloc(this._repository) : super(_Initial()) {
-    on<_Deleted<T>>(_deleted);
+  DeleteBloc(this._repository) : super(const _Initial()) {
+    on<_Deleted>(_onDeleted);
   }
 
-  FutureOr<void> _deleted(_Deleted<T> event, Emitter<DeleteState> emit) async {
-    event.entity.validity.fold(
-      () => throw CriticalError('Invalid client'),
-      (client) => emit(DeleteState.inProgress()),
-    );
+  FutureOr<void> _onDeleted(_Deleted event, Emitter<DeleteState> emit) async {
+    if (event.id.isNotValid) {
+      throw CriticalError('Invalid Id');
+    }
 
-    if (state.isFailure) return;
+    emit(const DeleteState.inProgress());
 
-    final result = await _repository.delete(event.entity.id);
+    final result = await _repository.delete(event.id);
 
     emit(result.fold(
       (failure) => DeleteState.repositoryFailure(failure: failure),
-      (completed) =>
-          completed ? DeleteState.success() : DeleteState.notFoundFailure(),
+      (completed) => completed
+          ? const DeleteState.success()
+          : DeleteState.notFoundFailure(),
     ));
   }
 }

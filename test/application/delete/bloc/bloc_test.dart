@@ -23,7 +23,7 @@ void main() {
   });
 
   blocTest(
-    "When [Event.deleted(client)] with invalid client "
+    "When [Event.deleted(id)] with invalid id "
     "Then [DeleteBloc<Client>] should throw [CriticalError]",
     setUp: () {
       when(repository.delete(any)).thenAnswer(
@@ -31,13 +31,7 @@ void main() {
       );
     },
     build: () => DeleteBloc<Client>(repository),
-    act: (bloc) => bloc.add(
-      DeleteEvent.deleted(
-        entity: johnClient.copyWith(
-          name: Name(''),
-        ),
-      ),
-    ),
+    act: (bloc) => bloc.add(DeleteEvent.deleted(id: Uid())),
     errors: () => [isA<CriticalError>()],
   );
 
@@ -51,11 +45,11 @@ void main() {
     },
     build: () => DeleteBloc<Client>(repository),
     act: (bloc) => bloc.add(
-      DeleteEvent.deleted(entity: johnClient),
+      DeleteEvent.deleted(id: johnClient.id),
     ),
     expect: () => [
-      DeleteState.inProgress(),
-      DeleteState.success(),
+      const DeleteState.inProgress(),
+      const DeleteState.success(),
     ],
   );
 
@@ -68,9 +62,7 @@ void main() {
         );
       },
       build: () => DeleteBloc<Client>(repository),
-      act: (bloc) => bloc.add(
-            DeleteEvent.deleted(entity: johnClient),
-          ),
+      act: (bloc) => bloc.add(DeleteEvent.deleted(id: johnClient.id)),
       verify: (_) => verify(repository.delete(any)).called(1));
 
   blocTest(
@@ -85,7 +77,7 @@ void main() {
     },
     build: () => DeleteBloc<Client>(repository),
     act: (bloc) => bloc.add(
-      DeleteEvent.deleted(entity: johnClient),
+      DeleteEvent.deleted(id: johnClient.id),
     ),
     skip: 1,
     expect: () => [
@@ -107,7 +99,7 @@ void main() {
     },
     build: () => DeleteBloc<Client>(repository),
     act: (bloc) => bloc.add(
-      DeleteEvent.deleted(entity: johnClient),
+      DeleteEvent.deleted(id: johnClient.id),
     ),
     skip: 1,
     expect: () => [
@@ -124,9 +116,9 @@ void main() {
     },
     build: () => DeleteBloc<Client>(repository),
     act: (bloc) => bloc.add(
-      DeleteEvent.deleted(entity: johnClient),
+      DeleteEvent.deleted(id: johnClient.id),
     ),
     skip: 1,
-    expect: () => [DeleteState.success()],
+    expect: () => [const DeleteState.success()],
   );
 }
