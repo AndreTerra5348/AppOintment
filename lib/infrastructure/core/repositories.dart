@@ -41,6 +41,8 @@ abstract class BaseRepository<
     try {
       final model = await _dao.getById(id);
       return Right(_converter.toEntity(model));
+    } on StateError catch (error) {
+      return Left(RepositoryFailure.notFound(error: error));
     } catch (error) {
       return Left(RepositoryFailure.dbException(error: error));
     }
