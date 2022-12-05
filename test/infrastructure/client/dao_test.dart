@@ -30,6 +30,21 @@ void main() {
   });
 
   test(
+      "Should throw StateError "
+      "when getById is called and id do NOT exists", () async {
+    // Arrange
+    final sut = ClientDao(db!);
+
+    // Act
+    try {
+      final actual = await sut.getById(Uid.fromInt(1));
+    } catch (e) {
+      // Assert
+      expect(e, isA<StateError>());
+    }
+  });
+
+  test(
       "Should return the 5 first inserted clientModel "
       "when getPage is called with limit 5 and offset 0", () async {
     // Arrange
