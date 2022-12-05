@@ -8,6 +8,7 @@ extension SubmissionFailureEx on SubmissionFailure {
       repository: (value) => context.tr.databaseFailure(
         value.failure.map(
           dbException: (value) => value.error.toString(),
+          notFound: (value) => value.error.toString(),
         ),
       ),
       invalidFields: (value) => context.tr.invalidFieldsFailure,
