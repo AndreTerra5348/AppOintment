@@ -1,105 +1,360 @@
-import 'package:appointment/application/client/details/bloc/bloc.dart';
-import 'package:appointment/application/client/details/delete/bloc/bloc.dart';
-import 'package:appointment/application/client/details/edit/bloc/bloc.dart';
+import 'package:appointment/application/client/bloc/bloc.dart';
+import 'package:appointment/application/delete/bloc/bloc.dart';
+import 'package:appointment/application/details/bloc/bloc.dart';
+import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/presentation/client/common/widgets/name_input.dart';
 import 'package:appointment/presentation/client/details/widgets/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'form_test.mocks.dart';
 import 'page_mock.dart';
 
-@GenerateMocks(
-    [ClientDetailsBloc, ClientDetailsEditBloc, ClientDetailsDeleteBloc])
+import '../../../../common/failure_fixture.dart' as mock_failure;
+
+@GenerateMocks([DetailsBloc, EditBloc, DeleteBloc, ClientBloc])
 void main() {
-  group("ClientDetailsFormWidget", () {
-    late Client client;
-    late MockClientDetailsBloc mockClientDetailsBloc;
-    late MockClientDetailsEditBloc mockClientDetailsEditBloc;
-    late MockClientDetailsDeleteBloc mockClientDetailsDeleteBloc;
+  late Client johnClient;
+  late Client renamedJohnClient;
+  late MockDetailsBloc<Client> mockDetailsBloc;
+  late MockEditBloc<Client> mockEditBloc;
+  late MockDeleteBloc<Client> mockDeleteBloc;
+  late MockClientBloc mockClientBloc;
 
-    setUp(() {
-      client = Client(name: Name("John"), id: Uid.fromInt(1));
-      mockClientDetailsBloc = MockClientDetailsBloc();
-      mockClientDetailsEditBloc = MockClientDetailsEditBloc();
-      mockClientDetailsDeleteBloc = MockClientDetailsDeleteBloc();
+  late MockClientDetailPage mockClientDetailPage;
 
-      when(mockClientDetailsBloc.state)
-          .thenReturn(ClientDetailsState.initial().copyWith(client: client));
-      when(mockClientDetailsEditBloc.state)
-          .thenReturn(ClientDetailsEditState.initial());
-      when(mockClientDetailsDeleteBloc.state)
-          .thenReturn(ClientDetailsDeleteState.initial());
+  setUp(() {
+    johnClient = Client(name: Name("John"), id: Uid.fromInt(1));
+    renamedJohnClient = johnClient.copyWith(name: Name("Gohn"));
+    mockDetailsBloc = MockDetailsBloc<Client>();
+    mockEditBloc = MockEditBloc<Client>();
+    mockDeleteBloc = MockDeleteBloc<Client>();
+    mockClientBloc = MockClientBloc();
 
-      when(mockClientDetailsBloc.stream)
-          .thenAnswer((_) => const Stream.empty());
-      when(mockClientDetailsEditBloc.stream)
-          .thenAnswer((_) => const Stream.empty());
-      when(mockClientDetailsDeleteBloc.stream)
-          .thenAnswer((_) => const Stream.empty());
-    });
+    mockClientDetailPage = MockClientDetailPage(
+      client: johnClient,
+      clientDetailsBloc: mockDetailsBloc,
+      clientDetailsDeleteBloc: mockDeleteBloc,
+      clientDetailsEditBloc: mockEditBloc,
+      clientBloc: mockClientBloc,
+      child: const ClientDetailsFormWidget(),
+    );
 
-    testWidgets("should display loading indicator", (tester) async {
-      when(mockClientDetailsBloc.state)
-          .thenReturn(ClientDetailsState.initial());
+    when(mockDetailsBloc.state).thenReturn(DetailsState.loading());
+    when(mockEditBloc.state).thenReturn(const EditState.initial());
+    when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
+    when(mockClientBloc.state).thenReturn(ClientState.initial());
 
-      await tester.pumpWidget(MockClientDetailPage(
-        client: client,
-        clientDetailsBloc: mockClientDetailsBloc,
-        clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
-        clientDetailsEditBloc: mockClientDetailsEditBloc,
-        shouldAddClient: false,
-        child: const ClientDetailsFormWidget(),
-      ));
+    when(mockDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockDeleteBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockClientBloc.stream).thenAnswer((_) => const Stream.empty());
+  });
+
+  group("Given [DetailsState] is [loading()]", () {
+    testWidgets("Render loading indicator", (tester) async {
+      await tester.pumpWidget(mockClientDetailPage);
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets("should display client name", (tester) async {
-      await tester.pumpWidget(MockClientDetailPage(
-        client: client,
-        clientDetailsBloc: mockClientDetailsBloc,
-        clientDetailsEditBloc: mockClientDetailsEditBloc,
-        clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
-        child: const ClientDetailsFormWidget(),
-      ));
+    testWidgets("DO NOT Render NameInputWidget", (tester) async {
+      await tester.pumpWidget(mockClientDetailPage);
 
-      expect(find.text("John"), findsOneWidget);
+      expect(find.byType(NameInputWidget), findsNothing);
+    });
+  });
+
+  group("When [DetailsState] is [success(client)] ", () {
+    setUp(() {
+      final state = DetailsState.success(entity: johnClient);
+      when(mockDetailsBloc.state).thenReturn(state);
+      when(mockDetailsBloc.stream).thenAnswer((_) => Stream.value(state));
+
+      when(mockClientBloc.state).thenReturn(ClientState(client: johnClient));
+    });
+    testWidgets(
+      "Render edit button",
+      (tester) async {
+        await tester.pumpWidget(mockClientDetailPage);
+
+        expect(
+          find.widgetWithIcon(ElevatedButton, Icons.edit),
+          findsOneWidget,
+        );
+      },
+    );
+
+    testWidgets(
+      "Render delete button",
+      (tester) async {
+        await tester.pumpWidget(mockClientDetailPage);
+
+        expect(
+          find.widgetWithIcon(ElevatedButton, Icons.delete),
+          findsOneWidget,
+        );
+      },
+    );
+
+    testWidgets(
+      "Render NameInputWidget with client name",
+      (tester) async {
+        await tester.pumpWidget(mockClientDetailPage);
+
+        expect(find.byType(NameInputWidget), findsOneWidget);
+        expect(
+          find.widgetWithText(NameInputWidget, johnClient.name.getOrThrow()),
+          findsOneWidget,
+        );
+      },
+    );
+
+    testWidgets(
+      "Add [ClientEvent.loaded(client)] with loaded client once",
+      (tester) async {
+        await tester.pumpWidget(mockClientDetailPage);
+
+        await tester.pump();
+
+        verify(
+          mockClientBloc.add(ClientEvent.loaded(client: johnClient)),
+        ).called(1);
+      },
+    );
+
+    group("When Edit Button is Pressed:", () {
+      testWidgets("Add [EditEvent.editPressed()] once ", (tester) async {
+        await tester.pumpWidget(mockClientDetailPage);
+
+        await tester.tap(find.byIcon(Icons.edit));
+        await tester.pump();
+
+        verify(mockEditBloc.add(
+          const EditEvent.editPressed(),
+        )).called(1);
+      });
+
+      group("When [EditState] is [editing()]", () {
+        setUp(() {
+          when(mockEditBloc.state).thenReturn(const EditState.editing());
+        });
+
+        testWidgets(
+            "Display save button "
+            "Hide edit button", (tester) async {
+          await tester.pumpWidget(mockClientDetailPage);
+
+          expect(
+            find.widgetWithIcon(ElevatedButton, Icons.save),
+            findsOneWidget,
+          );
+          expect(
+            find.widgetWithIcon(ElevatedButton, Icons.edit),
+            findsNothing,
+          );
+        });
+
+        testWidgets(
+          "Display cancel button "
+          "Hide delete button",
+          (tester) async {
+            await tester.pumpWidget(mockClientDetailPage);
+
+            expect(
+              find.widgetWithIcon(ElevatedButton, Icons.cancel),
+              findsOneWidget,
+            );
+            expect(
+              find.widgetWithIcon(ElevatedButton, Icons.delete),
+              findsNothing,
+            );
+          },
+        );
+        group("When Save Button is Pressed ", () {
+          testWidgets(
+            "Add [EditEvent.savePressed(clientBloc.client)] once ",
+            (tester) async {
+              when(mockClientBloc.state).thenReturn(ClientState(
+                client: renamedJohnClient,
+              ));
+              await tester.pumpWidget(mockClientDetailPage);
+
+              await tester.tap(find.byIcon(Icons.save));
+              await tester.pump();
+
+              verify(mockEditBloc.add(
+                EditEvent.savePressed(entity: renamedJohnClient),
+              )).called(1);
+            },
+          );
+
+          group("When [EditState] is [inProgress()] ", () {
+            testWidgets(
+              "Show loading indicator",
+              (tester) async {
+                when(mockEditBloc.state).thenReturn(
+                  const EditState.inProgress(),
+                );
+                await tester.pumpWidget(mockClientDetailPage);
+
+                expect(find.byType(CircularProgressIndicator), findsOneWidget);
+              },
+            );
+          });
+          group("When [EditState] is [success()] ", () {
+            setUp(() {
+              const state = EditState.success();
+              when(mockEditBloc.state).thenReturn(state);
+              when(mockEditBloc.stream).thenAnswer((_) => Stream.value(state));
+            });
+            testWidgets(
+              "Add [DetailsEvent.loaded(clientBloc.client.id)] once",
+              (tester) async {
+                when(mockClientBloc.state).thenReturn(
+                  ClientState(client: renamedJohnClient),
+                );
+                await tester.pumpWidget(mockClientDetailPage);
+
+                verify(mockDetailsBloc.add(
+                  DetailsEvent.loaded(id: renamedJohnClient.id),
+                )).called(1);
+              },
+            );
+
+            testWidgets(
+              "Hide loading indicator ",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
+
+                expect(find.byType(CircularProgressIndicator), findsNothing);
+              },
+            );
+
+            testWidgets(
+              "Show Icons.check_circle_outline for 1 second",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
+                await tester.pump();
+
+                expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
+
+                await tester.pump(const Duration(seconds: 1));
+
+                expect(find.byIcon(Icons.check_circle_outline), findsNothing);
+              },
+            );
+          });
+          group("When [EditState] is [failure()] ", () {
+            setUp(() {
+              final state = EditState.repositoryFailure(
+                failure: mock_failure.dbErrorRepositoryFailure,
+              );
+              when(mockEditBloc.state).thenReturn(state);
+              when(mockEditBloc.stream).thenAnswer((_) => Stream.value(state));
+            });
+
+            testWidgets(
+              "Show Icons.error_outline for 1 second",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
+                await tester.pump();
+
+                expect(find.byIcon(Icons.error_outline), findsOneWidget);
+
+                await tester.pump(const Duration(seconds: 1));
+
+                expect(find.byIcon(Icons.error_outline), findsNothing);
+              },
+            );
+
+            testWidgets(
+              "Show failure message for 1 second",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
+                await tester.pump();
+
+                expect(
+                  find.text(mock_failure.dbErrorLocalizedMessage),
+                  findsOneWidget,
+                );
+
+                await tester.pump(const Duration(seconds: 1));
+
+                expect(
+                  find.text(mock_failure.dbErrorLocalizedMessage),
+                  findsNothing,
+                );
+              },
+            );
+          });
+        });
+
+        group("When Cancel Button is Pressed ", () {
+          testWidgets(
+            "Add [DetailsEvent.loaded(clientBloc.client.id)] once ",
+            (tester) async {
+              when(mockClientBloc.state).thenReturn(
+                ClientState(client: renamedJohnClient),
+              );
+              await tester.pumpWidget(mockClientDetailPage);
+
+              await tester.tap(find.byIcon(Icons.cancel));
+              await tester.pump();
+
+              verify(mockDetailsBloc.add(
+                DetailsEvent.loaded(id: renamedJohnClient.id),
+              )).called(1);
+            },
+          );
+        });
+      });
     });
 
-    testWidgets("should display edit button", (tester) async {
-      await tester.pumpWidget(MockClientDetailPage(
-        client: client,
-        clientDetailsBloc: mockClientDetailsBloc,
-        clientDetailsEditBloc: mockClientDetailsEditBloc,
-        clientDetailsDeleteBloc: mockClientDetailsDeleteBloc,
-        child: const ClientDetailsFormWidget(),
-      ));
+    group("When Delete Button is Pressed", () {
+      // Delete group
+      // TODO: Delete confirmation dialog should be displayed when delete button is pressed
+      // TODO: show sucess dialog when delete is successful
+      // TODO: change page when successful dialog is closed
+      // TODO: show failure dialog when delete is unsuccessful
 
-      expect(find.byIcon(Icons.edit), findsOneWidget);
+      testWidgets(
+        "Add [DeleteEvent.deleted(clientBloc.client.id)] once ",
+        (tester) async {
+          when(mockClientBloc.state).thenReturn(
+            ClientState(client: renamedJohnClient),
+          );
+          await tester.pumpWidget(mockClientDetailPage);
+
+          await tester.tap(find.byIcon(Icons.delete));
+          await tester.pump();
+
+          verify(mockDeleteBloc.add(
+            DeleteEvent.deleted(id: renamedJohnClient.id),
+          )).called(1);
+        },
+      );
+
+      group("When [DeleteState] is [inProgress()]", () {
+        setUp(() {
+          when(mockDeleteBloc.state).thenReturn(const DeleteState.inProgress());
+        });
+        testWidgets(
+          "Render loading indicator",
+          (tester) async {
+            await tester.pumpWidget(mockClientDetailPage);
+
+            await tester.tap(find.byIcon(Icons.delete));
+            await tester.pump();
+
+            expect(find.byType(CircularProgressIndicator), findsOneWidget);
+          },
+        );
+      });
     });
-
-    // TODO: Edit group
-    // TODO: Edit Button should be displayed when ClientDetailsEditState.isEditing is false
-    // TODO: Edit button should turn into save button when pressed
-    // TODO: Edit button should call ClientDetailsEditBloc.editPressed(client) when pressed
-
-    // Cancel group
-    // TODO: Cancel button should be displayed when edit button is pressed
-    // TODO: Cancel button should call ClientDetailsEditBloc.cancelPressed() when pressed
-    // TODO: loading indicator should be displayed when cancel button is pressed
-
-    // Delete group
-    // TODO: Delete button should be displayed when isEditing is false
-    // TODO: Delete confirmation dialog should be displayed when delete button is pressed
-    // TODO: Show loading indicator when deleting
-
-    // Save group
-    // TODO: Save button should be displayed when edit button is pressed
-    // TODO: Show loading indicator when saving
   });
 }
