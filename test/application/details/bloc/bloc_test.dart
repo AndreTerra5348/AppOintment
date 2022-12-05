@@ -8,56 +8,78 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'bloc_test.mocks.dart';
+import '../../../common/failure_fixture.dart' as failure_fixture;
 
 @GenerateMocks([ClientRepository])
 void main() {
   late Client validClient;
-  late Client invalidClient;
+  late MockClientRepository repository;
+
   setUp(() {
     validClient = Client(name: Name('John'), id: Uid.fromInt(1));
-    invalidClient = Client(name: Name(''), id: Uid.fromInt(1));
+    repository = MockClientRepository();
+
+    when(repository.getById(any)).thenAnswer((_) async => Right(validClient));
   });
   test("initial [State] should be [loading()]", () {
     // Arrange
-    final sut = DetailsBloc<Client>();
+    final sut = DetailsBloc<Client>(repository);
     // Act
     // Assert
     expect(sut.state, DetailsState<Client>.loading());
   });
-  test(
-      "Given [State.loading()] "
-      "[optionEntity] should be none", () {
-    // Arrange
-    final sut = DetailsBloc<Client>();
-    // Act
-    // Assert
-    expect(sut.state.optionEntity, none());
-  });
 
   blocTest(
     "Given [State.initial()] "
-    "When [Event.loaded(client)] with valid client"
-    "Then [State] should be [loaded(client)] ",
-    build: () => DetailsBloc<Client>(),
-    act: (bloc) => bloc.add(DetailsEvent<Client>.loaded(entity: validClient)),
-    expect: () => [DetailsState<Client>.loaded(entity: validClient)],
+    "When [Event.loaded(id)] with valid id"
+    "Then [State] should be [loading()] "
+    "When [repository.getById()] returns [Right(Client)] "
+    "Then [State] should be [success(Client)]",
+    build: () => DetailsBloc<Client>(repository),
+    act: (bloc) => bloc.add(DetailsEvent.loaded(id: validClient.id)),
+    expect: () => [
+      DetailsState<Client>.loading(),
+      DetailsState<Client>.success(entity: validClient),
+    ],
   );
 
   blocTest(
     "Given [State.initial()] "
-    "When [Event.loaded(client)] with valid client"
-    "Then [State.optionEntity] should be [some(client)] ",
-    build: () => DetailsBloc<Client>(),
-    act: (bloc) => bloc.add(DetailsEvent<Client>.loaded(entity: validClient)),
-    verify: (bloc) => expect(bloc.state.optionEntity, some(validClient)),
+    "When [Event.loaded(id)] "
+    "Then [Repository.getById(id)] should be called once ",
+    setUp: () => when(repository.getById(any))
+        .thenAnswer((_) async => Right(validClient)),
+    build: () => DetailsBloc<Client>(repository),
+    act: (bloc) => bloc.add(DetailsEvent.loaded(id: validClient.id)),
+    verify: (bloc) => verify(repository.getById(validClient.id)).called(1),
   );
 
   blocTest(
     "Given [State.initial()] "
-    "When [Event.loaded(client)] with invalid client"
+    "When [Event.loaded(id)] with invalid id "
     "Then [DetailsBloc<Client>] throws [CriticalError]",
-    build: () => DetailsBloc<Client>(),
-    act: (bloc) => bloc.add(DetailsEvent<Client>.loaded(entity: invalidClient)),
+    build: () => DetailsBloc<Client>(repository),
+    act: (bloc) => bloc.add(DetailsEvent.loaded(id: Uid())),
     errors: () => [isA<CriticalError>()],
+  );
+
+  blocTest(
+    "Given [State.initial()] "
+    "When [Event.loaded(id)] with valid id "
+    "And [repository.getById(client.id)] returns [Left(RepositoryFailure)] "
+    "Then [State] should be [failure()] "
+    "And [State.failure] should be [RepositoryFailure]",
+    setUp: () => when(repository.getById(any)).thenAnswer(
+        (_) async => const Left(failure_fixture.dbErrorRepositoryFailure)),
+    build: () => DetailsBloc<Client>(repository),
+    act: (bloc) => bloc.add(DetailsEvent.loaded(id: validClient.id)),
+    skip: 1,
+    expect: () => [
+      DetailsState<Client>.failure(
+        failure: failure_fixture.dbErrorSubmissionFailure,
+      )
+    ],
   );
 }

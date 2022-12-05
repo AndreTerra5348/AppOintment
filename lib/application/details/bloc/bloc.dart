@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/error.dart';
+import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/domain/core/i_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,15 +14,27 @@ part 'state.dart';
 part 'bloc.freezed.dart';
 
 class DetailsBloc<T extends EntityMixin>
-    extends Bloc<DetailsEvent<T>, DetailsState<T>> {
-  DetailsBloc() : super(DetailsState<T>.loading()) {
-    on<_Loaded<T>>(_onLoaded);
+    extends Bloc<DetailsEvent, DetailsState<T>> {
+  final IRepository<T> _repository;
+  DetailsBloc(this._repository) : super(DetailsState<T>.loading()) {
+    on<_Loaded>(_onLoaded);
   }
 
-  FutureOr<void> _onLoaded(_Loaded<T> event, Emitter<DetailsState<T>> emit) {
-    event.entity.validity.fold(
-      () => throw CriticalError('Invalid entity'),
-      (client) => emit(DetailsState<T>.loaded(entity: event.entity)),
+  FutureOr<void> _onLoaded(_Loaded event, Emitter<DetailsState<T>> emit) async {
+    event.id.value.fold(
+      (_) => throw CriticalError("Invalid id"),
+      (_) => emit(DetailsState<T>.loading()),
+    );
+
+    if (state.isNotLoading) return;
+
+    final result = await _repository.getById(event.id);
+
+    emit(
+      result.fold(
+        (failure) => DetailsState<T>.repositoryFailure(failure: failure),
+        (entity) => DetailsState<T>.success(entity: entity),
+      ),
     );
   }
 }
