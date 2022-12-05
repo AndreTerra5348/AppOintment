@@ -13,6 +13,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'form_test.mocks.dart';
 import 'page_mock.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
 import '../../../../common/failure_fixture.dart' as mock_failure;
 
@@ -176,6 +177,7 @@ void main() {
           },
         );
         group("When Save Button is Pressed ", () {
+          // TODO: show save confirmation dialog
           testWidgets(
             "Add [EditEvent.savePressed(clientBloc.client)] once ",
             (tester) async {
@@ -317,43 +319,125 @@ void main() {
 
     group("When Delete Button is Pressed", () {
       // Delete group
-      // TODO: Delete confirmation dialog should be displayed when delete button is pressed
+
       // TODO: show sucess dialog when delete is successful
-      // TODO: change page when successful dialog is closed
       // TODO: show failure dialog when delete is unsuccessful
+      // TODO: change page when successful dialog is closed
 
       testWidgets(
-        "Add [DeleteEvent.deleted(clientBloc.client.id)] once ",
+        "Render Confirmation dialog",
         (tester) async {
-          when(mockClientBloc.state).thenReturn(
-            ClientState(client: renamedJohnClient),
-          );
           await tester.pumpWidget(mockClientDetailPage);
 
           await tester.tap(find.byIcon(Icons.delete));
           await tester.pump();
 
-          verify(mockDeleteBloc.add(
-            DeleteEvent.deleted(id: renamedJohnClient.id),
-          )).called(1);
+          expect(find.text(AppLocalizationsEn().delete), findsOneWidget);
+          expect(find.text(AppLocalizationsEn().cancel), findsOneWidget);
+          expect(
+            find.widgetWithText(
+              Dialog,
+              AppLocalizationsEn().deleteConfirmation(
+                johnClient.name.getOrThrow(),
+              ),
+            ),
+            findsOneWidget,
+          );
         },
       );
 
-      group("When [DeleteState] is [inProgress()]", () {
-        setUp(() {
-          when(mockDeleteBloc.state).thenReturn(const DeleteState.inProgress());
-        });
+      group("When Confirmation dialog Cancel button is pressed", () {
         testWidgets(
-          "Render loading indicator",
+          "Hide Confirmation dialog",
           (tester) async {
             await tester.pumpWidget(mockClientDetailPage);
 
             await tester.tap(find.byIcon(Icons.delete));
             await tester.pump();
 
-            expect(find.byType(CircularProgressIndicator), findsOneWidget);
+            await tester.tap(find.text(AppLocalizationsEn().cancel));
+            await tester.pump();
+
+            expect(find.text(AppLocalizationsEn().delete), findsNothing);
+            expect(find.text(AppLocalizationsEn().cancel), findsNothing);
+            expect(
+              find.widgetWithText(
+                Dialog,
+                AppLocalizationsEn().deleteConfirmation(
+                  johnClient.name.getOrThrow(),
+                ),
+              ),
+              findsNothing,
+            );
           },
         );
+      });
+
+      group("When Confirmation dialog Delete button is pressed", () {
+        testWidgets(
+          "Hide Confirmation dialog",
+          (tester) async {
+            await tester.pumpWidget(mockClientDetailPage);
+
+            await tester.tap(find.byIcon(Icons.delete));
+            await tester.pump();
+
+            await tester.tap(find.text(AppLocalizationsEn().delete));
+            await tester.pump();
+
+            expect(find.text(AppLocalizationsEn().delete), findsNothing);
+            expect(find.text(AppLocalizationsEn().cancel), findsNothing);
+            expect(
+              find.widgetWithText(
+                Dialog,
+                AppLocalizationsEn().deleteConfirmation(
+                  johnClient.name.getOrThrow(),
+                ),
+              ),
+              findsNothing,
+            );
+          },
+        );
+        testWidgets(
+          "Add [DeleteEvent.deleted(clientBloc.client.id)] once ",
+          (tester) async {
+            when(mockClientBloc.state).thenReturn(
+              ClientState(client: renamedJohnClient),
+            );
+            await tester.pumpWidget(mockClientDetailPage);
+
+            await tester.tap(find.byIcon(Icons.delete));
+            await tester.pump();
+
+            await tester.tap(find.text(AppLocalizationsEn().delete));
+            await tester.pump();
+
+            verify(mockDeleteBloc.add(
+              DeleteEvent.deleted(id: renamedJohnClient.id),
+            )).called(1);
+          },
+        );
+
+        group("When [DeleteState] is [inProgress()]", () {
+          setUp(() {
+            when(mockDeleteBloc.state)
+                .thenReturn(const DeleteState.inProgress());
+          });
+          testWidgets(
+            "Render loading indicator",
+            (tester) async {
+              await tester.pumpWidget(mockClientDetailPage);
+
+              await tester.tap(find.byIcon(Icons.delete));
+              await tester.pump();
+
+              await tester.tap(find.text(AppLocalizationsEn().delete));
+              await tester.pump();
+
+              expect(find.byType(CircularProgressIndicator), findsOneWidget);
+            },
+          );
+        });
       });
     });
   });

@@ -8,9 +8,12 @@ import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/common/widgets/name_input.dart';
+import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 
 class ClientDetailsFormWidget extends StatefulWidget {
   const ClientDetailsFormWidget({super.key});
@@ -45,10 +48,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
               listener: (context, editState) {
                 editState.maybeMap(
                   orElse: () {},
-                  success: (_) => _handleEditSuccess(
-                    context,
-                    context.clientBloc.state.client,
-                  ),
+                  success: (_) => _handleEditSuccess(context),
                   failure: (failureStatus) => _handleFailure(
                     context,
                     failureStatus.failure,
@@ -108,17 +108,39 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   ElevatedButton _buildDeleteButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => context.deleted(
-        id: context.clientBloc.state.client.id,
-      ),
+      onPressed: () => _buildDeleteDialog(context),
       child: const Icon(Icons.delete),
+    );
+  }
+
+  void _buildDeleteDialog(BuildContext context) {
+    Dialogs.materialDialog(
+      context: context,
+      msg: context.tr.deleteConfirmation(
+        context.client.name.getOrThrow(),
+      ),
+      actions: [
+        IconsButton(
+          onPressed: () => Navigator.pop(context),
+          text: context.tr.cancel,
+          iconData: Icons.cancel,
+        ),
+        IconsButton(
+          onPressed: () {
+            Navigator.pop(context);
+            context.deleted(id: context.client.id);
+          },
+          text: context.tr.delete,
+          iconData: Icons.delete,
+        ),
+      ],
     );
   }
 
   ElevatedButton _buildCancelButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () => context.reaload(
-        id: context.clientBloc.state.client.id,
+        id: context.client.id,
       ),
       child: const Icon(Icons.cancel),
     );
@@ -128,7 +150,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     return ElevatedButton(
       onPressed: () {
         context.savePressed(
-          client: context.clientBloc.state.client,
+          client: context.client,
         );
       },
       child: const Icon(Icons.save),
@@ -147,18 +169,11 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
-  _handleEditSuccess(BuildContext context, Client client) {
-    context.reaload(id: client.id);
-
+  _handleEditSuccess(BuildContext context) {
+    context.reaload(id: context.client.id);
     showDialog(
       context: context,
-      builder: (_) => Column(
-        children: const [
-          Icon(Icons.check_circle_outline),
-          // TODO: Add this entry to arb file
-          Text("context.tr.editSuccess(client.name)"),
-        ],
-      ),
+      builder: (_) => const Icon(Icons.check_circle_outline),
     );
   }
 }
@@ -175,6 +190,8 @@ extension on BuildContext {
       BlocProvider.of<DeleteBloc<Client>>(this);
 
   bool get isEditing => editBloc.state.isEditing;
+
+  Client get client => clientBloc.state.client;
 
   void reaload({required Uid id}) =>
       detailsBloc.add(DetailsEvent.loaded(id: id));
