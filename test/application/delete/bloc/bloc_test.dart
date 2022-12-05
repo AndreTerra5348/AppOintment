@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'bloc_test.mocks.dart';
-import '../../../common/mock_submission_failure.dart' as mock_failure;
+import '../../../common/failure_fixture.dart' as failure_fixture;
 
 @GenerateMocks([ClientRepository])
 void main() {
@@ -80,7 +80,7 @@ void main() {
     "And [RpositoryFailure] should be [dbException()]",
     setUp: () {
       when(repository.delete(any)).thenAnswer(
-        (_) async => const Left(mock_failure.dbErrorRepositoryFailure),
+        (_) async => const Left(failure_fixture.dbErrorRepositoryFailure),
       );
     },
     build: () => DeleteBloc<Client>(repository),
@@ -90,7 +90,7 @@ void main() {
     skip: 1,
     expect: () => [
       DeleteState.repositoryFailure(
-        failure: mock_failure.dbErrorRepositoryFailure,
+        failure: failure_fixture.dbErrorRepositoryFailure,
       )
     ],
   );

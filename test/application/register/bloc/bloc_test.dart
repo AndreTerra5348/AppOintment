@@ -11,7 +11,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'bloc_test.mocks.dart';
-import '../../../common/mock_submission_failure.dart' as mock_failure;
+import '../../../common/failure_fixture.dart' as failure_fixture;
 
 @GenerateMocks([ClientRepository])
 void main() {
@@ -93,7 +93,7 @@ void main() {
       setUp: () {
         when(repository.insert(any)).thenAnswer(
           (_) async => const Left(
-            mock_failure.dbErrorRepositoryFailure,
+            failure_fixture.dbErrorRepositoryFailure,
           ),
         );
       },
@@ -102,7 +102,7 @@ void main() {
       skip: 1,
       expect: () => [
         RegisterState.repositoryFailure(
-          failure: mock_failure.dbErrorRepositoryFailure,
+          failure: failure_fixture.dbErrorRepositoryFailure,
         ),
       ],
     );
