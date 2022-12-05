@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NameInputWidget extends StatelessWidget {
   final bool isEditing;
-  const NameInputWidget({super.key, this.isEditing = false});
+  const NameInputWidget({super.key, this.isEditing = true});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ extension StringFailureExtension on StringFailure {
   }
 }
 
-extension BuildContextEx on BuildContext {
+extension on BuildContext {
   Client get client => read<ClientBloc>().state.client;
   void nameChanged({required String name}) =>
       read<ClientBloc>().add(ClientEvent.nameChanged(name: name));
