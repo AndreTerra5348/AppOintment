@@ -37,7 +37,7 @@ void main() {
 
     // Act
     try {
-      final actual = await sut.getById(Uid.fromInt(1));
+      await sut.getById(Uid.fromInt(1));
     } catch (e) {
       // Assert
       expect(e, isA<StateError>());
