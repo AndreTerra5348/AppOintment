@@ -1,4 +1,7 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
+import 'package:appointment/domain/client/entity.dart';
+import 'package:appointment/domain/client/values.dart';
+import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/common/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,59 +16,82 @@ import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 void main() {
   // TODO: test decoration > labelText
   // TODO: test validator > failure
-  group("NameInputWidget ", () {
-    late MockClientBloc clientBloc;
-    setUp(() {
-      clientBloc = MockClientBloc();
-      when(clientBloc.state).thenReturn(ClientState.initial());
-      when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
-    });
+  late MockClientBloc clientBloc;
+  late MockClientRegisterPage mockPage;
+  late Client client;
+  const name = "Bob";
+  setUp(() {
+    clientBloc = MockClientBloc();
+    when(clientBloc.state).thenReturn(ClientState.initial());
+    when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
 
-    testWidgets("Render TextFormField", (tester) async {
-      // Arrange
-      await tester.pumpWidget(MockClientRegisterPage(bloc: clientBloc));
+    client = Client(name: Name(name), id: Uid.fromInt(1));
 
-      // Act
-      // Assert
-      expect(find.byType(TextFormField), findsOneWidget);
-    });
+    mockPage = MockClientRegisterPage(
+      bloc: clientBloc,
+      isEditing: true,
+    );
+  });
 
-    testWidgets("Render nameTextFormField translation", (tester) async {
-      // Arrange
-      const text = '123';
-      await tester.pumpWidget(MockClientRegisterPage(bloc: clientBloc));
+  testWidgets("Render TextFormField", (tester) async {
+    // Arrange
+    await tester.pumpWidget(mockPage);
 
-      // Act
-      await tester.enterText(find.byType(TextFormField), text);
+    // Act
+    // Assert
+    expect(find.byType(TextFormField), findsOneWidget);
+  });
 
-      // Assert
-      expect(find.text(AppLocalizationsEn().nameTextFormField), findsOneWidget);
-    });
+  testWidgets("Render nameTextFormField translation", (tester) async {
+    // Arrange
+    const text = '123';
+    await tester.pumpWidget(mockPage);
 
-    testWidgets(
-        "Should [ClientEvent.nameChanged(name)] "
-        "When TextFormField value change", (WidgetTester tester) async {
-      // Arrange
-      const name = "Bob";
+    // Act
+    await tester.enterText(find.byType(TextFormField), text);
 
-      await tester.pumpWidget(MockClientRegisterPage(bloc: clientBloc));
-      await tester.pumpAndSettle();
+    // Assert
+    expect(find.text(AppLocalizationsEn().nameTextFormField), findsOneWidget);
+  });
 
-      expect(find.byType(TextFormField), findsOneWidget);
+  testWidgets(
+      "Given initial state "
+      "When ClientState.client is valid "
+      "Render name as initial value", (WidgetTester tester) async {
+    // Arrange
+    when(clientBloc.state).thenReturn(ClientState(client: client));
 
-      // Act
-      await tester.enterText(find.byType(TextFormField), name);
+    await tester.pumpWidget(mockPage);
 
-      // Assert
-      verify(clientBloc.add(const ClientEvent.nameChanged(name: name)))
-          .called(1);
-    });
+    // Act
+    // Assert
+    expect(find.text(name), findsOneWidget);
+  });
+
+  testWidgets(
+      "Should [ClientEvent.nameChanged(name)] "
+      "When TextFormField value change", (WidgetTester tester) async {
+    // Arrange
+    const name = "Bob";
+
+    await tester.pumpWidget(mockPage);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(TextFormField), findsOneWidget);
+
+    // Act
+    await tester.enterText(find.byType(TextFormField), name);
+
+    // Assert
+    verify(clientBloc.add(const ClientEvent.nameChanged(name: name))).called(1);
   });
 }
 
 class MockClientRegisterPage extends StatelessWidget {
   final ClientBloc bloc;
-  const MockClientRegisterPage({super.key, required this.bloc});
+  final bool isEditing;
+  const MockClientRegisterPage(
+      {super.key, required this.bloc, required this.isEditing});
 
   @override
   Widget build(BuildContext context) {
@@ -76,18 +102,11 @@ class MockClientRegisterPage extends StatelessWidget {
       home: Scaffold(
         body: BlocProvider(
           create: (context) => bloc,
-          child: const MockClientRegisterFormWidget(),
+          child: NameInputWidget(
+            isEditing: isEditing,
+          ),
         ),
       ),
     );
-  }
-}
-
-class MockClientRegisterFormWidget extends StatelessWidget {
-  const MockClientRegisterFormWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Focus(child: NameInputWidget());
   }
 }
