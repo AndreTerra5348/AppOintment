@@ -30,9 +30,9 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
         registerState.maybeMap(
           orElse: () {},
           success: (_) => _handleSuccess(context),
-          failure: (failureStatus) => _handleFailure(
+          failure: (failureState) => _handleFailure(
             context,
-            failureStatus.failure,
+            failureState.failure,
           ),
         );
         _timer = Timer(
@@ -106,7 +106,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   }
 }
 
-extension BuildContextExtensions on BuildContext {
+extension on BuildContext {
   void submitted({required Client client}) => read<RegisterBloc<Client>>().add(
         RegisterEvent<Client>.registered(entity: client),
       );
