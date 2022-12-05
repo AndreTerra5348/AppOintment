@@ -28,11 +28,30 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // Delete Bloc
     return BlocConsumer<DeleteBloc<Client>, DeleteState>(
+      listenWhen: (previous, current) => current.isSuccess || current.isFailure,
       listener: (context, deleteState) {
-        // TODO: implement listener
+        deleteState.maybeMap(
+          orElse: () {},
+          success: (_) => _handleSuccess(context),
+          failure: (failureState) => _handleFailure(
+            context,
+            failureState.failure,
+          ),
+        );
+        _timer = Timer(
+          const Duration(seconds: 1),
+          () {
+            Navigator.pop(context);
+            if (deleteState.isSuccess) {
+              // TODO: Navigate back to previous page
+            }
+          },
+        );
       },
       builder: (context, deleteState) {
+        // Details Bloc
         return BlocConsumer<DetailsBloc<Client>, DetailsState<Client>>(
           listenWhen: (previous, current) => current.isSuccess,
           listener: (context, detailsState) {
@@ -42,20 +61,23 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
             );
           },
           builder: (context, detailsState) {
+            // Edit Bloc
             return BlocConsumer<EditBloc<Client>, EditState>(
               listenWhen: (previous, current) =>
                   current.isSuccess || current.isFailure,
               listener: (context, editState) {
                 editState.maybeMap(
                   orElse: () {},
-                  success: (_) => _handleEditSuccess(context),
+                  success: (_) => _handleSuccess(context),
                   failure: (failureStatus) => _handleFailure(
                     context,
                     failureStatus.failure,
                   ),
                 );
                 _timer = Timer(
-                    const Duration(seconds: 1), () => Navigator.pop(context));
+                  const Duration(seconds: 1),
+                  () => Navigator.pop(context),
+                );
               },
               builder: (context, editState) {
                 return detailsState.isLoading
@@ -169,7 +191,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
-  _handleEditSuccess(BuildContext context) {
+  _handleSuccess(BuildContext context) {
     context.reaload(id: context.client.id);
     showDialog(
       context: context,

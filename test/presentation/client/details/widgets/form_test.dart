@@ -176,6 +176,7 @@ void main() {
             );
           },
         );
+
         group("When Save Button is Pressed ", () {
           // TODO: show save confirmation dialog
           testWidgets(
@@ -207,6 +208,8 @@ void main() {
                 expect(find.byType(CircularProgressIndicator), findsOneWidget);
               },
             );
+            // TODO: disable save button
+            // TODO: disable cancel button
           });
           group("When [EditState] is [success()] ", () {
             setUp(() {
@@ -257,7 +260,9 @@ void main() {
                 failure: mock_failure.dbErrorRepositoryFailure,
               );
               when(mockEditBloc.state).thenReturn(state);
-              when(mockEditBloc.stream).thenAnswer((_) => Stream.value(state));
+              when(mockEditBloc.stream).thenAnswer(
+                (_) => Stream.value(state),
+              );
             });
 
             testWidgets(
@@ -319,10 +324,7 @@ void main() {
 
     group("When Delete Button is Pressed", () {
       // Delete group
-
-      // TODO: show sucess dialog when delete is successful
-      // TODO: show failure dialog when delete is unsuccessful
-      // TODO: change page when successful dialog is closed
+      // TODO: navigate back to previous page when successful dialog is closed
 
       testWidgets(
         "Render Confirmation dialog",
@@ -435,6 +437,84 @@ void main() {
               await tester.pump();
 
               expect(find.byType(CircularProgressIndicator), findsOneWidget);
+            },
+          );
+        });
+
+        group("When [DeleteState] is [success()]", () {
+          setUp(() {
+            when(mockDeleteBloc.state).thenReturn(
+              const DeleteState.success(),
+            );
+            when(mockDeleteBloc.stream).thenAnswer(
+              (_) => Stream.value(const DeleteState.success()),
+            );
+          });
+          testWidgets(
+            "Hide loading indicator ",
+            (tester) async {
+              await tester.pumpWidget(mockClientDetailPage);
+
+              expect(find.byType(CircularProgressIndicator), findsNothing);
+            },
+          );
+
+          testWidgets(
+            "Show Icons.check_circle_outline for 1 second",
+            (tester) async {
+              await tester.pumpWidget(mockClientDetailPage);
+              await tester.pump();
+
+              expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
+
+              await tester.pump(const Duration(seconds: 1));
+
+              expect(find.byIcon(Icons.check_circle_outline), findsNothing);
+            },
+          );
+        });
+
+        group("When [DeleteState] is [failure()]", () {
+          setUp(() {
+            const state = DeleteState.failure(
+              failure: mock_failure.dbErrorSubmissionFailure,
+            );
+            when(mockDeleteBloc.state).thenReturn(state);
+            when(mockDeleteBloc.stream).thenAnswer(
+              (_) => Stream.value(state),
+            );
+          });
+          testWidgets(
+            "Show Icons.error_outline for 1 second",
+            (tester) async {
+              await tester.pumpWidget(mockClientDetailPage);
+              await tester.pump();
+
+              expect(find.byIcon(Icons.error_outline), findsOneWidget);
+
+              await tester.pump(const Duration(seconds: 1));
+
+              expect(find.byIcon(Icons.error_outline), findsNothing);
+            },
+          );
+
+          testWidgets(
+            "Show failure message for 1 second",
+            (tester) async {
+              await tester.pumpWidget(mockClientDetailPage);
+              await tester.pump();
+
+              expect(
+                find.text(mock_failure.dbErrorLocalizedMessage),
+                findsOneWidget,
+              );
+
+              await tester.pump(const Duration(seconds: 1));
+
+              expect(
+                find.text(mock_failure.dbErrorLocalizedMessage),
+                findsNothing,
+              );
             },
           );
         });
