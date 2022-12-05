@@ -21,12 +21,11 @@ class DetailsBloc<T extends EntityMixin>
   }
 
   FutureOr<void> _onLoaded(_Loaded event, Emitter<DetailsState<T>> emit) async {
-    event.id.value.fold(
-      (_) => throw CriticalError("Invalid id"),
-      (_) => emit(DetailsState<T>.loading()),
-    );
+    if (event.id.isNotValid) {
+      throw CriticalError("Invalid id");
+    }
 
-    if (state.isNotLoading) return;
+    emit(DetailsState<T>.loading());
 
     final result = await _repository.getById(event.id);
 
