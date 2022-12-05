@@ -49,8 +49,10 @@ void main() {
 
       // Act
       // Assert
-      expect(find.widgetWithIcon(ElevatedButton, Icons.add_circle),
-          findsOneWidget);
+      expect(
+        find.widgetWithIcon(ElevatedButton, Icons.add_circle),
+        findsOneWidget,
+      );
     });
 
     testWidgets(
@@ -110,7 +112,10 @@ void main() {
 
       // Act
       // Assert
-      expect(find.text(AppLocalizationsEn().emptyNameFailure), findsOneWidget);
+      expect(
+        find.text(AppLocalizationsEn().emptyNameFailure),
+        findsOneWidget,
+      );
     });
 
     testWidgets(
@@ -130,7 +135,9 @@ void main() {
       // Act
       // Assert
       expect(
-          find.text(failure_fixture.dbErrorLocalizedMessage), findsOneWidget);
+        find.text(failure_fixture.dbErrorLocalizedMessage),
+        findsOneWidget,
+      );
     });
 
     testWidgets(
