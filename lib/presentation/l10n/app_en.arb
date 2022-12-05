@@ -15,7 +15,9 @@
 
     "@_COMMON": {},
     "noResultsFound": "No results found",
-
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
 
     "@_CLIENT_REGISTER_PAGE": {},
     "pageClientRegisterTitle": "Client Registration",
@@ -23,5 +25,15 @@
 
     "@_CLIENT_SEARCH_PAGE": {},
     "pageClientSearchTitle": "Client Search",
-    "searchTextFormFieldHint": "Search"
+    "searchTextFormFieldHint": "Search",
+
+    "@_CLIENT_DETAILS_PAGE": {},
+    "pageClientDetailsTitle": "Client Details",
+    "saveConfirmation": "Save changes?",
+    "deleteConfirmation": "Are you sure you want to delete {name}?",
+    "@deleteConfirmation": {
+            "placeholders": {
+                "name": {}
+            }
+        }
 }
