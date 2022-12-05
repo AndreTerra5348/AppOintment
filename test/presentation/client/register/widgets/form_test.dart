@@ -10,8 +10,7 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
-import '../../../../common/mock_submission_failure.dart'
-    as mock_submission_failure;
+import '../../../../common/failure_fixture.dart' as failure_fixture;
 import 'form_test.mocks.dart';
 
 @GenerateMocks([RegisterBloc, ClientBloc])
@@ -121,7 +120,7 @@ void main() {
         "And [RepositoryFailure] is [dbException()]", (tester) async {
       // Arrange
       final state = RegisterState.repositoryFailure(
-          failure: mock_submission_failure.dbErrorRepositoryFailure);
+          failure: failure_fixture.dbErrorRepositoryFailure);
       when(registerBloc.state).thenReturn(state);
       when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
 
@@ -130,8 +129,8 @@ void main() {
 
       // Act
       // Assert
-      expect(find.text(mock_submission_failure.dbErrorLocalizedMessage),
-          findsOneWidget);
+      expect(
+          find.text(failure_fixture.dbErrorLocalizedMessage), findsOneWidget);
     });
 
     testWidgets(
