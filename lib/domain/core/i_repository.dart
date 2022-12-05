@@ -16,4 +16,6 @@ abstract class IRepository<T extends EntityMixin> {
 class RepositoryFailure with _$RepositoryFailure {
   const factory RepositoryFailure.dbException({required Object error}) =
       _DBException;
+
+  const factory RepositoryFailure.notFound({required Object error}) = _NotFound;
 }
