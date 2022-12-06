@@ -33,7 +33,7 @@ void main() {
       locale: const Locale('en'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: ClientDetailPage(
+      home: ClientDetailsPage(
         clientBloc: mockClientBloc,
         detailsBloc: mockDetailsBloc,
         editBloc: mockEditBloc,

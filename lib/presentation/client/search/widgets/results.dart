@@ -1,6 +1,11 @@
 import 'package:appointment/application/client/search/bloc/bloc.dart';
+import 'package:appointment/domain/client/values.dart';
+import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/core/i_page_service.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
+import 'package:appointment/presentation/config/di.dart';
+import 'package:appointment/presentation/config/route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,11 +46,15 @@ class _ClientSearchResultsWidgetState extends State<ClientSearchResultsWidget>
                 itemCount: state.clients.length,
                 itemBuilder: (context, index) {
                   return ListTile(
+                    onTap: () => context
+                        .pushDetailsPage(state.getId(index))
+                        .then((_) => context.refreshRequested()),
                     leading: Text(
-                      state.clients.elementAt(index).id.getOrThrow().toString(),
+                      state.getId(index).getOrThrow().toString(),
                     ),
-                    title:
-                        Text(state.clients.elementAt(index).name.getOrThrow()),
+                    title: Text(
+                      state.getName(index).getOrThrow(),
+                    ),
                   );
                 },
                 controller: _scrollController,
@@ -87,9 +96,7 @@ class _ClientSearchResultsWidgetState extends State<ClientSearchResultsWidget>
 
   void _fetchMore() {
     if (_isBottom) {
-      context
-          .read<ClientSearchBloc>()
-          .add(const ClientSearchEvent.fetchRequested());
+      context.fetchRequested();
     }
   }
 
@@ -99,8 +106,29 @@ class _ClientSearchResultsWidgetState extends State<ClientSearchResultsWidget>
   }
 }
 
-extension PageServiceFailureExtensio on PageServiceFailure {
+extension on PageServiceFailure {
   String toErrorText(BuildContext context) {
     return map(dbException: (value) => context.tr.databaseFailure(value.error));
   }
+}
+
+extension on BuildContext {
+  ClientSearchBloc get searchBloc => read<ClientSearchBloc>();
+
+  void fetchRequested() => searchBloc.add(
+        const ClientSearchEvent.fetchRequested(),
+      );
+
+  void refreshRequested() => searchBloc.add(
+        const ClientSearchEvent.refreshRequested(),
+      );
+
+  Future<T?> pushDetailsPage<T extends Object?>(Uid id) => pushRoute<T>(
+        router.getClientDetailsRoute(id: id),
+      );
+}
+
+extension on ClientSearchState {
+  Uid getId(int index) => clients.elementAt(index).id;
+  Name getName(int index) => clients.elementAt(index).name;
 }

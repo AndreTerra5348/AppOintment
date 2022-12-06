@@ -3,7 +3,10 @@ import 'package:appointment/application/client/search/status.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/client/dao.dart';
+import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/presentation/app_ointment.dart';
+import 'package:appointment/presentation/client/details/page.dart';
 import 'package:appointment/presentation/client/search/widgets/results.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,158 +15,167 @@ import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
+import '../../../../common/failure_fixture.dart' as failure_fixture;
+import '../../../config/mock_di.dart' as mock_di;
 import 'results_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<ClientSearchBloc>()])
+// TODO: Tap to go to details page
+@GenerateNiceMocks([
+  MockSpec<ClientSearchBloc>(),
+  MockSpec<ClientDao>(unsupportedMembers: {#table, #alias}),
+])
 void main() {
-  group("ClientSearchResultsWidget - ", () {
+  late MockClientSearchBloc searchBloc;
+  setUp(() {
+    searchBloc = MockClientSearchBloc();
+    when(searchBloc.state).thenReturn(ClientSearchState.initial());
+    when(searchBloc.stream).thenAnswer((_) => const Stream.empty());
+  });
+
+  group("Given [State.status] is [loading()]", () {
     testWidgets(
-        "Given [ClientSearchState.initial()] "
-        "And [ClientSearchState.status] = [ClientSearchStatus.loading()] "
-        "When [ClientSearchResultsWidget] is built "
-        "Then [ClientSearchResultsWidget] should show [CircularProgressIndicator]",
+      "Render [CircularProgressIndicator]",
+      (tester) async {
+        await tester.pumpWidget(MockClientSearchPage(bloc: searchBloc));
+
+        expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      },
+    );
+  });
+
+  group(
+    "Given [State.status] is [success()]",
+    () {
+      const clientsAmount = 10;
+      late ClientSearchState state;
+      setUp(() {
+        state = ClientSearchState.initial().copyWith(
+          status: const ClientSearchStatus.success(),
+          clients: _createClients(amount: clientsAmount),
+        );
+        when(searchBloc.state).thenReturn(state);
+        when(searchBloc.stream).thenAnswer(
+          (_) => Stream.fromIterable([state]),
+        );
+      });
+
+      testWidgets(
+        "Render [ListView] with [ListTiles] for each client",
         (tester) async {
-      // Arrange
-      final mockBloc = MockClientSearchBloc();
-      when(mockBloc.state).thenReturn(ClientSearchState.initial());
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+          await tester.pumpWidget(MockClientSearchPage(bloc: searchBloc));
 
-      await tester.pumpWidget(MockClientSearchPage(bloc: mockBloc));
-
-      // Act
-      // Assert
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
-    });
-
-    testWidgets(
-        "Given [ClientSearchState.initial()] "
-        "And [ClientSearchState.status] = [ClientSearchStatus.success()] "
-        "When [ClientSearchResultsWidget] is built "
-        "Then [ClientSearchResultsWidget] should show [ListView] with [ListTile]s",
-        (tester) async {
-      // Arrange
-      const clientsAmount = 3;
-      final mockBloc = MockClientSearchBloc();
-      when(mockBloc.state).thenReturn(ClientSearchState.initial().copyWith(
-        status: const ClientSearchStatus.success(),
-        clients: _createClients(amount: clientsAmount),
-      ));
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientSearchPage(bloc: mockBloc));
-
-      // Act
-      // Assert
-
-      expect(find.byType(ListView), findsOneWidget);
-      expect(find.byType(ListTile), findsNWidgets(clientsAmount));
-    });
-
-    testWidgets(
-        "Given [ClientSearchState.initial()] "
-        "And [ClientSearchState.status] = [ClientSearchStatus.success()] "
-        "When [ClientSearchResultsWidget] is built "
-        "Then [ClientSearchResultsWidget] should show [Text] with [AppLocalizations.noResultsFound]",
-        (tester) async {
-      // Arrange
-      final mockBloc = MockClientSearchBloc();
-      when(mockBloc.state).thenReturn(ClientSearchState.initial().copyWith(
-        status: const ClientSearchStatus.empty(),
-      ));
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientSearchPage(bloc: mockBloc));
-
-      // Act
-      // Assert
-      expect(find.text(AppLocalizationsEn().noResultsFound), findsOneWidget);
-    });
-
-    testWidgets(
-        "Given [ClientSearchState.initial()] "
-        "And [ClientSearchState.status] = [ClientSearchStatus.failure()] "
-        "When [ClientSearchResultsWidget] is built "
-        "Then [ClientSearchResultsWidget] should show [Text] "
-        "With [AppLocalizations.databaseFailure(error)]", (tester) async {
-      // Arrange
-      final mockBloc = MockClientSearchBloc();
-      final ex = Exception("error");
-      when(mockBloc.state).thenReturn(ClientSearchState.initial().copyWith(
-        status: ClientSearchStatus.failure(
-          failure: PageServiceFailure.dbException(error: ex),
-        ),
-      ));
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientSearchPage(bloc: mockBloc));
-
-      // Act
-      // Assert
-      expect(find.text(AppLocalizationsEn().databaseFailure(ex.toString())),
-          findsOneWidget);
-    });
-
-    testWidgets(
-        "Given [ClientSearchState.initial()] "
-        "And [ClientSearchState.status] = [ClientSearchStatus.success()] "
-        "And [ClientSearchResultsWidget] is built "
-        "When [ListView] do not have enough content to fill the screen "
-        "Then [ClientSearchResultsWidget] should add "
-        "[ClientSearchEvent.fetchRequested()] once", (tester) async {
-      // Arrange
-      final mockBloc = MockClientSearchBloc();
-
-      when(mockBloc.state).thenReturn(ClientSearchState.initial().copyWith(
-        status: const ClientSearchStatus.success(),
-        clients: _createClients(amount: 10),
-      ));
-
-      when(mockBloc.stream).thenAnswer(
-        (_) => Stream.fromIterable(
-          [
-            ClientSearchState.initial().copyWith(
-              status: const ClientSearchStatus.success(),
-              clients: _createClients(amount: 10),
-            ),
-          ],
-        ),
+          expect(find.byType(ListView), findsOneWidget);
+          expect(find.byType(ListTile), findsNWidgets(clientsAmount));
+        },
       );
 
-      await tester.pumpWidget(MockClientSearchPage(bloc: mockBloc));
+      testWidgets(
+        "When [ListView] do not have enough content to fill the screen "
+        "Add [Event.fetchRequested()] once",
+        (tester) async {
+          await tester.pumpWidget(MockClientSearchPage(bloc: searchBloc));
 
-      // schedule a frame to allow addPostFrameCallback to be called
-      tester.binding.scheduleWarmUpFrame();
+          // schedule a frame to allow addPostFrameCallback to be called
+          tester.binding.scheduleWarmUpFrame();
 
-      // Assert
-      verify(mockBloc.add(const ClientSearchEvent.fetchRequested())).called(1);
-    });
+          // Assert
+          verify(searchBloc.add(const ClientSearchEvent.fetchRequested()))
+              .called(1);
+        },
+      );
 
-    testWidgets(
-        "Given [ClientSearchState.initial()] "
-        "And [ClientSearchState.status] = [ClientSearchStatus.success()] "
-        "And [ClientSearchResultsWidget] is built "
+      testWidgets(
         "When [ListView] ScrollController is scrolled to the end "
-        "Then [ClientSearchResultsWidget] should add "
-        "[ClientSearchEvent.fetchRequested()] once", (tester) async {
-      // Arrange
-      final mockBloc = MockClientSearchBloc();
-      when(mockBloc.state).thenReturn(ClientSearchState.initial().copyWith(
-        status: const ClientSearchStatus.success(),
-        clients: _createClients(amount: 20),
+        "Add [Event.fetchRequested()] once",
+        (tester) async {
+          // Arrange
+          when(searchBloc.state)
+              .thenReturn(ClientSearchState.initial().copyWith(
+            status: const ClientSearchStatus.success(),
+            clients: _createClients(amount: 20),
+          ));
+
+          await tester.pumpWidget(MockClientSearchPage(bloc: searchBloc));
+
+          // Act
+          // scroll to the end
+          await tester.drag(
+            find.byType(ListView),
+            const Offset(0, -1000),
+          );
+
+          // Assert
+          verify(
+            searchBloc.add(const ClientSearchEvent.fetchRequested()),
+          ).called(1);
+        },
+      );
+
+      testWidgets(
+        "When [ListTile] is tapped "
+        "Navigate to [ClientDetailsPage] with [Client.id] as argument",
+        (tester) async {
+          final mockClientDao = MockClientDao();
+
+          final models = Iterable.generate(5)
+              .map((e) => ClientModel(id: e + 1, name: "Bob"));
+
+          when(mockClientDao.getPage(
+            limit: anyNamed("limit"),
+            offset: anyNamed("offset"),
+            filter: anyNamed("filter"),
+          )).thenAnswer((_) => Future.value(models));
+
+          mock_di.mockServicesConfiguration(mockClientDao);
+
+          await tester.pumpWidget(AppOintment());
+          await tester.pumpAndSettle();
+
+          final clientTile = find.text(models.first.id.toString());
+          await tester.tap(clientTile);
+          await tester.pumpAndSettle();
+
+          expect(find.byType(ClientDetailsPage), findsOneWidget);
+        },
+      );
+    },
+  );
+
+  group("Given [State.status] is [empty()]", () {
+    setUp(() {
+      when(searchBloc.state).thenReturn(ClientSearchState.initial().copyWith(
+        status: const ClientSearchStatus.empty(),
       ));
-
-      when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
-
-      await tester.pumpWidget(MockClientSearchPage(bloc: mockBloc));
-
-      // Act
-      await tester.drag(
-          find.byType(ListView), const Offset(0, -1000)); // scroll to the end
-
-      // Assert
-      verify(mockBloc.add(const ClientSearchEvent.fetchRequested())).called(1);
     });
+    testWidgets(
+      "Render [Text] with [AppLocalizations.noResultsFound]",
+      (tester) async {
+        await tester.pumpWidget(MockClientSearchPage(bloc: searchBloc));
+
+        expect(find.text(AppLocalizationsEn().noResultsFound), findsOneWidget);
+      },
+    );
+  });
+
+  group("Given [State.status] is [failure()]", () {
+    setUp(() {
+      when(searchBloc.state).thenReturn(ClientSearchState.initial().copyWith(
+        status: const ClientSearchStatus.failure(
+          failure: failure_fixture.dbErrorPageServiceFailure,
+        ),
+      ));
+    });
+    testWidgets(
+      "Render localized error message",
+      (tester) async {
+        await tester.pumpWidget(MockClientSearchPage(bloc: searchBloc));
+
+        expect(
+            find.text(AppLocalizationsEn()
+                .databaseFailure(failure_fixture.dbErrorMessage)),
+            findsOneWidget);
+      },
+    );
   });
 }
 
