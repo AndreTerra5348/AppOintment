@@ -98,7 +98,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
                                           _buildDeleteButton(context)
                                         ],
                                 ),
-                                const NameInputWidget(isEditing: false),
+                                NameInputWidget(isEditing: editState.isEditing),
                               ],
                             ),
                             if (editState.isInProgress ||
@@ -161,9 +161,10 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   ElevatedButton _buildCancelButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => context.reaload(
-        id: context.client.id,
-      ),
+      onPressed: () {
+        context.cancelPressed();
+        context.reaload(id: context.client.id);
+      },
       child: const Icon(Icons.cancel),
     );
   }
@@ -222,6 +223,8 @@ extension on BuildContext {
       clientBloc.add(ClientEvent.loaded(client: client));
 
   void editPressed() => editBloc.add(const EditEvent.editPressed());
+
+  void cancelPressed() => editBloc.add(const EditEvent.cancelPressed());
 
   void savePressed({required Client client}) =>
       editBloc.add(EditEvent.savePressed(entity: client));

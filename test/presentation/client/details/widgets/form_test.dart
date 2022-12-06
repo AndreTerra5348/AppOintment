@@ -146,6 +146,21 @@ void main() {
         });
 
         testWidgets(
+          "All TextFormFields should be enabled ",
+          (tester) async {
+            await tester.pumpWidget(mockClientDetailPage);
+
+            expect(find.byType(TextFormField), findsNWidgets(1));
+            expect(
+              find.byWidgetPredicate(
+                (widget) => widget is TextFormField && widget.enabled,
+              ),
+              findsNWidgets(1),
+            );
+          },
+        );
+
+        testWidgets(
             "Display save button "
             "Hide edit button", (tester) async {
           await tester.pumpWidget(mockClientDetailPage);
@@ -315,6 +330,20 @@ void main() {
 
               verify(mockDetailsBloc.add(
                 DetailsEvent.loaded(id: renamedJohnClient.id),
+              )).called(1);
+            },
+          );
+
+          testWidgets(
+            "Add [EditEvent.cancelPressed()] once ",
+            (tester) async {
+              await tester.pumpWidget(mockClientDetailPage);
+
+              await tester.tap(find.byIcon(Icons.cancel));
+              await tester.pump();
+
+              verify(mockEditBloc.add(
+                const EditEvent<Client>.cancelPressed(),
               )).called(1);
             },
           );
