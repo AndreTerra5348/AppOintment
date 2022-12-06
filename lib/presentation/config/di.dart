@@ -40,12 +40,11 @@ void servicesConfiguration() {
 
   getIt.registerSingleton<RegisterValidator<Client>>(ClientRegisterValidator());
 
-  getIt.registerSingleton(RegisterBloc<Client>(getIt(), getIt()));
+  getIt.registerFactory(() => RegisterBloc<Client>(getIt(), getIt()));
+  getIt.registerFactory(() => ClientSearchBloc(getIt()));
 
-  getIt.registerSingleton(ClientSearchBloc(getIt()));
-
-  getIt.registerSingleton(DetailsBloc<Client>(getIt()));
-  getIt.registerSingleton(EditBloc<Client>(getIt()));
-  getIt.registerSingleton(DeleteBloc<Client>(getIt()));
-  getIt.registerSingleton(ClientBloc());
+  getIt.registerFactory(() => DetailsBloc<Client>(getIt()));
+  getIt.registerFactory(() => EditBloc<Client>(getIt()));
+  getIt.registerFactory(() => DeleteBloc<Client>(getIt()));
+  getIt.registerFactory(() => ClientBloc());
 }
