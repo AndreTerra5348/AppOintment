@@ -1,5 +1,9 @@
+import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/client/register/validator.dart';
 import 'package:appointment/application/client/search/bloc/bloc.dart';
+import 'package:appointment/application/delete/bloc/bloc.dart';
+import 'package:appointment/application/details/bloc/bloc.dart';
+import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/application/register/bloc/bloc.dart';
 import 'package:appointment/application/register/validator.dart';
 import 'package:appointment/domain/client/entity.dart';
@@ -39,4 +43,9 @@ void servicesConfiguration() {
   getIt.registerSingleton(RegisterBloc<Client>(getIt(), getIt()));
 
   getIt.registerSingleton(ClientSearchBloc(getIt()));
+
+  getIt.registerSingleton(DetailsBloc<Client>(getIt()));
+  getIt.registerSingleton(EditBloc<Client>(getIt()));
+  getIt.registerSingleton(DeleteBloc<Client>(getIt()));
+  getIt.registerSingleton(ClientBloc());
 }
