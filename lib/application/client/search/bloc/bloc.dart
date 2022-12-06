@@ -20,6 +20,7 @@ class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
   ClientSearchBloc(this._pageService) : super(ClientSearchState.initial()) {
     on<_FetchRequested>(_onFetchRequested);
     on<_TermChanged>(_onTermChanged);
+    on<_RefreshRequested>(_onRefreshRequested);
   }
 
   FutureOr<void> _emitFetched(Emitter<ClientSearchState> emit) async {
@@ -61,6 +62,15 @@ class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
         term: event.term,
       ),
     );
+    await _emitFetched(emit);
+  }
+
+  FutureOr<void> _onRefreshRequested(
+      _RefreshRequested event, Emitter<ClientSearchState> emit) async {
+    emit(state.copyWith(
+      status: const ClientSearchStatus.loading(),
+      clients: const Iterable.empty(),
+    ));
     await _emitFetched(emit);
   }
 }

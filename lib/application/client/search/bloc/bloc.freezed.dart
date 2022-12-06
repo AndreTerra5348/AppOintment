@@ -20,18 +20,21 @@ mixin _$ClientSearchEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchRequested,
     required TResult Function(String term) termChanged,
+    required TResult Function() refreshRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchRequested,
     TResult? Function(String term)? termChanged,
+    TResult? Function()? refreshRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchRequested,
     TResult Function(String term)? termChanged,
+    TResult Function()? refreshRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$ClientSearchEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchRequested value) fetchRequested,
     required TResult Function(_TermChanged value) termChanged,
+    required TResult Function(_RefreshRequested value) refreshRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchRequested value)? fetchRequested,
     TResult? Function(_TermChanged value)? termChanged,
+    TResult? Function(_RefreshRequested value)? refreshRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchRequested value)? fetchRequested,
     TResult Function(_TermChanged value)? termChanged,
+    TResult Function(_RefreshRequested value)? refreshRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$_FetchRequested implements _FetchRequested {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchRequested,
     required TResult Function(String term) termChanged,
+    required TResult Function() refreshRequested,
   }) {
     return fetchRequested();
   }
@@ -123,6 +130,7 @@ class _$_FetchRequested implements _FetchRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchRequested,
     TResult? Function(String term)? termChanged,
+    TResult? Function()? refreshRequested,
   }) {
     return fetchRequested?.call();
   }
@@ -132,6 +140,7 @@ class _$_FetchRequested implements _FetchRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchRequested,
     TResult Function(String term)? termChanged,
+    TResult Function()? refreshRequested,
     required TResult orElse(),
   }) {
     if (fetchRequested != null) {
@@ -145,6 +154,7 @@ class _$_FetchRequested implements _FetchRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchRequested value) fetchRequested,
     required TResult Function(_TermChanged value) termChanged,
+    required TResult Function(_RefreshRequested value) refreshRequested,
   }) {
     return fetchRequested(this);
   }
@@ -154,6 +164,7 @@ class _$_FetchRequested implements _FetchRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchRequested value)? fetchRequested,
     TResult? Function(_TermChanged value)? termChanged,
+    TResult? Function(_RefreshRequested value)? refreshRequested,
   }) {
     return fetchRequested?.call(this);
   }
@@ -163,6 +174,7 @@ class _$_FetchRequested implements _FetchRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchRequested value)? fetchRequested,
     TResult Function(_TermChanged value)? termChanged,
+    TResult Function(_RefreshRequested value)? refreshRequested,
     required TResult orElse(),
   }) {
     if (fetchRequested != null) {
@@ -242,6 +254,7 @@ class _$_TermChanged implements _TermChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchRequested,
     required TResult Function(String term) termChanged,
+    required TResult Function() refreshRequested,
   }) {
     return termChanged(term);
   }
@@ -251,6 +264,7 @@ class _$_TermChanged implements _TermChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchRequested,
     TResult? Function(String term)? termChanged,
+    TResult? Function()? refreshRequested,
   }) {
     return termChanged?.call(term);
   }
@@ -260,6 +274,7 @@ class _$_TermChanged implements _TermChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchRequested,
     TResult Function(String term)? termChanged,
+    TResult Function()? refreshRequested,
     required TResult orElse(),
   }) {
     if (termChanged != null) {
@@ -273,6 +288,7 @@ class _$_TermChanged implements _TermChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchRequested value) fetchRequested,
     required TResult Function(_TermChanged value) termChanged,
+    required TResult Function(_RefreshRequested value) refreshRequested,
   }) {
     return termChanged(this);
   }
@@ -282,6 +298,7 @@ class _$_TermChanged implements _TermChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchRequested value)? fetchRequested,
     TResult? Function(_TermChanged value)? termChanged,
+    TResult? Function(_RefreshRequested value)? refreshRequested,
   }) {
     return termChanged?.call(this);
   }
@@ -291,6 +308,7 @@ class _$_TermChanged implements _TermChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchRequested value)? fetchRequested,
     TResult Function(_TermChanged value)? termChanged,
+    TResult Function(_RefreshRequested value)? refreshRequested,
     required TResult orElse(),
   }) {
     if (termChanged != null) {
@@ -307,6 +325,114 @@ abstract class _TermChanged implements ClientSearchEvent {
   @JsonKey(ignore: true)
   _$$_TermChangedCopyWith<_$_TermChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RefreshRequestedCopyWith<$Res> {
+  factory _$$_RefreshRequestedCopyWith(
+          _$_RefreshRequested value, $Res Function(_$_RefreshRequested) then) =
+      __$$_RefreshRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_RefreshRequestedCopyWithImpl<$Res>
+    extends _$ClientSearchEventCopyWithImpl<$Res, _$_RefreshRequested>
+    implements _$$_RefreshRequestedCopyWith<$Res> {
+  __$$_RefreshRequestedCopyWithImpl(
+      _$_RefreshRequested _value, $Res Function(_$_RefreshRequested) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_RefreshRequested implements _RefreshRequested {
+  const _$_RefreshRequested();
+
+  @override
+  String toString() {
+    return 'ClientSearchEvent.refreshRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_RefreshRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchRequested,
+    required TResult Function(String term) termChanged,
+    required TResult Function() refreshRequested,
+  }) {
+    return refreshRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchRequested,
+    TResult? Function(String term)? termChanged,
+    TResult? Function()? refreshRequested,
+  }) {
+    return refreshRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchRequested,
+    TResult Function(String term)? termChanged,
+    TResult Function()? refreshRequested,
+    required TResult orElse(),
+  }) {
+    if (refreshRequested != null) {
+      return refreshRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchRequested value) fetchRequested,
+    required TResult Function(_TermChanged value) termChanged,
+    required TResult Function(_RefreshRequested value) refreshRequested,
+  }) {
+    return refreshRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchRequested value)? fetchRequested,
+    TResult? Function(_TermChanged value)? termChanged,
+    TResult? Function(_RefreshRequested value)? refreshRequested,
+  }) {
+    return refreshRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchRequested value)? fetchRequested,
+    TResult Function(_TermChanged value)? termChanged,
+    TResult Function(_RefreshRequested value)? refreshRequested,
+    required TResult orElse(),
+  }) {
+    if (refreshRequested != null) {
+      return refreshRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshRequested implements ClientSearchEvent {
+  const factory _RefreshRequested() = _$_RefreshRequested;
 }
 
 /// @nodoc

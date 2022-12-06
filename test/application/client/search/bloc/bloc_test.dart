@@ -17,199 +17,224 @@ import 'bloc_test.mocks.dart';
   MockSpec<ClientPageService>(),
 ])
 void main() {
-  group("ClientSearchBloc - ", () {
-    group("Initial -", () {
-      test("Initial state should be [ClientSearchBloc.initial()]", () {
-        // Arrange
-        final sut = _createSut();
-        // Act
-
-        //Assert
-        expect(sut.state, ClientSearchState.initial());
-      });
-
-      test("[ClientSearchBloc.initial().term] should be empty", () {
-        // Arrange
-        final sut = _createSut();
-        // Act
-
-        //Assert
-        expect(sut.state.term, isEmpty);
-      });
-
-      test(
-          "[ClientSearchBloc.initial().status] should be [ClientSearchStatus.loading()]",
-          () {
-        // Arrange
-        final sut = _createSut();
-        // Act
-
-        //Assert
-        expect(sut.state.status, const ClientSearchStatus.loading());
-      });
-
-      test(
-          "[ClientSearchBloc.initial().searchFilter] should be [SearchFilter.name()]",
-          () {
-        // Arrange
-        final sut = _createSut();
-        // Act
-
-        //Assert
-        expect(sut.state.filter, const SearchFilter.name());
-      });
-
-      test(
-          "[ClientSearchBloc.initial().getFilter()] should return ClientNameFilter",
-          () {
-        // Arrange
-        final sut = _createSut();
-        // Act
-
-        //Assert
-        expect(sut.state.getFilter(), isA<ClientNameFilter>());
-      });
-
-      test("[ClientSearchBloc.initial().hasReachedMax] should return false",
-          () {
-        // Arrange
-        final sut = _createSut();
-        // Act
-
-        //Assert
-        expect(sut.state.hasReachedMax, isFalse);
-      });
-    });
-    group("Events -", () {
-      const term = "Bob";
-      late MockClientPageService pageService;
-      late Iterable<Client> clients;
-      late PageServiceFailure failure;
-
-      blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchState.initial()] "
-        "When [ClientSearchEvent.fetchRequested()] "
-        "Then [ClientSearchState.status] should be [ClientSearchStatus.loading()] "
-        "And [ClientSearchState.clients] should empty "
-        "And [ClientSearchState.hasReachedMax] should be false "
-        "And [ClientSearchState.term] should be empty "
-        "Then [pageService.getPage()] should be called once "
-        "Then [ClientSearchState.status] should be [ClientSearchStatus.success()] "
-        "And [ClientSearchState.clients] should be [clients] from [pageService.getPage()] "
-        "And [ClientSearchState.hasReachedMax] should be true "
-        "And [ClientSearchState.term] should be empty ",
-        setUp: () {
-          clients = _createClients();
-          pageService = _whenMockClientPageServiceWithClients(clients);
-        },
-        build: () => _createSut(pageService: pageService),
-        act: (bloc) => bloc.add(const ClientSearchEvent.fetchRequested()),
-        expect: () => [
-          ClientSearchState.initial().copyWith(
-            status: const ClientSearchStatus.loading(),
-            clients: const Iterable.empty(),
-            hasReachedMax: false,
-            term: "",
-          ),
-          ClientSearchState.initial().copyWith(
-            status: const ClientSearchStatus.success(),
-            clients: clients,
-            hasReachedMax: true,
-            term: "",
-          ),
-        ],
-        verify: (_) => _verifyPageMock(pageService: pageService),
-      );
-
-      blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchState.initial()] "
-        "When [ClientSearchEvent.termChanged(value)] "
-        "Then [ClientSearchState.status] should be [ClientSearchStatus.loading()]"
-        "And [ClientSearchState.term] should be [value] "
-        "And [ClientSearchState.clients] should be empty "
-        "And [ClientSearchState.hasReachedMax] should be false "
-        "Then [pageService.getPage()] should be called once and return [clients] "
-        "Then [ClientSearchState.status] should be [ClientSearchStatus.success()] "
-        "And [ClientSearchState.clients] should be [clients] returned from [pageService.getPage()] "
-        "And [ClientSearchState.hasReachedMax] should be true "
-        "And [ClientSearchState.term] should be [value] ",
-        setUp: () {
-          clients = _createClients();
-          pageService = _whenMockClientPageServiceWithClients(clients);
-        },
-        build: () => _createSut(pageService: pageService),
-        act: (bloc) =>
-            bloc.add(const ClientSearchEvent.termChanged(term: term)),
-        expect: () => [
-          ClientSearchState.initial().copyWith(
-            term: term,
-            status: const ClientSearchStatus.loading(),
-            clients: const Iterable.empty(),
-            hasReachedMax: false,
-          ),
-          ClientSearchState.initial().copyWith(
-            term: term,
-            status: const ClientSearchStatus.success(),
-            clients: clients,
-            hasReachedMax: true,
-          ),
-        ],
-        verify: (_) => _verifyPageMock(pageService: pageService),
-      );
-
-      blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchState.initial()] "
-        "When [ClientSearchEvent.termChanged(value)] "
-        "Skip 1 [ClientSearchState.status] [ClientSearchStatus.loading()]"
-        "Then [pageService.getPage()] should be called once and return [empty] "
-        "Then [ClientSearchState.status] should be [ClientSearchStatus.empty()] "
-        "And [ClientSearchState.clients] should be [empty] "
-        "And [ClientSearchState.hasReachedMax] should be true "
-        "And [ClientSearchState.term] should be [value] ",
-        setUp: () {
-          pageService =
-              _whenMockClientPageServiceWithClients(const Iterable.empty());
-        },
-        build: () => _createSut(pageService: pageService),
-        act: (bloc) =>
-            bloc.add(const ClientSearchEvent.termChanged(term: term)),
-        skip: 1,
-        expect: () => [
-          ClientSearchState.initial().copyWith(
-            term: term,
-            status: const ClientSearchStatus.empty(),
-            clients: const Iterable.empty(),
-            hasReachedMax: true,
-          ),
-        ],
-        verify: (_) => _verifyPageMock(pageService: pageService),
-      );
-
-      blocTest<ClientSearchBloc, ClientSearchState>(
-        "Given [ClientSearchState.initial()] "
-        "When [ClientSearchEvent.fetchRequested()] "
-        "Skip 1 [ClientSearchState.status] [ClientSearchStatus.loading()]"
-        "And [pageService.getPage()] returns [PageServiceFailure] "
-        "Then [ClientSearchState.status] should be [ClientSearchStatus.failure()] ",
-        setUp: () {
-          failure = PageServiceFailure.dbException(error: Exception("error"));
-          pageService = _whenMockClientPageServiceWithFailure(failure);
-        },
-        build: () => _createSut(pageService: pageService),
-        act: (bloc) => bloc.add(const ClientSearchEvent.fetchRequested()),
-        skip: 1,
-        expect: () => [
-          ClientSearchState.initial().copyWith(
-            status: ClientSearchStatus.failure(failure: failure),
-          )
-        ],
-      );
-    });
+  late MockClientPageService pageService;
+  setUp(() {
+    pageService = MockClientPageService();
   });
-}
 
-ClientSearchBloc _createSut({ClientPageService? pageService}) {
-  return ClientSearchBloc(pageService ?? MockClientPageService());
+  test(
+    "Initial [State] should be [initial()]",
+    () {
+      // Arrange
+      final sut = ClientSearchBloc(pageService);
+
+      // Act
+      // Assert
+      expect(sut.state, ClientSearchState.initial());
+    },
+  );
+
+  test(
+    "[State.term] should be empty",
+    () {
+      // Arrange
+      final sut = ClientSearchBloc(pageService);
+
+      // Act
+      // Assert
+      expect(sut.state.term, isEmpty);
+    },
+  );
+
+  test(
+    "[State.status] should be [loading()]",
+    () {
+      // Arrange
+      final sut = ClientSearchBloc(pageService);
+
+      // Act
+      // Assert
+      expect(sut.state.status, const ClientSearchStatus.loading());
+    },
+  );
+
+  test(
+    "[State.searchFilter] should be [name()]",
+    () {
+      // Arrange
+      final sut = ClientSearchBloc(pageService);
+
+      // Act
+      // Assert
+      expect(sut.state.filter, const SearchFilter.name());
+    },
+  );
+
+  test(
+    "[State.getFilter()] should return ClientNameFilter",
+    () {
+      // Arrange
+      final sut = ClientSearchBloc(pageService);
+
+      // Act
+      // Assert
+      expect(sut.state.getFilter(), isA<ClientNameFilter>());
+    },
+  );
+
+  test(
+    "[State.hasReachedMax] should return false",
+    () {
+      // Arrange
+      final sut = ClientSearchBloc(pageService);
+      // Act
+
+      //Assert
+      expect(sut.state.hasReachedMax, isFalse);
+    },
+  );
+  const term = "Bob";
+  late Iterable<Client> clients;
+  late PageServiceFailure failure;
+
+  group("Given [PageService.getPage()] return clients  ", () {
+    setUp(() {
+      clients = Iterable.generate(5).map(
+        (e) => Client(
+          id: Uid.fromInt(e),
+          name: Name("Bob"),
+        ),
+      );
+
+      pageService = _whenMockClientPageServiceWithClients(clients);
+    });
+    blocTest<ClientSearchBloc, ClientSearchState>(
+      "When [Event.fetchRequested()] "
+      "Then [State.status] should be [loading()] "
+      "And [State.clients] should empty "
+      "And [State.hasReachedMax] should be false "
+      "And [State.term] should be empty "
+      "Then [pageService.getPage()] should be called once "
+      "Then [State.status] should be [success()] "
+      "And [State.clients] should be [clients] from [getPage()] "
+      "And [State.hasReachedMax] should be true "
+      "And [State.term] should be empty ",
+      build: () => ClientSearchBloc(pageService),
+      act: (bloc) => bloc.add(const ClientSearchEvent.fetchRequested()),
+      expect: () => [
+        ClientSearchState.initial().copyWith(
+          status: const ClientSearchStatus.loading(),
+          clients: const Iterable.empty(),
+          hasReachedMax: false,
+          term: "",
+        ),
+        ClientSearchState.initial().copyWith(
+          status: const ClientSearchStatus.success(),
+          clients: clients,
+          hasReachedMax: true,
+          term: "",
+        ),
+      ],
+      verify: (_) => _verifyPageMock(pageService: pageService),
+    );
+
+    blocTest<ClientSearchBloc, ClientSearchState>(
+      "When [Event.termChanged(value)] "
+      "Then [State.status] should be [loading()]"
+      "And [State.term] should be [value] "
+      "And [State.clients] should be empty "
+      "And [State.hasReachedMax] should be false "
+      "Then [pageService.getPage()] should be called once and return [clients] "
+      "Then [State.status] should be [success()] "
+      "And [State.clients] should be [clients] returned from [getPage()] "
+      "And [State.hasReachedMax] should be true "
+      "And [State.term] should be [value] ",
+      build: () => ClientSearchBloc(pageService),
+      act: (bloc) => bloc.add(const ClientSearchEvent.termChanged(term: term)),
+      expect: () => [
+        ClientSearchState.initial().copyWith(
+          term: term,
+          status: const ClientSearchStatus.loading(),
+          clients: const Iterable.empty(),
+          hasReachedMax: false,
+        ),
+        ClientSearchState.initial().copyWith(
+          term: term,
+          status: const ClientSearchStatus.success(),
+          clients: clients,
+          hasReachedMax: true,
+        ),
+      ],
+      verify: (_) => _verifyPageMock(pageService: pageService),
+    );
+
+    blocTest<ClientSearchBloc, ClientSearchState>(
+      "When [Event.refreshRequested()] "
+      "Then [State] should be [initial()] "
+      "Then [pageService.getPage()] should be called once "
+      "Then [State.status] should be [success()] "
+      "And [State.clients] should be [clients] from [getPage()] "
+      "And [State.hasReachedMax] should be true "
+      "And [State.term] should be empty ",
+      build: () => ClientSearchBloc(pageService),
+      act: (bloc) => bloc.add(const ClientSearchEvent.refreshRequested()),
+      expect: () => [
+        ClientSearchState.initial(),
+        ClientSearchState.initial().copyWith(
+          status: const ClientSearchStatus.success(),
+          clients: clients,
+          hasReachedMax: true,
+          term: "",
+        ),
+      ],
+      verify: (_) => _verifyPageMock(pageService: pageService),
+    );
+  });
+
+  blocTest<ClientSearchBloc, ClientSearchState>(
+    "When [Event.fetchRequested()] "
+    "Skip 1 [State.status] [loading()]"
+    "And [pageService.getPage()] returns [PageServiceFailure] "
+    "Then [State.status] should be [failure()] ",
+    setUp: () {
+      failure = PageServiceFailure.dbException(error: Exception("error"));
+      pageService = _whenMockClientPageServiceWithFailure(failure);
+    },
+    build: () => ClientSearchBloc(pageService),
+    act: (bloc) => bloc.add(const ClientSearchEvent.fetchRequested()),
+    skip: 1,
+    expect: () => [
+      ClientSearchState.initial().copyWith(
+        status: ClientSearchStatus.failure(failure: failure),
+      )
+    ],
+  );
+
+  blocTest<ClientSearchBloc, ClientSearchState>(
+    "When [Event.termChanged(value)] "
+    "Skip 1 [State.status] [loading()]"
+    "Then [pageService.getPage()] should be called once and return [empty] "
+    "Then [State.status] should be [empty()] "
+    "And [State.clients] should be [empty] "
+    "And [State.hasReachedMax] should be true "
+    "And [State.term] should be [value] ",
+    setUp: () {
+      pageService =
+          _whenMockClientPageServiceWithClients(const Iterable.empty());
+    },
+    build: () => ClientSearchBloc(pageService),
+    act: (bloc) => bloc.add(const ClientSearchEvent.termChanged(term: term)),
+    skip: 1,
+    expect: () => [
+      ClientSearchState.initial().copyWith(
+        term: term,
+        status: const ClientSearchStatus.empty(),
+        clients: const Iterable.empty(),
+        hasReachedMax: true,
+      ),
+    ],
+    verify: (_) => _verifyPageMock(pageService: pageService),
+  );
 }
 
 MockClientPageService _whenMockClientPageServiceWithClients(
@@ -240,13 +265,4 @@ void _verifyPageMock({required MockClientPageService pageService}) {
     offset: anyNamed("offset"),
     filter: anyNamed("filter"),
   )).called(1);
-}
-
-Iterable<Client> _createClients() {
-  return Iterable.generate(5).map(
-    (e) => Client(
-      id: Uid.fromInt(e),
-      name: Name("Bob"),
-    ),
-  );
 }
