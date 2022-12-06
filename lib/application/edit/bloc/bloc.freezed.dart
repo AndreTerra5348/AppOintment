@@ -20,18 +20,21 @@ mixin _$EditEvent<T extends EntityMixin> {
   TResult when<TResult extends Object?>({
     required TResult Function() editPressed,
     required TResult Function(T entity) savePressed,
+    required TResult Function() cancelPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? editPressed,
     TResult? Function(T entity)? savePressed,
+    TResult? Function()? cancelPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? editPressed,
     TResult Function(T entity)? savePressed,
+    TResult Function()? cancelPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$EditEvent<T extends EntityMixin> {
   TResult map<TResult extends Object?>({
     required TResult Function(_EditPressed<T> value) editPressed,
     required TResult Function(_SavePressed<T> value) savePressed,
+    required TResult Function(_CancelPressed<T> value) cancelPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditPressed<T> value)? editPressed,
     TResult? Function(_SavePressed<T> value)? savePressed,
+    TResult? Function(_CancelPressed<T> value)? cancelPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditPressed<T> value)? editPressed,
     TResult Function(_SavePressed<T> value)? savePressed,
+    TResult Function(_CancelPressed<T> value)? cancelPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$_EditPressed<T extends EntityMixin> implements _EditPressed<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() editPressed,
     required TResult Function(T entity) savePressed,
+    required TResult Function() cancelPressed,
   }) {
     return editPressed();
   }
@@ -123,6 +130,7 @@ class _$_EditPressed<T extends EntityMixin> implements _EditPressed<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? editPressed,
     TResult? Function(T entity)? savePressed,
+    TResult? Function()? cancelPressed,
   }) {
     return editPressed?.call();
   }
@@ -132,6 +140,7 @@ class _$_EditPressed<T extends EntityMixin> implements _EditPressed<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? editPressed,
     TResult Function(T entity)? savePressed,
+    TResult Function()? cancelPressed,
     required TResult orElse(),
   }) {
     if (editPressed != null) {
@@ -145,6 +154,7 @@ class _$_EditPressed<T extends EntityMixin> implements _EditPressed<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_EditPressed<T> value) editPressed,
     required TResult Function(_SavePressed<T> value) savePressed,
+    required TResult Function(_CancelPressed<T> value) cancelPressed,
   }) {
     return editPressed(this);
   }
@@ -154,6 +164,7 @@ class _$_EditPressed<T extends EntityMixin> implements _EditPressed<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditPressed<T> value)? editPressed,
     TResult? Function(_SavePressed<T> value)? savePressed,
+    TResult? Function(_CancelPressed<T> value)? cancelPressed,
   }) {
     return editPressed?.call(this);
   }
@@ -163,6 +174,7 @@ class _$_EditPressed<T extends EntityMixin> implements _EditPressed<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditPressed<T> value)? editPressed,
     TResult Function(_SavePressed<T> value)? savePressed,
+    TResult Function(_CancelPressed<T> value)? cancelPressed,
     required TResult orElse(),
   }) {
     if (editPressed != null) {
@@ -243,6 +255,7 @@ class _$_SavePressed<T extends EntityMixin> implements _SavePressed<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() editPressed,
     required TResult Function(T entity) savePressed,
+    required TResult Function() cancelPressed,
   }) {
     return savePressed(entity);
   }
@@ -252,6 +265,7 @@ class _$_SavePressed<T extends EntityMixin> implements _SavePressed<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? editPressed,
     TResult? Function(T entity)? savePressed,
+    TResult? Function()? cancelPressed,
   }) {
     return savePressed?.call(entity);
   }
@@ -261,6 +275,7 @@ class _$_SavePressed<T extends EntityMixin> implements _SavePressed<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? editPressed,
     TResult Function(T entity)? savePressed,
+    TResult Function()? cancelPressed,
     required TResult orElse(),
   }) {
     if (savePressed != null) {
@@ -274,6 +289,7 @@ class _$_SavePressed<T extends EntityMixin> implements _SavePressed<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_EditPressed<T> value) editPressed,
     required TResult Function(_SavePressed<T> value) savePressed,
+    required TResult Function(_CancelPressed<T> value) cancelPressed,
   }) {
     return savePressed(this);
   }
@@ -283,6 +299,7 @@ class _$_SavePressed<T extends EntityMixin> implements _SavePressed<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditPressed<T> value)? editPressed,
     TResult? Function(_SavePressed<T> value)? savePressed,
+    TResult? Function(_CancelPressed<T> value)? cancelPressed,
   }) {
     return savePressed?.call(this);
   }
@@ -292,6 +309,7 @@ class _$_SavePressed<T extends EntityMixin> implements _SavePressed<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditPressed<T> value)? editPressed,
     TResult Function(_SavePressed<T> value)? savePressed,
+    TResult Function(_CancelPressed<T> value)? cancelPressed,
     required TResult orElse(),
   }) {
     if (savePressed != null) {
@@ -308,6 +326,114 @@ abstract class _SavePressed<T extends EntityMixin> implements EditEvent<T> {
   @JsonKey(ignore: true)
   _$$_SavePressedCopyWith<T, _$_SavePressed<T>> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CancelPressedCopyWith<T extends EntityMixin, $Res> {
+  factory _$$_CancelPressedCopyWith(
+          _$_CancelPressed<T> value, $Res Function(_$_CancelPressed<T>) then) =
+      __$$_CancelPressedCopyWithImpl<T, $Res>;
+}
+
+/// @nodoc
+class __$$_CancelPressedCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$EditEventCopyWithImpl<T, $Res, _$_CancelPressed<T>>
+    implements _$$_CancelPressedCopyWith<T, $Res> {
+  __$$_CancelPressedCopyWithImpl(
+      _$_CancelPressed<T> _value, $Res Function(_$_CancelPressed<T>) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CancelPressed<T extends EntityMixin> implements _CancelPressed<T> {
+  const _$_CancelPressed();
+
+  @override
+  String toString() {
+    return 'EditEvent<$T>.cancelPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CancelPressed<T>);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() editPressed,
+    required TResult Function(T entity) savePressed,
+    required TResult Function() cancelPressed,
+  }) {
+    return cancelPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? editPressed,
+    TResult? Function(T entity)? savePressed,
+    TResult? Function()? cancelPressed,
+  }) {
+    return cancelPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? editPressed,
+    TResult Function(T entity)? savePressed,
+    TResult Function()? cancelPressed,
+    required TResult orElse(),
+  }) {
+    if (cancelPressed != null) {
+      return cancelPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EditPressed<T> value) editPressed,
+    required TResult Function(_SavePressed<T> value) savePressed,
+    required TResult Function(_CancelPressed<T> value) cancelPressed,
+  }) {
+    return cancelPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_EditPressed<T> value)? editPressed,
+    TResult? Function(_SavePressed<T> value)? savePressed,
+    TResult? Function(_CancelPressed<T> value)? cancelPressed,
+  }) {
+    return cancelPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EditPressed<T> value)? editPressed,
+    TResult Function(_SavePressed<T> value)? savePressed,
+    TResult Function(_CancelPressed<T> value)? cancelPressed,
+    required TResult orElse(),
+  }) {
+    if (cancelPressed != null) {
+      return cancelPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CancelPressed<T extends EntityMixin> implements EditEvent<T> {
+  const factory _CancelPressed() = _$_CancelPressed<T>;
 }
 
 /// @nodoc

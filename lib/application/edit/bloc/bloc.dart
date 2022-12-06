@@ -15,6 +15,7 @@ class EditBloc<T extends EntityMixin> extends Bloc<EditEvent<T>, EditState> {
   EditBloc(this._repository) : super(const _Initial()) {
     on<_EditPressed<T>>(_onEditPressed);
     on<_SavePressed<T>>(_onSavePressed);
+    on<_CancelPressed<T>>(_onCancelPressed);
   }
 
   FutureOr<void> _onEditPressed(
@@ -42,5 +43,10 @@ class EditBloc<T extends EntityMixin> extends Bloc<EditEvent<T>, EditState> {
             completed ? const EditState.success() : EditState.notFoundFailure(),
       ),
     );
+  }
+
+  FutureOr<void> _onCancelPressed(
+      _CancelPressed<T> event, Emitter<EditState> emit) {
+    emit(const EditState.initial());
   }
 }

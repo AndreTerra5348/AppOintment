@@ -74,6 +74,20 @@ void main() {
 
   blocTest(
     "Given [State.editing()] "
+    "When [Event.cancelPressed()] "
+    "Then [State] should be [initial()]",
+    setUp: () {
+      when(repository.update(any)).thenAnswer(
+        (_) async => right(true),
+      );
+    },
+    build: () => EditBloc(repository),
+    act: (bloc) => bloc.add(const EditEvent<Client>.cancelPressed()),
+    expect: () => [const EditState.initial()],
+  );
+
+  blocTest(
+    "Given [State.editing()] "
     "When [Event.savePressed(client)] with invalid client"
     "Then [State] should be [failure()] "
     "And  [failure] should be [invalidFields()]",
