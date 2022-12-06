@@ -1,3 +1,5 @@
+import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/presentation/client/details/page.dart';
 import 'package:appointment/presentation/client/register/page.dart';
 import 'package:appointment/presentation/config/di.dart';
 import 'package:appointment/presentation/config/route.gr.dart';
@@ -14,9 +16,12 @@ class AppOintment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ClientRegisterPage(
-        registerBloc: getIt(),
+      home: ClientDetailPage(
+        detailsBloc: getIt(),
+        deleteBloc: getIt(),
+        editBloc: getIt(),
         clientBloc: getIt(),
+        clientId: Uid.fromInt(2),
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
