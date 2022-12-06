@@ -16,13 +16,13 @@ class NameInputWidget extends StatelessWidget {
     return BlocBuilder<ClientBloc, ClientState>(
       builder: (context, state) {
         return TextFormField(
-          initialValue: state.client.name.value.fold(
-            (_) => null,
-            (value) => value,
-          ),
+          key: isEditing ? null : Key(state.nameOrEmpty),
+          initialValue: state.nameOrNull,
           enabled: isEditing,
           inputFormatters: [
-            FilteringTextInputFormatter.deny(validators.lettersAndAccentsRegex),
+            FilteringTextInputFormatter.deny(
+              validators.lettersAndAccentsRegex,
+            ),
           ],
           decoration: InputDecoration(
             labelText: context.tr.nameTextFormField,
@@ -51,4 +51,15 @@ extension on BuildContext {
   Client get client => read<ClientBloc>().state.client;
   void nameChanged({required String name}) =>
       read<ClientBloc>().add(ClientEvent.nameChanged(name: name));
+}
+
+extension on ClientState {
+  String? get nameOrNull => client.name.value.fold(
+        (_) => null,
+        (value) => value,
+      );
+  String get nameOrEmpty => client.name.value.fold(
+        (_) => "",
+        (value) => value,
+      );
 }

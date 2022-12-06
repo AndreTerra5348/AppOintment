@@ -21,11 +21,10 @@ void main() {
   late Client client;
   const name = "Bob";
   setUp(() {
+    client = Client(name: Name(name), id: Uid.fromInt(1));
     clientBloc = MockClientBloc();
     when(clientBloc.state).thenReturn(ClientState.initial());
     when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
-
-    client = Client(name: Name(name), id: Uid.fromInt(1));
 
     mockPage = MockClientRegisterPage(
       bloc: clientBloc,
@@ -66,6 +65,40 @@ void main() {
     // Act
     // Assert
     expect(find.text(name), findsOneWidget);
+  });
+
+  testWidgets(
+      "When isEditing is false "
+      "Key should be client name", (WidgetTester tester) async {
+    // Arrange
+    when(clientBloc.state).thenReturn(ClientState(client: client));
+    mockPage = MockClientRegisterPage(
+      bloc: clientBloc,
+      isEditing: false,
+    );
+
+    await tester.pumpWidget(mockPage);
+
+    // Act
+    // Assert
+    expect(find.byKey(const Key(name)), findsOneWidget);
+  });
+
+  testWidgets(
+      "When isEditing is true "
+      "Key should be null", (WidgetTester tester) async {
+    // Arrange
+    when(clientBloc.state).thenReturn(ClientState(client: client));
+    mockPage = MockClientRegisterPage(
+      bloc: clientBloc,
+      isEditing: true,
+    );
+
+    await tester.pumpWidget(mockPage);
+
+    // Act
+    // Assert
+    expect(find.byKey(const Key(name)), findsNothing);
   });
 
   testWidgets(
