@@ -11,32 +11,39 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 
-import '../../application/client/bloc/bloc.dart' as _i9;
-import '../../application/client/search/bloc/bloc.dart' as _i6;
-import '../../application/delete/bloc/bloc.dart' as _i11;
-import '../../application/details/bloc/bloc.dart' as _i10;
-import '../../application/edit/bloc/bloc.dart' as _i12;
-import '../../application/register/bloc/bloc.dart' as _i7;
-import '../../domain/client/entity.dart' as _i8;
-import '../../domain/common/values.dart' as _i13;
-import '../client/details/page.dart' as _i3;
-import '../client/register/page.dart' as _i2;
-import '../client/search/page.dart' as _i1;
+import '../../application/client/bloc/bloc.dart' as _i10;
+import '../../application/client/search/bloc/bloc.dart' as _i7;
+import '../../application/delete/bloc/bloc.dart' as _i12;
+import '../../application/details/bloc/bloc.dart' as _i11;
+import '../../application/edit/bloc/bloc.dart' as _i13;
+import '../../application/register/bloc/bloc.dart' as _i8;
+import '../../domain/client/entity.dart' as _i9;
+import '../../domain/common/values.dart' as _i14;
+import '../client/details/page.dart' as _i4;
+import '../client/register/page.dart' as _i3;
+import '../client/search/page.dart' as _i2;
+import '../home/page.dart' as _i1;
 
-class AppRouter extends _i4.RootStackRouter {
-  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class AppRouter extends _i5.RootStackRouter {
+  AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i5.PageFactory> pagesMap = {
+    HomeRoute.name: (routeData) {
+      return _i5.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i1.HomePage(),
+      );
+    },
     ClientSearchRoute.name: (routeData) {
       final args = routeData.argsAs<ClientSearchRouteArgs>();
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i1.ClientSearchPage(
+        child: _i2.ClientSearchPage(
           key: args.key,
           bloc: args.bloc,
         ),
@@ -44,9 +51,9 @@ class AppRouter extends _i4.RootStackRouter {
     },
     ClientRegisterRoute.name: (routeData) {
       final args = routeData.argsAs<ClientRegisterRouteArgs>();
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i2.ClientRegisterPage(
+        child: _i3.ClientRegisterPage(
           key: args.key,
           registerBloc: args.registerBloc,
           clientBloc: args.clientBloc,
@@ -55,9 +62,9 @@ class AppRouter extends _i4.RootStackRouter {
     },
     ClientDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<ClientDetailsRouteArgs>();
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i3.ClientDetailsPage(
+        child: _i4.ClientDetailsPage(
           key: args.key,
           detailsBloc: args.detailsBloc,
           deleteBloc: args.deleteBloc,
@@ -70,16 +77,20 @@ class AppRouter extends _i4.RootStackRouter {
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(
-          ClientSearchRoute.name,
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(
+          HomeRoute.name,
           path: '/',
         ),
-        _i4.RouteConfig(
+        _i5.RouteConfig(
+          ClientSearchRoute.name,
+          path: '/client-search-page',
+        ),
+        _i5.RouteConfig(
           ClientRegisterRoute.name,
           path: '/client-register-page',
         ),
-        _i4.RouteConfig(
+        _i5.RouteConfig(
           ClientDetailsRoute.name,
           path: '/client-details-page',
         ),
@@ -87,14 +98,26 @@ class AppRouter extends _i4.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.ClientSearchPage]
-class ClientSearchRoute extends _i4.PageRouteInfo<ClientSearchRouteArgs> {
+/// [_i1.HomePage]
+class HomeRoute extends _i5.PageRouteInfo<void> {
+  const HomeRoute()
+      : super(
+          HomeRoute.name,
+          path: '/',
+        );
+
+  static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [_i2.ClientSearchPage]
+class ClientSearchRoute extends _i5.PageRouteInfo<ClientSearchRouteArgs> {
   ClientSearchRoute({
-    _i5.Key? key,
-    required _i6.ClientSearchBloc bloc,
+    _i6.Key? key,
+    required _i7.ClientSearchBloc bloc,
   }) : super(
           ClientSearchRoute.name,
-          path: '/',
+          path: '/client-search-page',
           args: ClientSearchRouteArgs(
             key: key,
             bloc: bloc,
@@ -110,9 +133,9 @@ class ClientSearchRouteArgs {
     required this.bloc,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final _i6.ClientSearchBloc bloc;
+  final _i7.ClientSearchBloc bloc;
 
   @override
   String toString() {
@@ -121,12 +144,12 @@ class ClientSearchRouteArgs {
 }
 
 /// generated route for
-/// [_i2.ClientRegisterPage]
-class ClientRegisterRoute extends _i4.PageRouteInfo<ClientRegisterRouteArgs> {
+/// [_i3.ClientRegisterPage]
+class ClientRegisterRoute extends _i5.PageRouteInfo<ClientRegisterRouteArgs> {
   ClientRegisterRoute({
-    _i5.Key? key,
-    required _i7.RegisterBloc<_i8.Client> registerBloc,
-    required _i9.ClientBloc clientBloc,
+    _i6.Key? key,
+    required _i8.RegisterBloc<_i9.Client> registerBloc,
+    required _i10.ClientBloc clientBloc,
   }) : super(
           ClientRegisterRoute.name,
           path: '/client-register-page',
@@ -147,11 +170,11 @@ class ClientRegisterRouteArgs {
     required this.clientBloc,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final _i7.RegisterBloc<_i8.Client> registerBloc;
+  final _i8.RegisterBloc<_i9.Client> registerBloc;
 
-  final _i9.ClientBloc clientBloc;
+  final _i10.ClientBloc clientBloc;
 
   @override
   String toString() {
@@ -160,15 +183,15 @@ class ClientRegisterRouteArgs {
 }
 
 /// generated route for
-/// [_i3.ClientDetailsPage]
-class ClientDetailsRoute extends _i4.PageRouteInfo<ClientDetailsRouteArgs> {
+/// [_i4.ClientDetailsPage]
+class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
   ClientDetailsRoute({
-    _i5.Key? key,
-    required _i10.DetailsBloc<_i8.Client> detailsBloc,
-    required _i11.DeleteBloc<_i8.Client> deleteBloc,
-    required _i12.EditBloc<_i8.Client> editBloc,
-    required _i9.ClientBloc clientBloc,
-    required _i13.Uid clientId,
+    _i6.Key? key,
+    required _i11.DetailsBloc<_i9.Client> detailsBloc,
+    required _i12.DeleteBloc<_i9.Client> deleteBloc,
+    required _i13.EditBloc<_i9.Client> editBloc,
+    required _i10.ClientBloc clientBloc,
+    required _i14.Uid clientId,
   }) : super(
           ClientDetailsRoute.name,
           path: '/client-details-page',
@@ -195,17 +218,17 @@ class ClientDetailsRouteArgs {
     required this.clientId,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final _i10.DetailsBloc<_i8.Client> detailsBloc;
+  final _i11.DetailsBloc<_i9.Client> detailsBloc;
 
-  final _i11.DeleteBloc<_i8.Client> deleteBloc;
+  final _i12.DeleteBloc<_i9.Client> deleteBloc;
 
-  final _i12.EditBloc<_i8.Client> editBloc;
+  final _i13.EditBloc<_i9.Client> editBloc;
 
-  final _i9.ClientBloc clientBloc;
+  final _i10.ClientBloc clientBloc;
 
-  final _i13.Uid clientId;
+  final _i14.Uid clientId;
 
   @override
   String toString() {

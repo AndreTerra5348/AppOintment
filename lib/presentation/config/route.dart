@@ -4,12 +4,14 @@ import 'package:appointment/presentation/client/register/page.dart';
 import 'package:appointment/presentation/client/search/page.dart';
 import 'package:appointment/presentation/config/di.dart';
 import 'package:appointment/presentation/config/route.gr.dart';
+import 'package:appointment/presentation/home/page.dart';
 import 'package:auto_route/auto_route.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: ClientSearchPage, initial: true),
+    AutoRoute(page: HomePage, initial: true),
+    AutoRoute(page: ClientSearchPage),
     AutoRoute(page: ClientRegisterPage),
     AutoRoute(page: ClientDetailsPage),
   ],
