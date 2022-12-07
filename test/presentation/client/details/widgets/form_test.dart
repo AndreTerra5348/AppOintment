@@ -72,10 +72,10 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets("DO NOT Render NameInputWidget", (tester) async {
+    testWidgets("Render NameInputWidget", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expect(find.byType(NameInputWidget), findsNothing);
+      expect(find.byType(NameInputWidget), findsOneWidget);
     });
   });
 
@@ -93,7 +93,6 @@ void main() {
       (tester) async {
         await tester.pumpWidget(mockClientDetailPage);
 
-        expect(find.byType(NameInputWidget), findsOneWidget);
         expect(
           find.widgetWithText(NameInputWidget, johnClient.name.getOrThrow()),
           findsOneWidget,
@@ -265,6 +264,12 @@ void main() {
       mock_di.mockServicesConfiguration(mockClientDao);
 
       await tester.pumpWidget(AppOintment());
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byIcon(Icons.menu));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text(AppLocalizationsEn().homeDrawerClientSearch));
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(models.first.id.toString()));
