@@ -27,7 +27,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DetailsBloc, DetailsState>(
+    return BlocConsumer<DetailsBloc<Client>, DetailsState<Client>>(
       listenWhen: (previous, current) => current.maybeMap(
         orElse: () => false,
         load: (load) => load.state.isSuccess,
@@ -73,19 +73,19 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     super.initState();
     context.loadBloc.stream.listen(
       (state) => context.detailsBloc.add(
-        DetailsEvent.loadEmited(state: state),
+        DetailsEvent<Client>.loadEmited(state: state),
       ),
     );
 
     context.editBloc.stream.listen(
       (state) => context.detailsBloc.add(
-        DetailsEvent.editEmited(state: state),
+        DetailsEvent<Client>.editEmited(state: state),
       ),
     );
 
     context.deleteBloc.stream.listen(
       (state) => context.detailsBloc.add(
-        DetailsEvent.deleteEmited(state: state),
+        DetailsEvent<Client>.deleteEmited(state: state),
       ),
     );
   }
@@ -155,7 +155,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
-  bool _isLoadingOrInProgress(DetailsState state) {
+  bool _isLoadingOrInProgress(DetailsState<Client> state) {
     return state.maybeMap(
       orElse: () => false,
       load: (load) => load.state.isLoading,
@@ -169,7 +169,8 @@ extension on BuildContext {
   Client get client => clientBloc.state.client;
 
   ClientBloc get clientBloc => BlocProvider.of<ClientBloc>(this);
-  DetailsBloc get detailsBloc => BlocProvider.of<DetailsBloc>(this);
+  DetailsBloc<Client> get detailsBloc =>
+      BlocProvider.of<DetailsBloc<Client>>(this);
   DeleteBloc<Client> get deleteBloc =>
       BlocProvider.of<DeleteBloc<Client>>(this);
   LoadBloc<Client> get loadBloc => BlocProvider.of<LoadBloc<Client>>(this);

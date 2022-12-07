@@ -17,7 +17,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailsBloc, DetailsState>(
+    return BlocBuilder<DetailsBloc<Client>, DetailsState<Client>>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -34,7 +34,9 @@ class ClientDetailsPageScaffold extends StatelessWidget {
         ? [
             IconButton(
               icon: const Icon(Icons.save),
-              onPressed: () => context.savePressed(client: context.client),
+              onPressed: () => context.savePressed(
+                client: context.client,
+              ),
             ),
             IconButton(
               icon: const Icon(Icons.cancel),

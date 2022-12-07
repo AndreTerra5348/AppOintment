@@ -15,24 +15,24 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DetailsEvent {
+mixin _$DetailsEvent<T extends EntityMixin> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LoadState<Client> state) loadEmited,
+    required TResult Function(LoadState<T> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LoadState<Client> state)? loadEmited,
+    TResult? Function(LoadState<T> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LoadState<Client> state)? loadEmited,
+    TResult Function(LoadState<T> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
@@ -40,38 +40,38 @@ mixin _$DetailsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadEmited value) loadEmited,
-    required TResult Function(_EditEmited value) editEmited,
-    required TResult Function(_DeleteEmited value) deleteEmited,
+    required TResult Function(_LoadEmited<T> value) loadEmited,
+    required TResult Function(_EditEmited<T> value) editEmited,
+    required TResult Function(_DeleteEmited<T> value) deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadEmited value)? loadEmited,
-    TResult? Function(_EditEmited value)? editEmited,
-    TResult? Function(_DeleteEmited value)? deleteEmited,
+    TResult? Function(_LoadEmited<T> value)? loadEmited,
+    TResult? Function(_EditEmited<T> value)? editEmited,
+    TResult? Function(_DeleteEmited<T> value)? deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadEmited value)? loadEmited,
-    TResult Function(_EditEmited value)? editEmited,
-    TResult Function(_DeleteEmited value)? deleteEmited,
+    TResult Function(_LoadEmited<T> value)? loadEmited,
+    TResult Function(_EditEmited<T> value)? editEmited,
+    TResult Function(_DeleteEmited<T> value)? deleteEmited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DetailsEventCopyWith<$Res> {
+abstract class $DetailsEventCopyWith<T extends EntityMixin, $Res> {
   factory $DetailsEventCopyWith(
-          DetailsEvent value, $Res Function(DetailsEvent) then) =
-      _$DetailsEventCopyWithImpl<$Res, DetailsEvent>;
+          DetailsEvent<T> value, $Res Function(DetailsEvent<T>) then) =
+      _$DetailsEventCopyWithImpl<T, $Res, DetailsEvent<T>>;
 }
 
 /// @nodoc
-class _$DetailsEventCopyWithImpl<$Res, $Val extends DetailsEvent>
-    implements $DetailsEventCopyWith<$Res> {
+class _$DetailsEventCopyWithImpl<T extends EntityMixin, $Res,
+    $Val extends DetailsEvent<T>> implements $DetailsEventCopyWith<T, $Res> {
   _$DetailsEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -81,22 +81,22 @@ class _$DetailsEventCopyWithImpl<$Res, $Val extends DetailsEvent>
 }
 
 /// @nodoc
-abstract class _$$_LoadEmitedCopyWith<$Res> {
+abstract class _$$_LoadEmitedCopyWith<T extends EntityMixin, $Res> {
   factory _$$_LoadEmitedCopyWith(
-          _$_LoadEmited value, $Res Function(_$_LoadEmited) then) =
-      __$$_LoadEmitedCopyWithImpl<$Res>;
+          _$_LoadEmited<T> value, $Res Function(_$_LoadEmited<T>) then) =
+      __$$_LoadEmitedCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({LoadState<Client> state});
+  $Res call({LoadState<T> state});
 
-  $LoadStateCopyWith<Client, $Res> get state;
+  $LoadStateCopyWith<T, $Res> get state;
 }
 
 /// @nodoc
-class __$$_LoadEmitedCopyWithImpl<$Res>
-    extends _$DetailsEventCopyWithImpl<$Res, _$_LoadEmited>
-    implements _$$_LoadEmitedCopyWith<$Res> {
+class __$$_LoadEmitedCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$DetailsEventCopyWithImpl<T, $Res, _$_LoadEmited<T>>
+    implements _$$_LoadEmitedCopyWith<T, $Res> {
   __$$_LoadEmitedCopyWithImpl(
-      _$_LoadEmited _value, $Res Function(_$_LoadEmited) _then)
+      _$_LoadEmited<T> _value, $Res Function(_$_LoadEmited<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -104,18 +104,18 @@ class __$$_LoadEmitedCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_LoadEmited(
+    return _then(_$_LoadEmited<T>(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as LoadState<Client>,
+              as LoadState<T>,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LoadStateCopyWith<Client, $Res> get state {
-    return $LoadStateCopyWith<Client, $Res>(_value.state, (value) {
+  $LoadStateCopyWith<T, $Res> get state {
+    return $LoadStateCopyWith<T, $Res>(_value.state, (value) {
       return _then(_value.copyWith(state: value));
     });
   }
@@ -123,22 +123,22 @@ class __$$_LoadEmitedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoadEmited implements _LoadEmited {
+class _$_LoadEmited<T extends EntityMixin> implements _LoadEmited<T> {
   const _$_LoadEmited({required this.state});
 
   @override
-  final LoadState<Client> state;
+  final LoadState<T> state;
 
   @override
   String toString() {
-    return 'DetailsEvent.loadEmited(state: $state)';
+    return 'DetailsEvent<$T>.loadEmited(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadEmited &&
+            other is _$_LoadEmited<T> &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -148,13 +148,13 @@ class _$_LoadEmited implements _LoadEmited {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoadEmitedCopyWith<_$_LoadEmited> get copyWith =>
-      __$$_LoadEmitedCopyWithImpl<_$_LoadEmited>(this, _$identity);
+  _$$_LoadEmitedCopyWith<T, _$_LoadEmited<T>> get copyWith =>
+      __$$_LoadEmitedCopyWithImpl<T, _$_LoadEmited<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LoadState<Client> state) loadEmited,
+    required TResult Function(LoadState<T> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) {
@@ -164,7 +164,7 @@ class _$_LoadEmited implements _LoadEmited {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LoadState<Client> state)? loadEmited,
+    TResult? Function(LoadState<T> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) {
@@ -174,7 +174,7 @@ class _$_LoadEmited implements _LoadEmited {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LoadState<Client> state)? loadEmited,
+    TResult Function(LoadState<T> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
@@ -188,9 +188,9 @@ class _$_LoadEmited implements _LoadEmited {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadEmited value) loadEmited,
-    required TResult Function(_EditEmited value) editEmited,
-    required TResult Function(_DeleteEmited value) deleteEmited,
+    required TResult Function(_LoadEmited<T> value) loadEmited,
+    required TResult Function(_EditEmited<T> value) editEmited,
+    required TResult Function(_DeleteEmited<T> value) deleteEmited,
   }) {
     return loadEmited(this);
   }
@@ -198,9 +198,9 @@ class _$_LoadEmited implements _LoadEmited {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadEmited value)? loadEmited,
-    TResult? Function(_EditEmited value)? editEmited,
-    TResult? Function(_DeleteEmited value)? deleteEmited,
+    TResult? Function(_LoadEmited<T> value)? loadEmited,
+    TResult? Function(_EditEmited<T> value)? editEmited,
+    TResult? Function(_DeleteEmited<T> value)? deleteEmited,
   }) {
     return loadEmited?.call(this);
   }
@@ -208,9 +208,9 @@ class _$_LoadEmited implements _LoadEmited {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadEmited value)? loadEmited,
-    TResult Function(_EditEmited value)? editEmited,
-    TResult Function(_DeleteEmited value)? deleteEmited,
+    TResult Function(_LoadEmited<T> value)? loadEmited,
+    TResult Function(_EditEmited<T> value)? editEmited,
+    TResult Function(_DeleteEmited<T> value)? deleteEmited,
     required TResult orElse(),
   }) {
     if (loadEmited != null) {
@@ -220,21 +220,21 @@ class _$_LoadEmited implements _LoadEmited {
   }
 }
 
-abstract class _LoadEmited implements DetailsEvent {
-  const factory _LoadEmited({required final LoadState<Client> state}) =
-      _$_LoadEmited;
+abstract class _LoadEmited<T extends EntityMixin> implements DetailsEvent<T> {
+  const factory _LoadEmited({required final LoadState<T> state}) =
+      _$_LoadEmited<T>;
 
-  LoadState<Client> get state;
+  LoadState<T> get state;
   @JsonKey(ignore: true)
-  _$$_LoadEmitedCopyWith<_$_LoadEmited> get copyWith =>
+  _$$_LoadEmitedCopyWith<T, _$_LoadEmited<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EditEmitedCopyWith<$Res> {
+abstract class _$$_EditEmitedCopyWith<T extends EntityMixin, $Res> {
   factory _$$_EditEmitedCopyWith(
-          _$_EditEmited value, $Res Function(_$_EditEmited) then) =
-      __$$_EditEmitedCopyWithImpl<$Res>;
+          _$_EditEmited<T> value, $Res Function(_$_EditEmited<T>) then) =
+      __$$_EditEmitedCopyWithImpl<T, $Res>;
   @useResult
   $Res call({EditState state});
 
@@ -242,11 +242,11 @@ abstract class _$$_EditEmitedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EditEmitedCopyWithImpl<$Res>
-    extends _$DetailsEventCopyWithImpl<$Res, _$_EditEmited>
-    implements _$$_EditEmitedCopyWith<$Res> {
+class __$$_EditEmitedCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$DetailsEventCopyWithImpl<T, $Res, _$_EditEmited<T>>
+    implements _$$_EditEmitedCopyWith<T, $Res> {
   __$$_EditEmitedCopyWithImpl(
-      _$_EditEmited _value, $Res Function(_$_EditEmited) _then)
+      _$_EditEmited<T> _value, $Res Function(_$_EditEmited<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -254,7 +254,7 @@ class __$$_EditEmitedCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_EditEmited(
+    return _then(_$_EditEmited<T>(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -273,7 +273,7 @@ class __$$_EditEmitedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_EditEmited implements _EditEmited {
+class _$_EditEmited<T extends EntityMixin> implements _EditEmited<T> {
   const _$_EditEmited({required this.state});
 
   @override
@@ -281,14 +281,14 @@ class _$_EditEmited implements _EditEmited {
 
   @override
   String toString() {
-    return 'DetailsEvent.editEmited(state: $state)';
+    return 'DetailsEvent<$T>.editEmited(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EditEmited &&
+            other is _$_EditEmited<T> &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -298,13 +298,13 @@ class _$_EditEmited implements _EditEmited {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EditEmitedCopyWith<_$_EditEmited> get copyWith =>
-      __$$_EditEmitedCopyWithImpl<_$_EditEmited>(this, _$identity);
+  _$$_EditEmitedCopyWith<T, _$_EditEmited<T>> get copyWith =>
+      __$$_EditEmitedCopyWithImpl<T, _$_EditEmited<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LoadState<Client> state) loadEmited,
+    required TResult Function(LoadState<T> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) {
@@ -314,7 +314,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LoadState<Client> state)? loadEmited,
+    TResult? Function(LoadState<T> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) {
@@ -324,7 +324,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LoadState<Client> state)? loadEmited,
+    TResult Function(LoadState<T> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
@@ -338,9 +338,9 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadEmited value) loadEmited,
-    required TResult Function(_EditEmited value) editEmited,
-    required TResult Function(_DeleteEmited value) deleteEmited,
+    required TResult Function(_LoadEmited<T> value) loadEmited,
+    required TResult Function(_EditEmited<T> value) editEmited,
+    required TResult Function(_DeleteEmited<T> value) deleteEmited,
   }) {
     return editEmited(this);
   }
@@ -348,9 +348,9 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadEmited value)? loadEmited,
-    TResult? Function(_EditEmited value)? editEmited,
-    TResult? Function(_DeleteEmited value)? deleteEmited,
+    TResult? Function(_LoadEmited<T> value)? loadEmited,
+    TResult? Function(_EditEmited<T> value)? editEmited,
+    TResult? Function(_DeleteEmited<T> value)? deleteEmited,
   }) {
     return editEmited?.call(this);
   }
@@ -358,9 +358,9 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadEmited value)? loadEmited,
-    TResult Function(_EditEmited value)? editEmited,
-    TResult Function(_DeleteEmited value)? deleteEmited,
+    TResult Function(_LoadEmited<T> value)? loadEmited,
+    TResult Function(_EditEmited<T> value)? editEmited,
+    TResult Function(_DeleteEmited<T> value)? deleteEmited,
     required TResult orElse(),
   }) {
     if (editEmited != null) {
@@ -370,20 +370,21 @@ class _$_EditEmited implements _EditEmited {
   }
 }
 
-abstract class _EditEmited implements DetailsEvent {
-  const factory _EditEmited({required final EditState state}) = _$_EditEmited;
+abstract class _EditEmited<T extends EntityMixin> implements DetailsEvent<T> {
+  const factory _EditEmited({required final EditState state}) =
+      _$_EditEmited<T>;
 
   EditState get state;
   @JsonKey(ignore: true)
-  _$$_EditEmitedCopyWith<_$_EditEmited> get copyWith =>
+  _$$_EditEmitedCopyWith<T, _$_EditEmited<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeleteEmitedCopyWith<$Res> {
+abstract class _$$_DeleteEmitedCopyWith<T extends EntityMixin, $Res> {
   factory _$$_DeleteEmitedCopyWith(
-          _$_DeleteEmited value, $Res Function(_$_DeleteEmited) then) =
-      __$$_DeleteEmitedCopyWithImpl<$Res>;
+          _$_DeleteEmited<T> value, $Res Function(_$_DeleteEmited<T>) then) =
+      __$$_DeleteEmitedCopyWithImpl<T, $Res>;
   @useResult
   $Res call({DeleteState state});
 
@@ -391,11 +392,11 @@ abstract class _$$_DeleteEmitedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DeleteEmitedCopyWithImpl<$Res>
-    extends _$DetailsEventCopyWithImpl<$Res, _$_DeleteEmited>
-    implements _$$_DeleteEmitedCopyWith<$Res> {
+class __$$_DeleteEmitedCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$DetailsEventCopyWithImpl<T, $Res, _$_DeleteEmited<T>>
+    implements _$$_DeleteEmitedCopyWith<T, $Res> {
   __$$_DeleteEmitedCopyWithImpl(
-      _$_DeleteEmited _value, $Res Function(_$_DeleteEmited) _then)
+      _$_DeleteEmited<T> _value, $Res Function(_$_DeleteEmited<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -403,7 +404,7 @@ class __$$_DeleteEmitedCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_DeleteEmited(
+    return _then(_$_DeleteEmited<T>(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -422,7 +423,7 @@ class __$$_DeleteEmitedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeleteEmited implements _DeleteEmited {
+class _$_DeleteEmited<T extends EntityMixin> implements _DeleteEmited<T> {
   const _$_DeleteEmited({required this.state});
 
   @override
@@ -430,14 +431,14 @@ class _$_DeleteEmited implements _DeleteEmited {
 
   @override
   String toString() {
-    return 'DetailsEvent.deleteEmited(state: $state)';
+    return 'DetailsEvent<$T>.deleteEmited(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeleteEmited &&
+            other is _$_DeleteEmited<T> &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -447,13 +448,13 @@ class _$_DeleteEmited implements _DeleteEmited {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteEmitedCopyWith<_$_DeleteEmited> get copyWith =>
-      __$$_DeleteEmitedCopyWithImpl<_$_DeleteEmited>(this, _$identity);
+  _$$_DeleteEmitedCopyWith<T, _$_DeleteEmited<T>> get copyWith =>
+      __$$_DeleteEmitedCopyWithImpl<T, _$_DeleteEmited<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LoadState<Client> state) loadEmited,
+    required TResult Function(LoadState<T> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) {
@@ -463,7 +464,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LoadState<Client> state)? loadEmited,
+    TResult? Function(LoadState<T> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) {
@@ -473,7 +474,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LoadState<Client> state)? loadEmited,
+    TResult Function(LoadState<T> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
@@ -487,9 +488,9 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadEmited value) loadEmited,
-    required TResult Function(_EditEmited value) editEmited,
-    required TResult Function(_DeleteEmited value) deleteEmited,
+    required TResult Function(_LoadEmited<T> value) loadEmited,
+    required TResult Function(_EditEmited<T> value) editEmited,
+    required TResult Function(_DeleteEmited<T> value) deleteEmited,
   }) {
     return deleteEmited(this);
   }
@@ -497,9 +498,9 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadEmited value)? loadEmited,
-    TResult? Function(_EditEmited value)? editEmited,
-    TResult? Function(_DeleteEmited value)? deleteEmited,
+    TResult? Function(_LoadEmited<T> value)? loadEmited,
+    TResult? Function(_EditEmited<T> value)? editEmited,
+    TResult? Function(_DeleteEmited<T> value)? deleteEmited,
   }) {
     return deleteEmited?.call(this);
   }
@@ -507,9 +508,9 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadEmited value)? loadEmited,
-    TResult Function(_EditEmited value)? editEmited,
-    TResult Function(_DeleteEmited value)? deleteEmited,
+    TResult Function(_LoadEmited<T> value)? loadEmited,
+    TResult Function(_EditEmited<T> value)? editEmited,
+    TResult Function(_DeleteEmited<T> value)? deleteEmited,
     required TResult orElse(),
   }) {
     if (deleteEmited != null) {
@@ -519,22 +520,22 @@ class _$_DeleteEmited implements _DeleteEmited {
   }
 }
 
-abstract class _DeleteEmited implements DetailsEvent {
+abstract class _DeleteEmited<T extends EntityMixin> implements DetailsEvent<T> {
   const factory _DeleteEmited({required final DeleteState state}) =
-      _$_DeleteEmited;
+      _$_DeleteEmited<T>;
 
   DeleteState get state;
   @JsonKey(ignore: true)
-  _$$_DeleteEmitedCopyWith<_$_DeleteEmited> get copyWith =>
+  _$$_DeleteEmitedCopyWith<T, _$_DeleteEmited<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$DetailsState {
+mixin _$DetailsState<T extends EntityMixin> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(LoadState<Client> state) load,
+    required TResult Function(LoadState<T> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) =>
@@ -542,7 +543,7 @@ mixin _$DetailsState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(LoadState<Client> state)? load,
+    TResult? Function(LoadState<T> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) =>
@@ -550,7 +551,7 @@ mixin _$DetailsState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(LoadState<Client> state)? load,
+    TResult Function(LoadState<T> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -558,41 +559,41 @@ mixin _$DetailsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_Initial<T> value) initial,
+    required TResult Function(_Load<T> value) load,
+    required TResult Function(_Edit<T> value) edit,
+    required TResult Function(_Delete<T> value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Initial<T> value)? initial,
+    TResult? Function(_Load<T> value)? load,
+    TResult? Function(_Edit<T> value)? edit,
+    TResult? Function(_Delete<T> value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_Initial<T> value)? initial,
+    TResult Function(_Load<T> value)? load,
+    TResult Function(_Edit<T> value)? edit,
+    TResult Function(_Delete<T> value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DetailsStateCopyWith<$Res> {
+abstract class $DetailsStateCopyWith<T extends EntityMixin, $Res> {
   factory $DetailsStateCopyWith(
-          DetailsState value, $Res Function(DetailsState) then) =
-      _$DetailsStateCopyWithImpl<$Res, DetailsState>;
+          DetailsState<T> value, $Res Function(DetailsState<T>) then) =
+      _$DetailsStateCopyWithImpl<T, $Res, DetailsState<T>>;
 }
 
 /// @nodoc
-class _$DetailsStateCopyWithImpl<$Res, $Val extends DetailsState>
-    implements $DetailsStateCopyWith<$Res> {
+class _$DetailsStateCopyWithImpl<T extends EntityMixin, $Res,
+    $Val extends DetailsState<T>> implements $DetailsStateCopyWith<T, $Res> {
   _$DetailsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -602,34 +603,35 @@ class _$DetailsStateCopyWithImpl<$Res, $Val extends DetailsState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
+abstract class _$$_InitialCopyWith<T extends EntityMixin, $Res> {
   factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+          _$_Initial<T> value, $Res Function(_$_Initial<T>) then) =
+      __$$_InitialCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_InitialCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$DetailsStateCopyWithImpl<T, $Res, _$_Initial<T>>
+    implements _$$_InitialCopyWith<T, $Res> {
+  __$$_InitialCopyWithImpl(
+      _$_Initial<T> _value, $Res Function(_$_Initial<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial<T extends EntityMixin> implements _Initial<T> {
   const _$_Initial();
 
   @override
   String toString() {
-    return 'DetailsState.initial()';
+    return 'DetailsState<$T>.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial<T>);
   }
 
   @override
@@ -639,7 +641,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(LoadState<Client> state) load,
+    required TResult Function(LoadState<T> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
@@ -650,7 +652,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(LoadState<Client> state)? load,
+    TResult? Function(LoadState<T> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
@@ -661,7 +663,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(LoadState<Client> state)? load,
+    TResult Function(LoadState<T> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -675,10 +677,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_Initial<T> value) initial,
+    required TResult Function(_Load<T> value) load,
+    required TResult Function(_Edit<T> value) edit,
+    required TResult Function(_Delete<T> value) delete,
   }) {
     return initial(this);
   }
@@ -686,10 +688,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Initial<T> value)? initial,
+    TResult? Function(_Load<T> value)? load,
+    TResult? Function(_Edit<T> value)? edit,
+    TResult? Function(_Delete<T> value)? delete,
   }) {
     return initial?.call(this);
   }
@@ -697,10 +699,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_Initial<T> value)? initial,
+    TResult Function(_Load<T> value)? load,
+    TResult Function(_Edit<T> value)? edit,
+    TResult Function(_Delete<T> value)? delete,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -710,25 +712,25 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements DetailsState {
-  const factory _Initial() = _$_Initial;
+abstract class _Initial<T extends EntityMixin> implements DetailsState<T> {
+  const factory _Initial() = _$_Initial<T>;
 }
 
 /// @nodoc
-abstract class _$$_LoadCopyWith<$Res> {
-  factory _$$_LoadCopyWith(_$_Load value, $Res Function(_$_Load) then) =
-      __$$_LoadCopyWithImpl<$Res>;
+abstract class _$$_LoadCopyWith<T extends EntityMixin, $Res> {
+  factory _$$_LoadCopyWith(_$_Load<T> value, $Res Function(_$_Load<T>) then) =
+      __$$_LoadCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({LoadState<Client> state});
+  $Res call({LoadState<T> state});
 
-  $LoadStateCopyWith<Client, $Res> get state;
+  $LoadStateCopyWith<T, $Res> get state;
 }
 
 /// @nodoc
-class __$$_LoadCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res, _$_Load>
-    implements _$$_LoadCopyWith<$Res> {
-  __$$_LoadCopyWithImpl(_$_Load _value, $Res Function(_$_Load) _then)
+class __$$_LoadCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$DetailsStateCopyWithImpl<T, $Res, _$_Load<T>>
+    implements _$$_LoadCopyWith<T, $Res> {
+  __$$_LoadCopyWithImpl(_$_Load<T> _value, $Res Function(_$_Load<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -736,18 +738,18 @@ class __$$_LoadCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_Load(
+    return _then(_$_Load<T>(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as LoadState<Client>,
+              as LoadState<T>,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LoadStateCopyWith<Client, $Res> get state {
-    return $LoadStateCopyWith<Client, $Res>(_value.state, (value) {
+  $LoadStateCopyWith<T, $Res> get state {
+    return $LoadStateCopyWith<T, $Res>(_value.state, (value) {
       return _then(_value.copyWith(state: value));
     });
   }
@@ -755,22 +757,22 @@ class __$$_LoadCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Load implements _Load {
+class _$_Load<T extends EntityMixin> implements _Load<T> {
   const _$_Load({required this.state});
 
   @override
-  final LoadState<Client> state;
+  final LoadState<T> state;
 
   @override
   String toString() {
-    return 'DetailsState.load(state: $state)';
+    return 'DetailsState<$T>.load(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Load &&
+            other is _$_Load<T> &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -780,14 +782,14 @@ class _$_Load implements _Load {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoadCopyWith<_$_Load> get copyWith =>
-      __$$_LoadCopyWithImpl<_$_Load>(this, _$identity);
+  _$$_LoadCopyWith<T, _$_Load<T>> get copyWith =>
+      __$$_LoadCopyWithImpl<T, _$_Load<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(LoadState<Client> state) load,
+    required TResult Function(LoadState<T> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
@@ -798,7 +800,7 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(LoadState<Client> state)? load,
+    TResult? Function(LoadState<T> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
@@ -809,7 +811,7 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(LoadState<Client> state)? load,
+    TResult Function(LoadState<T> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -823,10 +825,10 @@ class _$_Load implements _Load {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_Initial<T> value) initial,
+    required TResult Function(_Load<T> value) load,
+    required TResult Function(_Edit<T> value) edit,
+    required TResult Function(_Delete<T> value) delete,
   }) {
     return load(this);
   }
@@ -834,10 +836,10 @@ class _$_Load implements _Load {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Initial<T> value)? initial,
+    TResult? Function(_Load<T> value)? load,
+    TResult? Function(_Edit<T> value)? edit,
+    TResult? Function(_Delete<T> value)? delete,
   }) {
     return load?.call(this);
   }
@@ -845,10 +847,10 @@ class _$_Load implements _Load {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_Initial<T> value)? initial,
+    TResult Function(_Load<T> value)? load,
+    TResult Function(_Edit<T> value)? edit,
+    TResult Function(_Delete<T> value)? delete,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -858,18 +860,19 @@ class _$_Load implements _Load {
   }
 }
 
-abstract class _Load implements DetailsState {
-  const factory _Load({required final LoadState<Client> state}) = _$_Load;
+abstract class _Load<T extends EntityMixin> implements DetailsState<T> {
+  const factory _Load({required final LoadState<T> state}) = _$_Load<T>;
 
-  LoadState<Client> get state;
+  LoadState<T> get state;
   @JsonKey(ignore: true)
-  _$$_LoadCopyWith<_$_Load> get copyWith => throw _privateConstructorUsedError;
+  _$$_LoadCopyWith<T, _$_Load<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_EditCopyWith<$Res> {
-  factory _$$_EditCopyWith(_$_Edit value, $Res Function(_$_Edit) then) =
-      __$$_EditCopyWithImpl<$Res>;
+abstract class _$$_EditCopyWith<T extends EntityMixin, $Res> {
+  factory _$$_EditCopyWith(_$_Edit<T> value, $Res Function(_$_Edit<T>) then) =
+      __$$_EditCopyWithImpl<T, $Res>;
   @useResult
   $Res call({EditState state});
 
@@ -877,10 +880,10 @@ abstract class _$$_EditCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EditCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res, _$_Edit>
-    implements _$$_EditCopyWith<$Res> {
-  __$$_EditCopyWithImpl(_$_Edit _value, $Res Function(_$_Edit) _then)
+class __$$_EditCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$DetailsStateCopyWithImpl<T, $Res, _$_Edit<T>>
+    implements _$$_EditCopyWith<T, $Res> {
+  __$$_EditCopyWithImpl(_$_Edit<T> _value, $Res Function(_$_Edit<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -888,7 +891,7 @@ class __$$_EditCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_Edit(
+    return _then(_$_Edit<T>(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -907,7 +910,7 @@ class __$$_EditCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Edit implements _Edit {
+class _$_Edit<T extends EntityMixin> implements _Edit<T> {
   const _$_Edit({required this.state});
 
   @override
@@ -915,14 +918,14 @@ class _$_Edit implements _Edit {
 
   @override
   String toString() {
-    return 'DetailsState.edit(state: $state)';
+    return 'DetailsState<$T>.edit(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Edit &&
+            other is _$_Edit<T> &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -932,14 +935,14 @@ class _$_Edit implements _Edit {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EditCopyWith<_$_Edit> get copyWith =>
-      __$$_EditCopyWithImpl<_$_Edit>(this, _$identity);
+  _$$_EditCopyWith<T, _$_Edit<T>> get copyWith =>
+      __$$_EditCopyWithImpl<T, _$_Edit<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(LoadState<Client> state) load,
+    required TResult Function(LoadState<T> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
@@ -950,7 +953,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(LoadState<Client> state)? load,
+    TResult? Function(LoadState<T> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
@@ -961,7 +964,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(LoadState<Client> state)? load,
+    TResult Function(LoadState<T> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -975,10 +978,10 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_Initial<T> value) initial,
+    required TResult Function(_Load<T> value) load,
+    required TResult Function(_Edit<T> value) edit,
+    required TResult Function(_Delete<T> value) delete,
   }) {
     return edit(this);
   }
@@ -986,10 +989,10 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Initial<T> value)? initial,
+    TResult? Function(_Load<T> value)? load,
+    TResult? Function(_Edit<T> value)? edit,
+    TResult? Function(_Delete<T> value)? delete,
   }) {
     return edit?.call(this);
   }
@@ -997,10 +1000,10 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_Initial<T> value)? initial,
+    TResult Function(_Load<T> value)? load,
+    TResult Function(_Edit<T> value)? edit,
+    TResult Function(_Delete<T> value)? delete,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -1010,18 +1013,20 @@ class _$_Edit implements _Edit {
   }
 }
 
-abstract class _Edit implements DetailsState {
-  const factory _Edit({required final EditState state}) = _$_Edit;
+abstract class _Edit<T extends EntityMixin> implements DetailsState<T> {
+  const factory _Edit({required final EditState state}) = _$_Edit<T>;
 
   EditState get state;
   @JsonKey(ignore: true)
-  _$$_EditCopyWith<_$_Edit> get copyWith => throw _privateConstructorUsedError;
+  _$$_EditCopyWith<T, _$_Edit<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DeleteCopyWith<$Res> {
-  factory _$$_DeleteCopyWith(_$_Delete value, $Res Function(_$_Delete) then) =
-      __$$_DeleteCopyWithImpl<$Res>;
+abstract class _$$_DeleteCopyWith<T extends EntityMixin, $Res> {
+  factory _$$_DeleteCopyWith(
+          _$_Delete<T> value, $Res Function(_$_Delete<T>) then) =
+      __$$_DeleteCopyWithImpl<T, $Res>;
   @useResult
   $Res call({DeleteState state});
 
@@ -1029,10 +1034,11 @@ abstract class _$$_DeleteCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DeleteCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res, _$_Delete>
-    implements _$$_DeleteCopyWith<$Res> {
-  __$$_DeleteCopyWithImpl(_$_Delete _value, $Res Function(_$_Delete) _then)
+class __$$_DeleteCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$DetailsStateCopyWithImpl<T, $Res, _$_Delete<T>>
+    implements _$$_DeleteCopyWith<T, $Res> {
+  __$$_DeleteCopyWithImpl(
+      _$_Delete<T> _value, $Res Function(_$_Delete<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1040,7 +1046,7 @@ class __$$_DeleteCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_Delete(
+    return _then(_$_Delete<T>(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -1059,7 +1065,7 @@ class __$$_DeleteCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Delete implements _Delete {
+class _$_Delete<T extends EntityMixin> implements _Delete<T> {
   const _$_Delete({required this.state});
 
   @override
@@ -1067,14 +1073,14 @@ class _$_Delete implements _Delete {
 
   @override
   String toString() {
-    return 'DetailsState.delete(state: $state)';
+    return 'DetailsState<$T>.delete(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Delete &&
+            other is _$_Delete<T> &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -1084,14 +1090,14 @@ class _$_Delete implements _Delete {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteCopyWith<_$_Delete> get copyWith =>
-      __$$_DeleteCopyWithImpl<_$_Delete>(this, _$identity);
+  _$$_DeleteCopyWith<T, _$_Delete<T>> get copyWith =>
+      __$$_DeleteCopyWithImpl<T, _$_Delete<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(LoadState<Client> state) load,
+    required TResult Function(LoadState<T> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
@@ -1102,7 +1108,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(LoadState<Client> state)? load,
+    TResult? Function(LoadState<T> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
@@ -1113,7 +1119,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(LoadState<Client> state)? load,
+    TResult Function(LoadState<T> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -1127,10 +1133,10 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Load value) load,
-    required TResult Function(_Edit value) edit,
-    required TResult Function(_Delete value) delete,
+    required TResult Function(_Initial<T> value) initial,
+    required TResult Function(_Load<T> value) load,
+    required TResult Function(_Edit<T> value) edit,
+    required TResult Function(_Delete<T> value) delete,
   }) {
     return delete(this);
   }
@@ -1138,10 +1144,10 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Initial<T> value)? initial,
+    TResult? Function(_Load<T> value)? load,
+    TResult? Function(_Edit<T> value)? edit,
+    TResult? Function(_Delete<T> value)? delete,
   }) {
     return delete?.call(this);
   }
@@ -1149,10 +1155,10 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Load value)? load,
-    TResult Function(_Edit value)? edit,
-    TResult Function(_Delete value)? delete,
+    TResult Function(_Initial<T> value)? initial,
+    TResult Function(_Load<T> value)? load,
+    TResult Function(_Edit<T> value)? edit,
+    TResult Function(_Delete<T> value)? delete,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -1162,11 +1168,11 @@ class _$_Delete implements _Delete {
   }
 }
 
-abstract class _Delete implements DetailsState {
-  const factory _Delete({required final DeleteState state}) = _$_Delete;
+abstract class _Delete<T extends EntityMixin> implements DetailsState<T> {
+  const factory _Delete({required final DeleteState state}) = _$_Delete<T>;
 
   DeleteState get state;
   @JsonKey(ignore: true)
-  _$$_DeleteCopyWith<_$_Delete> get copyWith =>
+  _$$_DeleteCopyWith<T, _$_Delete<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -73,7 +73,8 @@ class _FakeClientState_3 extends _i2.SmartFake implements _i6.ClientState {
         );
 }
 
-class _FakeDetailsState_4 extends _i2.SmartFake implements _i7.DetailsState {
+class _FakeDetailsState_4<T extends _i1.EntityMixin> extends _i2.SmartFake
+    implements _i7.DetailsState<T> {
   _FakeDetailsState_4(
     Object parent,
     Invocation parentInvocation,
@@ -750,31 +751,32 @@ class MockClientBloc extends _i2.Mock implements _i6.ClientBloc {
 /// A class which mocks [DetailsBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDetailsBloc extends _i2.Mock implements _i7.DetailsBloc {
+class MockDetailsBloc<T extends _i1.EntityMixin> extends _i2.Mock
+    implements _i7.DetailsBloc<T> {
   MockDetailsBloc() {
     _i2.throwOnMissingStub(this);
   }
 
   @override
-  _i7.DetailsState get state => (super.noSuchMethod(
+  _i7.DetailsState<T> get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeDetailsState_4(
+        returnValue: _FakeDetailsState_4<T>(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i7.DetailsState);
+      ) as _i7.DetailsState<T>);
   @override
-  _i12.Stream<_i7.DetailsState> get stream => (super.noSuchMethod(
+  _i12.Stream<_i7.DetailsState<T>> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i12.Stream<_i7.DetailsState>.empty(),
-      ) as _i12.Stream<_i7.DetailsState>);
+        returnValue: _i12.Stream<_i7.DetailsState<T>>.empty(),
+      ) as _i12.Stream<_i7.DetailsState<T>>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
       ) as bool);
   @override
-  void add(_i7.DetailsEvent? event) => super.noSuchMethod(
+  void add(_i7.DetailsEvent<T>? event) => super.noSuchMethod(
         Invocation.method(
           #add,
           [event],
@@ -782,7 +784,7 @@ class MockDetailsBloc extends _i2.Mock implements _i7.DetailsBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void onEvent(_i7.DetailsEvent? event) => super.noSuchMethod(
+  void onEvent(_i7.DetailsEvent<T>? event) => super.noSuchMethod(
         Invocation.method(
           #onEvent,
           [event],
@@ -790,7 +792,7 @@ class MockDetailsBloc extends _i2.Mock implements _i7.DetailsBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void emit(_i7.DetailsState? state) => super.noSuchMethod(
+  void emit(_i7.DetailsState<T>? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -798,8 +800,8 @@ class MockDetailsBloc extends _i2.Mock implements _i7.DetailsBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void on<E extends _i7.DetailsEvent>(
-    _i13.EventHandler<E, _i7.DetailsState>? handler, {
+  void on<E extends _i7.DetailsEvent<T>>(
+    _i13.EventHandler<E, _i7.DetailsState<T>>? handler, {
     _i13.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
@@ -812,7 +814,8 @@ class MockDetailsBloc extends _i2.Mock implements _i7.DetailsBloc {
       );
   @override
   void onTransition(
-          _i13.Transition<_i7.DetailsEvent, _i7.DetailsState>? transition) =>
+          _i13.Transition<_i7.DetailsEvent<T>, _i7.DetailsState<T>>?
+              transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -830,7 +833,7 @@ class MockDetailsBloc extends _i2.Mock implements _i7.DetailsBloc {
         returnValueForMissingStub: _i12.Future<void>.value(),
       ) as _i12.Future<void>);
   @override
-  void onChange(_i13.Change<_i7.DetailsState>? change) => super.noSuchMethod(
+  void onChange(_i13.Change<_i7.DetailsState<T>>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],

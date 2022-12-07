@@ -40,8 +40,8 @@ void main() {
   late MockLoadBloc<Client> mockLoadBloc;
   late MockEditBloc<Client> mockEditBloc;
   late MockDeleteBloc<Client> mockDeleteBloc;
+  late MockDetailsBloc<Client> mockDetailsBloc;
   late MockClientBloc mockClientBloc;
-  late MockDetailsBloc mockDetailsBloc;
 
   late MockClientDetailPage mockClientDetailPage;
 
@@ -51,8 +51,8 @@ void main() {
     mockLoadBloc = MockLoadBloc<Client>();
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();
+    mockDetailsBloc = MockDetailsBloc<Client>();
     mockClientBloc = MockClientBloc();
-    mockDetailsBloc = MockDetailsBloc();
 
     mockClientDetailPage = MockClientDetailPage(
       client: johnClient,
@@ -68,7 +68,8 @@ void main() {
     when(mockEditBloc.state).thenReturn(const EditState.initial());
     when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
     when(mockClientBloc.state).thenReturn(ClientState.initial());
-    when(mockDetailsBloc.state).thenReturn(const DetailsState.initial());
+    when(mockDetailsBloc.state)
+        .thenReturn(const DetailsState<Client>.initial());
 
     when(mockLoadBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());
@@ -79,7 +80,7 @@ void main() {
 
   group("Given [LoadState] is [loading()]", () {
     setUp(() {
-      final state = DetailsState.load(state: LoadState.loading());
+      final state = DetailsState<Client>.load(state: LoadState.loading());
       when(mockDetailsBloc.state).thenReturn(state);
     });
     testWidgets("Render loading indicator", (tester) async {
@@ -100,8 +101,8 @@ void main() {
       final state = LoadState.success(entity: johnClient);
       when(mockClientBloc.state).thenReturn(ClientState(client: johnClient));
 
-      when(mockDetailsBloc.stream)
-          .thenAnswer((_) => Stream.value(DetailsState.load(state: state)));
+      when(mockDetailsBloc.stream).thenAnswer(
+          (_) => Stream.value(DetailsState<Client>.load(state: state)));
     });
 
     testWidgets(
@@ -152,7 +153,7 @@ void main() {
       group("When [EditState] is [inProgress()] ", () {
         setUp(() {
           when(mockDetailsBloc.state).thenReturn(
-            const DetailsState.edit(state: EditState.inProgress()),
+            const DetailsState<Client>.edit(state: EditState.inProgress()),
           );
         });
         testWidgets(
@@ -168,7 +169,7 @@ void main() {
         setUp(() {
           when(mockDetailsBloc.stream).thenAnswer(
             (_) => Stream.value(
-              const DetailsState.edit(
+              const DetailsState<Client>.edit(
                 state: EditState.success(),
               ),
             ),
@@ -220,7 +221,7 @@ void main() {
 
           when(mockDetailsBloc.stream).thenAnswer(
             (_) => Stream.value(
-              DetailsState.edit(state: state),
+              DetailsState<Client>.edit(state: state),
             ),
           );
         });

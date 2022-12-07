@@ -1,11 +1,11 @@
 part of 'bloc.dart';
 
 @freezed
-class DetailsEvent with _$DetailsEvent {
-  const factory DetailsEvent.loadEmited({required LoadState<Client> state}) =
-      _LoadEmited;
+class DetailsEvent<T extends EntityMixin> with _$DetailsEvent<T> {
+  const factory DetailsEvent.loadEmited({required LoadState<T> state}) =
+      _LoadEmited<T>;
   const factory DetailsEvent.editEmited({required EditState state}) =
-      _EditEmited;
+      _EditEmited<T>;
   const factory DetailsEvent.deleteEmited({required DeleteState state}) =
-      _DeleteEmited;
+      _DeleteEmited<T>;
 }

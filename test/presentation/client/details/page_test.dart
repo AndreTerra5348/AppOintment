@@ -29,15 +29,15 @@ void main() {
   late MockLoadBloc<Client> mockLoadBloc;
   late MockEditBloc<Client> mockEditBloc;
   late MockDeleteBloc<Client> mockDeleteBloc;
+  late MockDetailsBloc<Client> mockDetailsBloc;
   late MockClientBloc mockClientBloc;
-  late MockDetailsBloc mockDetailsBloc;
   setUp(() {
     johnClient = Client(name: Name("John"), id: Uid.fromInt(1));
     mockLoadBloc = MockLoadBloc<Client>();
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();
+    mockDetailsBloc = MockDetailsBloc<Client>();
     mockClientBloc = MockClientBloc();
-    mockDetailsBloc = MockDetailsBloc();
 
     app = MaterialApp(
       locale: const Locale('en'),
@@ -47,8 +47,8 @@ void main() {
         clientBloc: mockClientBloc,
         loadBloc: mockLoadBloc,
         editBloc: mockEditBloc,
-        deleteBloc: mockDeleteBloc,
         detailsBloc: mockDetailsBloc,
+        deleteBloc: mockDeleteBloc,
         clientId: johnClient.id,
       ),
     );
@@ -57,7 +57,8 @@ void main() {
     when(mockEditBloc.state).thenReturn(const EditState.initial());
     when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
     when(mockClientBloc.state).thenReturn(ClientState.initial());
-    when(mockDetailsBloc.state).thenReturn(const DetailsState.initial());
+    when(mockDetailsBloc.state)
+        .thenReturn(const DetailsState<Client>.initial());
 
     when(mockLoadBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());

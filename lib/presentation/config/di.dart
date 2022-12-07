@@ -46,6 +46,6 @@ void servicesConfiguration() {
   getIt.registerFactory(() => LoadBloc<Client>(getIt()));
   getIt.registerFactory(() => EditBloc<Client>(getIt()));
   getIt.registerFactory(() => DeleteBloc<Client>(getIt()));
+  getIt.registerFactory(() => DetailsBloc<Client>());
   getIt.registerFactory(() => ClientBloc());
-  getIt.registerFactory(() => DetailsBloc());
 }

@@ -194,7 +194,7 @@ class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
     required _i13.EditBloc<_i9.Client> editBloc,
     required _i10.ClientBloc clientBloc,
     required _i14.Uid clientId,
-    required _i15.DetailsBloc detailsBloc,
+    required _i15.DetailsBloc<_i9.Client> detailsBloc,
   }) : super(
           ClientDetailsRoute.name,
           path: '/client-details-page',
@@ -235,7 +235,7 @@ class ClientDetailsRouteArgs {
 
   final _i14.Uid clientId;
 
-  final _i15.DetailsBloc detailsBloc;
+  final _i15.DetailsBloc<_i9.Client> detailsBloc;
 
   @override
   String toString() {

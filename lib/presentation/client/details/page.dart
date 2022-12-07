@@ -13,8 +13,8 @@ class ClientDetailsPage extends StatelessWidget {
   final LoadBloc<Client> loadBloc;
   final DeleteBloc<Client> deleteBloc;
   final EditBloc<Client> editBloc;
+  final DetailsBloc<Client> detailsBloc;
   final ClientBloc clientBloc;
-  final DetailsBloc detailsBloc;
   final Uid clientId;
 
   const ClientDetailsPage({

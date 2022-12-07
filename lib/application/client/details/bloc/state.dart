@@ -1,9 +1,9 @@
 part of 'bloc.dart';
 
 @freezed
-class DetailsState with _$DetailsState {
+class DetailsState<T extends EntityMixin> with _$DetailsState<T> {
   const factory DetailsState.initial() = _Initial;
-  const factory DetailsState.load({required LoadState<Client> state}) = _Load;
-  const factory DetailsState.edit({required EditState state}) = _Edit;
-  const factory DetailsState.delete({required DeleteState state}) = _Delete;
+  const factory DetailsState.load({required LoadState<T> state}) = _Load<T>;
+  const factory DetailsState.edit({required EditState state}) = _Edit<T>;
+  const factory DetailsState.delete({required DeleteState state}) = _Delete<T>;
 }
