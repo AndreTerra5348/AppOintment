@@ -6,11 +6,11 @@ import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/details/page.dart';
-import 'package:appointment/presentation/client/details/widgets/form.dart';
+import 'package:appointment/presentation/client/details/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'page_test.mocks.dart';
@@ -53,15 +53,21 @@ void main() {
     when(mockClientBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
-  testWidgets("Render ClientDetailsFormWidget", (tester) async {
-    await tester.pumpWidget(app);
-    expect(find.byType(ClientDetailsFormWidget), findsOneWidget);
-  });
+  testWidgets(
+    "Render ClientDetailsPageScaffold",
+    (tester) async {
+      await tester.pumpWidget(app);
+      expect(find.byType(ClientDetailsPageScaffold), findsOneWidget);
+    },
+  );
 
-  testWidgets("Add [DetailsEvent.loaded(id)] once", (tester) async {
-    await tester.pumpWidget(app);
+  testWidgets(
+    "Add [DetailsEvent.loaded(id)] once",
+    (tester) async {
+      await tester.pumpWidget(app);
 
-    verify(mockDetailsBloc.add(DetailsEvent.loaded(id: johnClient.id)))
-        .called(1);
-  });
+      verify(mockDetailsBloc.add(DetailsEvent.loaded(id: johnClient.id)))
+          .called(1);
+    },
+  );
 }
