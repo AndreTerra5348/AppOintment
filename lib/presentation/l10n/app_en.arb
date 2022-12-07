@@ -13,7 +13,13 @@
     "@_FORMS": {},
     "nameTextFormField": "Name",
 
+    "@_HOME_DRAWER": {},
+    "homeDrawerTitle": "Home",
+    "homeDrawerClientRegister": "Client Registration",
+    "homeDrawerClientSearch": "Client Search",
+
     "@_COMMON": {},
+    "appointment": "Appointment",
     "noResultsFound": "No results found",
     "delete": "Delete",
     "save": "Save",
