@@ -196,9 +196,6 @@ void main() {
     });
 
     group("When Delete Button is Pressed", () {
-      // Delete group
-      // TODO: navigate back to previous page when successful dialog is closed
-
       testWidgets(
         "Render Confirmation dialog",
         (tester) async {
