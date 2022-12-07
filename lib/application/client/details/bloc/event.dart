@@ -1,11 +1,11 @@
 part of 'bloc.dart';
 
 @freezed
-class ClientDetailsEvent with _$ClientDetailsEvent {
-  const factory ClientDetailsEvent.loadEmited(
-      {required LoadState<Client> state}) = _LoadEmited;
-  const factory ClientDetailsEvent.editEmited({required EditState state}) =
+class DetailsEvent with _$DetailsEvent {
+  const factory DetailsEvent.loadEmited({required LoadState<Client> state}) =
+      _LoadEmited;
+  const factory DetailsEvent.editEmited({required EditState state}) =
       _EditEmited;
-  const factory ClientDetailsEvent.deleteEmited({required DeleteState state}) =
+  const factory DetailsEvent.deleteEmited({required DeleteState state}) =
       _DeleteEmited;
 }

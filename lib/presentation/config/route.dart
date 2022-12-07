@@ -25,11 +25,11 @@ extension AppRouterX on StackRouter {
   ClientDetailsRoute getClientDetailsRoute({required Uid id}) =>
       ClientDetailsRoute(
         clientId: id,
-        detailsBloc: getIt(),
+        loadBloc: getIt(),
         deleteBloc: getIt(),
         editBloc: getIt(),
         clientBloc: getIt(),
-        clientDetailsBloc: getIt(),
+        detailsBloc: getIt(),
       );
 
   void pushClientDetailsPage({required Uid id}) =>

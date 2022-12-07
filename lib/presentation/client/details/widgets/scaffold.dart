@@ -17,7 +17,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClientDetailsBloc, ClientDetailsState>(
+    return BlocBuilder<DetailsBloc, DetailsState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(

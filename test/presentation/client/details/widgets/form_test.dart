@@ -29,7 +29,7 @@ import '../../../config/mock_di.dart' as mock_di;
   EditBloc,
   DeleteBloc,
   ClientBloc,
-  ClientDetailsBloc,
+  DetailsBloc,
 ])
 @GenerateNiceMocks([
   MockSpec<ClientDao>(unsupportedMembers: {#table, #alias}),
@@ -41,7 +41,7 @@ void main() {
   late MockEditBloc<Client> mockEditBloc;
   late MockDeleteBloc<Client> mockDeleteBloc;
   late MockClientBloc mockClientBloc;
-  late MockClientDetailsBloc mockClientDetailsBloc;
+  late MockDetailsBloc mockDetailsBloc;
 
   late MockClientDetailPage mockClientDetailPage;
 
@@ -52,7 +52,7 @@ void main() {
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();
     mockClientBloc = MockClientBloc();
-    mockClientDetailsBloc = MockClientDetailsBloc();
+    mockDetailsBloc = MockDetailsBloc();
 
     mockClientDetailPage = MockClientDetailPage(
       client: johnClient,
@@ -60,7 +60,7 @@ void main() {
       clientDeleteBloc: mockDeleteBloc,
       clientEditBloc: mockEditBloc,
       clientBloc: mockClientBloc,
-      clientDetailsBloc: mockClientDetailsBloc,
+      detailsBloc: mockDetailsBloc,
       child: const ClientDetailsFormWidget(),
     );
 
@@ -68,20 +68,19 @@ void main() {
     when(mockEditBloc.state).thenReturn(const EditState.initial());
     when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
     when(mockClientBloc.state).thenReturn(ClientState.initial());
-    when(mockClientDetailsBloc.state)
-        .thenReturn(const ClientDetailsState.initial());
+    when(mockDetailsBloc.state).thenReturn(const DetailsState.initial());
 
     when(mockLoadBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockDeleteBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockClientBloc.stream).thenAnswer((_) => const Stream.empty());
-    when(mockClientDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
   group("Given [LoadState] is [loading()]", () {
     setUp(() {
-      final state = ClientDetailsState.load(state: LoadState.loading());
-      when(mockClientDetailsBloc.state).thenReturn(state);
+      final state = DetailsState.load(state: LoadState.loading());
+      when(mockDetailsBloc.state).thenReturn(state);
     });
     testWidgets("Render loading indicator", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
@@ -101,8 +100,8 @@ void main() {
       final state = LoadState.success(entity: johnClient);
       when(mockClientBloc.state).thenReturn(ClientState(client: johnClient));
 
-      when(mockClientDetailsBloc.stream).thenAnswer(
-          (_) => Stream.value(ClientDetailsState.load(state: state)));
+      when(mockDetailsBloc.stream)
+          .thenAnswer((_) => Stream.value(DetailsState.load(state: state)));
     });
 
     testWidgets(
@@ -152,8 +151,8 @@ void main() {
 
       group("When [EditState] is [inProgress()] ", () {
         setUp(() {
-          when(mockClientDetailsBloc.state).thenReturn(
-            const ClientDetailsState.edit(state: EditState.inProgress()),
+          when(mockDetailsBloc.state).thenReturn(
+            const DetailsState.edit(state: EditState.inProgress()),
           );
         });
         testWidgets(
@@ -167,9 +166,9 @@ void main() {
       });
       group("When [EditState] is [success()] ", () {
         setUp(() {
-          when(mockClientDetailsBloc.stream).thenAnswer(
+          when(mockDetailsBloc.stream).thenAnswer(
             (_) => Stream.value(
-              const ClientDetailsState.edit(
+              const DetailsState.edit(
                 state: EditState.success(),
               ),
             ),
@@ -219,9 +218,9 @@ void main() {
             failure: mock_failure.dbErrorRepositoryFailure,
           );
 
-          when(mockClientDetailsBloc.stream).thenAnswer(
+          when(mockDetailsBloc.stream).thenAnswer(
             (_) => Stream.value(
-              ClientDetailsState.edit(state: state),
+              DetailsState.edit(state: state),
             ),
           );
         });

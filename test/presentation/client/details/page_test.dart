@@ -21,7 +21,7 @@ import 'page_test.mocks.dart';
   DeleteBloc,
   EditBloc,
   ClientBloc,
-  ClientDetailsBloc,
+  DetailsBloc,
 ])
 void main() {
   late MaterialApp app;
@@ -30,14 +30,14 @@ void main() {
   late MockEditBloc<Client> mockEditBloc;
   late MockDeleteBloc<Client> mockDeleteBloc;
   late MockClientBloc mockClientBloc;
-  late MockClientDetailsBloc mockClientDetailsBloc;
+  late MockDetailsBloc mockDetailsBloc;
   setUp(() {
     johnClient = Client(name: Name("John"), id: Uid.fromInt(1));
     mockLoadBloc = MockLoadBloc<Client>();
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();
     mockClientBloc = MockClientBloc();
-    mockClientDetailsBloc = MockClientDetailsBloc();
+    mockDetailsBloc = MockDetailsBloc();
 
     app = MaterialApp(
       locale: const Locale('en'),
@@ -45,10 +45,10 @@ void main() {
       supportedLocales: AppLocalizations.supportedLocales,
       home: ClientDetailsPage(
         clientBloc: mockClientBloc,
-        detailsBloc: mockLoadBloc,
+        loadBloc: mockLoadBloc,
         editBloc: mockEditBloc,
         deleteBloc: mockDeleteBloc,
-        clientDetailsBloc: mockClientDetailsBloc,
+        detailsBloc: mockDetailsBloc,
         clientId: johnClient.id,
       ),
     );
@@ -57,14 +57,13 @@ void main() {
     when(mockEditBloc.state).thenReturn(const EditState.initial());
     when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
     when(mockClientBloc.state).thenReturn(ClientState.initial());
-    when(mockClientDetailsBloc.state)
-        .thenReturn(const ClientDetailsState.initial());
+    when(mockDetailsBloc.state).thenReturn(const DetailsState.initial());
 
     when(mockLoadBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockDeleteBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockClientBloc.stream).thenAnswer((_) => const Stream.empty());
-    when(mockClientDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
   testWidgets(

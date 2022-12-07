@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ClientDetailsEvent {
+mixin _$DetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(LoadState<Client> state) loadEmited,
@@ -63,16 +63,16 @@ mixin _$ClientDetailsEvent {
 }
 
 /// @nodoc
-abstract class $ClientDetailsEventCopyWith<$Res> {
-  factory $ClientDetailsEventCopyWith(
-          ClientDetailsEvent value, $Res Function(ClientDetailsEvent) then) =
-      _$ClientDetailsEventCopyWithImpl<$Res, ClientDetailsEvent>;
+abstract class $DetailsEventCopyWith<$Res> {
+  factory $DetailsEventCopyWith(
+          DetailsEvent value, $Res Function(DetailsEvent) then) =
+      _$DetailsEventCopyWithImpl<$Res, DetailsEvent>;
 }
 
 /// @nodoc
-class _$ClientDetailsEventCopyWithImpl<$Res, $Val extends ClientDetailsEvent>
-    implements $ClientDetailsEventCopyWith<$Res> {
-  _$ClientDetailsEventCopyWithImpl(this._value, this._then);
+class _$DetailsEventCopyWithImpl<$Res, $Val extends DetailsEvent>
+    implements $DetailsEventCopyWith<$Res> {
+  _$DetailsEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,7 +93,7 @@ abstract class _$$_LoadEmitedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadEmitedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_LoadEmited>
+    extends _$DetailsEventCopyWithImpl<$Res, _$_LoadEmited>
     implements _$$_LoadEmitedCopyWith<$Res> {
   __$$_LoadEmitedCopyWithImpl(
       _$_LoadEmited _value, $Res Function(_$_LoadEmited) _then)
@@ -131,7 +131,7 @@ class _$_LoadEmited implements _LoadEmited {
 
   @override
   String toString() {
-    return 'ClientDetailsEvent.loadEmited(state: $state)';
+    return 'DetailsEvent.loadEmited(state: $state)';
   }
 
   @override
@@ -220,7 +220,7 @@ class _$_LoadEmited implements _LoadEmited {
   }
 }
 
-abstract class _LoadEmited implements ClientDetailsEvent {
+abstract class _LoadEmited implements DetailsEvent {
   const factory _LoadEmited({required final LoadState<Client> state}) =
       _$_LoadEmited;
 
@@ -243,7 +243,7 @@ abstract class _$$_EditEmitedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_EditEmitedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_EditEmited>
+    extends _$DetailsEventCopyWithImpl<$Res, _$_EditEmited>
     implements _$$_EditEmitedCopyWith<$Res> {
   __$$_EditEmitedCopyWithImpl(
       _$_EditEmited _value, $Res Function(_$_EditEmited) _then)
@@ -281,7 +281,7 @@ class _$_EditEmited implements _EditEmited {
 
   @override
   String toString() {
-    return 'ClientDetailsEvent.editEmited(state: $state)';
+    return 'DetailsEvent.editEmited(state: $state)';
   }
 
   @override
@@ -370,7 +370,7 @@ class _$_EditEmited implements _EditEmited {
   }
 }
 
-abstract class _EditEmited implements ClientDetailsEvent {
+abstract class _EditEmited implements DetailsEvent {
   const factory _EditEmited({required final EditState state}) = _$_EditEmited;
 
   EditState get state;
@@ -392,7 +392,7 @@ abstract class _$$_DeleteEmitedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_DeleteEmitedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_DeleteEmited>
+    extends _$DetailsEventCopyWithImpl<$Res, _$_DeleteEmited>
     implements _$$_DeleteEmitedCopyWith<$Res> {
   __$$_DeleteEmitedCopyWithImpl(
       _$_DeleteEmited _value, $Res Function(_$_DeleteEmited) _then)
@@ -430,7 +430,7 @@ class _$_DeleteEmited implements _DeleteEmited {
 
   @override
   String toString() {
-    return 'ClientDetailsEvent.deleteEmited(state: $state)';
+    return 'DetailsEvent.deleteEmited(state: $state)';
   }
 
   @override
@@ -519,7 +519,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   }
 }
 
-abstract class _DeleteEmited implements ClientDetailsEvent {
+abstract class _DeleteEmited implements DetailsEvent {
   const factory _DeleteEmited({required final DeleteState state}) =
       _$_DeleteEmited;
 
@@ -530,7 +530,7 @@ abstract class _DeleteEmited implements ClientDetailsEvent {
 }
 
 /// @nodoc
-mixin _$ClientDetailsState {
+mixin _$DetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -584,16 +584,16 @@ mixin _$ClientDetailsState {
 }
 
 /// @nodoc
-abstract class $ClientDetailsStateCopyWith<$Res> {
-  factory $ClientDetailsStateCopyWith(
-          ClientDetailsState value, $Res Function(ClientDetailsState) then) =
-      _$ClientDetailsStateCopyWithImpl<$Res, ClientDetailsState>;
+abstract class $DetailsStateCopyWith<$Res> {
+  factory $DetailsStateCopyWith(
+          DetailsState value, $Res Function(DetailsState) then) =
+      _$DetailsStateCopyWithImpl<$Res, DetailsState>;
 }
 
 /// @nodoc
-class _$ClientDetailsStateCopyWithImpl<$Res, $Val extends ClientDetailsState>
-    implements $ClientDetailsStateCopyWith<$Res> {
-  _$ClientDetailsStateCopyWithImpl(this._value, this._then);
+class _$DetailsStateCopyWithImpl<$Res, $Val extends DetailsState>
+    implements $DetailsStateCopyWith<$Res> {
+  _$DetailsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -610,7 +610,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$ClientDetailsStateCopyWithImpl<$Res, _$_Initial>
+    extends _$DetailsStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -623,7 +623,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ClientDetailsState.initial()';
+    return 'DetailsState.initial()';
   }
 
   @override
@@ -710,7 +710,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ClientDetailsState {
+abstract class _Initial implements DetailsState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -726,7 +726,7 @@ abstract class _$$_LoadCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadCopyWithImpl<$Res>
-    extends _$ClientDetailsStateCopyWithImpl<$Res, _$_Load>
+    extends _$DetailsStateCopyWithImpl<$Res, _$_Load>
     implements _$$_LoadCopyWith<$Res> {
   __$$_LoadCopyWithImpl(_$_Load _value, $Res Function(_$_Load) _then)
       : super(_value, _then);
@@ -763,7 +763,7 @@ class _$_Load implements _Load {
 
   @override
   String toString() {
-    return 'ClientDetailsState.load(state: $state)';
+    return 'DetailsState.load(state: $state)';
   }
 
   @override
@@ -858,7 +858,7 @@ class _$_Load implements _Load {
   }
 }
 
-abstract class _Load implements ClientDetailsState {
+abstract class _Load implements DetailsState {
   const factory _Load({required final LoadState<Client> state}) = _$_Load;
 
   LoadState<Client> get state;
@@ -878,7 +878,7 @@ abstract class _$$_EditCopyWith<$Res> {
 
 /// @nodoc
 class __$$_EditCopyWithImpl<$Res>
-    extends _$ClientDetailsStateCopyWithImpl<$Res, _$_Edit>
+    extends _$DetailsStateCopyWithImpl<$Res, _$_Edit>
     implements _$$_EditCopyWith<$Res> {
   __$$_EditCopyWithImpl(_$_Edit _value, $Res Function(_$_Edit) _then)
       : super(_value, _then);
@@ -915,7 +915,7 @@ class _$_Edit implements _Edit {
 
   @override
   String toString() {
-    return 'ClientDetailsState.edit(state: $state)';
+    return 'DetailsState.edit(state: $state)';
   }
 
   @override
@@ -1010,7 +1010,7 @@ class _$_Edit implements _Edit {
   }
 }
 
-abstract class _Edit implements ClientDetailsState {
+abstract class _Edit implements DetailsState {
   const factory _Edit({required final EditState state}) = _$_Edit;
 
   EditState get state;
@@ -1030,7 +1030,7 @@ abstract class _$$_DeleteCopyWith<$Res> {
 
 /// @nodoc
 class __$$_DeleteCopyWithImpl<$Res>
-    extends _$ClientDetailsStateCopyWithImpl<$Res, _$_Delete>
+    extends _$DetailsStateCopyWithImpl<$Res, _$_Delete>
     implements _$$_DeleteCopyWith<$Res> {
   __$$_DeleteCopyWithImpl(_$_Delete _value, $Res Function(_$_Delete) _then)
       : super(_value, _then);
@@ -1067,7 +1067,7 @@ class _$_Delete implements _Delete {
 
   @override
   String toString() {
-    return 'ClientDetailsState.delete(state: $state)';
+    return 'DetailsState.delete(state: $state)';
   }
 
   @override
@@ -1162,7 +1162,7 @@ class _$_Delete implements _Delete {
   }
 }
 
-abstract class _Delete implements ClientDetailsState {
+abstract class _Delete implements DetailsState {
   const factory _Delete({required final DeleteState state}) = _$_Delete;
 
   DeleteState get state;

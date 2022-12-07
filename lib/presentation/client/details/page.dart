@@ -10,21 +10,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ClientDetailsPage extends StatelessWidget {
-  final LoadBloc<Client> detailsBloc;
+  final LoadBloc<Client> loadBloc;
   final DeleteBloc<Client> deleteBloc;
   final EditBloc<Client> editBloc;
   final ClientBloc clientBloc;
-  final ClientDetailsBloc clientDetailsBloc;
+  final DetailsBloc detailsBloc;
   final Uid clientId;
 
   const ClientDetailsPage({
     super.key,
-    required this.detailsBloc,
+    required this.loadBloc,
     required this.deleteBloc,
     required this.editBloc,
     required this.clientBloc,
     required this.clientId,
-    required this.clientDetailsBloc,
+    required this.detailsBloc,
   });
 
   @override
@@ -32,7 +32,7 @@ class ClientDetailsPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => detailsBloc..add(LoadEvent.loaded(id: clientId)),
+          create: (context) => loadBloc..add(LoadEvent.loaded(id: clientId)),
         ),
         BlocProvider(
           create: (context) => deleteBloc,
@@ -44,7 +44,7 @@ class ClientDetailsPage extends StatelessWidget {
           create: (context) => clientBloc,
         ),
         BlocProvider(
-          create: (context) => clientDetailsBloc,
+          create: (context) => detailsBloc,
         ),
       ],
       child: const ClientDetailsPageScaffold(),

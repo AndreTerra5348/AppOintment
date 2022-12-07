@@ -73,9 +73,8 @@ class _FakeClientState_3 extends _i2.SmartFake implements _i6.ClientState {
         );
 }
 
-class _FakeClientDetailsState_4 extends _i2.SmartFake
-    implements _i7.ClientDetailsState {
-  _FakeClientDetailsState_4(
+class _FakeDetailsState_4 extends _i2.SmartFake implements _i7.DetailsState {
+  _FakeDetailsState_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -748,34 +747,34 @@ class MockClientBloc extends _i2.Mock implements _i6.ClientBloc {
       );
 }
 
-/// A class which mocks [ClientDetailsBloc].
+/// A class which mocks [DetailsBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockClientDetailsBloc extends _i2.Mock implements _i7.ClientDetailsBloc {
-  MockClientDetailsBloc() {
+class MockDetailsBloc extends _i2.Mock implements _i7.DetailsBloc {
+  MockDetailsBloc() {
     _i2.throwOnMissingStub(this);
   }
 
   @override
-  _i7.ClientDetailsState get state => (super.noSuchMethod(
+  _i7.DetailsState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeClientDetailsState_4(
+        returnValue: _FakeDetailsState_4(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i7.ClientDetailsState);
+      ) as _i7.DetailsState);
   @override
-  _i12.Stream<_i7.ClientDetailsState> get stream => (super.noSuchMethod(
+  _i12.Stream<_i7.DetailsState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i12.Stream<_i7.ClientDetailsState>.empty(),
-      ) as _i12.Stream<_i7.ClientDetailsState>);
+        returnValue: _i12.Stream<_i7.DetailsState>.empty(),
+      ) as _i12.Stream<_i7.DetailsState>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
       ) as bool);
   @override
-  void add(_i7.ClientDetailsEvent? event) => super.noSuchMethod(
+  void add(_i7.DetailsEvent? event) => super.noSuchMethod(
         Invocation.method(
           #add,
           [event],
@@ -783,7 +782,7 @@ class MockClientDetailsBloc extends _i2.Mock implements _i7.ClientDetailsBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void onEvent(_i7.ClientDetailsEvent? event) => super.noSuchMethod(
+  void onEvent(_i7.DetailsEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onEvent,
           [event],
@@ -791,7 +790,7 @@ class MockClientDetailsBloc extends _i2.Mock implements _i7.ClientDetailsBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void emit(_i7.ClientDetailsState? state) => super.noSuchMethod(
+  void emit(_i7.DetailsState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -799,8 +798,8 @@ class MockClientDetailsBloc extends _i2.Mock implements _i7.ClientDetailsBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void on<E extends _i7.ClientDetailsEvent>(
-    _i13.EventHandler<E, _i7.ClientDetailsState>? handler, {
+  void on<E extends _i7.DetailsEvent>(
+    _i13.EventHandler<E, _i7.DetailsState>? handler, {
     _i13.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
@@ -813,8 +812,7 @@ class MockClientDetailsBloc extends _i2.Mock implements _i7.ClientDetailsBloc {
       );
   @override
   void onTransition(
-          _i13.Transition<_i7.ClientDetailsEvent, _i7.ClientDetailsState>?
-              transition) =>
+          _i13.Transition<_i7.DetailsEvent, _i7.DetailsState>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -832,8 +830,7 @@ class MockClientDetailsBloc extends _i2.Mock implements _i7.ClientDetailsBloc {
         returnValueForMissingStub: _i12.Future<void>.value(),
       ) as _i12.Future<void>);
   @override
-  void onChange(_i13.Change<_i7.ClientDetailsState>? change) =>
-      super.noSuchMethod(
+  void onChange(_i13.Change<_i7.DetailsState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],

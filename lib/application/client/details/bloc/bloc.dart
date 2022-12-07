@@ -9,15 +9,14 @@ part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
-// TODO: change name to DetailsBloc
 // TODO: add generic type
-class ClientDetailsBloc extends Bloc<ClientDetailsEvent, ClientDetailsState> {
-  ClientDetailsBloc() : super(const _Initial()) {
+class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
+  DetailsBloc() : super(const _Initial()) {
     on<_EditEmited>(
-        (event, emit) => emit(ClientDetailsState.edit(state: event.state)));
+        (event, emit) => emit(DetailsState.edit(state: event.state)));
     on<_DeleteEmited>(
-        (event, emit) => emit(ClientDetailsState.delete(state: event.state)));
+        (event, emit) => emit(DetailsState.delete(state: event.state)));
     on<_LoadEmited>(
-        (event, emit) => emit(ClientDetailsState.load(state: event.state)));
+        (event, emit) => emit(DetailsState.load(state: event.state)));
   }
 }

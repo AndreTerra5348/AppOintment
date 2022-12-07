@@ -67,12 +67,12 @@ class AppRouter extends _i5.RootStackRouter {
         routeData: routeData,
         child: _i4.ClientDetailsPage(
           key: args.key,
-          detailsBloc: args.detailsBloc,
+          loadBloc: args.loadBloc,
           deleteBloc: args.deleteBloc,
           editBloc: args.editBloc,
           clientBloc: args.clientBloc,
           clientId: args.clientId,
-          clientDetailsBloc: args.clientDetailsBloc,
+          detailsBloc: args.detailsBloc,
         ),
       );
     },
@@ -189,23 +189,23 @@ class ClientRegisterRouteArgs {
 class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
   ClientDetailsRoute({
     _i6.Key? key,
-    required _i11.LoadBloc<_i9.Client> detailsBloc,
+    required _i11.LoadBloc<_i9.Client> loadBloc,
     required _i12.DeleteBloc<_i9.Client> deleteBloc,
     required _i13.EditBloc<_i9.Client> editBloc,
     required _i10.ClientBloc clientBloc,
     required _i14.Uid clientId,
-    required _i15.ClientDetailsBloc clientDetailsBloc,
+    required _i15.DetailsBloc detailsBloc,
   }) : super(
           ClientDetailsRoute.name,
           path: '/client-details-page',
           args: ClientDetailsRouteArgs(
             key: key,
-            detailsBloc: detailsBloc,
+            loadBloc: loadBloc,
             deleteBloc: deleteBloc,
             editBloc: editBloc,
             clientBloc: clientBloc,
             clientId: clientId,
-            clientDetailsBloc: clientDetailsBloc,
+            detailsBloc: detailsBloc,
           ),
         );
 
@@ -215,17 +215,17 @@ class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
 class ClientDetailsRouteArgs {
   const ClientDetailsRouteArgs({
     this.key,
-    required this.detailsBloc,
+    required this.loadBloc,
     required this.deleteBloc,
     required this.editBloc,
     required this.clientBloc,
     required this.clientId,
-    required this.clientDetailsBloc,
+    required this.detailsBloc,
   });
 
   final _i6.Key? key;
 
-  final _i11.LoadBloc<_i9.Client> detailsBloc;
+  final _i11.LoadBloc<_i9.Client> loadBloc;
 
   final _i12.DeleteBloc<_i9.Client> deleteBloc;
 
@@ -235,10 +235,10 @@ class ClientDetailsRouteArgs {
 
   final _i14.Uid clientId;
 
-  final _i15.ClientDetailsBloc clientDetailsBloc;
+  final _i15.DetailsBloc detailsBloc;
 
   @override
   String toString() {
-    return 'ClientDetailsRouteArgs{key: $key, detailsBloc: $detailsBloc, deleteBloc: $deleteBloc, editBloc: $editBloc, clientBloc: $clientBloc, clientId: $clientId, clientDetailsBloc: $clientDetailsBloc}';
+    return 'ClientDetailsRouteArgs{key: $key, loadBloc: $loadBloc, deleteBloc: $deleteBloc, editBloc: $editBloc, clientBloc: $clientBloc, clientId: $clientId, detailsBloc: $detailsBloc}';
   }
 }

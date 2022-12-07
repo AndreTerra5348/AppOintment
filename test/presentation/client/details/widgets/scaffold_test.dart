@@ -16,7 +16,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 import 'page_mock.dart';
 import 'scaffold_test.mocks.dart';
 
-@GenerateMocks([LoadBloc, DeleteBloc, EditBloc, ClientBloc, ClientDetailsBloc])
+@GenerateMocks([LoadBloc, DeleteBloc, EditBloc, ClientBloc, DetailsBloc])
 void main() {
   late Client johnClient;
   late Client renamedJohnClient;
@@ -24,7 +24,7 @@ void main() {
   late MockEditBloc<Client> mockEditBloc;
   late MockDeleteBloc<Client> mockDeleteBloc;
   late MockClientBloc mockClientBloc;
-  late MockClientDetailsBloc mockClientDetailsBloc;
+  late MockDetailsBloc mockDetailsBloc;
 
   late MockClientDetailPage mockClientDetailPage;
 
@@ -35,7 +35,7 @@ void main() {
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();
     mockClientBloc = MockClientBloc();
-    mockClientDetailsBloc = MockClientDetailsBloc();
+    mockDetailsBloc = MockDetailsBloc();
 
     mockClientDetailPage = MockClientDetailPage(
       client: johnClient,
@@ -43,7 +43,7 @@ void main() {
       clientDeleteBloc: mockDeleteBloc,
       clientEditBloc: mockEditBloc,
       clientBloc: mockClientBloc,
-      clientDetailsBloc: mockClientDetailsBloc,
+      detailsBloc: mockDetailsBloc,
       child: const ClientDetailsPageScaffold(),
     );
 
@@ -51,14 +51,13 @@ void main() {
     when(mockEditBloc.state).thenReturn(const EditState.initial());
     when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
     when(mockClientBloc.state).thenReturn(ClientState.initial());
-    when(mockClientDetailsBloc.state)
-        .thenReturn(const ClientDetailsState.initial());
+    when(mockDetailsBloc.state).thenReturn(const DetailsState.initial());
 
     when(mockLoadBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockDeleteBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockClientBloc.stream).thenAnswer((_) => const Stream.empty());
-    when(mockClientDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
   group("When [LoadState] is [success(client)] ", () {

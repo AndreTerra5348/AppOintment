@@ -12,7 +12,7 @@ class MockClientDetailPage extends StatelessWidget {
   final LoadBloc<Client> clientLoadBloc;
   final DeleteBloc<Client> clientDeleteBloc;
   final EditBloc<Client> clientEditBloc;
-  final ClientDetailsBloc clientDetailsBloc;
+  final DetailsBloc detailsBloc;
   final ClientBloc clientBloc;
   final Client client;
   final Widget child;
@@ -25,7 +25,7 @@ class MockClientDetailPage extends StatelessWidget {
     required this.clientEditBloc,
     required this.child,
     required this.clientBloc,
-    required this.clientDetailsBloc,
+    required this.detailsBloc,
   });
 
   @override
@@ -50,7 +50,7 @@ class MockClientDetailPage extends StatelessWidget {
               create: (context) => clientBloc,
             ),
             BlocProvider(
-              create: (context) => clientDetailsBloc,
+              create: (context) => detailsBloc,
             ),
           ],
           child: child,
