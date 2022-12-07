@@ -12,7 +12,7 @@ class MockClientDetailPage extends StatelessWidget {
   final LoadBloc<Client> clientLoadBloc;
   final DeleteBloc<Client> clientDeleteBloc;
   final EditBloc<Client> clientEditBloc;
-  final DetailsBloc detailsBloc;
+  final DetailsBloc<Client> detailsBloc;
   final ClientBloc clientBloc;
   final Client client;
   final Widget child;
