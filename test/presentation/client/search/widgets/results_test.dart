@@ -19,7 +19,6 @@ import '../../../../common/failure_fixture.dart' as failure_fixture;
 import '../../../config/mock_di.dart' as mock_di;
 import 'results_test.mocks.dart';
 
-// TODO: Tap to go to details page
 @GenerateNiceMocks([
   MockSpec<ClientSearchBloc>(),
   MockSpec<ClientDao>(unsupportedMembers: {#table, #alias}),
@@ -110,34 +109,6 @@ void main() {
           ).called(1);
         },
       );
-
-      testWidgets(
-        "When [ListTile] is tapped "
-        "Navigate to [ClientDetailsPage] with [Client.id] as argument",
-        (tester) async {
-          final mockClientDao = MockClientDao();
-
-          final models = Iterable.generate(5)
-              .map((e) => ClientModel(id: e + 1, name: "Bob"));
-
-          when(mockClientDao.getPage(
-            limit: anyNamed("limit"),
-            offset: anyNamed("offset"),
-            filter: anyNamed("filter"),
-          )).thenAnswer((_) => Future.value(models));
-
-          mock_di.mockServicesConfiguration(mockClientDao);
-
-          await tester.pumpWidget(AppOintment());
-          await tester.pumpAndSettle();
-
-          final clientTile = find.text(models.first.id.toString());
-          await tester.tap(clientTile);
-          await tester.pumpAndSettle();
-
-          expect(find.byType(ClientDetailsPage), findsOneWidget);
-        },
-      );
     },
   );
 
@@ -177,6 +148,34 @@ void main() {
       },
     );
   });
+
+  testWidgets(
+    "When [ListTile] is tapped "
+    "Navigate to [ClientDetailsPage] with [Client.id] as argument",
+    (tester) async {
+      final mockClientDao = MockClientDao();
+
+      final models =
+          Iterable.generate(5).map((e) => ClientModel(id: e + 1, name: "Bob"));
+
+      when(mockClientDao.getPage(
+        limit: anyNamed("limit"),
+        offset: anyNamed("offset"),
+        filter: anyNamed("filter"),
+      )).thenAnswer((_) => Future.value(models));
+
+      mock_di.mockServicesConfiguration(mockClientDao);
+
+      await tester.pumpWidget(AppOintment());
+      await tester.pumpAndSettle();
+
+      final clientTile = find.text(models.first.id.toString());
+      await tester.tap(clientTile);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ClientDetailsPage), findsOneWidget);
+    },
+  );
 }
 
 Iterable<Client> _createClients({int amount = 1}) {
