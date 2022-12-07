@@ -11,7 +11,7 @@ part 'bloc.freezed.dart';
 
 class DetailsBloc<T extends EntityMixin>
     extends Bloc<DetailsEvent<T>, DetailsState<T>> {
-  DetailsBloc() : super(const _Initial()) {
+  DetailsBloc() : super(DetailsState<T>.initial()) {
     on<_EditEmited<T>>(
         (event, emit) => emit(DetailsState.edit(state: event.state)));
     on<_DeleteEmited<T>>(
