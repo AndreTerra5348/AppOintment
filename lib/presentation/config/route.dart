@@ -29,6 +29,7 @@ extension AppRouterX on StackRouter {
         deleteBloc: getIt(),
         editBloc: getIt(),
         clientBloc: getIt(),
+        clientDetailsBloc: getIt(),
       );
 
   void pushClientDetailsPage({required Uid id}) =>

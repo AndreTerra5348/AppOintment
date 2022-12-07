@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:appointment/application/client/bloc/bloc.dart';
+import 'package:appointment/application/client/details/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
-import 'package:appointment/application/details/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
+import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/common/widgets/name_input.dart';
@@ -26,80 +27,36 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // Delete Bloc
-    return BlocConsumer<DeleteBloc<Client>, DeleteState>(
-      listenWhen: (previous, current) => current.isSuccess || current.isFailure,
-      listener: (deleteContext, deleteState) {
-        deleteState.maybeMap(
-          orElse: () {},
-          success: (_) => _handleSuccess(deleteContext),
-          failure: (failureState) => _handleFailure(
-            deleteContext,
-            failureState.failure,
-          ),
-        );
-        _timer = Timer(
-          const Duration(seconds: 1),
-          () {
-            Navigator.pop(deleteContext);
-            if (deleteState.isSuccess) {
-              deleteContext.router.pop();
-            }
-          },
+    return BlocConsumer<ClientDetailsBloc, ClientDetailsState>(
+      listenWhen: (previous, current) => current.maybeMap(
+        orElse: () => false,
+        load: (load) => load.state.isSuccess,
+        edit: (value) => value.state.isSuccess || value.state.isFailure,
+        delete: (value) => value.state.isSuccess || value.state.isFailure,
+      ),
+      listener: (context, state) {
+        state.map(
+          initial: (_) {},
+          load: (load) => _handleDetailsStateChanged(load.state),
+          edit: (edit) => _handleEditStateChanged(context, edit.state),
+          delete: (delete) => _handleDeleteStateChanged(context, delete.state),
         );
       },
-      builder: (deleteContext, deleteState) {
-        // Edit Bloc
-        return BlocConsumer<EditBloc<Client>, EditState>(
-          listenWhen: (previous, current) =>
-              current.isSuccess || current.isFailure,
-          listener: (editContext, editState) {
-            editState.maybeMap(
-              orElse: () {},
-              success: (_) => _handleSuccess(editContext),
-              failure: (failureStatus) => _handleFailure(
-                editContext,
-                failureStatus.failure,
+      builder: (context, state) {
+        return Form(
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  NameInputWidget(
+                    isEditing: context.isEditing,
+                  ),
+                ],
               ),
-            );
-            _timer = Timer(
-              const Duration(seconds: 1),
-              () => Navigator.pop(editContext),
-            );
-          },
-          builder: (editContext, editState) {
-            // Details Bloc
-            return BlocConsumer<DetailsBloc<Client>, DetailsState<Client>>(
-              listenWhen: (previous, current) => current.isSuccess,
-              listener: (detailsContext, detailsState) {
-                detailsState.maybeMap(
-                  orElse: () {},
-                  success: (successState) => detailsContext.load(
-                    client: successState.entity,
-                  ),
-                );
-              },
-              builder: (detailsContext, detailsState) {
-                return Form(
-                  child: Stack(
-                    children: [
-                      Column(
-                        children: [
-                          NameInputWidget(
-                            isEditing: editState.isEditing,
-                          ),
-                        ],
-                      ),
-                      if (detailsState.isLoading ||
-                          editState.isInProgress ||
-                          deleteState.isInProgress)
-                        const CircularProgressIndicator(value: null)
-                    ],
-                  ),
-                );
-              },
-            );
-          },
+              if (_isLoadingOrInProgress(state))
+                const CircularProgressIndicator(value: null)
+            ],
+          ),
         );
       },
     );
@@ -109,6 +66,73 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
   void dispose() {
     super.dispose();
     _timer?.cancel();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.detailsBloc.stream.listen(
+      (state) => context.clientDetailsBloc.add(
+        ClientDetailsEvent.loadEmited(state: state),
+      ),
+    );
+
+    context.editBloc.stream.listen(
+      (state) => context.clientDetailsBloc.add(
+        ClientDetailsEvent.editEmited(state: state),
+      ),
+    );
+
+    context.deleteBloc.stream.listen(
+      (state) => context.clientDetailsBloc.add(
+        ClientDetailsEvent.deleteEmited(state: state),
+      ),
+    );
+  }
+
+  _handleDeleteStateChanged(BuildContext context, DeleteState state) {
+    state.maybeMap(
+      orElse: () {},
+      success: (_) => _handleSuccess(context),
+      failure: (failure) => _handleFailure(
+        context,
+        failure.failure,
+      ),
+    );
+    _timer = Timer(
+      const Duration(seconds: 1),
+      () {
+        Navigator.pop(context);
+        if (state.isSuccess) {
+          context.router.pop();
+        }
+      },
+    );
+  }
+
+  _handleDetailsStateChanged(LoadState<Client> state) {
+    state.maybeMap(
+      orElse: () {},
+      success: (success) => context.load(
+        client: success.entity,
+      ),
+    );
+  }
+
+  _handleEditStateChanged(BuildContext context, EditState state) {
+    state.maybeMap(
+      orElse: () {},
+      success: (_) => _handleSuccess(context),
+      failure: (failure) => _handleFailure(
+        context,
+        failure.failure,
+      ),
+    );
+
+    _timer = Timer(
+      const Duration(seconds: 1),
+      () => Navigator.pop(context),
+    );
   }
 
   _handleFailure(BuildContext context, SubmissionFailure failure) {
@@ -130,19 +154,32 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
       builder: (_) => const Icon(Icons.check_circle_outline),
     );
   }
+
+  bool _isLoadingOrInProgress(ClientDetailsState state) {
+    return state.maybeMap(
+      orElse: () => false,
+      load: (load) => load.state.isLoading,
+      edit: (edit) => edit.state.isInProgress,
+      delete: (delete) => delete.state.isInProgress,
+    );
+  }
 }
 
 extension on BuildContext {
-  DetailsBloc<Client> get detailsBloc =>
-      BlocProvider.of<DetailsBloc<Client>>(this);
-
-  ClientBloc get clientBloc => BlocProvider.of<ClientBloc>(this);
-
   Client get client => clientBloc.state.client;
 
-  void reaload({required Uid id}) =>
-      detailsBloc.add(DetailsEvent.loaded(id: id));
+  ClientBloc get clientBloc => BlocProvider.of<ClientBloc>(this);
+  ClientDetailsBloc get clientDetailsBloc =>
+      BlocProvider.of<ClientDetailsBloc>(this);
+  DeleteBloc<Client> get deleteBloc =>
+      BlocProvider.of<DeleteBloc<Client>>(this);
+  LoadBloc<Client> get detailsBloc => BlocProvider.of<LoadBloc<Client>>(this);
+  EditBloc<Client> get editBloc => BlocProvider.of<EditBloc<Client>>(this);
+
+  bool get isEditing => editBloc.state.isEditing;
 
   void load({required Client client}) =>
       clientBloc.add(ClientEvent.loaded(client: client));
+
+  void reaload({required Uid id}) => detailsBloc.add(LoadEvent.loaded(id: id));
 }

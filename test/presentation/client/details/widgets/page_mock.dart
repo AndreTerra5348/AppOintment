@@ -1,4 +1,5 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
+import 'package:appointment/application/client/details/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
 import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
@@ -11,6 +12,7 @@ class MockClientDetailPage extends StatelessWidget {
   final LoadBloc<Client> clientLoadBloc;
   final DeleteBloc<Client> clientDeleteBloc;
   final EditBloc<Client> clientEditBloc;
+  final ClientDetailsBloc clientDetailsBloc;
   final ClientBloc clientBloc;
   final Client client;
   final Widget child;
@@ -23,6 +25,7 @@ class MockClientDetailPage extends StatelessWidget {
     required this.clientEditBloc,
     required this.child,
     required this.clientBloc,
+    required this.clientDetailsBloc,
   });
 
   @override
@@ -45,6 +48,9 @@ class MockClientDetailPage extends StatelessWidget {
             ),
             BlocProvider(
               create: (context) => clientBloc,
+            ),
+            BlocProvider(
+              create: (context) => clientDetailsBloc,
             ),
           ],
           child: child,

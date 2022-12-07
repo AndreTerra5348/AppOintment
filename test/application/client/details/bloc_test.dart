@@ -38,9 +38,9 @@ void main() {
     "When [detailsEmited] emit [details()] ",
     build: () => ClientDetailsBloc(),
     act: (bloc) =>
-        bloc.add(ClientDetailsEvent.detailsEmited(state: LoadState.loading())),
+        bloc.add(ClientDetailsEvent.loadEmited(state: LoadState.loading())),
     expect: () => [
-      ClientDetailsState.details(state: LoadState.loading()),
+      ClientDetailsState.load(state: LoadState.loading()),
     ],
   );
 }

@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ClientDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DetailsState<Client> state) detailsEmited,
+    required TResult Function(LoadState<Client> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DetailsState<Client> state)? detailsEmited,
+    TResult? Function(LoadState<Client> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DetailsState<Client> state)? detailsEmited,
+    TResult Function(LoadState<Client> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
@@ -40,21 +40,21 @@ mixin _$ClientDetailsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DetailsEmited value) detailsEmited,
+    required TResult Function(_LoadEmited value) loadEmited,
     required TResult Function(_EditEmited value) editEmited,
     required TResult Function(_DeleteEmited value) deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DetailsEmited value)? detailsEmited,
+    TResult? Function(_LoadEmited value)? loadEmited,
     TResult? Function(_EditEmited value)? editEmited,
     TResult? Function(_DeleteEmited value)? deleteEmited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DetailsEmited value)? detailsEmited,
+    TResult Function(_LoadEmited value)? loadEmited,
     TResult Function(_EditEmited value)? editEmited,
     TResult Function(_DeleteEmited value)? deleteEmited,
     required TResult orElse(),
@@ -81,22 +81,22 @@ class _$ClientDetailsEventCopyWithImpl<$Res, $Val extends ClientDetailsEvent>
 }
 
 /// @nodoc
-abstract class _$$_DetailsEmitedCopyWith<$Res> {
-  factory _$$_DetailsEmitedCopyWith(
-          _$_DetailsEmited value, $Res Function(_$_DetailsEmited) then) =
-      __$$_DetailsEmitedCopyWithImpl<$Res>;
+abstract class _$$_LoadEmitedCopyWith<$Res> {
+  factory _$$_LoadEmitedCopyWith(
+          _$_LoadEmited value, $Res Function(_$_LoadEmited) then) =
+      __$$_LoadEmitedCopyWithImpl<$Res>;
   @useResult
-  $Res call({DetailsState<Client> state});
+  $Res call({LoadState<Client> state});
 
-  $DetailsStateCopyWith<Client, $Res> get state;
+  $LoadStateCopyWith<Client, $Res> get state;
 }
 
 /// @nodoc
-class __$$_DetailsEmitedCopyWithImpl<$Res>
-    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_DetailsEmited>
-    implements _$$_DetailsEmitedCopyWith<$Res> {
-  __$$_DetailsEmitedCopyWithImpl(
-      _$_DetailsEmited _value, $Res Function(_$_DetailsEmited) _then)
+class __$$_LoadEmitedCopyWithImpl<$Res>
+    extends _$ClientDetailsEventCopyWithImpl<$Res, _$_LoadEmited>
+    implements _$$_LoadEmitedCopyWith<$Res> {
+  __$$_LoadEmitedCopyWithImpl(
+      _$_LoadEmited _value, $Res Function(_$_LoadEmited) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -104,18 +104,18 @@ class __$$_DetailsEmitedCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_DetailsEmited(
+    return _then(_$_LoadEmited(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as DetailsState<Client>,
+              as LoadState<Client>,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DetailsStateCopyWith<Client, $Res> get state {
-    return $DetailsStateCopyWith<Client, $Res>(_value.state, (value) {
+  $LoadStateCopyWith<Client, $Res> get state {
+    return $LoadStateCopyWith<Client, $Res>(_value.state, (value) {
       return _then(_value.copyWith(state: value));
     });
   }
@@ -123,22 +123,22 @@ class __$$_DetailsEmitedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DetailsEmited implements _DetailsEmited {
-  const _$_DetailsEmited({required this.state});
+class _$_LoadEmited implements _LoadEmited {
+  const _$_LoadEmited({required this.state});
 
   @override
-  final DetailsState<Client> state;
+  final LoadState<Client> state;
 
   @override
   String toString() {
-    return 'ClientDetailsEvent.detailsEmited(state: $state)';
+    return 'ClientDetailsEvent.loadEmited(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DetailsEmited &&
+            other is _$_LoadEmited &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -148,39 +148,39 @@ class _$_DetailsEmited implements _DetailsEmited {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DetailsEmitedCopyWith<_$_DetailsEmited> get copyWith =>
-      __$$_DetailsEmitedCopyWithImpl<_$_DetailsEmited>(this, _$identity);
+  _$$_LoadEmitedCopyWith<_$_LoadEmited> get copyWith =>
+      __$$_LoadEmitedCopyWithImpl<_$_LoadEmited>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DetailsState<Client> state) detailsEmited,
+    required TResult Function(LoadState<Client> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) {
-    return detailsEmited(state);
+    return loadEmited(state);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DetailsState<Client> state)? detailsEmited,
+    TResult? Function(LoadState<Client> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) {
-    return detailsEmited?.call(state);
+    return loadEmited?.call(state);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DetailsState<Client> state)? detailsEmited,
+    TResult Function(LoadState<Client> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
   }) {
-    if (detailsEmited != null) {
-      return detailsEmited(state);
+    if (loadEmited != null) {
+      return loadEmited(state);
     }
     return orElse();
   }
@@ -188,45 +188,45 @@ class _$_DetailsEmited implements _DetailsEmited {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DetailsEmited value) detailsEmited,
+    required TResult Function(_LoadEmited value) loadEmited,
     required TResult Function(_EditEmited value) editEmited,
     required TResult Function(_DeleteEmited value) deleteEmited,
   }) {
-    return detailsEmited(this);
+    return loadEmited(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DetailsEmited value)? detailsEmited,
+    TResult? Function(_LoadEmited value)? loadEmited,
     TResult? Function(_EditEmited value)? editEmited,
     TResult? Function(_DeleteEmited value)? deleteEmited,
   }) {
-    return detailsEmited?.call(this);
+    return loadEmited?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DetailsEmited value)? detailsEmited,
+    TResult Function(_LoadEmited value)? loadEmited,
     TResult Function(_EditEmited value)? editEmited,
     TResult Function(_DeleteEmited value)? deleteEmited,
     required TResult orElse(),
   }) {
-    if (detailsEmited != null) {
-      return detailsEmited(this);
+    if (loadEmited != null) {
+      return loadEmited(this);
     }
     return orElse();
   }
 }
 
-abstract class _DetailsEmited implements ClientDetailsEvent {
-  const factory _DetailsEmited({required final DetailsState<Client> state}) =
-      _$_DetailsEmited;
+abstract class _LoadEmited implements ClientDetailsEvent {
+  const factory _LoadEmited({required final LoadState<Client> state}) =
+      _$_LoadEmited;
 
-  DetailsState<Client> get state;
+  LoadState<Client> get state;
   @JsonKey(ignore: true)
-  _$$_DetailsEmitedCopyWith<_$_DetailsEmited> get copyWith =>
+  _$$_LoadEmitedCopyWith<_$_LoadEmited> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -304,7 +304,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DetailsState<Client> state) detailsEmited,
+    required TResult Function(LoadState<Client> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) {
@@ -314,7 +314,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DetailsState<Client> state)? detailsEmited,
+    TResult? Function(LoadState<Client> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) {
@@ -324,7 +324,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DetailsState<Client> state)? detailsEmited,
+    TResult Function(LoadState<Client> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
@@ -338,7 +338,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DetailsEmited value) detailsEmited,
+    required TResult Function(_LoadEmited value) loadEmited,
     required TResult Function(_EditEmited value) editEmited,
     required TResult Function(_DeleteEmited value) deleteEmited,
   }) {
@@ -348,7 +348,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DetailsEmited value)? detailsEmited,
+    TResult? Function(_LoadEmited value)? loadEmited,
     TResult? Function(_EditEmited value)? editEmited,
     TResult? Function(_DeleteEmited value)? deleteEmited,
   }) {
@@ -358,7 +358,7 @@ class _$_EditEmited implements _EditEmited {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DetailsEmited value)? detailsEmited,
+    TResult Function(_LoadEmited value)? loadEmited,
     TResult Function(_EditEmited value)? editEmited,
     TResult Function(_DeleteEmited value)? deleteEmited,
     required TResult orElse(),
@@ -453,7 +453,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(DetailsState<Client> state) detailsEmited,
+    required TResult Function(LoadState<Client> state) loadEmited,
     required TResult Function(EditState state) editEmited,
     required TResult Function(DeleteState state) deleteEmited,
   }) {
@@ -463,7 +463,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DetailsState<Client> state)? detailsEmited,
+    TResult? Function(LoadState<Client> state)? loadEmited,
     TResult? Function(EditState state)? editEmited,
     TResult? Function(DeleteState state)? deleteEmited,
   }) {
@@ -473,7 +473,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DetailsState<Client> state)? detailsEmited,
+    TResult Function(LoadState<Client> state)? loadEmited,
     TResult Function(EditState state)? editEmited,
     TResult Function(DeleteState state)? deleteEmited,
     required TResult orElse(),
@@ -487,7 +487,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DetailsEmited value) detailsEmited,
+    required TResult Function(_LoadEmited value) loadEmited,
     required TResult Function(_EditEmited value) editEmited,
     required TResult Function(_DeleteEmited value) deleteEmited,
   }) {
@@ -497,7 +497,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DetailsEmited value)? detailsEmited,
+    TResult? Function(_LoadEmited value)? loadEmited,
     TResult? Function(_EditEmited value)? editEmited,
     TResult? Function(_DeleteEmited value)? deleteEmited,
   }) {
@@ -507,7 +507,7 @@ class _$_DeleteEmited implements _DeleteEmited {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DetailsEmited value)? detailsEmited,
+    TResult Function(_LoadEmited value)? loadEmited,
     TResult Function(_EditEmited value)? editEmited,
     TResult Function(_DeleteEmited value)? deleteEmited,
     required TResult orElse(),
@@ -534,7 +534,7 @@ mixin _$ClientDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(DetailsState<Client> state) details,
+    required TResult Function(LoadState<Client> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) =>
@@ -542,7 +542,7 @@ mixin _$ClientDetailsState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(DetailsState<Client> state)? details,
+    TResult? Function(LoadState<Client> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) =>
@@ -550,7 +550,7 @@ mixin _$ClientDetailsState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(DetailsState<Client> state)? details,
+    TResult Function(LoadState<Client> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -559,7 +559,7 @@ mixin _$ClientDetailsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Details value) details,
+    required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
     required TResult Function(_Delete value) delete,
   }) =>
@@ -567,7 +567,7 @@ mixin _$ClientDetailsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Details value)? details,
+    TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_Delete value)? delete,
   }) =>
@@ -575,7 +575,7 @@ mixin _$ClientDetailsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Details value)? details,
+    TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
@@ -639,7 +639,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(DetailsState<Client> state) details,
+    required TResult Function(LoadState<Client> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
@@ -650,7 +650,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(DetailsState<Client> state)? details,
+    TResult? Function(LoadState<Client> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
@@ -661,7 +661,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(DetailsState<Client> state)? details,
+    TResult Function(LoadState<Client> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -676,7 +676,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Details value) details,
+    required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
     required TResult Function(_Delete value) delete,
   }) {
@@ -687,7 +687,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Details value)? details,
+    TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_Delete value)? delete,
   }) {
@@ -698,7 +698,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Details value)? details,
+    TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
@@ -715,21 +715,20 @@ abstract class _Initial implements ClientDetailsState {
 }
 
 /// @nodoc
-abstract class _$$_DetailsCopyWith<$Res> {
-  factory _$$_DetailsCopyWith(
-          _$_Details value, $Res Function(_$_Details) then) =
-      __$$_DetailsCopyWithImpl<$Res>;
+abstract class _$$_LoadCopyWith<$Res> {
+  factory _$$_LoadCopyWith(_$_Load value, $Res Function(_$_Load) then) =
+      __$$_LoadCopyWithImpl<$Res>;
   @useResult
-  $Res call({DetailsState<Client> state});
+  $Res call({LoadState<Client> state});
 
-  $DetailsStateCopyWith<Client, $Res> get state;
+  $LoadStateCopyWith<Client, $Res> get state;
 }
 
 /// @nodoc
-class __$$_DetailsCopyWithImpl<$Res>
-    extends _$ClientDetailsStateCopyWithImpl<$Res, _$_Details>
-    implements _$$_DetailsCopyWith<$Res> {
-  __$$_DetailsCopyWithImpl(_$_Details _value, $Res Function(_$_Details) _then)
+class __$$_LoadCopyWithImpl<$Res>
+    extends _$ClientDetailsStateCopyWithImpl<$Res, _$_Load>
+    implements _$$_LoadCopyWith<$Res> {
+  __$$_LoadCopyWithImpl(_$_Load _value, $Res Function(_$_Load) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -737,18 +736,18 @@ class __$$_DetailsCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
   }) {
-    return _then(_$_Details(
+    return _then(_$_Load(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
-              as DetailsState<Client>,
+              as LoadState<Client>,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DetailsStateCopyWith<Client, $Res> get state {
-    return $DetailsStateCopyWith<Client, $Res>(_value.state, (value) {
+  $LoadStateCopyWith<Client, $Res> get state {
+    return $LoadStateCopyWith<Client, $Res>(_value.state, (value) {
       return _then(_value.copyWith(state: value));
     });
   }
@@ -756,22 +755,22 @@ class __$$_DetailsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Details implements _Details {
-  const _$_Details({required this.state});
+class _$_Load implements _Load {
+  const _$_Load({required this.state});
 
   @override
-  final DetailsState<Client> state;
+  final LoadState<Client> state;
 
   @override
   String toString() {
-    return 'ClientDetailsState.details(state: $state)';
+    return 'ClientDetailsState.load(state: $state)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Details &&
+            other is _$_Load &&
             (identical(other.state, state) || other.state == state));
   }
 
@@ -781,42 +780,42 @@ class _$_Details implements _Details {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DetailsCopyWith<_$_Details> get copyWith =>
-      __$$_DetailsCopyWithImpl<_$_Details>(this, _$identity);
+  _$$_LoadCopyWith<_$_Load> get copyWith =>
+      __$$_LoadCopyWithImpl<_$_Load>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(DetailsState<Client> state) details,
+    required TResult Function(LoadState<Client> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
-    return details(state);
+    return load(state);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(DetailsState<Client> state)? details,
+    TResult? Function(LoadState<Client> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
-    return details?.call(state);
+    return load?.call(state);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(DetailsState<Client> state)? details,
+    TResult Function(LoadState<Client> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
   }) {
-    if (details != null) {
-      return details(state);
+    if (load != null) {
+      return load(state);
     }
     return orElse();
   }
@@ -825,48 +824,46 @@ class _$_Details implements _Details {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Details value) details,
+    required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
     required TResult Function(_Delete value) delete,
   }) {
-    return details(this);
+    return load(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Details value)? details,
+    TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_Delete value)? delete,
   }) {
-    return details?.call(this);
+    return load?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Details value)? details,
+    TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
-    if (details != null) {
-      return details(this);
+    if (load != null) {
+      return load(this);
     }
     return orElse();
   }
 }
 
-abstract class _Details implements ClientDetailsState {
-  const factory _Details({required final DetailsState<Client> state}) =
-      _$_Details;
+abstract class _Load implements ClientDetailsState {
+  const factory _Load({required final LoadState<Client> state}) = _$_Load;
 
-  DetailsState<Client> get state;
+  LoadState<Client> get state;
   @JsonKey(ignore: true)
-  _$$_DetailsCopyWith<_$_Details> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_LoadCopyWith<_$_Load> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -942,7 +939,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(DetailsState<Client> state) details,
+    required TResult Function(LoadState<Client> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
@@ -953,7 +950,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(DetailsState<Client> state)? details,
+    TResult? Function(LoadState<Client> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
@@ -964,7 +961,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(DetailsState<Client> state)? details,
+    TResult Function(LoadState<Client> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -979,7 +976,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Details value) details,
+    required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
     required TResult Function(_Delete value) delete,
   }) {
@@ -990,7 +987,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Details value)? details,
+    TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_Delete value)? delete,
   }) {
@@ -1001,7 +998,7 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Details value)? details,
+    TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
@@ -1094,7 +1091,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(DetailsState<Client> state) details,
+    required TResult Function(LoadState<Client> state) load,
     required TResult Function(EditState state) edit,
     required TResult Function(DeleteState state) delete,
   }) {
@@ -1105,7 +1102,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(DetailsState<Client> state)? details,
+    TResult? Function(LoadState<Client> state)? load,
     TResult? Function(EditState state)? edit,
     TResult? Function(DeleteState state)? delete,
   }) {
@@ -1116,7 +1113,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(DetailsState<Client> state)? details,
+    TResult Function(LoadState<Client> state)? load,
     TResult Function(EditState state)? edit,
     TResult Function(DeleteState state)? delete,
     required TResult orElse(),
@@ -1131,7 +1128,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Details value) details,
+    required TResult Function(_Load value) load,
     required TResult Function(_Edit value) edit,
     required TResult Function(_Delete value) delete,
   }) {
@@ -1142,7 +1139,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Details value)? details,
+    TResult? Function(_Load value)? load,
     TResult? Function(_Edit value)? edit,
     TResult? Function(_Delete value)? delete,
   }) {
@@ -1153,7 +1150,7 @@ class _$_Delete implements _Delete {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Details value)? details,
+    TResult Function(_Load value)? load,
     TResult Function(_Edit value)? edit,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),

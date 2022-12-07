@@ -1,4 +1,5 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
+import 'package:appointment/application/client/details/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
 import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
@@ -23,7 +24,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 import '../../../../common/failure_fixture.dart' as mock_failure;
 import '../../../config/mock_di.dart' as mock_di;
 
-@GenerateMocks([LoadBloc, EditBloc, DeleteBloc, ClientBloc])
+@GenerateMocks([
+  LoadBloc,
+  EditBloc,
+  DeleteBloc,
+  ClientBloc,
+  ClientDetailsBloc,
+])
 @GenerateNiceMocks([
   MockSpec<ClientDao>(unsupportedMembers: {#table, #alias}),
 ])
@@ -34,6 +41,7 @@ void main() {
   late MockEditBloc<Client> mockEditBloc;
   late MockDeleteBloc<Client> mockDeleteBloc;
   late MockClientBloc mockClientBloc;
+  late MockClientDetailsBloc mockClientDetailsBloc;
 
   late MockClientDetailPage mockClientDetailPage;
 
@@ -44,6 +52,7 @@ void main() {
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();
     mockClientBloc = MockClientBloc();
+    mockClientDetailsBloc = MockClientDetailsBloc();
 
     mockClientDetailPage = MockClientDetailPage(
       client: johnClient,
@@ -51,6 +60,7 @@ void main() {
       clientDeleteBloc: mockDeleteBloc,
       clientEditBloc: mockEditBloc,
       clientBloc: mockClientBloc,
+      clientDetailsBloc: mockClientDetailsBloc,
       child: const ClientDetailsFormWidget(),
     );
 
@@ -58,34 +68,41 @@ void main() {
     when(mockEditBloc.state).thenReturn(const EditState.initial());
     when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
     when(mockClientBloc.state).thenReturn(ClientState.initial());
+    when(mockClientDetailsBloc.state)
+        .thenReturn(const ClientDetailsState.initial());
 
     when(mockLoadBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockDeleteBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockClientBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockClientDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
   group("Given [LoadState] is [loading()]", () {
+    setUp(() {
+      final state = ClientDetailsState.load(state: LoadState.loading());
+      when(mockClientDetailsBloc.state).thenReturn(state);
+    });
     testWidgets("Render loading indicator", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expectLater(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets("Render NameInputWidget", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expect(find.byType(NameInputWidget), findsOneWidget);
+      expectLater(find.byType(NameInputWidget), findsOneWidget);
     });
   });
 
   group("When [LoadState] is [success(client)] ", () {
     setUp(() {
       final state = LoadState.success(entity: johnClient);
-      when(mockLoadBloc.state).thenReturn(state);
-      when(mockLoadBloc.stream).thenAnswer((_) => Stream.value(state));
-
       when(mockClientBloc.state).thenReturn(ClientState(client: johnClient));
+
+      when(mockClientDetailsBloc.stream).thenAnswer(
+          (_) => Stream.value(ClientDetailsState.load(state: state)));
     });
 
     testWidgets(
@@ -134,12 +151,14 @@ void main() {
       );
 
       group("When [EditState] is [inProgress()] ", () {
+        setUp(() {
+          when(mockClientDetailsBloc.state).thenReturn(
+            const ClientDetailsState.edit(state: EditState.inProgress()),
+          );
+        });
         testWidgets(
           "Show loading indicator",
           (tester) async {
-            when(mockEditBloc.state).thenReturn(
-              const EditState.inProgress(),
-            );
             await tester.pumpWidget(mockClientDetailPage);
 
             expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -148,9 +167,13 @@ void main() {
       });
       group("When [EditState] is [success()] ", () {
         setUp(() {
-          const state = EditState.success();
-          when(mockEditBloc.state).thenReturn(state);
-          when(mockEditBloc.stream).thenAnswer((_) => Stream.value(state));
+          when(mockClientDetailsBloc.stream).thenAnswer(
+            (_) => Stream.value(
+              const ClientDetailsState.edit(
+                state: EditState.success(),
+              ),
+            ),
+          );
         });
         testWidgets(
           "Add [DetailsEvent.loaded(clientBloc.client.id)] once",
@@ -195,9 +218,11 @@ void main() {
           final state = EditState.repositoryFailure(
             failure: mock_failure.dbErrorRepositoryFailure,
           );
-          when(mockEditBloc.state).thenReturn(state);
-          when(mockEditBloc.stream).thenAnswer(
-            (_) => Stream.value(state),
+
+          when(mockClientDetailsBloc.stream).thenAnswer(
+            (_) => Stream.value(
+              ClientDetailsState.edit(state: state),
+            ),
           );
         });
 

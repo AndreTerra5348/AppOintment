@@ -15,6 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
 import '../../application/client/bloc/bloc.dart' as _i10;
+import '../../application/client/details/bloc/bloc.dart' as _i15;
 import '../../application/client/search/bloc/bloc.dart' as _i7;
 import '../../application/delete/bloc/bloc.dart' as _i12;
 import '../../application/edit/bloc/bloc.dart' as _i13;
@@ -71,6 +72,7 @@ class AppRouter extends _i5.RootStackRouter {
           editBloc: args.editBloc,
           clientBloc: args.clientBloc,
           clientId: args.clientId,
+          clientDetailsBloc: args.clientDetailsBloc,
         ),
       );
     },
@@ -192,6 +194,7 @@ class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
     required _i13.EditBloc<_i9.Client> editBloc,
     required _i10.ClientBloc clientBloc,
     required _i14.Uid clientId,
+    required _i15.ClientDetailsBloc clientDetailsBloc,
   }) : super(
           ClientDetailsRoute.name,
           path: '/client-details-page',
@@ -202,6 +205,7 @@ class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
             editBloc: editBloc,
             clientBloc: clientBloc,
             clientId: clientId,
+            clientDetailsBloc: clientDetailsBloc,
           ),
         );
 
@@ -216,6 +220,7 @@ class ClientDetailsRouteArgs {
     required this.editBloc,
     required this.clientBloc,
     required this.clientId,
+    required this.clientDetailsBloc,
   });
 
   final _i6.Key? key;
@@ -230,8 +235,10 @@ class ClientDetailsRouteArgs {
 
   final _i14.Uid clientId;
 
+  final _i15.ClientDetailsBloc clientDetailsBloc;
+
   @override
   String toString() {
-    return 'ClientDetailsRouteArgs{key: $key, detailsBloc: $detailsBloc, deleteBloc: $deleteBloc, editBloc: $editBloc, clientBloc: $clientBloc, clientId: $clientId}';
+    return 'ClientDetailsRouteArgs{key: $key, detailsBloc: $detailsBloc, deleteBloc: $deleteBloc, editBloc: $editBloc, clientBloc: $clientBloc, clientId: $clientId, clientDetailsBloc: $clientDetailsBloc}';
   }
 }

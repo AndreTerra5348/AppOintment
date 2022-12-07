@@ -3,21 +3,22 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i11;
+import 'dart:async' as _i12;
 
 import 'package:appointment/application/client/bloc/bloc.dart' as _i6;
+import 'package:appointment/application/client/details/bloc/bloc.dart' as _i7;
 import 'package:appointment/application/delete/bloc/bloc.dart' as _i5;
 import 'package:appointment/application/edit/bloc/bloc.dart' as _i4;
 import 'package:appointment/application/load/bloc/bloc.dart' as _i3;
 import 'package:appointment/domain/common/entity_mixin.dart' as _i1;
-import 'package:appointment/domain/common/values.dart' as _i14;
-import 'package:appointment/infrastructure/client/dao.dart' as _i13;
-import 'package:appointment/infrastructure/client/table.dart' as _i7;
-import 'package:appointment/infrastructure/core/filter.dart' as _i15;
-import 'package:appointment/infrastructure/drift/db.dart' as _i8;
-import 'package:bloc/bloc.dart' as _i12;
-import 'package:drift/drift.dart' as _i9;
-import 'package:drift/src/runtime/executor/stream_queries.dart' as _i10;
+import 'package:appointment/domain/common/values.dart' as _i15;
+import 'package:appointment/infrastructure/client/dao.dart' as _i14;
+import 'package:appointment/infrastructure/client/table.dart' as _i8;
+import 'package:appointment/infrastructure/core/filter.dart' as _i16;
+import 'package:appointment/infrastructure/drift/db.dart' as _i9;
+import 'package:bloc/bloc.dart' as _i13;
+import 'package:drift/drift.dart' as _i10;
+import 'package:drift/src/runtime/executor/stream_queries.dart' as _i11;
 import 'package:mockito/mockito.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -72,8 +73,9 @@ class _FakeClientState_3 extends _i2.SmartFake implements _i6.ClientState {
         );
 }
 
-class _FakeClientModels_4 extends _i2.SmartFake implements _i7.ClientModels {
-  _FakeClientModels_4(
+class _FakeClientDetailsState_4 extends _i2.SmartFake
+    implements _i7.ClientDetailsState {
+  _FakeClientDetailsState_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -82,8 +84,8 @@ class _FakeClientModels_4 extends _i2.SmartFake implements _i7.ClientModels {
         );
 }
 
-class _FakeDriftDb_5 extends _i2.SmartFake implements _i8.DriftDb {
-  _FakeDriftDb_5(
+class _FakeClientModels_5 extends _i2.SmartFake implements _i8.ClientModels {
+  _FakeClientModels_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -92,9 +94,8 @@ class _FakeDriftDb_5 extends _i2.SmartFake implements _i8.DriftDb {
         );
 }
 
-class _FakeDatabaseConnection_6 extends _i2.SmartFake
-    implements _i9.DatabaseConnection {
-  _FakeDatabaseConnection_6(
+class _FakeDriftDb_6 extends _i2.SmartFake implements _i9.DriftDb {
+  _FakeDriftDb_6(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -103,9 +104,9 @@ class _FakeDatabaseConnection_6 extends _i2.SmartFake
         );
 }
 
-class _FakeDriftDatabaseOptions_7 extends _i2.SmartFake
-    implements _i9.DriftDatabaseOptions {
-  _FakeDriftDatabaseOptions_7(
+class _FakeDatabaseConnection_7 extends _i2.SmartFake
+    implements _i10.DatabaseConnection {
+  _FakeDatabaseConnection_7(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -114,8 +115,9 @@ class _FakeDriftDatabaseOptions_7 extends _i2.SmartFake
         );
 }
 
-class _FakeQueryExecutor_8 extends _i2.SmartFake implements _i9.QueryExecutor {
-  _FakeQueryExecutor_8(
+class _FakeDriftDatabaseOptions_8 extends _i2.SmartFake
+    implements _i10.DriftDatabaseOptions {
+  _FakeDriftDatabaseOptions_8(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -124,9 +126,8 @@ class _FakeQueryExecutor_8 extends _i2.SmartFake implements _i9.QueryExecutor {
         );
 }
 
-class _FakeStreamQueryStore_9 extends _i2.SmartFake
-    implements _i10.StreamQueryStore {
-  _FakeStreamQueryStore_9(
+class _FakeQueryExecutor_9 extends _i2.SmartFake implements _i10.QueryExecutor {
+  _FakeQueryExecutor_9(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -135,9 +136,9 @@ class _FakeStreamQueryStore_9 extends _i2.SmartFake
         );
 }
 
-class _FakeDatabaseConnectionUser_10 extends _i2.SmartFake
-    implements _i9.DatabaseConnectionUser {
-  _FakeDatabaseConnectionUser_10(
+class _FakeStreamQueryStore_10 extends _i2.SmartFake
+    implements _i11.StreamQueryStore {
+  _FakeStreamQueryStore_10(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -146,9 +147,9 @@ class _FakeDatabaseConnectionUser_10 extends _i2.SmartFake
         );
 }
 
-class _Fake$ClientModelsTable_11 extends _i2.SmartFake
-    implements _i8.$ClientModelsTable {
-  _Fake$ClientModelsTable_11(
+class _FakeDatabaseConnectionUser_11 extends _i2.SmartFake
+    implements _i10.DatabaseConnectionUser {
+  _FakeDatabaseConnectionUser_11(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -157,8 +158,9 @@ class _Fake$ClientModelsTable_11 extends _i2.SmartFake
         );
 }
 
-class _FakeClientModel_12 extends _i2.SmartFake implements _i8.ClientModel {
-  _FakeClientModel_12(
+class _Fake$ClientModelsTable_12 extends _i2.SmartFake
+    implements _i9.$ClientModelsTable {
+  _Fake$ClientModelsTable_12(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -167,9 +169,8 @@ class _FakeClientModel_12 extends _i2.SmartFake implements _i8.ClientModel {
         );
 }
 
-class _FakeInsertStatement_13<T extends _i9.Table, D> extends _i2.SmartFake
-    implements _i9.InsertStatement<T, D> {
-  _FakeInsertStatement_13(
+class _FakeClientModel_13 extends _i2.SmartFake implements _i9.ClientModel {
+  _FakeClientModel_13(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -178,9 +179,9 @@ class _FakeInsertStatement_13<T extends _i9.Table, D> extends _i2.SmartFake
         );
 }
 
-class _FakeUpdateStatement_14<T extends _i9.Table, D> extends _i2.SmartFake
-    implements _i9.UpdateStatement<T, D> {
-  _FakeUpdateStatement_14(
+class _FakeInsertStatement_14<T extends _i10.Table, D> extends _i2.SmartFake
+    implements _i10.InsertStatement<T, D> {
+  _FakeInsertStatement_14(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -189,9 +190,9 @@ class _FakeUpdateStatement_14<T extends _i9.Table, D> extends _i2.SmartFake
         );
 }
 
-class _FakeSimpleSelectStatement_15<T extends _i9.HasResultSet, D>
-    extends _i2.SmartFake implements _i9.SimpleSelectStatement<T, D> {
-  _FakeSimpleSelectStatement_15(
+class _FakeUpdateStatement_15<T extends _i10.Table, D> extends _i2.SmartFake
+    implements _i10.UpdateStatement<T, D> {
+  _FakeUpdateStatement_15(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -200,9 +201,9 @@ class _FakeSimpleSelectStatement_15<T extends _i9.HasResultSet, D>
         );
 }
 
-class _FakeJoinedSelectStatement_16<FirstT extends _i9.HasResultSet, FirstD>
-    extends _i2.SmartFake implements _i9.JoinedSelectStatement<FirstT, FirstD> {
-  _FakeJoinedSelectStatement_16(
+class _FakeSimpleSelectStatement_16<T extends _i10.HasResultSet, D>
+    extends _i2.SmartFake implements _i10.SimpleSelectStatement<T, D> {
+  _FakeSimpleSelectStatement_16(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -211,9 +212,10 @@ class _FakeJoinedSelectStatement_16<FirstT extends _i9.HasResultSet, FirstD>
         );
 }
 
-class _FakeDeleteStatement_17<T extends _i9.Table, D> extends _i2.SmartFake
-    implements _i9.DeleteStatement<T, D> {
-  _FakeDeleteStatement_17(
+class _FakeJoinedSelectStatement_17<FirstT extends _i10.HasResultSet, FirstD>
+    extends _i2.SmartFake
+    implements _i10.JoinedSelectStatement<FirstT, FirstD> {
+  _FakeJoinedSelectStatement_17(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -222,8 +224,9 @@ class _FakeDeleteStatement_17<T extends _i9.Table, D> extends _i2.SmartFake
         );
 }
 
-class _FakeSelectable_18<T> extends _i2.SmartFake implements _i9.Selectable<T> {
-  _FakeSelectable_18(
+class _FakeDeleteStatement_18<T extends _i10.Table, D> extends _i2.SmartFake
+    implements _i10.DeleteStatement<T, D> {
+  _FakeDeleteStatement_18(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -232,9 +235,20 @@ class _FakeSelectable_18<T> extends _i2.SmartFake implements _i9.Selectable<T> {
         );
 }
 
-class _FakeGenerationContext_19 extends _i2.SmartFake
-    implements _i9.GenerationContext {
-  _FakeGenerationContext_19(
+class _FakeSelectable_19<T> extends _i2.SmartFake
+    implements _i10.Selectable<T> {
+  _FakeSelectable_19(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeGenerationContext_20 extends _i2.SmartFake
+    implements _i10.GenerationContext {
+  _FakeGenerationContext_20(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -261,10 +275,10 @@ class MockLoadBloc<T extends _i1.EntityMixin> extends _i2.Mock
         ),
       ) as _i3.LoadState<T>);
   @override
-  _i11.Stream<_i3.LoadState<T>> get stream => (super.noSuchMethod(
+  _i12.Stream<_i3.LoadState<T>> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i11.Stream<_i3.LoadState<T>>.empty(),
-      ) as _i11.Stream<_i3.LoadState<T>>);
+        returnValue: _i12.Stream<_i3.LoadState<T>>.empty(),
+      ) as _i12.Stream<_i3.LoadState<T>>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
@@ -296,8 +310,8 @@ class MockLoadBloc<T extends _i1.EntityMixin> extends _i2.Mock
       );
   @override
   void on<E extends _i3.LoadEvent>(
-    _i12.EventHandler<E, _i3.LoadState<T>>? handler, {
-    _i12.EventTransformer<E>? transformer,
+    _i13.EventHandler<E, _i3.LoadState<T>>? handler, {
+    _i13.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -309,7 +323,7 @@ class MockLoadBloc<T extends _i1.EntityMixin> extends _i2.Mock
       );
   @override
   void onTransition(
-          _i12.Transition<_i3.LoadEvent, _i3.LoadState<T>>? transition) =>
+          _i13.Transition<_i3.LoadEvent, _i3.LoadState<T>>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -318,16 +332,16 @@ class MockLoadBloc<T extends _i1.EntityMixin> extends _i2.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i11.Future<void> close() => (super.noSuchMethod(
+  _i12.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i11.Future<void>.value(),
-        returnValueForMissingStub: _i11.Future<void>.value(),
-      ) as _i11.Future<void>);
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
   @override
-  void onChange(_i12.Change<_i3.LoadState<T>>? change) => super.noSuchMethod(
+  void onChange(_i13.Change<_i3.LoadState<T>>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -384,10 +398,10 @@ class MockEditBloc<T extends _i1.EntityMixin> extends _i2.Mock
         ),
       ) as _i4.EditState);
   @override
-  _i11.Stream<_i4.EditState> get stream => (super.noSuchMethod(
+  _i12.Stream<_i4.EditState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i11.Stream<_i4.EditState>.empty(),
-      ) as _i11.Stream<_i4.EditState>);
+        returnValue: _i12.Stream<_i4.EditState>.empty(),
+      ) as _i12.Stream<_i4.EditState>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
@@ -419,8 +433,8 @@ class MockEditBloc<T extends _i1.EntityMixin> extends _i2.Mock
       );
   @override
   void on<E extends _i4.EditEvent<T>>(
-    _i12.EventHandler<E, _i4.EditState>? handler, {
-    _i12.EventTransformer<E>? transformer,
+    _i13.EventHandler<E, _i4.EditState>? handler, {
+    _i13.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -432,7 +446,7 @@ class MockEditBloc<T extends _i1.EntityMixin> extends _i2.Mock
       );
   @override
   void onTransition(
-          _i12.Transition<_i4.EditEvent<T>, _i4.EditState>? transition) =>
+          _i13.Transition<_i4.EditEvent<T>, _i4.EditState>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -441,16 +455,16 @@ class MockEditBloc<T extends _i1.EntityMixin> extends _i2.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i11.Future<void> close() => (super.noSuchMethod(
+  _i12.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i11.Future<void>.value(),
-        returnValueForMissingStub: _i11.Future<void>.value(),
-      ) as _i11.Future<void>);
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
   @override
-  void onChange(_i12.Change<_i4.EditState>? change) => super.noSuchMethod(
+  void onChange(_i13.Change<_i4.EditState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -507,10 +521,10 @@ class MockDeleteBloc<T extends _i1.EntityMixin> extends _i2.Mock
         ),
       ) as _i5.DeleteState);
   @override
-  _i11.Stream<_i5.DeleteState> get stream => (super.noSuchMethod(
+  _i12.Stream<_i5.DeleteState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i11.Stream<_i5.DeleteState>.empty(),
-      ) as _i11.Stream<_i5.DeleteState>);
+        returnValue: _i12.Stream<_i5.DeleteState>.empty(),
+      ) as _i12.Stream<_i5.DeleteState>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
@@ -542,8 +556,8 @@ class MockDeleteBloc<T extends _i1.EntityMixin> extends _i2.Mock
       );
   @override
   void on<E extends _i5.DeleteEvent>(
-    _i12.EventHandler<E, _i5.DeleteState>? handler, {
-    _i12.EventTransformer<E>? transformer,
+    _i13.EventHandler<E, _i5.DeleteState>? handler, {
+    _i13.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -555,7 +569,7 @@ class MockDeleteBloc<T extends _i1.EntityMixin> extends _i2.Mock
       );
   @override
   void onTransition(
-          _i12.Transition<_i5.DeleteEvent, _i5.DeleteState>? transition) =>
+          _i13.Transition<_i5.DeleteEvent, _i5.DeleteState>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -564,16 +578,16 @@ class MockDeleteBloc<T extends _i1.EntityMixin> extends _i2.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i11.Future<void> close() => (super.noSuchMethod(
+  _i12.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i11.Future<void>.value(),
-        returnValueForMissingStub: _i11.Future<void>.value(),
-      ) as _i11.Future<void>);
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
   @override
-  void onChange(_i12.Change<_i5.DeleteState>? change) => super.noSuchMethod(
+  void onChange(_i13.Change<_i5.DeleteState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -629,10 +643,10 @@ class MockClientBloc extends _i2.Mock implements _i6.ClientBloc {
         ),
       ) as _i6.ClientState);
   @override
-  _i11.Stream<_i6.ClientState> get stream => (super.noSuchMethod(
+  _i12.Stream<_i6.ClientState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i11.Stream<_i6.ClientState>.empty(),
-      ) as _i11.Stream<_i6.ClientState>);
+        returnValue: _i12.Stream<_i6.ClientState>.empty(),
+      ) as _i12.Stream<_i6.ClientState>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
@@ -664,8 +678,8 @@ class MockClientBloc extends _i2.Mock implements _i6.ClientBloc {
       );
   @override
   void on<E extends _i6.ClientEvent>(
-    _i12.EventHandler<E, _i6.ClientState>? handler, {
-    _i12.EventTransformer<E>? transformer,
+    _i13.EventHandler<E, _i6.ClientState>? handler, {
+    _i13.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -677,7 +691,7 @@ class MockClientBloc extends _i2.Mock implements _i6.ClientBloc {
       );
   @override
   void onTransition(
-          _i12.Transition<_i6.ClientEvent, _i6.ClientState>? transition) =>
+          _i13.Transition<_i6.ClientEvent, _i6.ClientState>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -686,16 +700,140 @@ class MockClientBloc extends _i2.Mock implements _i6.ClientBloc {
         returnValueForMissingStub: null,
       );
   @override
-  _i11.Future<void> close() => (super.noSuchMethod(
+  _i12.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i11.Future<void>.value(),
-        returnValueForMissingStub: _i11.Future<void>.value(),
-      ) as _i11.Future<void>);
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
   @override
-  void onChange(_i12.Change<_i6.ClientState>? change) => super.noSuchMethod(
+  void onChange(_i13.Change<_i6.ClientState>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [ClientDetailsBloc].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockClientDetailsBloc extends _i2.Mock implements _i7.ClientDetailsBloc {
+  MockClientDetailsBloc() {
+    _i2.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.ClientDetailsState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeClientDetailsState_4(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i7.ClientDetailsState);
+  @override
+  _i12.Stream<_i7.ClientDetailsState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i12.Stream<_i7.ClientDetailsState>.empty(),
+      ) as _i12.Stream<_i7.ClientDetailsState>);
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+  @override
+  void add(_i7.ClientDetailsEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #add,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onEvent(_i7.ClientDetailsEvent? event) => super.noSuchMethod(
+        Invocation.method(
+          #onEvent,
+          [event],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void emit(_i7.ClientDetailsState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void on<E extends _i7.ClientDetailsEvent>(
+    _i13.EventHandler<E, _i7.ClientDetailsState>? handler, {
+    _i13.EventTransformer<E>? transformer,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #on,
+          [handler],
+          {#transformer: transformer},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void onTransition(
+          _i13.Transition<_i7.ClientDetailsEvent, _i7.ClientDetailsState>?
+              transition) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onTransition,
+          [transition],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i12.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
+  @override
+  void onChange(_i13.Change<_i7.ClientDetailsState>? change) =>
+      super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -737,120 +875,120 @@ class MockClientBloc extends _i2.Mock implements _i6.ClientBloc {
 /// A class which mocks [ClientDao].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockClientDao extends _i2.Mock implements _i13.ClientDao {
+class MockClientDao extends _i2.Mock implements _i14.ClientDao {
   @override
-  _i7.ClientModels get table => (super.noSuchMethod(
+  _i8.ClientModels get table => (super.noSuchMethod(
         Invocation.getter(#table),
-        returnValue: _FakeClientModels_4(
+        returnValue: _FakeClientModels_5(
           this,
           Invocation.getter(#table),
         ),
-        returnValueForMissingStub: _FakeClientModels_4(
+        returnValueForMissingStub: _FakeClientModels_5(
           this,
           Invocation.getter(#table),
         ),
-      ) as _i7.ClientModels);
+      ) as _i8.ClientModels);
   @override
-  _i8.DriftDb get attachedDatabase => (super.noSuchMethod(
+  _i9.DriftDb get attachedDatabase => (super.noSuchMethod(
         Invocation.getter(#attachedDatabase),
-        returnValue: _FakeDriftDb_5(
+        returnValue: _FakeDriftDb_6(
           this,
           Invocation.getter(#attachedDatabase),
         ),
-        returnValueForMissingStub: _FakeDriftDb_5(
+        returnValueForMissingStub: _FakeDriftDb_6(
           this,
           Invocation.getter(#attachedDatabase),
         ),
-      ) as _i8.DriftDb);
+      ) as _i9.DriftDb);
   @override
-  _i9.DatabaseConnection get connection => (super.noSuchMethod(
+  _i10.DatabaseConnection get connection => (super.noSuchMethod(
         Invocation.getter(#connection),
-        returnValue: _FakeDatabaseConnection_6(
+        returnValue: _FakeDatabaseConnection_7(
           this,
           Invocation.getter(#connection),
         ),
-        returnValueForMissingStub: _FakeDatabaseConnection_6(
+        returnValueForMissingStub: _FakeDatabaseConnection_7(
           this,
           Invocation.getter(#connection),
         ),
-      ) as _i9.DatabaseConnection);
+      ) as _i10.DatabaseConnection);
   @override
-  _i9.DriftDatabaseOptions get options => (super.noSuchMethod(
+  _i10.DriftDatabaseOptions get options => (super.noSuchMethod(
         Invocation.getter(#options),
-        returnValue: _FakeDriftDatabaseOptions_7(
+        returnValue: _FakeDriftDatabaseOptions_8(
           this,
           Invocation.getter(#options),
         ),
-        returnValueForMissingStub: _FakeDriftDatabaseOptions_7(
+        returnValueForMissingStub: _FakeDriftDatabaseOptions_8(
           this,
           Invocation.getter(#options),
         ),
-      ) as _i9.DriftDatabaseOptions);
+      ) as _i10.DriftDatabaseOptions);
   @override
-  _i9.QueryExecutor get executor => (super.noSuchMethod(
+  _i10.QueryExecutor get executor => (super.noSuchMethod(
         Invocation.getter(#executor),
-        returnValue: _FakeQueryExecutor_8(
+        returnValue: _FakeQueryExecutor_9(
           this,
           Invocation.getter(#executor),
         ),
-        returnValueForMissingStub: _FakeQueryExecutor_8(
+        returnValueForMissingStub: _FakeQueryExecutor_9(
           this,
           Invocation.getter(#executor),
         ),
-      ) as _i9.QueryExecutor);
+      ) as _i10.QueryExecutor);
   @override
-  _i10.StreamQueryStore get streamQueries => (super.noSuchMethod(
+  _i11.StreamQueryStore get streamQueries => (super.noSuchMethod(
         Invocation.getter(#streamQueries),
-        returnValue: _FakeStreamQueryStore_9(
+        returnValue: _FakeStreamQueryStore_10(
           this,
           Invocation.getter(#streamQueries),
         ),
-        returnValueForMissingStub: _FakeStreamQueryStore_9(
+        returnValueForMissingStub: _FakeStreamQueryStore_10(
           this,
           Invocation.getter(#streamQueries),
         ),
-      ) as _i10.StreamQueryStore);
+      ) as _i11.StreamQueryStore);
   @override
-  _i9.DatabaseConnectionUser get resolvedEngine => (super.noSuchMethod(
+  _i10.DatabaseConnectionUser get resolvedEngine => (super.noSuchMethod(
         Invocation.getter(#resolvedEngine),
-        returnValue: _FakeDatabaseConnectionUser_10(
+        returnValue: _FakeDatabaseConnectionUser_11(
           this,
           Invocation.getter(#resolvedEngine),
         ),
-        returnValueForMissingStub: _FakeDatabaseConnectionUser_10(
+        returnValueForMissingStub: _FakeDatabaseConnectionUser_11(
           this,
           Invocation.getter(#resolvedEngine),
         ),
-      ) as _i9.DatabaseConnectionUser);
+      ) as _i10.DatabaseConnectionUser);
   @override
-  _i8.$ClientModelsTable get clientModels => (super.noSuchMethod(
+  _i9.$ClientModelsTable get clientModels => (super.noSuchMethod(
         Invocation.getter(#clientModels),
-        returnValue: _Fake$ClientModelsTable_11(
+        returnValue: _Fake$ClientModelsTable_12(
           this,
           Invocation.getter(#clientModels),
         ),
-        returnValueForMissingStub: _Fake$ClientModelsTable_11(
+        returnValueForMissingStub: _Fake$ClientModelsTable_12(
           this,
           Invocation.getter(#clientModels),
         ),
-      ) as _i8.$ClientModelsTable);
+      ) as _i9.$ClientModelsTable);
   @override
-  _i11.Future<int> insert(_i9.Insertable<_i8.ClientModel>? model) =>
+  _i12.Future<int> insert(_i10.Insertable<_i9.ClientModel>? model) =>
       (super.noSuchMethod(
         Invocation.method(
           #insert,
           [model],
         ),
-        returnValue: _i11.Future<int>.value(0),
-        returnValueForMissingStub: _i11.Future<int>.value(0),
-      ) as _i11.Future<int>);
+        returnValue: _i12.Future<int>.value(0),
+        returnValueForMissingStub: _i12.Future<int>.value(0),
+      ) as _i12.Future<int>);
   @override
-  _i11.Future<_i8.ClientModel> getById(_i14.Uid? uid) => (super.noSuchMethod(
+  _i12.Future<_i9.ClientModel> getById(_i15.Uid? uid) => (super.noSuchMethod(
         Invocation.method(
           #getById,
           [uid],
         ),
-        returnValue: _i11.Future<_i8.ClientModel>.value(_FakeClientModel_12(
+        returnValue: _i12.Future<_i9.ClientModel>.value(_FakeClientModel_13(
           this,
           Invocation.method(
             #getById,
@@ -858,19 +996,19 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
           ),
         )),
         returnValueForMissingStub:
-            _i11.Future<_i8.ClientModel>.value(_FakeClientModel_12(
+            _i12.Future<_i9.ClientModel>.value(_FakeClientModel_13(
           this,
           Invocation.method(
             #getById,
             [uid],
           ),
         )),
-      ) as _i11.Future<_i8.ClientModel>);
+      ) as _i12.Future<_i9.ClientModel>);
   @override
-  _i11.Future<Iterable<_i8.ClientModel>> getPage({
+  _i12.Future<Iterable<_i9.ClientModel>> getPage({
     required int? limit,
     required int? offset,
-    _i15.SelectFilter<_i7.ClientModels, _i8.ClientModel>? filter,
+    _i16.SelectFilter<_i8.ClientModels, _i9.ClientModel>? filter,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -883,14 +1021,14 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
           },
         ),
         returnValue:
-            _i11.Future<Iterable<_i8.ClientModel>>.value(<_i8.ClientModel>[]),
+            _i12.Future<Iterable<_i9.ClientModel>>.value(<_i9.ClientModel>[]),
         returnValueForMissingStub:
-            _i11.Future<Iterable<_i8.ClientModel>>.value(<_i8.ClientModel>[]),
-      ) as _i11.Future<Iterable<_i8.ClientModel>>);
+            _i12.Future<Iterable<_i9.ClientModel>>.value(<_i9.ClientModel>[]),
+      ) as _i12.Future<Iterable<_i9.ClientModel>>);
   @override
-  _i11.Future<bool> save(
-    _i14.Uid? uid,
-    _i9.Insertable<_i8.ClientModel>? model,
+  _i12.Future<bool> save(
+    _i15.Uid? uid,
+    _i10.Insertable<_i9.ClientModel>? model,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -900,39 +1038,40 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             model,
           ],
         ),
-        returnValue: _i11.Future<bool>.value(false),
-        returnValueForMissingStub: _i11.Future<bool>.value(false),
-      ) as _i11.Future<bool>);
+        returnValue: _i12.Future<bool>.value(false),
+        returnValueForMissingStub: _i12.Future<bool>.value(false),
+      ) as _i12.Future<bool>);
   @override
-  _i11.Future<bool> remove(_i14.Uid? uid) => (super.noSuchMethod(
+  _i12.Future<bool> remove(_i15.Uid? uid) => (super.noSuchMethod(
         Invocation.method(
           #remove,
           [uid],
         ),
-        returnValue: _i11.Future<bool>.value(false),
-        returnValueForMissingStub: _i11.Future<bool>.value(false),
-      ) as _i11.Future<bool>);
+        returnValue: _i12.Future<bool>.value(false),
+        returnValueForMissingStub: _i12.Future<bool>.value(false),
+      ) as _i12.Future<bool>);
   @override
-  _i11.Stream<List<Map<String, Object?>>> createStream(
-          _i10.QueryStreamFetcher? stmt) =>
+  _i12.Stream<List<Map<String, Object?>>> createStream(
+          _i11.QueryStreamFetcher? stmt) =>
       (super.noSuchMethod(
         Invocation.method(
           #createStream,
           [stmt],
         ),
-        returnValue: _i11.Stream<List<Map<String, Object?>>>.empty(),
+        returnValue: _i12.Stream<List<Map<String, Object?>>>.empty(),
         returnValueForMissingStub:
-            _i11.Stream<List<Map<String, Object?>>>.empty(),
-      ) as _i11.Stream<List<Map<String, Object?>>>);
+            _i12.Stream<List<Map<String, Object?>>>.empty(),
+      ) as _i12.Stream<List<Map<String, Object?>>>);
   @override
-  T alias<T extends _i9.Table, D>(
-    _i9.TableInfo<T, D>? table,
+  T alias<T extends _i10.Table, D>(
+    _i10.TableInfo<T, D>? table,
     String? alias,
   ) =>
       throw UnsupportedError(
           '\'alias\' cannot be used without a mockito fallback generator.');
   @override
-  void markTablesUpdated(Iterable<_i9.TableInfo<_i9.Table, dynamic>>? tables) =>
+  void markTablesUpdated(
+          Iterable<_i10.TableInfo<_i10.Table, dynamic>>? tables) =>
       super.noSuchMethod(
         Invocation.method(
           #markTablesUpdated,
@@ -941,7 +1080,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
         returnValueForMissingStub: null,
       );
   @override
-  void notifyUpdates(Set<_i9.TableUpdate>? updates) => super.noSuchMethod(
+  void notifyUpdates(Set<_i10.TableUpdate>? updates) => super.noSuchMethod(
         Invocation.method(
           #notifyUpdates,
           [updates],
@@ -949,76 +1088,76 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
         returnValueForMissingStub: null,
       );
   @override
-  _i11.Stream<Set<_i9.TableUpdate>> tableUpdates(
-          [_i9.TableUpdateQuery? query = const _i9.TableUpdateQuery.any()]) =>
+  _i12.Stream<Set<_i10.TableUpdate>> tableUpdates(
+          [_i10.TableUpdateQuery? query = const _i10.TableUpdateQuery.any()]) =>
       (super.noSuchMethod(
         Invocation.method(
           #tableUpdates,
           [query],
         ),
-        returnValue: _i11.Stream<Set<_i9.TableUpdate>>.empty(),
-        returnValueForMissingStub: _i11.Stream<Set<_i9.TableUpdate>>.empty(),
-      ) as _i11.Stream<Set<_i9.TableUpdate>>);
+        returnValue: _i12.Stream<Set<_i10.TableUpdate>>.empty(),
+        returnValueForMissingStub: _i12.Stream<Set<_i10.TableUpdate>>.empty(),
+      ) as _i12.Stream<Set<_i10.TableUpdate>>);
   @override
-  _i11.Future<T> doWhenOpened<T>(
-          _i11.FutureOr<T> Function(_i9.QueryExecutor)? fn) =>
+  _i12.Future<T> doWhenOpened<T>(
+          _i12.FutureOr<T> Function(_i10.QueryExecutor)? fn) =>
       (super.noSuchMethod(
         Invocation.method(
           #doWhenOpened,
           [fn],
         ),
-        returnValue: _i11.Future<T>.value(null),
-        returnValueForMissingStub: _i11.Future<T>.value(null),
-      ) as _i11.Future<T>);
+        returnValue: _i12.Future<T>.value(null),
+        returnValueForMissingStub: _i12.Future<T>.value(null),
+      ) as _i12.Future<T>);
   @override
-  _i9.InsertStatement<T, D> into<T extends _i9.Table, D>(
-          _i9.TableInfo<T, D>? table) =>
+  _i10.InsertStatement<T, D> into<T extends _i10.Table, D>(
+          _i10.TableInfo<T, D>? table) =>
       (super.noSuchMethod(
         Invocation.method(
           #into,
           [table],
         ),
-        returnValue: _FakeInsertStatement_13<T, D>(
+        returnValue: _FakeInsertStatement_14<T, D>(
           this,
           Invocation.method(
             #into,
             [table],
           ),
         ),
-        returnValueForMissingStub: _FakeInsertStatement_13<T, D>(
+        returnValueForMissingStub: _FakeInsertStatement_14<T, D>(
           this,
           Invocation.method(
             #into,
             [table],
           ),
         ),
-      ) as _i9.InsertStatement<T, D>);
+      ) as _i10.InsertStatement<T, D>);
   @override
-  _i9.UpdateStatement<Tbl, R> update<Tbl extends _i9.Table, R>(
-          _i9.TableInfo<Tbl, R>? table) =>
+  _i10.UpdateStatement<Tbl, R> update<Tbl extends _i10.Table, R>(
+          _i10.TableInfo<Tbl, R>? table) =>
       (super.noSuchMethod(
         Invocation.method(
           #update,
           [table],
         ),
-        returnValue: _FakeUpdateStatement_14<Tbl, R>(
+        returnValue: _FakeUpdateStatement_15<Tbl, R>(
           this,
           Invocation.method(
             #update,
             [table],
           ),
         ),
-        returnValueForMissingStub: _FakeUpdateStatement_14<Tbl, R>(
+        returnValueForMissingStub: _FakeUpdateStatement_15<Tbl, R>(
           this,
           Invocation.method(
             #update,
             [table],
           ),
         ),
-      ) as _i9.UpdateStatement<Tbl, R>);
+      ) as _i10.UpdateStatement<Tbl, R>);
   @override
-  _i9.SimpleSelectStatement<T, R> select<T extends _i9.HasResultSet, R>(
-    _i9.ResultSetImplementation<T, R>? table, {
+  _i10.SimpleSelectStatement<T, R> select<T extends _i10.HasResultSet, R>(
+    _i10.ResultSetImplementation<T, R>? table, {
     bool? distinct = false,
   }) =>
       (super.noSuchMethod(
@@ -1027,7 +1166,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
           [table],
           {#distinct: distinct},
         ),
-        returnValue: _FakeSimpleSelectStatement_15<T, R>(
+        returnValue: _FakeSimpleSelectStatement_16<T, R>(
           this,
           Invocation.method(
             #select,
@@ -1035,7 +1174,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             {#distinct: distinct},
           ),
         ),
-        returnValueForMissingStub: _FakeSimpleSelectStatement_15<T, R>(
+        returnValueForMissingStub: _FakeSimpleSelectStatement_16<T, R>(
           this,
           Invocation.method(
             #select,
@@ -1043,10 +1182,10 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             {#distinct: distinct},
           ),
         ),
-      ) as _i9.SimpleSelectStatement<T, R>);
+      ) as _i10.SimpleSelectStatement<T, R>);
   @override
-  _i9.JoinedSelectStatement<T, R> selectOnly<T extends _i9.HasResultSet, R>(
-    _i9.ResultSetImplementation<T, R>? table, {
+  _i10.JoinedSelectStatement<T, R> selectOnly<T extends _i10.HasResultSet, R>(
+    _i10.ResultSetImplementation<T, R>? table, {
     bool? distinct = false,
   }) =>
       (super.noSuchMethod(
@@ -1055,7 +1194,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
           [table],
           {#distinct: distinct},
         ),
-        returnValue: _FakeJoinedSelectStatement_16<T, R>(
+        returnValue: _FakeJoinedSelectStatement_17<T, R>(
           this,
           Invocation.method(
             #selectOnly,
@@ -1063,7 +1202,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             {#distinct: distinct},
           ),
         ),
-        returnValueForMissingStub: _FakeJoinedSelectStatement_16<T, R>(
+        returnValueForMissingStub: _FakeJoinedSelectStatement_17<T, R>(
           this,
           Invocation.method(
             #selectOnly,
@@ -1071,36 +1210,36 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             {#distinct: distinct},
           ),
         ),
-      ) as _i9.JoinedSelectStatement<T, R>);
+      ) as _i10.JoinedSelectStatement<T, R>);
   @override
-  _i9.DeleteStatement<T, D> delete<T extends _i9.Table, D>(
-          _i9.TableInfo<T, D>? table) =>
+  _i10.DeleteStatement<T, D> delete<T extends _i10.Table, D>(
+          _i10.TableInfo<T, D>? table) =>
       (super.noSuchMethod(
         Invocation.method(
           #delete,
           [table],
         ),
-        returnValue: _FakeDeleteStatement_17<T, D>(
+        returnValue: _FakeDeleteStatement_18<T, D>(
           this,
           Invocation.method(
             #delete,
             [table],
           ),
         ),
-        returnValueForMissingStub: _FakeDeleteStatement_17<T, D>(
+        returnValueForMissingStub: _FakeDeleteStatement_18<T, D>(
           this,
           Invocation.method(
             #delete,
             [table],
           ),
         ),
-      ) as _i9.DeleteStatement<T, D>);
+      ) as _i10.DeleteStatement<T, D>);
   @override
-  _i11.Future<int> customUpdate(
+  _i12.Future<int> customUpdate(
     String? query, {
-    List<_i9.Variable<Object>>? variables = const [],
-    Set<_i9.TableInfo<_i9.Table, dynamic>>? updates,
-    _i9.UpdateKind? updateKind,
+    List<_i10.Variable<Object>>? variables = const [],
+    Set<_i10.TableInfo<_i10.Table, dynamic>>? updates,
+    _i10.UpdateKind? updateKind,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1112,14 +1251,14 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             #updateKind: updateKind,
           },
         ),
-        returnValue: _i11.Future<int>.value(0),
-        returnValueForMissingStub: _i11.Future<int>.value(0),
-      ) as _i11.Future<int>);
+        returnValue: _i12.Future<int>.value(0),
+        returnValueForMissingStub: _i12.Future<int>.value(0),
+      ) as _i12.Future<int>);
   @override
-  _i11.Future<int> customInsert(
+  _i12.Future<int> customInsert(
     String? query, {
-    List<_i9.Variable<Object>>? variables = const [],
-    Set<_i9.TableInfo<_i9.Table, dynamic>>? updates,
+    List<_i10.Variable<Object>>? variables = const [],
+    Set<_i10.TableInfo<_i10.Table, dynamic>>? updates,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1130,15 +1269,15 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             #updates: updates,
           },
         ),
-        returnValue: _i11.Future<int>.value(0),
-        returnValueForMissingStub: _i11.Future<int>.value(0),
-      ) as _i11.Future<int>);
+        returnValue: _i12.Future<int>.value(0),
+        returnValueForMissingStub: _i12.Future<int>.value(0),
+      ) as _i12.Future<int>);
   @override
-  _i11.Future<List<_i9.QueryRow>> customWriteReturning(
+  _i12.Future<List<_i10.QueryRow>> customWriteReturning(
     String? query, {
-    List<_i9.Variable<Object>>? variables = const [],
-    Set<_i9.TableInfo<_i9.Table, dynamic>>? updates,
-    _i9.UpdateKind? updateKind,
+    List<_i10.Variable<Object>>? variables = const [],
+    Set<_i10.TableInfo<_i10.Table, dynamic>>? updates,
+    _i10.UpdateKind? updateKind,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1150,15 +1289,15 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             #updateKind: updateKind,
           },
         ),
-        returnValue: _i11.Future<List<_i9.QueryRow>>.value(<_i9.QueryRow>[]),
+        returnValue: _i12.Future<List<_i10.QueryRow>>.value(<_i10.QueryRow>[]),
         returnValueForMissingStub:
-            _i11.Future<List<_i9.QueryRow>>.value(<_i9.QueryRow>[]),
-      ) as _i11.Future<List<_i9.QueryRow>>);
+            _i12.Future<List<_i10.QueryRow>>.value(<_i10.QueryRow>[]),
+      ) as _i12.Future<List<_i10.QueryRow>>);
   @override
-  _i9.Selectable<_i9.QueryRow> customSelect(
+  _i10.Selectable<_i10.QueryRow> customSelect(
     String? query, {
-    List<_i9.Variable<Object>>? variables = const [],
-    Set<_i9.ResultSetImplementation<dynamic, dynamic>>? readsFrom = const {},
+    List<_i10.Variable<Object>>? variables = const [],
+    Set<_i10.ResultSetImplementation<dynamic, dynamic>>? readsFrom = const {},
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1169,7 +1308,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             #readsFrom: readsFrom,
           },
         ),
-        returnValue: _FakeSelectable_18<_i9.QueryRow>(
+        returnValue: _FakeSelectable_19<_i10.QueryRow>(
           this,
           Invocation.method(
             #customSelect,
@@ -1180,7 +1319,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             },
           ),
         ),
-        returnValueForMissingStub: _FakeSelectable_18<_i9.QueryRow>(
+        returnValueForMissingStub: _FakeSelectable_19<_i10.QueryRow>(
           this,
           Invocation.method(
             #customSelect,
@@ -1191,12 +1330,12 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             },
           ),
         ),
-      ) as _i9.Selectable<_i9.QueryRow>);
+      ) as _i10.Selectable<_i10.QueryRow>);
   @override
-  _i9.Selectable<_i9.QueryRow> customSelectQuery(
+  _i10.Selectable<_i10.QueryRow> customSelectQuery(
     String? query, {
-    List<_i9.Variable<Object>>? variables = const [],
-    Set<_i9.ResultSetImplementation<dynamic, dynamic>>? readsFrom = const {},
+    List<_i10.Variable<Object>>? variables = const [],
+    Set<_i10.ResultSetImplementation<dynamic, dynamic>>? readsFrom = const {},
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1207,7 +1346,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             #readsFrom: readsFrom,
           },
         ),
-        returnValue: _FakeSelectable_18<_i9.QueryRow>(
+        returnValue: _FakeSelectable_19<_i10.QueryRow>(
           this,
           Invocation.method(
             #customSelectQuery,
@@ -1218,7 +1357,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             },
           ),
         ),
-        returnValueForMissingStub: _FakeSelectable_18<_i9.QueryRow>(
+        returnValueForMissingStub: _FakeSelectable_19<_i10.QueryRow>(
           this,
           Invocation.method(
             #customSelectQuery,
@@ -1229,9 +1368,9 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             },
           ),
         ),
-      ) as _i9.Selectable<_i9.QueryRow>);
+      ) as _i10.Selectable<_i10.QueryRow>);
   @override
-  _i11.Future<void> customStatement(
+  _i12.Future<void> customStatement(
     String? statement, [
     List<dynamic>? args,
   ]) =>
@@ -1243,12 +1382,12 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             args,
           ],
         ),
-        returnValue: _i11.Future<void>.value(),
-        returnValueForMissingStub: _i11.Future<void>.value(),
-      ) as _i11.Future<void>);
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
   @override
-  _i11.Future<T> transaction<T>(
-    _i11.Future<T> Function()? action, {
+  _i12.Future<T> transaction<T>(
+    _i12.Future<T> Function()? action, {
     bool? requireNew = false,
   }) =>
       (super.noSuchMethod(
@@ -1257,23 +1396,23 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
           [action],
           {#requireNew: requireNew},
         ),
-        returnValue: _i11.Future<T>.value(null),
-        returnValueForMissingStub: _i11.Future<T>.value(null),
-      ) as _i11.Future<T>);
+        returnValue: _i12.Future<T>.value(null),
+        returnValueForMissingStub: _i12.Future<T>.value(null),
+      ) as _i12.Future<T>);
   @override
-  _i11.Future<void> batch(
-          _i11.FutureOr<void> Function(_i9.Batch)? runInBatch) =>
+  _i12.Future<void> batch(
+          _i12.FutureOr<void> Function(_i10.Batch)? runInBatch) =>
       (super.noSuchMethod(
         Invocation.method(
           #batch,
           [runInBatch],
         ),
-        returnValue: _i11.Future<void>.value(),
-        returnValueForMissingStub: _i11.Future<void>.value(),
-      ) as _i11.Future<void>);
+        returnValue: _i12.Future<void>.value(),
+        returnValueForMissingStub: _i12.Future<void>.value(),
+      ) as _i12.Future<void>);
   @override
-  _i9.GenerationContext $write(
-    _i9.Component? component, {
+  _i10.GenerationContext $write(
+    _i10.Component? component, {
     bool? hasMultipleTables,
     int? startIndex,
   }) =>
@@ -1286,7 +1425,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             #startIndex: startIndex,
           },
         ),
-        returnValue: _FakeGenerationContext_19(
+        returnValue: _FakeGenerationContext_20(
           this,
           Invocation.method(
             #$write,
@@ -1297,7 +1436,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             },
           ),
         ),
-        returnValueForMissingStub: _FakeGenerationContext_19(
+        returnValueForMissingStub: _FakeGenerationContext_20(
           this,
           Invocation.method(
             #$write,
@@ -1308,11 +1447,11 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             },
           ),
         ),
-      ) as _i9.GenerationContext);
+      ) as _i10.GenerationContext);
   @override
-  _i9.GenerationContext $writeInsertable(
-    _i9.TableInfo<_i9.Table, dynamic>? table,
-    _i9.Insertable<dynamic>? insertable, {
+  _i10.GenerationContext $writeInsertable(
+    _i10.TableInfo<_i10.Table, dynamic>? table,
+    _i10.Insertable<dynamic>? insertable, {
     int? startIndex,
   }) =>
       (super.noSuchMethod(
@@ -1324,7 +1463,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
           ],
           {#startIndex: startIndex},
         ),
-        returnValue: _FakeGenerationContext_19(
+        returnValue: _FakeGenerationContext_20(
           this,
           Invocation.method(
             #$writeInsertable,
@@ -1335,7 +1474,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             {#startIndex: startIndex},
           ),
         ),
-        returnValueForMissingStub: _FakeGenerationContext_19(
+        returnValueForMissingStub: _FakeGenerationContext_20(
           this,
           Invocation.method(
             #$writeInsertable,
@@ -1346,7 +1485,7 @@ class MockClientDao extends _i2.Mock implements _i13.ClientDao {
             {#startIndex: startIndex},
           ),
         ),
-      ) as _i9.GenerationContext);
+      ) as _i10.GenerationContext);
   @override
   String $expandVar(
     int? start,
