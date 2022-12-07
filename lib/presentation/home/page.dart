@@ -3,6 +3,7 @@ import 'package:appointment/presentation/home/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  // TODO: add debug banner to bottom right corner
   const HomePage({
     super.key,
   });

@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppOintment extends StatelessWidget {
-  // TODO: add main page
-  // TODO: main page should contains navigatio buttons to search and register
-  // TODO: add routes
-  // TODO: change debug banner place
   final _route = AppRouter();
   AppOintment({super.key});
 
