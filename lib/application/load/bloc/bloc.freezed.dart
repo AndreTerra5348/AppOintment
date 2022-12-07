@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DetailsEvent {
+mixin _$LoadEvent {
   Uid get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -51,23 +51,22 @@ mixin _$DetailsEvent {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DetailsEventCopyWith<DetailsEvent> get copyWith =>
+  $LoadEventCopyWith<LoadEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DetailsEventCopyWith<$Res> {
-  factory $DetailsEventCopyWith(
-          DetailsEvent value, $Res Function(DetailsEvent) then) =
-      _$DetailsEventCopyWithImpl<$Res, DetailsEvent>;
+abstract class $LoadEventCopyWith<$Res> {
+  factory $LoadEventCopyWith(LoadEvent value, $Res Function(LoadEvent) then) =
+      _$LoadEventCopyWithImpl<$Res, LoadEvent>;
   @useResult
   $Res call({Uid id});
 }
 
 /// @nodoc
-class _$DetailsEventCopyWithImpl<$Res, $Val extends DetailsEvent>
-    implements $DetailsEventCopyWith<$Res> {
-  _$DetailsEventCopyWithImpl(this._value, this._then);
+class _$LoadEventCopyWithImpl<$Res, $Val extends LoadEvent>
+    implements $LoadEventCopyWith<$Res> {
+  _$LoadEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -89,7 +88,7 @@ class _$DetailsEventCopyWithImpl<$Res, $Val extends DetailsEvent>
 }
 
 /// @nodoc
-abstract class _$$_LoadedCopyWith<$Res> implements $DetailsEventCopyWith<$Res> {
+abstract class _$$_LoadedCopyWith<$Res> implements $LoadEventCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @override
@@ -99,7 +98,7 @@ abstract class _$$_LoadedCopyWith<$Res> implements $DetailsEventCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$DetailsEventCopyWithImpl<$Res, _$_Loaded>
+    extends _$LoadEventCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -128,14 +127,14 @@ class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailsEvent.loaded(id: $id)';
+    return 'LoadEvent.loaded(id: $id)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'DetailsEvent.loaded'))
+      ..add(DiagnosticsProperty('type', 'LoadEvent.loaded'))
       ..add(DiagnosticsProperty('id', id));
   }
 
@@ -213,7 +212,7 @@ class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
   }
 }
 
-abstract class _Loaded implements DetailsEvent {
+abstract class _Loaded implements LoadEvent {
   const factory _Loaded({required final Uid id}) = _$_Loaded;
 
   @override
@@ -225,7 +224,7 @@ abstract class _Loaded implements DetailsEvent {
 }
 
 /// @nodoc
-mixin _$DetailsState<T extends EntityMixin> {
+mixin _$LoadState<T extends EntityMixin> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -273,16 +272,16 @@ mixin _$DetailsState<T extends EntityMixin> {
 }
 
 /// @nodoc
-abstract class $DetailsStateCopyWith<T extends EntityMixin, $Res> {
-  factory $DetailsStateCopyWith(
-          DetailsState<T> value, $Res Function(DetailsState<T>) then) =
-      _$DetailsStateCopyWithImpl<T, $Res, DetailsState<T>>;
+abstract class $LoadStateCopyWith<T extends EntityMixin, $Res> {
+  factory $LoadStateCopyWith(
+          LoadState<T> value, $Res Function(LoadState<T>) then) =
+      _$LoadStateCopyWithImpl<T, $Res, LoadState<T>>;
 }
 
 /// @nodoc
-class _$DetailsStateCopyWithImpl<T extends EntityMixin, $Res,
-    $Val extends DetailsState<T>> implements $DetailsStateCopyWith<T, $Res> {
-  _$DetailsStateCopyWithImpl(this._value, this._then);
+class _$LoadStateCopyWithImpl<T extends EntityMixin, $Res,
+    $Val extends LoadState<T>> implements $LoadStateCopyWith<T, $Res> {
+  _$LoadStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -299,7 +298,7 @@ abstract class _$$_LoadingCopyWith<T extends EntityMixin, $Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<T extends EntityMixin, $Res>
-    extends _$DetailsStateCopyWithImpl<T, $Res, _$_Loading<T>>
+    extends _$LoadStateCopyWithImpl<T, $Res, _$_Loading<T>>
     implements _$$_LoadingCopyWith<T, $Res> {
   __$$_LoadingCopyWithImpl(
       _$_Loading<T> _value, $Res Function(_$_Loading<T>) _then)
@@ -314,13 +313,13 @@ class _$_Loading<T extends EntityMixin> extends _Loading<T>
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailsState<$T>.loading()';
+    return 'LoadState<$T>.loading()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'DetailsState<$T>.loading'));
+    properties.add(DiagnosticsProperty('type', 'LoadState<$T>.loading'));
   }
 
   @override
@@ -401,7 +400,7 @@ class _$_Loading<T extends EntityMixin> extends _Loading<T>
   }
 }
 
-abstract class _Loading<T extends EntityMixin> extends DetailsState<T> {
+abstract class _Loading<T extends EntityMixin> extends LoadState<T> {
   factory _Loading() = _$_Loading<T>;
   _Loading._() : super._();
 }
@@ -417,7 +416,7 @@ abstract class _$$_SuccessCopyWith<T extends EntityMixin, $Res> {
 
 /// @nodoc
 class __$$_SuccessCopyWithImpl<T extends EntityMixin, $Res>
-    extends _$DetailsStateCopyWithImpl<T, $Res, _$_Success<T>>
+    extends _$LoadStateCopyWithImpl<T, $Res, _$_Success<T>>
     implements _$$_SuccessCopyWith<T, $Res> {
   __$$_SuccessCopyWithImpl(
       _$_Success<T> _value, $Res Function(_$_Success<T>) _then)
@@ -448,14 +447,14 @@ class _$_Success<T extends EntityMixin> extends _Success<T>
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailsState<$T>.success(entity: $entity)';
+    return 'LoadState<$T>.success(entity: $entity)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'DetailsState<$T>.success'))
+      ..add(DiagnosticsProperty('type', 'LoadState<$T>.success'))
       ..add(DiagnosticsProperty('entity', entity));
   }
 
@@ -546,7 +545,7 @@ class _$_Success<T extends EntityMixin> extends _Success<T>
   }
 }
 
-abstract class _Success<T extends EntityMixin> extends DetailsState<T> {
+abstract class _Success<T extends EntityMixin> extends LoadState<T> {
   factory _Success({required final T entity}) = _$_Success<T>;
   _Success._() : super._();
 
@@ -569,7 +568,7 @@ abstract class _$$_FailureCopyWith<T extends EntityMixin, $Res> {
 
 /// @nodoc
 class __$$_FailureCopyWithImpl<T extends EntityMixin, $Res>
-    extends _$DetailsStateCopyWithImpl<T, $Res, _$_Failure<T>>
+    extends _$LoadStateCopyWithImpl<T, $Res, _$_Failure<T>>
     implements _$$_FailureCopyWith<T, $Res> {
   __$$_FailureCopyWithImpl(
       _$_Failure<T> _value, $Res Function(_$_Failure<T>) _then)
@@ -608,14 +607,14 @@ class _$_Failure<T extends EntityMixin> extends _Failure<T>
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailsState<$T>.failure(failure: $failure)';
+    return 'LoadState<$T>.failure(failure: $failure)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'DetailsState<$T>.failure'))
+      ..add(DiagnosticsProperty('type', 'LoadState<$T>.failure'))
       ..add(DiagnosticsProperty('failure', failure));
   }
 
@@ -705,7 +704,7 @@ class _$_Failure<T extends EntityMixin> extends _Failure<T>
   }
 }
 
-abstract class _Failure<T extends EntityMixin> extends DetailsState<T> {
+abstract class _Failure<T extends EntityMixin> extends LoadState<T> {
   factory _Failure({required final SubmissionFailure failure}) = _$_Failure<T>;
   _Failure._() : super._();
 

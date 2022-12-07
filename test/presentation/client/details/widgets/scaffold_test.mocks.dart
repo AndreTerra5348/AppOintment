@@ -7,8 +7,8 @@ import 'dart:async' as _i7;
 
 import 'package:appointment/application/client/bloc/bloc.dart' as _i6;
 import 'package:appointment/application/delete/bloc/bloc.dart' as _i4;
-import 'package:appointment/application/details/bloc/bloc.dart' as _i3;
 import 'package:appointment/application/edit/bloc/bloc.dart' as _i5;
+import 'package:appointment/application/load/bloc/bloc.dart' as _i3;
 import 'package:appointment/domain/common/entity_mixin.dart' as _i1;
 import 'package:bloc/bloc.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i2;
@@ -24,9 +24,9 @@ import 'package:mockito/mockito.dart' as _i2;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeDetailsState_0<T extends _i1.EntityMixin> extends _i2.SmartFake
-    implements _i3.DetailsState<T> {
-  _FakeDetailsState_0(
+class _FakeLoadState_0<T extends _i1.EntityMixin> extends _i2.SmartFake
+    implements _i3.LoadState<T> {
+  _FakeLoadState_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -65,35 +65,35 @@ class _FakeClientState_3 extends _i2.SmartFake implements _i6.ClientState {
         );
 }
 
-/// A class which mocks [DetailsBloc].
+/// A class which mocks [LoadBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDetailsBloc<T extends _i1.EntityMixin> extends _i2.Mock
-    implements _i3.DetailsBloc<T> {
-  MockDetailsBloc() {
+class MockLoadBloc<T extends _i1.EntityMixin> extends _i2.Mock
+    implements _i3.LoadBloc<T> {
+  MockLoadBloc() {
     _i2.throwOnMissingStub(this);
   }
 
   @override
-  _i3.DetailsState<T> get state => (super.noSuchMethod(
+  _i3.LoadState<T> get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeDetailsState_0<T>(
+        returnValue: _FakeLoadState_0<T>(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i3.DetailsState<T>);
+      ) as _i3.LoadState<T>);
   @override
-  _i7.Stream<_i3.DetailsState<T>> get stream => (super.noSuchMethod(
+  _i7.Stream<_i3.LoadState<T>> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i7.Stream<_i3.DetailsState<T>>.empty(),
-      ) as _i7.Stream<_i3.DetailsState<T>>);
+        returnValue: _i7.Stream<_i3.LoadState<T>>.empty(),
+      ) as _i7.Stream<_i3.LoadState<T>>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
       ) as bool);
   @override
-  void add(_i3.DetailsEvent? event) => super.noSuchMethod(
+  void add(_i3.LoadEvent? event) => super.noSuchMethod(
         Invocation.method(
           #add,
           [event],
@@ -101,7 +101,7 @@ class MockDetailsBloc<T extends _i1.EntityMixin> extends _i2.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void onEvent(_i3.DetailsEvent? event) => super.noSuchMethod(
+  void onEvent(_i3.LoadEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onEvent,
           [event],
@@ -109,7 +109,7 @@ class MockDetailsBloc<T extends _i1.EntityMixin> extends _i2.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void emit(_i3.DetailsState<T>? state) => super.noSuchMethod(
+  void emit(_i3.LoadState<T>? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -117,8 +117,8 @@ class MockDetailsBloc<T extends _i1.EntityMixin> extends _i2.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void on<E extends _i3.DetailsEvent>(
-    _i8.EventHandler<E, _i3.DetailsState<T>>? handler, {
+  void on<E extends _i3.LoadEvent>(
+    _i8.EventHandler<E, _i3.LoadState<T>>? handler, {
     _i8.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
@@ -131,7 +131,7 @@ class MockDetailsBloc<T extends _i1.EntityMixin> extends _i2.Mock
       );
   @override
   void onTransition(
-          _i8.Transition<_i3.DetailsEvent, _i3.DetailsState<T>>? transition) =>
+          _i8.Transition<_i3.LoadEvent, _i3.LoadState<T>>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -149,7 +149,7 @@ class MockDetailsBloc<T extends _i1.EntityMixin> extends _i2.Mock
         returnValueForMissingStub: _i7.Future<void>.value(),
       ) as _i7.Future<void>);
   @override
-  void onChange(_i8.Change<_i3.DetailsState<T>>? change) => super.noSuchMethod(
+  void onChange(_i8.Change<_i3.LoadState<T>>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],

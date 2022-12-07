@@ -17,8 +17,8 @@ import 'package:flutter/material.dart' as _i6;
 import '../../application/client/bloc/bloc.dart' as _i10;
 import '../../application/client/search/bloc/bloc.dart' as _i7;
 import '../../application/delete/bloc/bloc.dart' as _i12;
-import '../../application/details/bloc/bloc.dart' as _i11;
 import '../../application/edit/bloc/bloc.dart' as _i13;
+import '../../application/load/bloc/bloc.dart' as _i11;
 import '../../application/register/bloc/bloc.dart' as _i8;
 import '../../domain/client/entity.dart' as _i9;
 import '../../domain/common/values.dart' as _i14;
@@ -187,7 +187,7 @@ class ClientRegisterRouteArgs {
 class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
   ClientDetailsRoute({
     _i6.Key? key,
-    required _i11.DetailsBloc<_i9.Client> detailsBloc,
+    required _i11.LoadBloc<_i9.Client> detailsBloc,
     required _i12.DeleteBloc<_i9.Client> deleteBloc,
     required _i13.EditBloc<_i9.Client> editBloc,
     required _i10.ClientBloc clientBloc,
@@ -220,7 +220,7 @@ class ClientDetailsRouteArgs {
 
   final _i6.Key? key;
 
-  final _i11.DetailsBloc<_i9.Client> detailsBloc;
+  final _i11.LoadBloc<_i9.Client> detailsBloc;
 
   final _i12.DeleteBloc<_i9.Client> deleteBloc;
 

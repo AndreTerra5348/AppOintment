@@ -1,4 +1,4 @@
-import 'package:appointment/application/details/bloc/bloc.dart';
+import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/error.dart';
@@ -25,10 +25,10 @@ void main() {
   });
   test("initial [State] should be [loading()]", () {
     // Arrange
-    final sut = DetailsBloc<Client>(repository);
+    final sut = LoadBloc<Client>(repository);
     // Act
     // Assert
-    expect(sut.state, DetailsState<Client>.loading());
+    expect(sut.state, LoadState<Client>.loading());
   });
 
   blocTest(
@@ -37,11 +37,11 @@ void main() {
     "Then [State] should be [loading()] "
     "When [repository.getById()] returns [Right(Client)] "
     "Then [State] should be [success(Client)]",
-    build: () => DetailsBloc<Client>(repository),
-    act: (bloc) => bloc.add(DetailsEvent.loaded(id: validClient.id)),
+    build: () => LoadBloc<Client>(repository),
+    act: (bloc) => bloc.add(LoadEvent.loaded(id: validClient.id)),
     expect: () => [
-      DetailsState<Client>.loading(),
-      DetailsState<Client>.success(entity: validClient),
+      LoadState<Client>.loading(),
+      LoadState<Client>.success(entity: validClient),
     ],
   );
 
@@ -51,8 +51,8 @@ void main() {
     "Then [Repository.getById(id)] should be called once ",
     setUp: () => when(repository.getById(any))
         .thenAnswer((_) async => Right(validClient)),
-    build: () => DetailsBloc<Client>(repository),
-    act: (bloc) => bloc.add(DetailsEvent.loaded(id: validClient.id)),
+    build: () => LoadBloc<Client>(repository),
+    act: (bloc) => bloc.add(LoadEvent.loaded(id: validClient.id)),
     verify: (bloc) => verify(repository.getById(validClient.id)).called(1),
   );
 
@@ -60,8 +60,8 @@ void main() {
     "Given [State.initial()] "
     "When [Event.loaded(id)] with invalid id "
     "Then [DetailsBloc<Client>] throws [CriticalError]",
-    build: () => DetailsBloc<Client>(repository),
-    act: (bloc) => bloc.add(DetailsEvent.loaded(id: Uid())),
+    build: () => LoadBloc<Client>(repository),
+    act: (bloc) => bloc.add(LoadEvent.loaded(id: Uid())),
     errors: () => [isA<CriticalError>()],
   );
 
@@ -73,11 +73,11 @@ void main() {
     "And [State.failure] should be [RepositoryFailure]",
     setUp: () => when(repository.getById(any)).thenAnswer(
         (_) async => const Left(failure_fixture.dbErrorRepositoryFailure)),
-    build: () => DetailsBloc<Client>(repository),
-    act: (bloc) => bloc.add(DetailsEvent.loaded(id: validClient.id)),
+    build: () => LoadBloc<Client>(repository),
+    act: (bloc) => bloc.add(LoadEvent.loaded(id: validClient.id)),
     skip: 1,
     expect: () => [
-      DetailsState<Client>.failure(
+      LoadState<Client>.failure(
         failure: failure_fixture.dbErrorSubmissionFailure,
       )
     ],

@@ -13,26 +13,25 @@ part 'event.dart';
 part 'state.dart';
 part 'bloc.freezed.dart';
 
-class DetailsBloc<T extends EntityMixin>
-    extends Bloc<DetailsEvent, DetailsState<T>> {
+class LoadBloc<T extends EntityMixin> extends Bloc<LoadEvent, LoadState<T>> {
   final IRepository<T> _repository;
-  DetailsBloc(this._repository) : super(DetailsState<T>.loading()) {
+  LoadBloc(this._repository) : super(LoadState<T>.loading()) {
     on<_Loaded>(_onLoaded);
   }
 
-  FutureOr<void> _onLoaded(_Loaded event, Emitter<DetailsState<T>> emit) async {
+  FutureOr<void> _onLoaded(_Loaded event, Emitter<LoadState<T>> emit) async {
     if (event.id.isNotValid) {
       throw CriticalError("Invalid id");
     }
 
-    emit(DetailsState<T>.loading());
+    emit(LoadState<T>.loading());
 
     final result = await _repository.getById(event.id);
 
     emit(
       result.fold(
-        (failure) => DetailsState<T>.repositoryFailure(failure: failure),
-        (entity) => DetailsState<T>.success(entity: entity),
+        (failure) => LoadState<T>.repositoryFailure(failure: failure),
+        (entity) => LoadState<T>.success(entity: entity),
       ),
     );
   }

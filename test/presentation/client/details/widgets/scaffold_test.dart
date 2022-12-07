@@ -1,6 +1,6 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
-import 'package:appointment/application/details/bloc/bloc.dart';
+import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
@@ -15,11 +15,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 import 'page_mock.dart';
 import 'scaffold_test.mocks.dart';
 
-@GenerateMocks([DetailsBloc, DeleteBloc, EditBloc, ClientBloc])
+@GenerateMocks([LoadBloc, DeleteBloc, EditBloc, ClientBloc])
 void main() {
   late Client johnClient;
   late Client renamedJohnClient;
-  late MockDetailsBloc<Client> mockDetailsBloc;
+  late MockLoadBloc<Client> mockLoadBloc;
   late MockEditBloc<Client> mockEditBloc;
   late MockDeleteBloc<Client> mockDeleteBloc;
   late MockClientBloc mockClientBloc;
@@ -29,36 +29,36 @@ void main() {
   setUp(() {
     johnClient = Client(name: Name("John"), id: Uid.fromInt(1));
     renamedJohnClient = johnClient.copyWith(name: Name("Gohn"));
-    mockDetailsBloc = MockDetailsBloc<Client>();
+    mockLoadBloc = MockLoadBloc<Client>();
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();
     mockClientBloc = MockClientBloc();
 
     mockClientDetailPage = MockClientDetailPage(
       client: johnClient,
-      clientDetailsBloc: mockDetailsBloc,
-      clientDetailsDeleteBloc: mockDeleteBloc,
-      clientDetailsEditBloc: mockEditBloc,
+      clientLoadBloc: mockLoadBloc,
+      clientDeleteBloc: mockDeleteBloc,
+      clientEditBloc: mockEditBloc,
       clientBloc: mockClientBloc,
       child: const ClientDetailsPageScaffold(),
     );
 
-    when(mockDetailsBloc.state).thenReturn(DetailsState.loading());
+    when(mockLoadBloc.state).thenReturn(LoadState.loading());
     when(mockEditBloc.state).thenReturn(const EditState.initial());
     when(mockDeleteBloc.state).thenReturn(const DeleteState.initial());
     when(mockClientBloc.state).thenReturn(ClientState.initial());
 
-    when(mockDetailsBloc.stream).thenAnswer((_) => const Stream.empty());
+    when(mockLoadBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockEditBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockDeleteBloc.stream).thenAnswer((_) => const Stream.empty());
     when(mockClientBloc.stream).thenAnswer((_) => const Stream.empty());
   });
 
-  group("When [DetailsState] is [success(client)] ", () {
+  group("When [LoadState] is [success(client)] ", () {
     setUp(() {
-      final state = DetailsState.success(entity: johnClient);
-      when(mockDetailsBloc.state).thenReturn(state);
-      when(mockDetailsBloc.stream).thenAnswer((_) => Stream.value(state));
+      final state = LoadState.success(entity: johnClient);
+      when(mockLoadBloc.state).thenReturn(state);
+      when(mockLoadBloc.stream).thenAnswer((_) => Stream.value(state));
 
       when(mockClientBloc.state).thenReturn(ClientState(client: johnClient));
     });
@@ -172,8 +172,8 @@ void main() {
               await tester.tap(find.byIcon(Icons.cancel));
               await tester.pump();
 
-              verify(mockDetailsBloc.add(
-                DetailsEvent.loaded(id: renamedJohnClient.id),
+              verify(mockLoadBloc.add(
+                LoadEvent.loaded(id: renamedJohnClient.id),
               )).called(1);
             },
           );

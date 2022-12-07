@@ -1,7 +1,8 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
+import 'package:appointment/application/client/details/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
-import 'package:appointment/application/details/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
+import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/details/widgets/form.dart';
@@ -16,12 +17,12 @@ class ClientDetailsPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EditBloc<Client>, EditState>(
+    return BlocBuilder<ClientDetailsBloc, ClientDetailsState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
               title: Text(context.tr.pageClientDetailsTitle),
-              actions: _buildActions(context, state.isEditing)),
+              actions: _buildActions(context, context.isEditing)),
           body: const ClientDetailsFormWidget(),
         );
       },
@@ -81,8 +82,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
 }
 
 extension on BuildContext {
-  DetailsBloc<Client> get detailsBloc =>
-      BlocProvider.of<DetailsBloc<Client>>(this);
+  LoadBloc<Client> get detailsBloc => BlocProvider.of<LoadBloc<Client>>(this);
 
   EditBloc<Client> get editBloc => BlocProvider.of<EditBloc<Client>>(this);
 
@@ -91,10 +91,11 @@ extension on BuildContext {
   DeleteBloc<Client> get deleteBloc =>
       BlocProvider.of<DeleteBloc<Client>>(this);
 
+  bool get isEditing => editBloc.state.isEditing;
+
   Client get client => clientBloc.state.client;
 
-  void reaload({required Uid id}) =>
-      detailsBloc.add(DetailsEvent.loaded(id: id));
+  void reaload({required Uid id}) => detailsBloc.add(LoadEvent.loaded(id: id));
 
   void editPressed() => editBloc.add(const EditEvent.editPressed());
 

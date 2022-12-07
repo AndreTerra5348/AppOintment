@@ -2,7 +2,7 @@ import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/client/register/validator.dart';
 import 'package:appointment/application/client/search/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
-import 'package:appointment/application/details/bloc/bloc.dart';
+import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/application/register/bloc/bloc.dart';
 import 'package:appointment/application/register/validator.dart';
@@ -36,7 +36,7 @@ void mockServicesConfiguration(ClientDao dao) {
   getIt.registerFactory(() => RegisterBloc<Client>(getIt(), getIt()));
   getIt.registerFactory(() => ClientSearchBloc(getIt()));
 
-  getIt.registerFactory(() => DetailsBloc<Client>(getIt()));
+  getIt.registerFactory(() => LoadBloc<Client>(getIt()));
   getIt.registerFactory(() => EditBloc<Client>(getIt()));
   getIt.registerFactory(() => DeleteBloc<Client>(getIt()));
   getIt.registerFactory(() => ClientBloc());
