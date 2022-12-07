@@ -15,9 +15,9 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
 import '../../application/client/bloc/bloc.dart' as _i10;
-import '../../application/client/details/bloc/bloc.dart' as _i15;
 import '../../application/client/search/bloc/bloc.dart' as _i7;
 import '../../application/delete/bloc/bloc.dart' as _i12;
+import '../../application/details/bloc/bloc.dart' as _i15;
 import '../../application/edit/bloc/bloc.dart' as _i13;
 import '../../application/load/bloc/bloc.dart' as _i11;
 import '../../application/register/bloc/bloc.dart' as _i8;

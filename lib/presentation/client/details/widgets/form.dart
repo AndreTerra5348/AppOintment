@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:appointment/application/client/bloc/bloc.dart';
-import 'package:appointment/application/client/details/bloc/bloc.dart';
+import 'package:appointment/application/details/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';

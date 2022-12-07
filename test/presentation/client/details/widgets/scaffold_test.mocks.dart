@@ -6,8 +6,8 @@
 import 'dart:async' as _i8;
 
 import 'package:appointment/application/client/bloc/bloc.dart' as _i6;
-import 'package:appointment/application/client/details/bloc/bloc.dart' as _i7;
 import 'package:appointment/application/delete/bloc/bloc.dart' as _i4;
+import 'package:appointment/application/details/bloc/bloc.dart' as _i7;
 import 'package:appointment/application/edit/bloc/bloc.dart' as _i5;
 import 'package:appointment/application/load/bloc/bloc.dart' as _i3;
 import 'package:appointment/domain/common/entity_mixin.dart' as _i1;

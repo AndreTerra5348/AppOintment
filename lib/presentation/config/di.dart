@@ -1,5 +1,5 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
-import 'package:appointment/application/client/details/bloc/bloc.dart';
+import 'package:appointment/application/details/bloc/bloc.dart';
 import 'package:appointment/application/client/register/validator.dart';
 import 'package:appointment/application/client/search/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';

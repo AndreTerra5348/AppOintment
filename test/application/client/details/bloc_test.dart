@@ -1,4 +1,4 @@
-import 'package:appointment/application/client/details/bloc/bloc.dart';
+import 'package:appointment/application/details/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
 import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
