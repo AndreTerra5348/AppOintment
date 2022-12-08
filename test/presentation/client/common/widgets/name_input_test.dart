@@ -39,6 +39,7 @@ void main() {
     expect(find.byType(TextFormField), findsOneWidget);
   });
 
+  // TODO: remove this test
   testWidgets("Render nameTextFormField translation", (tester) async {
     // Arrange
     const text = '123';
