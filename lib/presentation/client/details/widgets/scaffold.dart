@@ -21,8 +21,14 @@ class ClientDetailsPageScaffold extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-              title: Text(context.tr.pageClientDetailsTitle),
-              actions: _buildActions(context, context.isEditing)),
+            title: Text(
+              context.tr.pageClientDetailsTitle(context.clientNameOrEmpty),
+            ),
+            actions: _buildActions(
+              context,
+              context.isEditing,
+            ),
+          ),
           body: const ClientDetailsFormWidget(),
         );
       },
@@ -33,13 +39,13 @@ class ClientDetailsPageScaffold extends StatelessWidget {
     return isEditing
         ? [
             IconButton(
-              icon: const Icon(Icons.save),
+              icon: const Icon(Icons.save_outlined),
               onPressed: context.editBloc.state.isInProgress
                   ? null
                   : () => _showSaveConfirmationDialog(context),
             ),
             IconButton(
-              icon: const Icon(Icons.cancel),
+              icon: const Icon(Icons.cancel_outlined),
               onPressed: context.editBloc.state.isInProgress
                   ? null
                   : () => _showStopEditingConfirmationDialog(context),
@@ -47,11 +53,11 @@ class ClientDetailsPageScaffold extends StatelessWidget {
           ]
         : [
             IconButton(
-              icon: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit_outlined),
               onPressed: context.editPressed,
             ),
             IconButton(
-              icon: const Icon(Icons.delete),
+              icon: const Icon(Icons.delete_outlined),
               onPressed: () => _showDeleteConfirmationDialog(context),
             ),
           ];
@@ -140,6 +146,8 @@ extension on BuildContext {
   bool get isEditing => editBloc.state.isEditing;
 
   Client get client => clientBloc.state.client;
+
+  String get clientNameOrEmpty => client.name.value.getOrElse(() => "");
 
   void reaload({required Uid id}) => detailsBloc.add(LoadEvent.loaded(id: id));
 

@@ -75,7 +75,7 @@ void main() {
         await tester.pumpWidget(mockClientDetailPage);
 
         expect(
-          find.widgetWithIcon(IconButton, Icons.edit),
+          find.widgetWithIcon(IconButton, Icons.edit_outlined),
           findsOneWidget,
         );
       },
@@ -87,7 +87,7 @@ void main() {
         await tester.pumpWidget(mockClientDetailPage);
 
         expect(
-          find.widgetWithIcon(IconButton, Icons.delete),
+          find.widgetWithIcon(IconButton, Icons.delete_outlined),
           findsOneWidget,
         );
       },
@@ -97,7 +97,7 @@ void main() {
       testWidgets("Add [EditEvent.editPressed()] once ", (tester) async {
         await tester.pumpWidget(mockClientDetailPage);
 
-        await tester.tap(find.byIcon(Icons.edit));
+        await tester.tap(find.byIcon(Icons.edit_outlined));
         await tester.pump();
 
         verify(mockEditBloc.add(
@@ -116,11 +116,11 @@ void main() {
           await tester.pumpWidget(mockClientDetailPage);
 
           expect(
-            find.widgetWithIcon(IconButton, Icons.save),
+            find.widgetWithIcon(IconButton, Icons.save_outlined),
             findsOneWidget,
           );
           expect(
-            find.widgetWithIcon(IconButton, Icons.edit),
+            find.widgetWithIcon(IconButton, Icons.edit_outlined),
             findsNothing,
           );
         });
@@ -132,11 +132,11 @@ void main() {
             await tester.pumpWidget(mockClientDetailPage);
 
             expect(
-              find.widgetWithIcon(IconButton, Icons.cancel),
+              find.widgetWithIcon(IconButton, Icons.cancel_outlined),
               findsOneWidget,
             );
             expect(
-              find.widgetWithIcon(IconButton, Icons.delete),
+              find.widgetWithIcon(IconButton, Icons.delete_outlined),
               findsNothing,
             );
           },
@@ -148,7 +148,7 @@ void main() {
             (tester) async {
               await tester.pumpWidget(mockClientDetailPage);
 
-              await tester.tap(find.byIcon(Icons.save));
+              await tester.tap(find.byIcon(Icons.save_outlined));
               await tester.pump();
 
               expect(find.text(AppLocalizationsEn().save), findsOneWidget);
@@ -168,7 +168,7 @@ void main() {
               (tester) async {
                 await tester.pumpWidget(mockClientDetailPage);
 
-                await tester.tap(find.byIcon(Icons.save));
+                await tester.tap(find.byIcon(Icons.save_outlined));
                 await tester.pump();
 
                 await tester.tap(find.text(AppLocalizationsEn().cancel));
@@ -193,7 +193,7 @@ void main() {
               (tester) async {
                 await tester.pumpWidget(mockClientDetailPage);
 
-                await tester.tap(find.byIcon(Icons.save));
+                await tester.tap(find.byIcon(Icons.save_outlined));
                 await tester.pump();
 
                 await tester.tap(find.text(AppLocalizationsEn().save));
@@ -219,7 +219,7 @@ void main() {
                 ));
                 await tester.pumpWidget(mockClientDetailPage);
 
-                await tester.tap(find.byIcon(Icons.save));
+                await tester.tap(find.byIcon(Icons.save_outlined));
                 await tester.pump();
 
                 await tester.tap(find.text(AppLocalizationsEn().save));
@@ -239,7 +239,7 @@ void main() {
             (tester) async {
               await tester.pumpWidget(mockClientDetailPage);
 
-              await tester.tap(find.byIcon(Icons.cancel));
+              await tester.tap(find.byIcon(Icons.cancel_outlined));
               await tester.pump();
 
               expect(find.text(AppLocalizationsEn().yes), findsOneWidget);
@@ -259,7 +259,7 @@ void main() {
               (tester) async {
                 await tester.pumpWidget(mockClientDetailPage);
 
-                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.tap(find.byIcon(Icons.cancel_outlined));
                 await tester.pump();
 
                 await tester.tap(find.text(AppLocalizationsEn().no));
@@ -284,7 +284,7 @@ void main() {
               (tester) async {
                 await tester.pumpWidget(mockClientDetailPage);
 
-                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.tap(find.byIcon(Icons.cancel_outlined));
                 await tester.pump();
 
                 await tester.tap(find.text(AppLocalizationsEn().yes));
@@ -310,7 +310,7 @@ void main() {
                 );
                 await tester.pumpWidget(mockClientDetailPage);
 
-                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.tap(find.byIcon(Icons.cancel_outlined));
                 await tester.pump();
 
                 await tester.tap(find.text(AppLocalizationsEn().yes));
@@ -327,7 +327,7 @@ void main() {
               (tester) async {
                 await tester.pumpWidget(mockClientDetailPage);
 
-                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.tap(find.byIcon(Icons.cancel_outlined));
                 await tester.pump();
 
                 await tester.tap(find.text(AppLocalizationsEn().yes));
@@ -349,7 +349,7 @@ void main() {
         (tester) async {
           await tester.pumpWidget(mockClientDetailPage);
 
-          await tester.tap(find.byIcon(Icons.delete));
+          await tester.tap(find.byIcon(Icons.delete_outlined));
           await tester.pump();
 
           expect(find.text(AppLocalizationsEn().delete), findsOneWidget);
@@ -372,7 +372,7 @@ void main() {
           (tester) async {
             await tester.pumpWidget(mockClientDetailPage);
 
-            await tester.tap(find.byIcon(Icons.delete));
+            await tester.tap(find.byIcon(Icons.delete_outlined));
             await tester.pump();
 
             await tester.tap(find.text(AppLocalizationsEn().cancel));
@@ -399,7 +399,7 @@ void main() {
           (tester) async {
             await tester.pumpWidget(mockClientDetailPage);
 
-            await tester.tap(find.byIcon(Icons.delete));
+            await tester.tap(find.byIcon(Icons.delete_outlined));
             await tester.pump();
 
             await tester.tap(find.text(AppLocalizationsEn().delete));
@@ -426,7 +426,7 @@ void main() {
             );
             await tester.pumpWidget(mockClientDetailPage);
 
-            await tester.tap(find.byIcon(Icons.delete));
+            await tester.tap(find.byIcon(Icons.delete_outlined));
             await tester.pump();
 
             await tester.tap(find.text(AppLocalizationsEn().delete));
