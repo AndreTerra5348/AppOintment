@@ -42,6 +42,37 @@ void main() {
       expect(find.text(AppLocalizationsEn().appointmentTitle), findsOneWidget);
     },
   );
+
+  testWidgets(
+    "Render localized app subtitle",
+    (tester) async {
+      await tester.pumpWidget(const MockApp());
+      expect(
+          find.text(AppLocalizationsEn().appointmentSubtitle), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    "Render ElevatedButton with pageClientRegisterTitle localized text",
+    (tester) async {
+      await tester.pumpWidget(const MockApp());
+      expect(
+          find.widgetWithText(
+              ElevatedButton, AppLocalizationsEn().pageClientRegisterTitle),
+          findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    "Render ElevatedButton with pageClientSearchTitle localized text",
+    (tester) async {
+      await tester.pumpWidget(const MockApp());
+      expect(
+          find.widgetWithText(
+              ElevatedButton, AppLocalizationsEn().pageClientSearchTitle),
+          findsOneWidget);
+    },
+  );
 }
 
 class MockApp extends StatelessWidget {
