@@ -12,9 +12,6 @@ class HomeDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            child: Text(context.tr.homeDrawerTitle),
-          ),
           ListTile(
             leading: const Icon(Icons.person_add),
             title: Text(context.tr.homeDrawerClientRegister),
