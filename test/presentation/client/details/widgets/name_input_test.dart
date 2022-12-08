@@ -16,7 +16,7 @@ import 'name_input_test.mocks.dart';
 @GenerateMocks([ClientBloc])
 void main() {
   late MockClientBloc clientBloc;
-  late MockClientRegisterPage mockPage;
+  late MockPage mockPage;
   late Client client;
   const name = "Bob";
   setUp(() {
@@ -25,7 +25,7 @@ void main() {
     when(clientBloc.state).thenReturn(ClientState.initial());
     when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
 
-    mockPage = MockClientRegisterPage(
+    mockPage = MockPage(
       bloc: clientBloc,
       isEditing: true,
     );
@@ -59,7 +59,7 @@ void main() {
       "Key should be client name", (WidgetTester tester) async {
     // Arrange
     when(clientBloc.state).thenReturn(ClientState(client: client));
-    mockPage = MockClientRegisterPage(
+    mockPage = MockPage(
       bloc: clientBloc,
       isEditing: false,
     );
@@ -76,7 +76,7 @@ void main() {
       "Key should be null", (WidgetTester tester) async {
     // Arrange
     when(clientBloc.state).thenReturn(ClientState(client: client));
-    mockPage = MockClientRegisterPage(
+    mockPage = MockPage(
       bloc: clientBloc,
       isEditing: true,
     );
@@ -107,11 +107,10 @@ void main() {
   });
 }
 
-class MockClientRegisterPage extends StatelessWidget {
+class MockPage extends StatelessWidget {
   final ClientBloc bloc;
   final bool isEditing;
-  const MockClientRegisterPage(
-      {super.key, required this.bloc, required this.isEditing});
+  const MockPage({super.key, required this.bloc, required this.isEditing});
 
   @override
   Widget build(BuildContext context) {
