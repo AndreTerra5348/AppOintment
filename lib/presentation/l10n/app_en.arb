@@ -21,6 +21,8 @@
     "@_COMMON": {},
     "appointment": "Appointment",
     "noResultsFound": "No results found",
+    "yes": "Yes",
+    "no": "No",
     "delete": "Delete",
     "save": "Save",
     "cancel": "Cancel",
@@ -36,6 +38,7 @@
     "@_CLIENT_DETAILS_PAGE": {},
     "pageClientDetailsTitle": "Client Details",
     "saveConfirmation": "Save changes?",
+    "stopEditingConfirmation": "Stop editing?",
     "deleteConfirmation": "Are you sure you want to delete {name}?",
     "@deleteConfirmation": {
             "placeholders": {

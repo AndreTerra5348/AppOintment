@@ -111,7 +111,7 @@ void main() {
         });
 
         testWidgets(
-            "Display save button "
+            "Display save button enabled "
             "Hide edit button", (tester) async {
           await tester.pumpWidget(mockClientDetailPage);
 
@@ -143,68 +143,209 @@ void main() {
         );
 
         group("When Save Button is Pressed ", () {
-          // TODO: show save confirmation dialog
           testWidgets(
-            "Add [EditEvent.savePressed(clientBloc.client)] once ",
+            "Render [SaveConfirmationDialog]",
             (tester) async {
-              when(mockClientBloc.state).thenReturn(ClientState(
-                client: renamedJohnClient,
-              ));
               await tester.pumpWidget(mockClientDetailPage);
 
               await tester.tap(find.byIcon(Icons.save));
               await tester.pump();
 
-              verify(mockEditBloc.add(
-                EditEvent.savePressed(entity: renamedJohnClient),
-              )).called(1);
+              expect(find.text(AppLocalizationsEn().save), findsOneWidget);
+              expect(find.text(AppLocalizationsEn().cancel), findsOneWidget);
+              expect(
+                find.widgetWithText(
+                  Dialog,
+                  AppLocalizationsEn().saveConfirmation,
+                ),
+                findsOneWidget,
+              );
             },
           );
+          group("When [SaveConfirmationDialog] Cancel button is pressed", () {
+            testWidgets(
+              "Hide [SaveConfirmationDialog]",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
 
-          group("When [EditState] is [inProgress()] ", () {
-            // TODO: disable save button
-            // TODO: disable cancel button
+                await tester.tap(find.byIcon(Icons.save));
+                await tester.pump();
+
+                await tester.tap(find.text(AppLocalizationsEn().cancel));
+                await tester.pump();
+
+                expect(find.text(AppLocalizationsEn().save), findsNothing);
+                expect(find.text(AppLocalizationsEn().cancel), findsNothing);
+                expect(
+                  find.widgetWithText(
+                    Dialog,
+                    AppLocalizationsEn().saveConfirmation,
+                  ),
+                  findsNothing,
+                );
+              },
+            );
+          });
+
+          group("When [SaveConfirmationDialog] Save button is pressed", () {
+            testWidgets(
+              "Hide [SaveConfirmationDialog]",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
+
+                await tester.tap(find.byIcon(Icons.save));
+                await tester.pump();
+
+                await tester.tap(find.text(AppLocalizationsEn().save));
+                await tester.pump();
+
+                expect(find.text(AppLocalizationsEn().save), findsNothing);
+                expect(find.text(AppLocalizationsEn().cancel), findsNothing);
+                expect(
+                  find.widgetWithText(
+                    Dialog,
+                    AppLocalizationsEn().saveConfirmation,
+                  ),
+                  findsNothing,
+                );
+              },
+            );
+
+            testWidgets(
+              "Add [EditEvent.savePressed(clientBloc.client)] once ",
+              (tester) async {
+                when(mockClientBloc.state).thenReturn(ClientState(
+                  client: renamedJohnClient,
+                ));
+                await tester.pumpWidget(mockClientDetailPage);
+
+                await tester.tap(find.byIcon(Icons.save));
+                await tester.pump();
+
+                await tester.tap(find.text(AppLocalizationsEn().save));
+                await tester.pump();
+
+                verify(mockEditBloc.add(
+                  EditEvent.savePressed(entity: renamedJohnClient),
+                )).called(1);
+              },
+            );
           });
         });
 
-        group("When Cancel Button is Pressed ", () {
+        group("When Stop Editing Button is Pressed ", () {
           testWidgets(
-            "Add [DetailsEvent.loaded(clientBloc.client.id)] once ",
+            "Render [StopEditConfirmationDialog]",
             (tester) async {
-              when(mockClientBloc.state).thenReturn(
-                ClientState(client: renamedJohnClient),
+              await tester.pumpWidget(mockClientDetailPage);
+
+              await tester.tap(find.byIcon(Icons.cancel));
+              await tester.pump();
+
+              expect(find.text(AppLocalizationsEn().yes), findsOneWidget);
+              expect(find.text(AppLocalizationsEn().no), findsOneWidget);
+              expect(
+                find.widgetWithText(
+                  Dialog,
+                  AppLocalizationsEn().stopEditingConfirmation,
+                ),
+                findsOneWidget,
               );
-              await tester.pumpWidget(mockClientDetailPage);
-
-              await tester.tap(find.byIcon(Icons.cancel));
-              await tester.pump();
-
-              verify(mockLoadBloc.add(
-                LoadEvent.loaded(id: renamedJohnClient.id),
-              )).called(1);
             },
           );
+          group("When [StopEditConfirmationDialog] No button is pressed", () {
+            testWidgets(
+              "Hide [StopEditConfirmationDialog]",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
 
-          testWidgets(
-            "Add [EditEvent.cancelPressed()] once ",
-            (tester) async {
-              await tester.pumpWidget(mockClientDetailPage);
+                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.pump();
 
-              await tester.tap(find.byIcon(Icons.cancel));
-              await tester.pump();
+                await tester.tap(find.text(AppLocalizationsEn().no));
+                await tester.pump();
 
-              verify(mockEditBloc.add(
-                const EditEvent<Client>.cancelPressed(),
-              )).called(1);
-            },
-          );
+                expect(find.text(AppLocalizationsEn().yes), findsNothing);
+                expect(find.text(AppLocalizationsEn().no), findsNothing);
+                expect(
+                  find.widgetWithText(
+                    Dialog,
+                    AppLocalizationsEn().stopEditingConfirmation,
+                  ),
+                  findsNothing,
+                );
+              },
+            );
+          });
+
+          group("When [StopEditConfirmationDialog] Yes button is pressed", () {
+            testWidgets(
+              "Hide [StopEditConfirmationDialog]",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
+
+                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.pump();
+
+                await tester.tap(find.text(AppLocalizationsEn().yes));
+                await tester.pump();
+
+                expect(find.text(AppLocalizationsEn().yes), findsNothing);
+                expect(find.text(AppLocalizationsEn().no), findsNothing);
+                expect(
+                  find.widgetWithText(
+                    Dialog,
+                    AppLocalizationsEn().stopEditingConfirmation,
+                  ),
+                  findsNothing,
+                );
+              },
+            );
+
+            testWidgets(
+              "Add [DetailsEvent.loaded(clientBloc.client.id)] once ",
+              (tester) async {
+                when(mockClientBloc.state).thenReturn(
+                  ClientState(client: renamedJohnClient),
+                );
+                await tester.pumpWidget(mockClientDetailPage);
+
+                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.pump();
+
+                await tester.tap(find.text(AppLocalizationsEn().yes));
+                await tester.pump();
+
+                verify(mockLoadBloc.add(
+                  LoadEvent.loaded(id: renamedJohnClient.id),
+                )).called(1);
+              },
+            );
+
+            testWidgets(
+              "Add [EditEvent.cancelPressed()] once ",
+              (tester) async {
+                await tester.pumpWidget(mockClientDetailPage);
+
+                await tester.tap(find.byIcon(Icons.cancel));
+                await tester.pump();
+
+                await tester.tap(find.text(AppLocalizationsEn().yes));
+                await tester.pump();
+
+                verify(mockEditBloc.add(
+                  const EditEvent<Client>.cancelPressed(),
+                )).called(1);
+              },
+            );
+          });
         });
       });
     });
 
     group("When Delete Button is Pressed", () {
       testWidgets(
-        "Render Confirmation dialog",
+        "Render [DeleteConfirmationDialog]",
         (tester) async {
           await tester.pumpWidget(mockClientDetailPage);
 
@@ -225,9 +366,9 @@ void main() {
         },
       );
 
-      group("When Confirmation dialog Cancel button is pressed", () {
+      group("When [DeleteConfirmationDialog] Cancel button is pressed", () {
         testWidgets(
-          "Hide Confirmation dialog",
+          "Hide [DeleteConfirmationDialog]",
           (tester) async {
             await tester.pumpWidget(mockClientDetailPage);
 
@@ -252,9 +393,9 @@ void main() {
         );
       });
 
-      group("When Confirmation dialog Delete button is pressed", () {
+      group("When [DeleteConfirmationDialog] Delete button is pressed", () {
         testWidgets(
-          "Hide Confirmation dialog",
+          "Hide [DeleteConfirmationDialog]",
           (tester) async {
             await tester.pumpWidget(mockClientDetailPage);
 

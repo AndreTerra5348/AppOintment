@@ -34,16 +34,15 @@ class ClientDetailsPageScaffold extends StatelessWidget {
         ? [
             IconButton(
               icon: const Icon(Icons.save),
-              onPressed: () => context.savePressed(
-                client: context.client,
-              ),
+              onPressed: context.editBloc.state.isInProgress
+                  ? null
+                  : () => _showSaveConfirmationDialog(context),
             ),
             IconButton(
               icon: const Icon(Icons.cancel),
-              onPressed: () {
-                context.cancelPressed();
-                context.reaload(id: context.client.id);
-              },
+              onPressed: context.editBloc.state.isInProgress
+                  ? null
+                  : () => _showStopEditingConfirmationDialog(context),
             ),
           ]
         : [
@@ -53,23 +52,56 @@ class ClientDetailsPageScaffold extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(Icons.delete),
-              onPressed: () => _handleDelete(context),
+              onPressed: () => _showDeleteConfirmationDialog(context),
             ),
           ];
   }
 
-  _handleDelete(BuildContext context) {
+  _showStopEditingConfirmationDialog(BuildContext context) {
+    Dialogs.materialDialog(
+      context: context,
+      msg: context.tr.stopEditingConfirmation,
+      actions: [
+        CancelIconsButton(context: context, text: context.tr.no),
+        IconsButton(
+          onPressed: () {
+            Navigator.pop(context);
+            context.cancelPressed();
+            context.reaload(id: context.client.id);
+          },
+          text: context.tr.yes,
+          iconData: Icons.cancel,
+        ),
+      ],
+    );
+  }
+
+  _showSaveConfirmationDialog(BuildContext context) {
+    Dialogs.materialDialog(
+      context: context,
+      msg: context.tr.saveConfirmation,
+      actions: [
+        CancelIconsButton(context: context),
+        IconsButton(
+          onPressed: () {
+            Navigator.pop(context);
+            context.savePressed(client: context.client);
+          },
+          text: context.tr.save,
+          iconData: Icons.save,
+        ),
+      ],
+    );
+  }
+
+  _showDeleteConfirmationDialog(BuildContext context) {
     Dialogs.materialDialog(
       context: context,
       msg: context.tr.deleteConfirmation(
         context.client.name.getOrThrow(),
       ),
       actions: [
-        IconsButton(
-          onPressed: () => Navigator.pop(context),
-          text: context.tr.cancel,
-          iconData: Icons.cancel,
-        ),
+        CancelIconsButton(context: context),
         IconsButton(
           onPressed: () {
             Navigator.pop(context);
@@ -81,6 +113,15 @@ class ClientDetailsPageScaffold extends StatelessWidget {
       ],
     );
   }
+}
+
+class CancelIconsButton extends IconsButton {
+  CancelIconsButton({required BuildContext context, String? text})
+      : super(
+          onPressed: () => Navigator.pop(context),
+          text: text ?? context.tr.cancel,
+          iconData: Icons.cancel,
+        );
 }
 
 extension on BuildContext {
