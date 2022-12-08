@@ -48,7 +48,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
             children: [
               Column(
                 children: [
-                  NameInputWidget(
+                  DetailsNameInputWidget(
                     isEditing: context.isEditing,
                   ),
                 ],

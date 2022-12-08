@@ -2,6 +2,7 @@ import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/presentation/client/common/widgets/name_form_field.dart';
 import 'package:appointment/presentation/client/common/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'name_input_test.mocks.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
 @GenerateMocks([ClientBloc])
 void main() {
@@ -30,26 +30,13 @@ void main() {
     );
   });
 
-  testWidgets("Render TextFormField", (tester) async {
+  testWidgets("Render NameFormField", (tester) async {
     // Arrange
     await tester.pumpWidget(mockPage);
 
     // Act
     // Assert
-    expect(find.byType(TextFormField), findsOneWidget);
-  });
-
-  // TODO: remove this test
-  testWidgets("Render nameTextFormField translation", (tester) async {
-    // Arrange
-    const text = '123';
-    await tester.pumpWidget(mockPage);
-
-    // Act
-    await tester.enterText(find.byType(TextFormField), text);
-
-    // Assert
-    expect(find.text(AppLocalizationsEn().nameTextFormField), findsOneWidget);
+    expect(find.byType(NameFormField), findsOneWidget);
   });
 
   testWidgets(
@@ -102,17 +89,17 @@ void main() {
 
   testWidgets(
       "Should [ClientEvent.nameChanged(name)] "
-      "When TextFormField value change", (WidgetTester tester) async {
+      "When NameFormField value change", (WidgetTester tester) async {
     // Arrange
     const name = "Bob";
 
     await tester.pumpWidget(mockPage);
     await tester.pumpAndSettle();
 
-    expect(find.byType(TextFormField), findsOneWidget);
+    expect(find.byType(NameFormField), findsOneWidget);
 
     // Act
-    await tester.enterText(find.byType(TextFormField), name);
+    await tester.enterText(find.byType(NameFormField), name);
 
     // Assert
     verify(clientBloc.add(const ClientEvent.nameChanged(name: name))).called(1);
@@ -134,7 +121,7 @@ class MockClientRegisterPage extends StatelessWidget {
       home: Scaffold(
         body: BlocProvider(
           create: (context) => bloc,
-          child: NameInputWidget(
+          child: DetailsNameInputWidget(
             isEditing: isEditing,
           ),
         ),
