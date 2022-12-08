@@ -10,6 +10,9 @@ import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:appointment/presentation/common/messege_dialog.dart'
+    as messesge_dialog;
+
 class ClientRegisterFormWidget extends StatefulWidget {
   const ClientRegisterFormWidget({super.key});
 
@@ -73,7 +76,8 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
                     ),
                     if (registerState.isInProgress)
                       const Center(
-                          child: CircularProgressIndicator(value: null))
+                        child: CircularProgressIndicator(value: null),
+                      )
                   ],
                 ),
               );
@@ -87,25 +91,33 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   _handleSuccess(BuildContext context) {
     context.reset();
     setState(() => _formKey.currentState!.reset());
-    showDialog(
+    messesge_dialog.show(
       context: context,
-      builder: (_) => Column(
-        children: [
-          const Icon(Icons.check_circle_outline),
-          Text(context.tr.registrationCompleted)
-        ],
+      icon: const Icon(
+        Icons.check_circle_outline,
+        color: Colors.green,
+      ),
+      text: Text(
+        context.tr.registrationCompleted,
+        style: const TextStyle(
+          color: Colors.green,
+        ),
       ),
     );
   }
 
   _handleFailure(BuildContext context, SubmissionFailure failure) {
-    showDialog(
+    messesge_dialog.show(
       context: context,
-      builder: (_) => Column(
-        children: [
-          const Icon(Icons.error_outline),
-          Text(failure.toErrorText(context)),
-        ],
+      icon: const Icon(
+        Icons.error_outline,
+        color: Colors.red,
+      ),
+      text: Text(
+        failure.toErrorText(context),
+        style: const TextStyle(
+          color: Colors.red,
+        ),
       ),
     );
   }

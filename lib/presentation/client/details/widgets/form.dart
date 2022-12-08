@@ -9,10 +9,14 @@ import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/details/widgets/name_input.dart';
+import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:appointment/presentation/common/messege_dialog.dart'
+    as messesge_dialog;
 
 class ClientDetailsFormWidget extends StatefulWidget {
   const ClientDetailsFormWidget({super.key});
@@ -145,21 +149,16 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
   }
 
   _handleFailure(BuildContext context, SubmissionFailure failure) {
-    showDialog(
+    messesge_dialog.show(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.2),
-      builder: (_) => Center(
-        child: Align(
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.error_outline, color: Colors.red),
-              const SizedBox(height: 8),
-              Text(failure.toErrorText(context),
-                  style: const TextStyle(color: Colors.red)),
-            ],
-          ),
+      icon: const Icon(
+        Icons.error_outline,
+        color: Colors.red,
+      ),
+      text: Text(
+        failure.toErrorText(context),
+        style: const TextStyle(
+          color: Colors.red,
         ),
       ),
     );
@@ -167,12 +166,18 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   _handleSuccess(BuildContext context) {
     context.reaload(id: context.client.id);
-    showDialog(
+
+    messesge_dialog.show(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.2),
-      builder: (_) => const Icon(
+      icon: const Icon(
         Icons.check_circle_outline,
         color: Colors.green,
+      ),
+      text: Text(
+        context.tr.success,
+        style: const TextStyle(
+          color: Colors.green,
+        ),
       ),
     );
   }

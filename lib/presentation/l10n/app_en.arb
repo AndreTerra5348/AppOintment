@@ -26,6 +26,7 @@
     "delete": "Delete",
     "save": "Save",
     "cancel": "Cancel",
+    "success": "Success",
 
     "@_CLIENT_REGISTER_PAGE": {},
     "pageClientRegisterTitle": "Client Registration",
