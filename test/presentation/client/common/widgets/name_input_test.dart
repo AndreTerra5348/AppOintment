@@ -14,8 +14,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
 @GenerateMocks([ClientBloc])
 void main() {
-  // TODO: test decoration > labelText
-  // TODO: test validator > failure
   late MockClientBloc clientBloc;
   late MockClientRegisterPage mockPage;
   late Client client;
