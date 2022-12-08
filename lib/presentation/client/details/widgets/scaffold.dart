@@ -59,6 +59,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
 
   _showStopEditingConfirmationDialog(BuildContext context) {
     Dialogs.materialDialog(
+      dialogWidth: 0.1,
       context: context,
       msg: context.tr.stopEditingConfirmation,
       actions: [
@@ -78,6 +79,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
 
   _showSaveConfirmationDialog(BuildContext context) {
     Dialogs.materialDialog(
+      dialogWidth: 0.1,
       context: context,
       msg: context.tr.saveConfirmation,
       actions: [
@@ -96,6 +98,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
 
   _showDeleteConfirmationDialog(BuildContext context) {
     Dialogs.materialDialog(
+      dialogWidth: 0.1,
       context: context,
       msg: context.tr.deleteConfirmation(
         context.client.name.getOrThrow(),
