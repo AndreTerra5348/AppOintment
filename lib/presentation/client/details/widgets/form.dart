@@ -47,18 +47,23 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
           autovalidateMode: _isFailure(state)
               ? AutovalidateMode.always
               : AutovalidateMode.onUserInteraction,
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  DetailsNameInputWidget(
-                    isEditing: context.isEditing,
-                  ),
-                ],
-              ),
-              if (_isLoadingOrInProgress(state))
-                const CircularProgressIndicator(value: null)
-            ],
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    DetailsNameInputWidget(
+                      isEditing: context.isEditing,
+                    ),
+                  ],
+                ),
+                if (_isLoadingOrInProgress(state))
+                  const Center(
+                    child: CircularProgressIndicator(value: null),
+                  )
+              ],
+            ),
           ),
         );
       },
