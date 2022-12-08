@@ -39,7 +39,7 @@ void main() {
     "Render localized app title",
     (tester) async {
       await tester.pumpWidget(const MockApp());
-      expect(find.text(AppLocalizationsEn().appointment), findsOneWidget);
+      expect(find.text(AppLocalizationsEn().appointmentTitle), findsOneWidget);
     },
   );
 }
