@@ -15,9 +15,7 @@ import '../../../common/failure_fixture.dart' as failure_fixture;
 
 @GenerateMocks([ClientRepository])
 void main() {
-  test(
-      "Initial state "
-      "should be [ClientRegisterState.initial()]", () {
+  test("Initial state should be [State.initial()]", () {
     // Arrange
     final sut = RegisterBloc(MockClientRepository(), ClientRegisterValidator());
 
@@ -26,7 +24,7 @@ void main() {
     expect(sut.state, RegisterState.initial());
   });
 
-  group("Given [ClientRegisterState.initial()]", () {
+  group("Given [State.initial()]", () {
     late MockClientRepository repository;
     late ClientRegisterValidator validator;
     late Client invalidClient;
@@ -40,8 +38,8 @@ void main() {
     });
 
     blocTest(
-      "When [ClientRegisterEvent.submitted(client)] with invalid client"
-      "Then [ClientRegisterState.submissionStatus] is [failure()] "
+      "When [Event.submitted(client)] with invalid client"
+      "Then [State.submissionStatus] is [failure()] "
       "And [SubmissionFailure] is [invalidFields()]",
       build: () => RegisterBloc(repository, validator),
       act: (bloc) => bloc.add(RegisterEvent.registered(entity: invalidClient)),
@@ -49,8 +47,8 @@ void main() {
     );
 
     blocTest(
-      "When [ClientRegisterEvent.submitted(client)] with invalid client"
-      "Then [ClientRegisterState.submissionStatus] "
+      "When [Event.submitted(client)] with invalid client"
+      "Then [State.submissionStatus] "
       "Then [Repository.insert()] should NOT be called",
       build: () => RegisterBloc(repository, validator),
       act: (bloc) => bloc.add(RegisterEvent.registered(entity: invalidClient)),
@@ -58,7 +56,7 @@ void main() {
     );
 
     blocTest(
-      "When [ClientRegisterEvent.submitted()] with valid client "
+      "When [Event.submitted()] with valid client "
       "Then [Repository.insert()] should be called once",
       setUp: () {
         when(repository.insert(any))
@@ -71,8 +69,8 @@ void main() {
 
     blocTest(
       "When [Repository.insert()] is called with valid client "
-      "Then [ClientRegisterState.submissionStatus] is [inProgress()] "
-      "Then [ClientRegisterState.submissionStatus] is [success()]",
+      "Then [State.submissionStatus] is [inProgress()] "
+      "Then [State.submissionStatus] is [success()]",
       setUp: () {
         when(repository.insert(any))
             .thenAnswer((_) async => right(validClient));
@@ -87,7 +85,7 @@ void main() {
 
     blocTest(
       "When [Repository.insert()] is called with valid client "
-      "Then [ClientRegisterState.submissionStatus] is [failure()] "
+      "Then [State.submissionStatus] is [failure()] "
       "And [SubmissionFailure] is [failure()] "
       "And [RepositoryFailure] is [dbException()]",
       setUp: () {
