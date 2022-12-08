@@ -8,18 +8,30 @@ import 'package:appointment/infrastructure/core/filter.dart';
 import 'package:appointment/infrastructure/core/i_page_service.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:stream_transform/stream_transform.dart';
 
 part 'bloc.freezed.dart';
 part 'event.dart';
 part 'state.dart';
 
-// TODO: add debounce
+const throttleDuration = Duration(milliseconds: 100);
+
+EventTransformer<E> throttleDroppable<E>(Duration duration) {
+  return (events, mapper) {
+    return droppable<E>().call(events.throttle(duration), mapper);
+  };
+}
+
 class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
   final IPageService<Client, ClientModels, ClientModel> _pageService;
   ClientSearchBloc(this._pageService) : super(ClientSearchState.initial()) {
     on<_FetchRequested>(_onFetchRequested);
-    on<_TermChanged>(_onTermChanged);
+    on<_TermChanged>(
+      _onTermChanged,
+      transformer: throttleDroppable(throttleDuration),
+    );
     on<_RefreshRequested>(_onRefreshRequested);
   }
 
