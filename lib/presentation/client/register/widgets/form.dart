@@ -4,7 +4,7 @@ import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/application/register/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/presentation/client/common/widgets/name_input.dart';
+import 'package:appointment/presentation/client/register/widgets/name_input.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:flutter/material.dart';
@@ -53,8 +53,9 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
               return Stack(
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const NameInputWidget(),
+                      const RegisterNameInputWidget(),
                       ElevatedButton(
                         onPressed: () => context.submitted(
                           client: clientState.client,
@@ -64,7 +65,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
                     ],
                   ),
                   if (registerState.isInProgress)
-                    const CircularProgressIndicator(value: null)
+                    const Center(child: CircularProgressIndicator(value: null))
                 ],
               );
             },
@@ -75,6 +76,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   }
 
   _handleSuccess(BuildContext context) {
+    context.reset();
     setState(() => _formKey.currentState!.reset());
     showDialog(
       context: context,
@@ -109,5 +111,11 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
 extension on BuildContext {
   void submitted({required Client client}) => read<RegisterBloc<Client>>().add(
         RegisterEvent<Client>.registered(entity: client),
+      );
+
+  void reset() => read<ClientBloc>().add(
+        ClientEvent.loaded(
+          client: ClientState.initial().client,
+        ),
       );
 }
