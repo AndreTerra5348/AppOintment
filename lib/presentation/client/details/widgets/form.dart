@@ -138,11 +138,20 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
   _handleFailure(BuildContext context, SubmissionFailure failure) {
     showDialog(
       context: context,
-      builder: (_) => Column(
-        children: [
-          const Icon(Icons.error_outline),
-          Text(failure.toErrorText(context)),
-        ],
+      barrierColor: Colors.black.withOpacity(0.2),
+      builder: (_) => Center(
+        child: Align(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.error_outline, color: Colors.red),
+              const SizedBox(height: 8),
+              Text(failure.toErrorText(context),
+                  style: const TextStyle(color: Colors.red)),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -151,7 +160,11 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     context.reaload(id: context.client.id);
     showDialog(
       context: context,
-      builder: (_) => const Icon(Icons.check_circle_outline),
+      barrierColor: Colors.black.withOpacity(0.2),
+      builder: (_) => const Icon(
+        Icons.check_circle_outline,
+        color: Colors.green,
+      ),
     );
   }
 
