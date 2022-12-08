@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
       body: Stack(children: [
         _buildBanner(context),
       ]),
-      appBar: AppBar(title: Text(context.tr.appointment)),
+      appBar: AppBar(title: Text(context.tr.appointmentTitle)),
     );
   }
 
