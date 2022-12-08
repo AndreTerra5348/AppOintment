@@ -3,7 +3,6 @@ import 'package:appointment/presentation/home/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  // TODO: add debug banner to bottom right corner
   const HomePage({
     super.key,
   });
@@ -12,8 +11,21 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const HomeDrawer(),
-      body: Container(),
+      body: Stack(children: [
+        _buildBanner(context),
+      ]),
       appBar: AppBar(title: Text(context.tr.appointment)),
+    );
+  }
+
+  _buildBanner(BuildContext context) {
+    return const Align(
+      alignment: Alignment.bottomRight,
+      child: Banner(
+        message: "Debug",
+        location: BannerLocation.bottomStart,
+        layoutDirection: TextDirection.rtl,
+      ),
     );
   }
 }
