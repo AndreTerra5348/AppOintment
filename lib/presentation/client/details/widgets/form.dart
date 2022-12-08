@@ -37,13 +37,16 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
       listener: (context, state) {
         state.map(
           initial: (_) {},
-          load: (load) => _handleDetailsStateChanged(load.state),
+          load: (load) => _handleLoadStateChanged(load.state),
           edit: (edit) => _handleEditStateChanged(context, edit.state),
           delete: (delete) => _handleDeleteStateChanged(context, delete.state),
         );
       },
       builder: (context, state) {
         return Form(
+          autovalidateMode: _isFailure(state)
+              ? AutovalidateMode.always
+              : AutovalidateMode.onUserInteraction,
           child: Stack(
             children: [
               Column(
@@ -110,7 +113,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
-  _handleDetailsStateChanged(LoadState<Client> state) {
+  _handleLoadStateChanged(LoadState<Client> state) {
     state.maybeMap(
       orElse: () {},
       success: (success) => context.load(
@@ -121,13 +124,14 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   _handleEditStateChanged(BuildContext context, EditState state) {
     state.maybeMap(
-      orElse: () {},
-      success: (_) => _handleSuccess(context),
-      failure: (failure) => _handleFailure(
-        context,
-        failure.failure,
-      ),
-    );
+        orElse: () {},
+        success: (_) {
+          _handleSuccess(context);
+        },
+        failure: (failure) {
+          _handleFailure(context, failure.failure);
+          context.keepEditing();
+        });
 
     _timer = Timer(
       const Duration(seconds: 1),
@@ -176,6 +180,15 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
       delete: (delete) => delete.state.isInProgress,
     );
   }
+
+  bool _isFailure(DetailsState<Client> state) {
+    return state.maybeMap(
+      orElse: () => false,
+      load: (load) => load.state.isFailure,
+      edit: (edit) => edit.state.isFailure,
+      delete: (delete) => delete.state.isFailure,
+    );
+  }
 }
 
 extension on BuildContext {
@@ -191,8 +204,15 @@ extension on BuildContext {
 
   bool get isEditing => editBloc.state.isEditing;
 
-  void load({required Client client}) =>
-      clientBloc.add(ClientEvent.loaded(client: client));
+  void load({required Client client}) => clientBloc.add(
+        ClientEvent.loaded(client: client),
+      );
 
-  void reaload({required Uid id}) => loadBloc.add(LoadEvent.loaded(id: id));
+  void reaload({required Uid id}) => loadBloc.add(
+        LoadEvent.loaded(id: id),
+      );
+
+  void keepEditing() => editBloc.add(
+        const EditEvent.editPressed(),
+      );
 }
