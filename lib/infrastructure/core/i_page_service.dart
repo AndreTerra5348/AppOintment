@@ -17,13 +17,13 @@ abstract class IPageService<T_Entity, T_Table extends drift.Table,
       SelectFilter<T_Table, T_Model>? filter});
 }
 
-abstract class BasePageService<T_Entity, T_Table extends drift.Table,
+class DriftPageService<T_Entity, T_Table extends drift.Table,
         T_Model extends drift.DataClass>
     extends IPageService<T_Entity, T_Table, T_Model> {
   final Dao<T_Table, T_Model> _dao;
   final EntityModelConverter<T_Entity, T_Model> _converter;
 
-  BasePageService(this._dao, this._converter);
+  DriftPageService(this._dao, this._converter);
 
   @override
   Future<Either<PageServiceFailure, Iterable<T_Entity>>> getPage(
