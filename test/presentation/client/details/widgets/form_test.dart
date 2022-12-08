@@ -9,6 +9,7 @@ import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:appointment/presentation/app_ointment.dart';
+import 'package:appointment/presentation/client/common/widgets/name_form_field.dart';
 import 'package:appointment/presentation/client/details/widgets/name_input.dart';
 import 'package:appointment/presentation/client/details/page.dart';
 import 'package:appointment/presentation/client/details/widgets/form.dart';
@@ -137,14 +138,14 @@ void main() {
       });
 
       testWidgets(
-        "All TextFormFields should be enabled ",
+        "All NameFormFields should be enabled ",
         (tester) async {
           await tester.pumpWidget(mockClientDetailPage);
 
-          expect(find.byType(TextFormField), findsNWidgets(1));
+          expect(find.byType(NameFormField), findsNWidgets(1));
           expect(
             find.byWidgetPredicate(
-              (widget) => widget is TextFormField && widget.enabled,
+              (widget) => widget is NameFormField && widget.enabled,
             ),
             findsNWidgets(1),
           );
