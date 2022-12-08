@@ -6,14 +6,12 @@ import 'package:appointment/infrastructure/core/entity_model_converter.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
 
-abstract class BaseRepository<
-    T_Entity extends EntityMixin,
-    T_Table extends Table,
+class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     T_Model extends DataClass> implements IRepository<T_Entity> {
   final Dao<T_Table, T_Model> _dao;
   final EntityModelConverter<T_Entity, T_Model> _converter;
 
-  BaseRepository(this._dao, this._converter);
+  DriftRepository(this._dao, this._converter);
 
   @override
   Future<Either<RepositoryFailure, T_Entity>> insert(T_Entity entity) async {
