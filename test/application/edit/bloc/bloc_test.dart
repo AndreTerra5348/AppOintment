@@ -2,7 +2,9 @@ import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/infrastructure/client/repository.dart';
+import 'package:appointment/infrastructure/client/table.dart';
+import 'package:appointment/infrastructure/core/repositories.dart';
+import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,20 +13,21 @@ import 'package:mockito/mockito.dart';
 import 'bloc_test.mocks.dart';
 import '../../../common/failure_fixture.dart' as failure_fixture;
 
-@GenerateMocks([ClientRepository])
+@GenerateMocks([DriftRepository])
 void main() {
-  late MockClientRepository repository;
+  late MockDriftRepository<Client, ClientModels, ClientModel> repository;
   late Client validClient;
   late Client invalidClient;
   setUp(() {
-    repository = MockClientRepository();
+    repository = MockDriftRepository<Client, ClientModels, ClientModel>();
     validClient = Client(name: Name('John'), id: Uid.fromInt(1));
     invalidClient = Client(name: Name(''), id: Uid.fromInt(1));
   });
 
   test("initial [State] should be [initial()]", () {
     // Arrange
-    final sut = EditBloc(MockClientRepository());
+    final sut =
+        EditBloc(MockDriftRepository<Client, ClientModels, ClientModel>());
     // Act
     // Assert
     expect(sut.state, const EditState.initial());
@@ -34,7 +37,8 @@ void main() {
     "Given [State.initial()] "
     "When [Event.editPressed] "
     "Then [State.editing()]",
-    build: () => EditBloc(MockClientRepository()),
+    build: () =>
+        EditBloc(MockDriftRepository<Client, ClientModels, ClientModel>()),
     act: (bloc) => bloc.add(const EditEvent<Client>.editPressed()),
     expect: () => [const EditState.editing()],
   );

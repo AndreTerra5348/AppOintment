@@ -12,11 +12,11 @@ import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/client/page_service.dart';
-import 'package:appointment/infrastructure/client/repository.dart';
 import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/core/entity_model_converter.dart';
 import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/core/repositories.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:drift/drift.dart';
 import 'package:get_it/get_it.dart';
@@ -36,7 +36,7 @@ void servicesConfiguration() {
       ClientPageService(getIt(), getIt()));
 
   getIt.registerSingleton<IRepository<Client>>(
-      ClientRepository(getIt(), getIt()));
+      DriftRepository<Client, ClientModels, ClientModel>(getIt(), getIt()));
 
   getIt.registerSingleton<RegisterValidator<Client>>(ClientRegisterValidator());
 

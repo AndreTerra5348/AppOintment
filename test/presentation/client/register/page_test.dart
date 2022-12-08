@@ -1,7 +1,10 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/client/register/validator.dart';
 import 'package:appointment/application/register/bloc/bloc.dart';
-import 'package:appointment/infrastructure/client/repository.dart';
+import 'package:appointment/domain/client/entity.dart';
+import 'package:appointment/infrastructure/client/table.dart';
+import 'package:appointment/infrastructure/core/repositories.dart';
+import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:appointment/presentation/client/register/page.dart';
 import 'package:appointment/presentation/client/register/widgets/form.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +13,15 @@ import 'package:mockito/annotations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'page_test.mocks.dart';
 
-@GenerateMocks([ClientRepository])
+@GenerateMocks([DriftRepository])
 void main() {
   group("Client Register Page", () {
     testWidgets("Render ClientRegisterFormWidget", (tester) async {
       // Arrange
       final clientRegisterPage = ClientRegisterPage(
-        registerBloc:
-            RegisterBloc(MockClientRepository(), ClientRegisterValidator()),
+        registerBloc: RegisterBloc(
+            MockDriftRepository<Client, ClientModels, ClientModel>(),
+            ClientRegisterValidator()),
         clientBloc: ClientBloc(),
       );
       await tester.pumpWidget(

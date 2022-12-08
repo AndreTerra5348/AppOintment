@@ -4,7 +4,8 @@ import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
-import 'package:appointment/infrastructure/client/repository.dart';
+import 'package:appointment/infrastructure/client/table.dart';
+import 'package:appointment/infrastructure/core/repositories.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
@@ -26,7 +27,8 @@ void main() {
       final clientDao = MockClientDao();
       final client = Client.withoutUid(name: Name("Bob"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       await sut.insert(client);
@@ -43,7 +45,8 @@ void main() {
       when(clientDao.insert(any)).thenAnswer((_) => Future.value(0));
       final client = Client.withoutUid(name: Name("Bob"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       await sut.insert(client);
@@ -63,7 +66,8 @@ void main() {
       const id = 1;
       when(clientDao.insert(any)).thenAnswer((_) => Future.value(id));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       final actual = await sut.insert(client);
@@ -83,7 +87,8 @@ void main() {
       final clientDao = MockClientDao();
       when(clientDao.insert(any)).thenThrow(Exception("Mocked Exception"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       final actual = await sut.insert(client);
@@ -102,7 +107,8 @@ void main() {
 
       final client = Client.withoutUid(name: Name("Bob"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       await sut.update(client);
@@ -119,7 +125,8 @@ void main() {
       when(clientDao.save(any, any)).thenAnswer((_) => Future.value(true));
       final client = Client.withoutUid(name: Name("Bob"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       await sut.update(client);
@@ -138,7 +145,8 @@ void main() {
       final clientDao = MockClientDao();
       when(clientDao.save(any, any)).thenThrow(Exception("Mocked Exception"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       final actual = await sut.update(client);
@@ -165,7 +173,8 @@ void main() {
         (_) => Future.value(model),
       );
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       final actual = await sut.getById(uid);
@@ -186,7 +195,8 @@ void main() {
       final clientDao = MockClientDao();
       when(clientDao.getById(any)).thenThrow(Exception("Mocked Exception"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       final actual = await sut.getById(uid);
@@ -207,7 +217,8 @@ void main() {
         (_) => Future.value(true),
       );
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       await sut.delete(uid);
@@ -225,7 +236,8 @@ void main() {
       final clientDao = MockClientDao();
       when(clientDao.remove(any)).thenThrow(Exception("Mocked Exception"));
 
-      final sut = ClientRepository(clientDao, ClientConveter());
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
 
       // Act
       final actual = await sut.delete(uid);
