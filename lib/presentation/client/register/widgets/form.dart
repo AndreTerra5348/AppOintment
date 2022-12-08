@@ -50,23 +50,32 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
               : AutovalidateMode.onUserInteraction,
           child: BlocBuilder<ClientBloc, ClientState>(
             builder: (context, clientState) {
-              return Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const RegisterNameInputWidget(),
-                      ElevatedButton(
-                        onPressed: () => context.submitted(
-                          client: clientState.client,
+              return Container(
+                margin: const EdgeInsets.all(8),
+                child: Stack(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const RegisterNameInputWidget(),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: ElevatedButton(
+                              onPressed: () => context.submitted(
+                                client: clientState.client,
+                              ),
+                              child: const Icon(Icons.add_circle),
+                            ),
+                          ),
                         ),
-                        child: const Icon(Icons.add_circle),
-                      )
-                    ],
-                  ),
-                  if (registerState.isInProgress)
-                    const Center(child: CircularProgressIndicator(value: null))
-                ],
+                      ],
+                    ),
+                    if (registerState.isInProgress)
+                      const Center(
+                          child: CircularProgressIndicator(value: null))
+                  ],
+                ),
               );
             },
           ),
