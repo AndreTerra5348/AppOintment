@@ -1,6 +1,5 @@
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
-import 'package:appointment/infrastructure/client/page_service.dart';
 import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/core/i_page_service.dart';
@@ -31,7 +30,9 @@ void main() {
         (_) => Future.value(models),
       );
       final converter = ClientConveter();
-      final IPageService sut = ClientPageService(mockDao, ClientConveter());
+      final IPageService sut =
+          DriftPageService<Client, ClientModels, ClientModel>(
+              mockDao, ClientConveter());
 
       // Act
       final actual = await sut.getPage(limit: 0, offset: 5);
@@ -53,7 +54,9 @@ void main() {
       when(mockDao.getPage(
               limit: anyNamed("limit"), offset: anyNamed("offset")))
           .thenThrow(error);
-      final IPageService sut = ClientPageService(mockDao, ClientConveter());
+      final IPageService sut =
+          DriftPageService<Client, ClientModels, ClientModel>(
+              mockDao, ClientConveter());
 
       // Act
       final actual = await sut.getPage(limit: 0, offset: 5);

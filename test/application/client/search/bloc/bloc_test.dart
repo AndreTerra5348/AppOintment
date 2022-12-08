@@ -4,8 +4,9 @@ import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/filter.dart';
-import 'package:appointment/infrastructure/client/page_service.dart';
+import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,12 +15,12 @@ import 'package:mockito/mockito.dart';
 import 'bloc_test.mocks.dart';
 
 @GenerateNiceMocks([
-  MockSpec<ClientPageService>(),
+  MockSpec<DriftPageService>(),
 ])
 void main() {
-  late MockClientPageService pageService;
+  late MockDriftPageService<Client, ClientModels, ClientModel> pageService;
   setUp(() {
-    pageService = MockClientPageService();
+    pageService = MockDriftPageService<Client, ClientModels, ClientModel>();
   });
 
   test(
@@ -237,9 +238,9 @@ void main() {
   );
 }
 
-MockClientPageService _whenMockClientPageServiceWithClients(
-    Iterable<Client> clients) {
-  final mock = MockClientPageService();
+MockDriftPageService<Client, ClientModels, ClientModel>
+    _whenMockClientPageServiceWithClients(Iterable<Client> clients) {
+  final mock = MockDriftPageService<Client, ClientModels, ClientModel>();
   when(mock.getPage(
     limit: anyNamed("limit"),
     offset: anyNamed("offset"),
@@ -248,9 +249,9 @@ MockClientPageService _whenMockClientPageServiceWithClients(
   return mock;
 }
 
-MockClientPageService _whenMockClientPageServiceWithFailure(
-    PageServiceFailure failure) {
-  final mock = MockClientPageService();
+MockDriftPageService<Client, ClientModels, ClientModel>
+    _whenMockClientPageServiceWithFailure(PageServiceFailure failure) {
+  final mock = MockDriftPageService<Client, ClientModels, ClientModel>();
   when(mock.getPage(
     limit: anyNamed("limit"),
     offset: anyNamed("offset"),
@@ -259,7 +260,9 @@ MockClientPageService _whenMockClientPageServiceWithFailure(
   return mock;
 }
 
-void _verifyPageMock({required MockClientPageService pageService}) {
+void _verifyPageMock(
+    {required MockDriftPageService<Client, ClientModels, ClientModel>
+        pageService}) {
   verify(pageService.getPage(
     limit: anyNamed("limit"),
     offset: anyNamed("offset"),

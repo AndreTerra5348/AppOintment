@@ -11,7 +11,6 @@ import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/core/i_repository.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
-import 'package:appointment/infrastructure/client/page_service.dart';
 import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/core/entity_model_converter.dart';
@@ -33,7 +32,7 @@ void servicesConfiguration() {
       ClientConveter());
 
   getIt.registerSingleton<IPageService<Client, ClientModels, ClientModel>>(
-      ClientPageService(getIt(), getIt()));
+      DriftPageService<Client, ClientModels, ClientModel>(getIt(), getIt()));
 
   getIt.registerSingleton<IRepository<Client>>(
       DriftRepository<Client, ClientModels, ClientModel>(getIt(), getIt()));
