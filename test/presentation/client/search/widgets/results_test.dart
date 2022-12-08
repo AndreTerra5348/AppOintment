@@ -172,7 +172,12 @@ void main() {
       await tester.tap(find.byIcon(Icons.menu));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(AppLocalizationsEn().homeDrawerClientSearch));
+      await tester.tap(
+        find.widgetWithText(
+          ListTile,
+          AppLocalizationsEn().homeDrawerClientSearch,
+        ),
+      );
       await tester.pumpAndSettle();
 
       final clientTile = find.text(models.first.id.toString());

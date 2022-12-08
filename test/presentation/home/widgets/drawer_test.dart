@@ -25,16 +25,7 @@ void main() {
       filter: anyNamed("filter"),
     )).thenAnswer((_) => Future.value(const Iterable.empty()));
   });
-  testWidgets(
-    "Render DrawerHeader text",
-    (tester) async {
-      await tester.pumpWidget(AppOintment());
-      await tester.pumpAndSettle();
-      await tester.tap(find.byIcon(Icons.menu));
-      await tester.pumpAndSettle();
-      expect(find.text(AppLocalizationsEn().homeDrawerTitle), findsOneWidget);
-    },
-  );
+
   testWidgets(
     "Render Register button",
     (tester) async {
@@ -42,7 +33,12 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.byIcon(Icons.menu));
       await tester.pumpAndSettle();
-      expect(find.text(AppLocalizationsEn().homeDrawerClientRegister),
+
+      expect(
+          find.widgetWithText(
+            ListTile,
+            AppLocalizationsEn().homeDrawerClientRegister,
+          ),
           findsOneWidget);
     },
   );
@@ -53,7 +49,11 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.byIcon(Icons.menu));
       await tester.pumpAndSettle();
-      expect(find.text(AppLocalizationsEn().homeDrawerClientSearch),
+      expect(
+          find.widgetWithText(
+            ListTile,
+            AppLocalizationsEn().homeDrawerClientSearch,
+          ),
           findsOneWidget);
     },
   );
@@ -70,7 +70,12 @@ void main() {
 
       expect(find.byType(HomeDrawer), findsOneWidget);
 
-      await tester.tap(find.text(AppLocalizationsEn().homeDrawerClientSearch));
+      await tester.tap(
+        find.widgetWithText(
+          ListTile,
+          AppLocalizationsEn().homeDrawerClientSearch,
+        ),
+      );
       await tester.pumpAndSettle();
 
       expect(find.byType(ClientSearchPage), findsOneWidget);
@@ -89,8 +94,12 @@ void main() {
 
       expect(find.byType(HomeDrawer), findsOneWidget);
 
-      await tester
-          .tap(find.text(AppLocalizationsEn().homeDrawerClientRegister));
+      await tester.tap(
+        find.widgetWithText(
+          ListTile,
+          AppLocalizationsEn().homeDrawerClientRegister,
+        ),
+      );
       await tester.pumpAndSettle();
 
       expect(find.byType(ClientRegisterPage), findsOneWidget);

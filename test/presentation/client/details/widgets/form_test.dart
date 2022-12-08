@@ -296,7 +296,12 @@ void main() {
       await tester.tap(find.byIcon(Icons.menu));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(AppLocalizationsEn().homeDrawerClientSearch));
+      await tester.tap(
+        find.widgetWithText(
+          ListTile,
+          AppLocalizationsEn().homeDrawerClientSearch,
+        ),
+      );
       await tester.pumpAndSettle();
 
       await tester.tap(find.text(models.first.id.toString()));
@@ -304,7 +309,7 @@ void main() {
 
       expect(find.byType(ClientDetailsPage), findsOneWidget);
 
-      await tester.tap(find.byIcon(Icons.delete));
+      await tester.tap(find.byIcon(Icons.delete_outlined));
       await tester.pump();
 
       await tester.tap(find.text(AppLocalizationsEn().delete));
