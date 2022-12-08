@@ -22,7 +22,6 @@ void main() {
     clientBloc = MockClientBloc();
     when(clientBloc.state).thenReturn(ClientState.initial());
     when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
-    ;
   });
 
   testWidgets("Render nameTextFormField translation", (tester) async {
