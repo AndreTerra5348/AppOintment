@@ -8,7 +8,7 @@ import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/presentation/client/common/widgets/name_input.dart';
+import 'package:appointment/presentation/client/details/widgets/name_input.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';

@@ -3,14 +3,15 @@ import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/common/widgets/name_form_field.dart';
-import 'package:appointment/presentation/client/common/widgets/name_input.dart';
+import 'package:appointment/presentation/client/details/widgets/name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'name_input_test.mocks.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @GenerateMocks([ClientBloc])
 void main() {

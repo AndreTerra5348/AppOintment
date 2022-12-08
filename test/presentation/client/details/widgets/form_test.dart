@@ -9,7 +9,7 @@ import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:appointment/presentation/app_ointment.dart';
-import 'package:appointment/presentation/client/common/widgets/name_input.dart';
+import 'package:appointment/presentation/client/details/widgets/name_input.dart';
 import 'package:appointment/presentation/client/details/page.dart';
 import 'package:appointment/presentation/client/details/widgets/form.dart';
 import 'package:appointment/presentation/client/search/page.dart';
@@ -92,7 +92,7 @@ void main() {
     testWidgets("Render NameInputWidget", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expectLater(find.byType(NameInputWidget), findsOneWidget);
+      expectLater(find.byType(DetailsNameInputWidget), findsOneWidget);
     });
   });
 
@@ -111,7 +111,8 @@ void main() {
         await tester.pumpWidget(mockClientDetailPage);
 
         expect(
-          find.widgetWithText(NameInputWidget, johnClient.name.getOrThrow()),
+          find.widgetWithText(
+              DetailsNameInputWidget, johnClient.name.getOrThrow()),
           findsOneWidget,
         );
       },
