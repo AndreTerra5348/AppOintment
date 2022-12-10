@@ -4,7 +4,7 @@ import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/error.dart';
 import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/domain/core/i_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,7 +14,7 @@ part 'state.dart';
 part 'bloc.freezed.dart';
 
 class LoadBloc<T extends EntityMixin> extends Bloc<LoadEvent, LoadState<T>> {
-  final IRepository<T> _repository;
+  final Repository<T> _repository;
   LoadBloc(this._repository) : super(LoadState<T>.loading()) {
     on<_Loaded>(_onLoaded);
   }

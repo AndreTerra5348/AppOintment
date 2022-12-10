@@ -4,7 +4,7 @@ import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/error.dart';
 import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/domain/core/i_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +13,7 @@ part 'state.dart';
 part 'bloc.freezed.dart';
 
 class DeleteBloc<T extends EntityMixin> extends Bloc<DeleteEvent, DeleteState> {
-  final IRepository<T> _repository;
+  final Repository<T> _repository;
   DeleteBloc(this._repository) : super(const _Initial()) {
     on<_Deleted>(_onDeleted);
   }

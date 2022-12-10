@@ -1,5 +1,5 @@
 import 'package:appointment/domain/common/value_object.dart';
-import 'package:appointment/domain/core/i_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -8,7 +8,7 @@ import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/application/register/bloc/bloc.dart';
 import 'package:appointment/application/register/validator.dart';
 import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/domain/core/i_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:appointment/infrastructure/client/converter.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/client/table.dart';
@@ -28,7 +28,7 @@ void mockServicesConfiguration(ClientDao dao) {
   getIt.registerSingleton<IPageService<Client, ClientModels, ClientModel>>(
       DriftPageService<Client, ClientModels, ClientModel>(getIt(), getIt()));
 
-  getIt.registerSingleton<IRepository<Client>>(
+  getIt.registerSingleton<Repository<Client>>(
       DriftRepository<Client, ClientModels, ClientModel>(getIt(), getIt()));
 
   getIt.registerSingleton<RegisterValidator<Client>>(ClientRegisterValidator());

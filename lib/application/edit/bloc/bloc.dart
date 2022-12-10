@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/common/entity_mixin.dart';
-import 'package:appointment/domain/core/i_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,7 +11,7 @@ part 'state.dart';
 part 'bloc.freezed.dart';
 
 class EditBloc<T extends EntityMixin> extends Bloc<EditEvent<T>, EditState> {
-  final IRepository<T> _repository;
+  final Repository<T> _repository;
   EditBloc(this._repository) : super(const _Initial()) {
     on<_EditPressed<T>>(_onEditPressed);
     on<_SavePressed<T>>(_onSavePressed);
