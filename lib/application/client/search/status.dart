@@ -1,4 +1,4 @@
-import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'status.freezed.dart';

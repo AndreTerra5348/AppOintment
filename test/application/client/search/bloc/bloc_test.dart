@@ -5,7 +5,7 @@ import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/filter.dart';
 import 'package:appointment/infrastructure/client/table.dart';
-import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';

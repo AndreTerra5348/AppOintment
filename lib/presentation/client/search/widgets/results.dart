@@ -1,7 +1,7 @@
 import 'package:appointment/application/client/search/bloc/bloc.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/config/route.dart';
 import 'package:auto_route/auto_route.dart';

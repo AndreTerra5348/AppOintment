@@ -1,6 +1,6 @@
 import 'package:appointment/application/common/form.dart';
 import 'package:appointment/domain/core/repository.dart';
-import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
 const dbErrorMessage = "Error";

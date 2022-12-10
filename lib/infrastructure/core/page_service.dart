@@ -7,9 +7,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'entity_model_converter.dart';
 
-part 'i_page_service.freezed.dart';
+part 'page_service.freezed.dart';
 
-abstract class IPageService<T_Entity, T_Table extends drift.Table,
+abstract class PageService<T_Entity, T_Table extends drift.Table,
     T_Model extends drift.DataClass> {
   Future<Either<PageServiceFailure, Iterable<T_Entity>>> getPage(
       {required int limit,
@@ -19,7 +19,7 @@ abstract class IPageService<T_Entity, T_Table extends drift.Table,
 
 class DriftPageService<T_Entity, T_Table extends drift.Table,
         T_Model extends drift.DataClass>
-    extends IPageService<T_Entity, T_Table, T_Model> {
+    extends PageService<T_Entity, T_Table, T_Model> {
   final Dao<T_Table, T_Model> _dao;
   final EntityModelConverter<T_Entity, T_Model> _converter;
 

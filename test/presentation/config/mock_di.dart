@@ -14,7 +14,7 @@ import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/core/entity_model_converter.dart';
-import 'package:appointment/infrastructure/core/i_page_service.dart';
+import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:appointment/infrastructure/core/repositories.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:appointment/presentation/config/di.dart';
@@ -25,7 +25,7 @@ void mockServicesConfiguration(ClientDao dao) {
   getIt.registerSingleton<EntityModelConverter<Client, ClientModel>>(
       ClientConveter());
 
-  getIt.registerSingleton<IPageService<Client, ClientModels, ClientModel>>(
+  getIt.registerSingleton<PageService<Client, ClientModels, ClientModel>>(
       DriftPageService<Client, ClientModels, ClientModel>(getIt(), getIt()));
 
   getIt.registerSingleton<Repository<Client>>(
