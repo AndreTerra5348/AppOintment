@@ -17,7 +17,7 @@ class NameFormField extends TextFormField {
   }) : super(
           inputFormatters: [
             FilteringTextInputFormatter.deny(
-              validators.lettersAndAccentsRegex,
+              validators.notLettersAndAccentsRegex,
             ),
           ],
           decoration: InputDecoration(
