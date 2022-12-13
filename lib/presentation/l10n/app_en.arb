@@ -1,0 +1,55 @@
+{
+    "@_FAILURES": {},
+    "emptyNameFailure": "Name cannot be empty",
+    "invalidFieldsFailure": "Invalid Fields",
+    "databaseFailure": "Database error: {error}",
+    "@databaseFailure": {
+            "placeholders": {
+                "error": {}
+            }
+        },
+    "notFoundFailure": "Not found",
+
+    "@_FORMS": {},
+    "nameTextFormField": "Name",
+
+    "@_HOME_DRAWER": {},
+    "homeDrawerTitle": "Home",
+    "homeDrawerClientRegister": "Client Registration",
+    "homeDrawerClientSearch": "Client Search",
+
+    "@_COMMON": {},
+    "appointmentTitle": "AppOintment",
+    "appointmentSubtitle": "Appointment Management",
+    "noResultsFound": "No results found",
+    "yes": "Yes",
+    "no": "No",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "success": "Success",
+
+    "@_CLIENT_REGISTER_PAGE": {},
+    "pageClientRegisterTitle": "Client Registration",
+    "registrationCompleted": "Registration Completed",
+
+    "@_CLIENT_SEARCH_PAGE": {},
+    "pageClientSearchTitle": "Client Search",
+    "searchTextFormFieldHint": "Search",
+
+    "@_CLIENT_DETAILS_PAGE": {},
+    "pageClientDetailsTitle": "{name}'s Details",
+    "@pageClientDetailsTitle": {
+            "placeholders": {
+                "name": {}
+            }
+        },
+    "saveConfirmation": "Save changes?",
+    "stopEditingConfirmation": "Stop editing?",
+    "deleteConfirmation": "Are you sure you want to delete {name}?",
+    "@deleteConfirmation": {
+            "placeholders": {
+                "name": {}
+            }
+        }
+}
