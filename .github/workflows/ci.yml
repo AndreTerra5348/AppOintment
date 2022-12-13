@@ -11,8 +11,8 @@ on:
       - master
 
 jobs:
-  unit-test:
-    name: Continuous Integration Jobs
+  test:
+    name: Format, Analyze, and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
