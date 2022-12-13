@@ -169,13 +169,10 @@ void main() {
       await tester.pumpWidget(AppOintment());
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byIcon(Icons.menu));
-      await tester.pumpAndSettle();
-
       await tester.tap(
         find.widgetWithText(
-          ListTile,
-          AppLocalizationsEn().homeDrawerClientSearch,
+          ElevatedButton,
+          AppLocalizationsEn().pageClientSearchTitle,
         ),
       );
       await tester.pumpAndSettle();

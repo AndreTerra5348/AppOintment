@@ -1,7 +1,5 @@
 import 'package:appointment/infrastructure/client/dao.dart';
-import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/home/page.dart';
-import 'package:appointment/presentation/home/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
@@ -25,16 +23,6 @@ void main() {
     )).thenAnswer((_) => Future.value(const Iterable.empty()));
   });
 
-  testWidgets(
-    "Render HomeDrawer when menu icon is pressed",
-    (tester) async {
-      await tester.pumpWidget(AppOintment());
-      await tester.pumpAndSettle();
-      await tester.tap(find.byIcon(Icons.menu));
-      await tester.pumpAndSettle();
-      expect(find.byType(HomeDrawer), findsOneWidget);
-    },
-  );
   testWidgets(
     "Render localized app title",
     (tester) async {
