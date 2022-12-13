@@ -16,11 +16,14 @@ class ClientSearchPage extends StatelessWidget {
       body: BlocProvider(
         create: (context) =>
             bloc..add(const ClientSearchEvent.fetchRequested()),
-        child: Column(
-          children: [
-            ClientSearchBarWidget(bloc: bloc),
-            const Expanded(child: ClientSearchResultsWidget()),
-          ],
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              ClientSearchBarWidget(bloc: bloc),
+              const Expanded(child: ClientSearchResultsWidget()),
+            ],
+          ),
         ),
       ),
     );
