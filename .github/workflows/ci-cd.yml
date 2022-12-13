@@ -1,0 +1,76 @@
+name: CI
+env:
+  APP_NAME: appointment
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  test:
+    name: Format, Analyze, and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clone Flutter repository with stable channel
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Format
+        run: flutter format --dry-run --set-exit-if-changed lib/ test/
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run Tests
+        run: flutter test --machine > test-results.json
+
+      - name: Generate Test Report
+        uses: dorny/test-reporter@v1.4.2
+        with:
+          name: test-results
+          path: test-results.json
+          reporter: flutter-json
+  build:
+    name: Windows Build and Release
+    needs: [test]
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clone Flutter repository with stable channel
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Install project dependencies
+        run: flutter pub get
+
+      - name: Enable windows build
+        run: flutter config --enable-windows-desktop
+
+      - name: Build artifacts
+        run: flutter build windows --release
+
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: "zip"
+          filename: ${{env.APP_NAME}}-${{github.ref_name}}-windows.zip
+          directory: build/windows/runner/Release
+
+      - name: Windows Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: build/windows/runner/Release/${{env.APP_NAME}}-${{github.ref_name}}-windows.zip
