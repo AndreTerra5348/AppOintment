@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 env:
   APP_NAME: appointment
 
