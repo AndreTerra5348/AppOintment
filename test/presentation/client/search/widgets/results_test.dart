@@ -1,10 +1,6 @@
 import 'package:appointment/application/client/search/bloc/bloc.dart';
 import 'package:appointment/application/client/search/status.dart';
-import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/details/page.dart';
 import 'package:appointment/presentation/client/search/widgets/results.dart';
@@ -16,6 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../../../../common/failure_fixture.dart' as failure_fixture;
+import '../../../../common/client_fixture.dart' as client_fixture;
 import '../../../config/mock_di.dart' as mock_di;
 import 'results_test.mocks.dart';
 
@@ -50,7 +47,7 @@ void main() {
       setUp(() {
         state = ClientSearchState.initial().copyWith(
           status: const ClientSearchStatus.success(),
-          clients: _createClients(amount: clientsAmount),
+          clients: client_fixture.generateEntity(amount: clientsAmount),
         );
         when(searchBloc.state).thenReturn(state);
         when(searchBloc.stream).thenAnswer(
@@ -91,7 +88,7 @@ void main() {
           when(searchBloc.state)
               .thenReturn(ClientSearchState.initial().copyWith(
             status: const ClientSearchStatus.success(),
-            clients: _createClients(amount: 20),
+            clients: client_fixture.generateEntity(amount: 20),
           ));
 
           await tester.pumpWidget(MockClientSearchPage(bloc: searchBloc));
@@ -155,8 +152,7 @@ void main() {
     (tester) async {
       final mockClientDao = MockClientDao();
 
-      final models =
-          Iterable.generate(5).map((e) => ClientModel(id: e + 1, name: "Bob"));
+      final models = client_fixture.generateModel(amount: 5);
 
       when(mockClientDao.getPage(
         limit: anyNamed("limit"),
@@ -177,21 +173,12 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      final clientTile = find.text(models.first.id.toString());
+      final clientTile = find.text(models.first.id.getOrThrow().toString());
       await tester.tap(clientTile);
       await tester.pumpAndSettle();
 
       expect(find.byType(ClientDetailsPage), findsOneWidget);
     },
-  );
-}
-
-Iterable<Client> _createClients({int amount = 1}) {
-  return Iterable.generate(amount).map(
-    (e) => Client(
-      id: Uid.fromInt(e),
-      name: Name("Bob"),
-    ),
   );
 }
 

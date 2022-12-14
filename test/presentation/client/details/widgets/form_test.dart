@@ -7,7 +7,6 @@ import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/common/widgets/name_form_field.dart';
 import 'package:appointment/presentation/client/details/widgets/name_input.dart';
@@ -23,6 +22,7 @@ import 'page_mock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
 import '../../../../common/failure_fixture.dart' as mock_failure;
+import '../../../../common/client_fixture.dart' as client_fixture;
 import '../../../config/mock_di.dart' as mock_di;
 
 @GenerateMocks([
@@ -270,9 +270,7 @@ void main() {
     (tester) async {
       final mockClientDao = MockClientDao();
 
-      final models = Iterable.generate(5).map(
-        (e) => ClientModel(id: e + 1, name: "Bob"),
-      );
+      final models = client_fixture.generateModel(amount: 5);
 
       when(mockClientDao.getPage(
         limit: anyNamed("limit"),
@@ -301,7 +299,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(models.first.id.toString()));
+      await tester.tap(find.text(models.first.id.getOrThrow().toString()));
       await tester.pumpAndSettle();
 
       expect(find.byType(ClientDetailsPage), findsOneWidget);
