@@ -24,11 +24,12 @@ The project is divided into 4 layers
     * Widgets are reusable components that can be used in multiple pages
     * Pages are the screens that the user sees
 
+
 ## Screenshots
 
-<img src="assets\home-page.jpg" alt="home-page" width="80%"> 
-<img src="assets\search-page.jpg" alt="search-page" width="80%">
-<img src="assets\details-page.jpg" alt="details-page" width="80%"> 
+<img src="assets\home.jpg" alt="home-page" width="80%"> 
+<img src="assets\search.jpg" alt="search-page" width="80%">
+<img src="assets\details.jpg" alt="details-page" width="80%"> 
 
 ## Build with
 
