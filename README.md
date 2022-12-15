@@ -19,11 +19,31 @@ The project is divided into 4 layers
     * Data sources are responsible for getting data from external sources (e.g. database, network, etc)
     * Repositories are responsible for dealing with data sources and returning domain objects
 * Application: contains blocs
-    * Blocs are responsible for getting data from repositories and transforming it into a state that can be consumed by the UI
+    * Blocs are responsible for getting data from repositories and transforming it into a state that can be consumed by the presentation layer
 * Presentation: contains widgets and pages
     * Widgets are reusable components that can be used in multiple pages
     * Pages are the screens that the user sees
 
+
+## Screenshots
+
+<img src="assets\home.jpg" alt="home-page" width="80%"> 
+<img src="assets\search.jpg" alt="search-page" width="80%">
+<img src="assets\details.jpg" alt="details-page" width="80%"> 
+
+## Build with
+
+### App
+* [Flutter](https://flutter.dev/)
+* [Dartz](https://pub.dev/packages/dartz) Either and Option types are used to prevent [Value Objects](lib/domain/common/value_object.dart) invalid states and propagete failures
+* [BLoC](https://pub.dev/packages/flutter_bloc) for state management
+* [Freezed](https://pub.dev/packages/freezed) for data classes and union types
+* [Drift](https://pub.dev/packages/drift) for sqlite database
+* [GetIt](https://pub.dev/packages/get_it) for dependency injection
+
+### Tests
+* [Mockito](https://pub.dev/packages/mockito) for mocking
+* [BlocTest](https://pub.dev/packages/bloc_test) for bloc tests
 
 ## Getting Started
 
