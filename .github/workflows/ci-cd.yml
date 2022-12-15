@@ -38,7 +38,7 @@ jobs:
           name: test-results
           path: test-results.json
           reporter: flutter-json
-  build:
+  build-windows:
     name: Windows Build and Release
     needs: [test]
     runs-on: windows-latest
@@ -74,3 +74,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: build/windows/runner/Release/${{env.APP_NAME}}-${{github.ref_name}}-windows.zip
+  build-web:
+    name: Web Build and Release to GitHub Pages
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clone Flutter repository with stable channel
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Deploy Flutter web app to github pages
+        uses: bluefireteam/flutter-gh-pages@v7
