@@ -1,8 +1,8 @@
 import 'package:appointment/application/client/bloc/bloc.dart';
-import 'package:appointment/application/details/bloc/bloc.dart';
 import 'package:appointment/application/client/register/validator.dart';
 import 'package:appointment/application/client/search/bloc/bloc.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
+import 'package:appointment/application/details/bloc/bloc.dart';
 import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/application/load/bloc/bloc.dart';
 import 'package:appointment/application/register/bloc/bloc.dart';
@@ -17,13 +17,15 @@ import 'package:appointment/infrastructure/core/entity_model_converter.dart';
 import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:appointment/infrastructure/core/repositories.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/infrastructure/drift/executor_provider.dart'
+    as executor_provider;
 import 'package:drift/drift.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
 void servicesConfiguration() {
-  getIt.registerSingleton<QueryExecutor>(QueryExecutorProvider.nativeDB);
+  getIt.registerSingleton<QueryExecutor>(executor_provider.getQueryExecutor());
   getIt.registerSingleton(DriftDb(executor: getIt()));
 
   getIt.registerSingleton<Dao<ClientModels, ClientModel>>(ClientDao(getIt()));

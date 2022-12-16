@@ -165,8 +165,8 @@ void main() {
       final uid = Uid.fromInt(1);
 
       final model = ClientModel(
-        id: uid.getOrThrow(),
-        name: "Bob",
+        id: uid,
+        name: Name("Bob"),
       );
       final clientDao = MockClientDao();
       when(clientDao.getById(any)).thenAnswer(
@@ -182,7 +182,7 @@ void main() {
       // Assert
       expect(actual, isA<Right<RepositoryFailure, Client>>());
       expect((actual as Right<RepositoryFailure, Client>).value.id, uid);
-      expect(actual.value.name, Name(model.name));
+      expect(actual.value.name, model.name);
       verify(clientDao.getById(uid)).called(1);
     });
 

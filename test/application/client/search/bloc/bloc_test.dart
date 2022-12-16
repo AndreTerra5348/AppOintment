@@ -1,8 +1,6 @@
 import 'package:appointment/application/client/search/bloc/bloc.dart';
 import 'package:appointment/application/client/search/status.dart';
 import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/filter.dart';
 import 'package:appointment/infrastructure/client/table.dart';
 import 'package:appointment/infrastructure/core/page_service.dart';
@@ -13,6 +11,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'bloc_test.mocks.dart';
+
+import '../../../../common/client_fixture.dart' as client_fixture;
 
 @GenerateNiceMocks([
   MockSpec<DriftPageService>(),
@@ -100,12 +100,7 @@ void main() {
 
   group("Given [PageService.getPage()] return clients  ", () {
     setUp(() {
-      clients = Iterable.generate(5).map(
-        (e) => Client(
-          id: Uid.fromInt(e),
-          name: Name("Bob"),
-        ),
-      );
+      clients = client_fixture.generateEntity(amount: 5);
 
       pageService = _whenMockClientPageServiceWithClients(clients);
     });

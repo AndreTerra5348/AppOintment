@@ -11,15 +11,15 @@ void main() {
         "Should return [Client] with name and id equal to the model "
         "When [toEntity] is called with [ClientModel]", () {
       // Arrange
-      const model = ClientModel(id: 0, name: "Bob");
+      final model = ClientModel(id: Uid.fromInt(0), name: Name("Bob"));
       final sut = ClientConveter();
 
       // Act
       final actual = sut.toEntity(model);
 
       // Assert
-      expect(actual.name.getOrThrow(), model.name);
-      expect(actual.id.getOrThrow(), model.id);
+      expect(actual.name, model.name);
+      expect(actual.id, model.id);
     });
     test(
         "Should return [ClientModelsCompanion] with the same name as the entity "
@@ -33,7 +33,7 @@ void main() {
 
       // Assert
       expect(actual, isA<ClientModelsCompanion>());
-      expect(actual.name.value, entity.name.getOrThrow());
+      expect(actual.name.value, entity.name);
     });
     test(
         "Should return [Client] with same name and id "
@@ -62,8 +62,8 @@ void main() {
       final actual = sut.toModel(entity);
 
       // Assert
-      expect(actual.name, entity.name.getOrThrow());
-      expect(actual.id, entity.id.getOrThrow());
+      expect(actual.name, entity.name);
+      expect(actual.id, entity.id);
     });
   });
 }

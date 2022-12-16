@@ -1,3 +1,5 @@
+import 'package:appointment/domain/client/values.dart';
+import 'package:appointment/domain/common/error.dart';
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/client/filter.dart';
@@ -6,10 +8,18 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../common/client_fixture.dart' as client_fixture;
+
 void main() {
   DriftDb? db;
+  late Name bobName;
+  late Name joeName;
+  late Uid uid;
   setUp(() {
     db = DriftDb(executor: NativeDatabase.memory());
+    bobName = Name("Bob");
+    joeName = Name("Joe");
+    uid = Uid.fromInt(1);
   });
 
   test(
@@ -17,7 +27,7 @@ void main() {
       "when insert is called "
       "and getByUid is called with the same id", () async {
     // Arrange
-    final model = ClientModelsCompanion.insert(name: "Bob");
+    final model = ClientModelsCompanion.insert(name: bobName);
     final sut = ClientDao(db!);
 
     // Act
@@ -25,7 +35,7 @@ void main() {
     final actual = await sut.getById(Uid.fromInt(id));
 
     // Assert
-    expect(actual.id, id);
+    expect(actual.id, uid);
     expect(actual.name, model.name.value);
   });
 
@@ -37,7 +47,7 @@ void main() {
 
     // Act
     try {
-      await sut.getById(Uid.fromInt(1));
+      await sut.getById(uid);
     } catch (e) {
       // Assert
       expect(e, isA<StateError>());
@@ -48,18 +58,18 @@ void main() {
       "Should return the 5 first inserted clientModel "
       "when getPage is called with limit 5 and offset 0", () async {
     // Arrange
-    const count = 5;
-    final clients = _createClients(count: count);
+    const amount = 5;
+    final clients = client_fixture.generateModel(amount: amount);
 
     final sut = ClientDao(db!);
     clients
         .map((e) => ClientModelsCompanion.insert(name: e.name))
         .forEach(sut.insert);
 
-    sut.insert(ClientModelsCompanion.insert(name: "Joe"));
+    sut.insert(ClientModelsCompanion.insert(name: joeName));
 
     // Act
-    final actual = await sut.getPage(limit: count, offset: 0);
+    final actual = await sut.getPage(limit: amount, offset: 0);
 
     // Assert
     expect(actual, hasLength(clients.length));
@@ -71,18 +81,18 @@ void main() {
       "when getPage is called with offset greater than the amount of items",
       () async {
     // Arrange
-    const count = 5;
-    final clients = _createClients(count: count);
+    const amount = 5;
+    final clients = client_fixture.generateModel(amount: amount);
 
     final sut = ClientDao(db!);
     clients
         .map((e) => ClientModelsCompanion.insert(name: e.name))
         .forEach(sut.insert);
 
-    sut.insert(ClientModelsCompanion.insert(name: "Joe"));
+    sut.insert(ClientModelsCompanion.insert(name: joeName));
 
     // Act
-    final actual = await sut.getPage(limit: count, offset: 6);
+    final actual = await sut.getPage(limit: amount, offset: 6);
 
     // Assert
     expect(actual, isEmpty);
@@ -93,14 +103,14 @@ void main() {
       "when getPage is called with offset 0 limit 5 and NameFilter", () async {
     // Arrange
     const count = 3;
-    final clients = _createClients(count: count);
+    final clients = client_fixture.generateModel(amount: count);
 
     final sut = ClientDao(db!);
     clients
         .map((e) => ClientModelsCompanion.insert(name: e.name))
         .forEach(sut.insert);
 
-    sut.insert(ClientModelsCompanion.insert(name: "Joe"));
+    sut.insert(ClientModelsCompanion.insert(name: joeName));
     final filter = ClientNameFilter("Bob");
     // Act
     final actual = await sut.getPage(limit: 5, offset: 0, filter: filter);
@@ -114,15 +124,15 @@ void main() {
       "Should return true "
       "when updateById is called with a valid id and a valid name", () async {
     // Arrange
-    const model = ClientModel(id: 1, name: "Bob");
+    final model = ClientModel(id: uid, name: bobName);
     final sut = ClientDao(db!);
     await sut.insert(ClientModelsCompanion.insert(name: model.name));
 
     // Act
     final actual = await sut.save(
-      Uid.fromInt(model.id),
-      const ClientModelsCompanion(
-        name: Value("Joe"),
+      model.id,
+      ClientModelsCompanion(
+        name: Value(joeName),
       ),
     );
 
@@ -131,24 +141,24 @@ void main() {
   });
 
   test(
-      "Should throw InvalidDataException "
+      "Should throw CriticalError "
       "when updateById is called with a valid id and an empty name", () async {
     // Arrange
-    const model = ClientModel(id: 1, name: "Bob");
+    final model = ClientModel(id: uid, name: bobName);
     final sut = ClientDao(db!);
     await sut.insert(ClientModelsCompanion.insert(name: model.name));
 
     try {
       // Act
       await sut.save(
-        Uid.fromInt(model.id),
-        const ClientModelsCompanion(
-          name: Value(""),
+        model.id,
+        ClientModelsCompanion(
+          name: Value(Name("")),
         ),
       );
     } catch (e) {
       // Assert
-      expect(e, isA<InvalidDataException>());
+      expect(e, isA<CriticalError>());
     }
   });
 
@@ -157,15 +167,15 @@ void main() {
       "when updateById is called with an invalid id and a valid name",
       () async {
     // Arrange
-    const model = ClientModel(id: 1, name: "Bob");
+    final model = ClientModel(id: uid, name: bobName);
     final sut = ClientDao(db!);
     await sut.insert(ClientModelsCompanion.insert(name: model.name));
 
     // Act
     final actual = await sut.save(
       Uid.fromInt(2),
-      const ClientModelsCompanion(
-        name: Value("Joe"),
+      ClientModelsCompanion(
+        name: Value(joeName),
       ),
     );
 
@@ -177,12 +187,12 @@ void main() {
       "Should return true "
       "when remove is called with a valid id", () async {
     // Arrange
-    const model = ClientModel(id: 1, name: "Bob");
+    final model = ClientModel(id: uid, name: bobName);
     final sut = ClientDao(db!);
     await sut.insert(model);
 
     // Act
-    final actual = await sut.remove(Uid.fromInt(model.id));
+    final actual = await sut.remove(model.id);
 
     // Assert
     expect(actual, isTrue);
@@ -191,13 +201,4 @@ void main() {
   tearDown(() async {
     await db?.close();
   });
-}
-
-Iterable<ClientModel> _createClients({int count = 1}) {
-  return Iterable.generate(count).map(
-    (e) => ClientModel(
-      id: e + 1,
-      name: "Bob",
-    ),
-  );
 }

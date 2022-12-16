@@ -8,14 +8,20 @@ part of 'db.dart';
 
 // ignore_for_file: type=lint
 class ClientModel extends DataClass implements Insertable<ClientModel> {
-  final int id;
-  final String name;
+  final Uid id;
+  final Name name;
   const ClientModel({required this.id, required this.name});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['name'] = Variable<String>(name);
+    {
+      final converter = $ClientModelsTable.$converter0;
+      map['id'] = Variable<int>(converter.toSql(id));
+    }
+    {
+      final converter = $ClientModelsTable.$converter1;
+      map['name'] = Variable<String>(converter.toSql(name));
+    }
     return map;
   }
 
@@ -30,20 +36,20 @@ class ClientModel extends DataClass implements Insertable<ClientModel> {
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return ClientModel(
-      id: serializer.fromJson<int>(json['id']),
-      name: serializer.fromJson<String>(json['name']),
+      id: serializer.fromJson<Uid>(json['id']),
+      name: serializer.fromJson<Name>(json['name']),
     );
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'name': serializer.toJson<String>(name),
+      'id': serializer.toJson<Uid>(id),
+      'name': serializer.toJson<Name>(name),
     };
   }
 
-  ClientModel copyWith({int? id, String? name}) => ClientModel(
+  ClientModel copyWith({Uid? id, Name? name}) => ClientModel(
         id: id ?? this.id,
         name: name ?? this.name,
       );
@@ -65,15 +71,15 @@ class ClientModel extends DataClass implements Insertable<ClientModel> {
 }
 
 class ClientModelsCompanion extends UpdateCompanion<ClientModel> {
-  final Value<int> id;
-  final Value<String> name;
+  final Value<Uid> id;
+  final Value<Name> name;
   const ClientModelsCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
   });
   ClientModelsCompanion.insert({
     this.id = const Value.absent(),
-    required String name,
+    required Name name,
   }) : name = Value(name);
   static Insertable<ClientModel> custom({
     Expression<int>? id,
@@ -85,7 +91,7 @@ class ClientModelsCompanion extends UpdateCompanion<ClientModel> {
     });
   }
 
-  ClientModelsCompanion copyWith({Value<int>? id, Value<String>? name}) {
+  ClientModelsCompanion copyWith({Value<Uid>? id, Value<Name>? name}) {
     return ClientModelsCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -96,10 +102,12 @@ class ClientModelsCompanion extends UpdateCompanion<ClientModel> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     if (id.present) {
-      map['id'] = Variable<int>(id.value);
+      final converter = $ClientModelsTable.$converter0;
+      map['id'] = Variable<int>(converter.toSql(id.value));
     }
     if (name.present) {
-      map['name'] = Variable<String>(name.value);
+      final converter = $ClientModelsTable.$converter1;
+      map['name'] = Variable<String>(converter.toSql(name.value));
     }
     return map;
   }
@@ -122,19 +130,21 @@ class $ClientModelsTable extends ClientModels
   $ClientModelsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
+  late final GeneratedColumnWithTypeConverter<Uid, int> id =
+      GeneratedColumn<int>('id', aliasedName, false,
+              type: DriftSqlType.int,
+              requiredDuringInsert: false,
+              defaultConstraints: 'PRIMARY KEY AUTOINCREMENT')
+          .withConverter<Uid>($ClientModelsTable.$converter0);
   final VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
-  late final GeneratedColumn<String> name = GeneratedColumn<String>(
-      'name', aliasedName, false,
-      additionalChecks:
-          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 32),
-      type: DriftSqlType.string,
-      requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<Name, String> name =
+      GeneratedColumn<String>('name', aliasedName, false,
+              additionalChecks: GeneratedColumn.checkTextLength(
+                  minTextLength: 1, maxTextLength: 32),
+              type: DriftSqlType.string,
+              requiredDuringInsert: true)
+          .withConverter<Name>($ClientModelsTable.$converter1);
   @override
   List<GeneratedColumn> get $columns => [id, name];
   @override
@@ -146,15 +156,8 @@ class $ClientModelsTable extends ClientModels
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('name')) {
-      context.handle(
-          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
-    } else if (isInserting) {
-      context.missing(_nameMeta);
-    }
+    context.handle(_idMeta, const VerificationResult.success());
+    context.handle(_nameMeta, const VerificationResult.success());
     return context;
   }
 
@@ -164,10 +167,11 @@ class $ClientModelsTable extends ClientModels
   ClientModel map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return ClientModel(
-      id: attachedDatabase.options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      name: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      id: $ClientModelsTable.$converter0.fromSql(attachedDatabase.options.types
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!),
+      name: $ClientModelsTable.$converter1.fromSql(attachedDatabase
+          .options.types
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!),
     );
   }
 
@@ -175,6 +179,9 @@ class $ClientModelsTable extends ClientModels
   $ClientModelsTable createAlias(String alias) {
     return $ClientModelsTable(attachedDatabase, alias);
   }
+
+  static TypeConverter<Uid, int> $converter0 = UidConverter();
+  static TypeConverter<Name, String> $converter1 = NameConverter();
 }
 
 abstract class _$DriftDb extends GeneratedDatabase {
