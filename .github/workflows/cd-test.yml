@@ -21,4 +21,4 @@ jobs:
       - name: Deploy Flutter web app to github pages
         uses: bluefireteam/flutter-gh-pages@v7
         with:
-          baseHref: /./
+          baseHref: ./
