@@ -77,12 +77,6 @@ run the app
 flutter run
 ```
 
-## TODO
-
-* [x] Add Client model and CRUD operations
-* [ ] Add Appointment model and CRUD operations
-
-
 ## License
 
 Distributed under the MIT License. See LICENSE for more information.
