@@ -59,12 +59,6 @@ clone this repository
 git clone https://github.com/AndreTerra5348/AppOintment.git
 ```
 
-change branch to develop
-
-```bash
-git checkout develop
-```
-
 install dependencies
 
 ```bash
