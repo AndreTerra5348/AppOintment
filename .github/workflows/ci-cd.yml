@@ -15,7 +15,8 @@ jobs:
       - name: Echoing
         run: |
           echo ${{github.ref_name}}
-          echo $($github.ref_name} | sed 's/v//'
+          echo $($github.ref_name} | sed 's/v//g'
+        shell: bash
 
       - name: Checkout
         uses: actions/checkout@v2
