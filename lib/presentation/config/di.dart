@@ -21,25 +21,36 @@ import 'package:appointment/infrastructure/drift/executor_provider.dart'
     as executor_provider;
 import 'package:drift/drift.dart';
 import 'package:get_it/get_it.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 final getIt = GetIt.instance;
 
 void servicesConfiguration() {
-  getIt.registerSingleton<QueryExecutor>(executor_provider.getQueryExecutor());
+  getIt.registerSingleton<QueryExecutor>(
+    executor_provider.getQueryExecutor(),
+  );
+
   getIt.registerSingleton(DriftDb(executor: getIt()));
 
-  getIt.registerSingleton<Dao<ClientModels, ClientModel>>(ClientDao(getIt()));
+  getIt.registerSingleton<Dao<ClientModels, ClientModel>>(
+    ClientDao(getIt()),
+  );
 
   getIt.registerSingleton<EntityModelConverter<Client, ClientModel>>(
-      ClientConveter());
+    ClientConveter(),
+  );
 
   getIt.registerSingleton<PageService<Client, ClientModels, ClientModel>>(
-      DriftPageService<Client, ClientModels, ClientModel>(getIt(), getIt()));
+    DriftPageService<Client, ClientModels, ClientModel>(getIt(), getIt()),
+  );
 
   getIt.registerSingleton<Repository<Client>>(
-      DriftRepository<Client, ClientModels, ClientModel>(getIt(), getIt()));
+    DriftRepository<Client, ClientModels, ClientModel>(getIt(), getIt()),
+  );
 
-  getIt.registerSingleton<RegisterValidator<Client>>(ClientRegisterValidator());
+  getIt.registerSingleton<RegisterValidator<Client>>(
+    ClientRegisterValidator(),
+  );
 
   getIt.registerFactory(() => RegisterBloc<Client>(getIt(), getIt()));
   getIt.registerFactory(() => ClientSearchBloc(getIt()));
@@ -49,4 +60,9 @@ void servicesConfiguration() {
   getIt.registerFactory(() => DeleteBloc<Client>(getIt()));
   getIt.registerFactory(() => DetailsBloc<Client>());
   getIt.registerFactory(() => ClientBloc());
+
+  getIt.registerSingletonAsync<PackageInfo>(
+    () async => PackageInfo.fromPlatform(),
+    signalsReady: true,
+  );
 }

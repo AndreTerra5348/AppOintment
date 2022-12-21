@@ -18,6 +18,7 @@ import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:appointment/infrastructure/core/repositories.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
 import 'package:appointment/presentation/config/di.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 void mockServicesConfiguration(ClientDao dao) {
   getIt.registerSingleton<Dao<ClientModels, ClientModel>>(dao);
@@ -41,4 +42,14 @@ void mockServicesConfiguration(ClientDao dao) {
   getIt.registerFactory(() => DeleteBloc<Client>(getIt()));
   getIt.registerFactory(() => DetailsBloc<Client>());
   getIt.registerFactory(() => ClientBloc());
+
+  getIt.registerSingletonAsync<PackageInfo>(
+    () async => PackageInfo(
+      appName: "",
+      packageName: "",
+      version: "1.0.0",
+      buildNumber: "1",
+    ),
+    signalsReady: true,
+  );
 }

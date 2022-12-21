@@ -27,7 +27,22 @@ void main() {
     "Render localized app title",
     (tester) async {
       await tester.pumpWidget(const MockApp());
-      expect(find.text(AppLocalizationsEn().appointmentTitle), findsOneWidget);
+      expect(
+        find.text(AppLocalizationsEn().appointmentTitle),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    "Render build name",
+    (tester) async {
+      await tester.pumpWidget(const MockApp());
+      await tester.pump();
+      expect(
+        find.text("1.0.0"),
+        findsOneWidget,
+      );
     },
   );
 
@@ -36,7 +51,9 @@ void main() {
     (tester) async {
       await tester.pumpWidget(const MockApp());
       expect(
-          find.text(AppLocalizationsEn().appointmentSubtitle), findsOneWidget);
+        find.text(AppLocalizationsEn().appointmentSubtitle),
+        findsOneWidget,
+      );
     },
   );
 
@@ -45,9 +62,12 @@ void main() {
     (tester) async {
       await tester.pumpWidget(const MockApp());
       expect(
-          find.widgetWithText(
-              ElevatedButton, AppLocalizationsEn().pageClientRegisterTitle),
-          findsOneWidget);
+        find.widgetWithText(
+          ElevatedButton,
+          AppLocalizationsEn().pageClientRegisterTitle,
+        ),
+        findsOneWidget,
+      );
     },
   );
 
@@ -56,9 +76,12 @@ void main() {
     (tester) async {
       await tester.pumpWidget(const MockApp());
       expect(
-          find.widgetWithText(
-              ElevatedButton, AppLocalizationsEn().pageClientSearchTitle),
-          findsOneWidget);
+        find.widgetWithText(
+          ElevatedButton,
+          AppLocalizationsEn().pageClientSearchTitle,
+        ),
+        findsOneWidget,
+      );
     },
   );
 }
