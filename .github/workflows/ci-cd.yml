@@ -58,7 +58,8 @@ jobs:
         run: flutter config --enable-windows-desktop
 
       - name: Build artifacts
-        run: flutter build windows --release --build-name=${{ github.ref_name:1 }}
+        run: flutter build windows --release --build-name=${{ github.ref_name#v }}
+        shell: bash
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master
