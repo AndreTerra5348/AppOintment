@@ -15,8 +15,6 @@ jobs:
       - name: Echoing
         run: |
           echo ${{github.ref_name}}
-          echo ${{github.ref_name#v}}
-          echo ${{github.ref_name:1}}
 
       - name: Checkout
         uses: actions/checkout@v2
