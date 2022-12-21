@@ -63,7 +63,7 @@ jobs:
         run: flutter config --enable-windows-desktop
 
       - name: Build artifacts
-        run: flutter build windows --release --build-name=$(echo ${github.ref_name#v})
+        run: flutter build windows --release --build-name=${{env.APP_BUILD_NAME}}
         shell: bash
 
       - name: Archive Release
@@ -97,3 +97,4 @@ jobs:
         uses: bluefireteam/flutter-gh-pages@v7
         with:
           baseHref: /appointment/
+          customArgs: --build-name=${{env.APP_BUILD_NAME}}
