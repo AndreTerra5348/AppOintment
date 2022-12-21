@@ -35,9 +35,11 @@ class AppRouter extends _i5.RootStackRouter {
   @override
   final Map<String, _i5.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.HomePage(),
+        child: _i1.HomePage(key: args.key),
       );
     },
     ClientSearchRoute.name: (routeData) {
@@ -101,14 +103,26 @@ class AppRouter extends _i5.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i5.PageRouteInfo<void> {
-  const HomeRoute()
+class HomeRoute extends _i5.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({_i6.Key? key})
       : super(
           HomeRoute.name,
           path: '/',
+          args: HomeRouteArgs(key: key),
         );
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

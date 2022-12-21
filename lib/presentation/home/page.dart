@@ -1,7 +1,9 @@
 import 'package:appointment/presentation/common/build_context_extensions.dart';
+import 'package:appointment/presentation/config/di.dart';
 import 'package:appointment/presentation/config/route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -28,33 +30,62 @@ class HomePage extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 2,
-                  child: IntrinsicWidth(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(height: 8),
-                        ElevatedButton(
-                          onPressed: () =>
-                              context.router.pushClientRegisterPage(),
-                          child: Text(context.tr.pageClientRegisterTitle),
-                        ),
-                        const SizedBox(height: 8),
-                        ElevatedButton(
-                          onPressed: () =>
-                              context.router.pushClientSearchPage(),
-                          child: Text(context.tr.pageClientSearchTitle),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: _buildButtons(context),
                 ),
               ],
             ),
           ),
           _buildBanner(context),
+          FutureBuilder(
+            future: getIt.getAsync<PackageInfo>(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return _buildVersionLabel(snapshot.data?.version ?? "");
+              }
+              return Container();
+            },
+          ),
         ],
       ),
       appBar: AppBar(title: Text(context.tr.appointmentTitle)),
+    );
+  }
+
+  Align _buildVersionLabel(String version) {
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(version),
+      ),
+    );
+  }
+
+  IntrinsicWidth _buildButtons(BuildContext context) {
+    return IntrinsicWidth(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 8),
+          _buildRegisterButton(context),
+          const SizedBox(height: 8),
+          _buildSearchButton(context),
+        ],
+      ),
+    );
+  }
+
+  ElevatedButton _buildRegisterButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () => context.router.pushClientRegisterPage(),
+      child: Text(context.tr.pageClientRegisterTitle),
+    );
+  }
+
+  ElevatedButton _buildSearchButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () => context.router.pushClientSearchPage(),
+      child: Text(context.tr.pageClientSearchTitle),
     );
   }
 
