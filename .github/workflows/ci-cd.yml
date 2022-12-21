@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Echoing
         run: |
-          echo ${{APP_BUILD_NAME}}
+          echo ${{env.APP_BUILD_NAME}}
 
       - name: Checkout
         uses: actions/checkout@v2
