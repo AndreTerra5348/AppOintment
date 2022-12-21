@@ -1,6 +1,7 @@
 name: CI/CD
 env:
   APP_NAME: appointment
+  APP_BUILD_NAME: ${{github.ref_name}} | sed 's/v//g'
 
 on:
   push:
@@ -14,8 +15,7 @@ jobs:
     steps:
       - name: Echoing
         run: |
-          echo ${{github.ref_name}}
-          echo ${{github.ref_name}} | sed 's/v//g'
+          echo ${{APP_BUILD_NAME}}
 
       - name: Checkout
         uses: actions/checkout@v2
