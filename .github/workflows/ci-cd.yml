@@ -13,10 +13,6 @@ jobs:
     name: Format, Analyze, and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Echoing
-        run: |
-          echo ${{env.APP_BUILD_NAME}}
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -63,7 +59,7 @@ jobs:
         run: flutter config --enable-windows-desktop
 
       - name: Build artifacts
-        run: flutter build windows --release --build-name=${{env.APP_BUILD_NAME}}
+        run: flutter build windows --release --build-name=$(echo ${{env.APP_BUILD_NAME}})
         shell: bash
 
       - name: Archive Release
@@ -97,4 +93,4 @@ jobs:
         uses: bluefireteam/flutter-gh-pages@v7
         with:
           baseHref: /appointment/
-          customArgs: --build-name=${{env.APP_BUILD_NAME}}
+          customArgs: --build-name=$(echo ${{env.APP_BUILD_NAME}})
