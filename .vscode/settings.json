@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "chrono": "cpp",
-        "format": "cpp"
-    },
-    "cmake.sourceDirectory": "${workspaceFolder}/windows"
-}
