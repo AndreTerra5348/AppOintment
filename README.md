@@ -1,6 +1,7 @@
 # AppOintment (WIP)
 
-![](https://github.com/AndreTerra5348/AppOintment/actions/workflows/ci.yml/badge.svg)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/AndreTerra5348/appointment/ci.yml?label=CI) [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/AndreTerra5348/appointment?sort=semver)](https://github.com/AndreTerra5348/appointment/releases) [![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/AndreTerra5348/appointment/1?label=Appointments%20Milestone)](https://github.com/AndreTerra5348/appointment/milestone/1)
+
 
 ## Description
 This is an offline appointment scheduling app made with Flutter, using SQLite as database and BLoC pattern for state management. It is a work in progress.
