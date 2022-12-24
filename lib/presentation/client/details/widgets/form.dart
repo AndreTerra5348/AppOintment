@@ -34,7 +34,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     return BlocConsumer<DetailsBloc<Client>, DetailsState<Client>>(
       listenWhen: (previous, current) => current.maybeMap(
         orElse: () => false,
-        load: (load) => load.state.isSuccess,
+        load: (load) => load.state.isSuccess || load.state.isFailure,
         edit: (value) => value.state.isSuccess || value.state.isFailure,
         delete: (value) => value.state.isSuccess || value.state.isFailure,
       ),
@@ -128,6 +128,16 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
       success: (success) => context.load(
         client: success.entity,
       ),
+      failure: (failure) {
+        _handleFailure(context, failure.failure);
+        _timer = Timer(
+          const Duration(seconds: 1),
+          () {
+            Navigator.pop(context);
+            context.router.pop();
+          },
+        );
+      },
     );
   }
 
