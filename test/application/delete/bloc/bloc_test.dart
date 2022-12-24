@@ -1,3 +1,4 @@
+import 'package:appointment/application/common/form.dart';
 import 'package:appointment/application/delete/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
@@ -22,6 +23,33 @@ void main() {
   setUp(() {
     repository = MockDriftRepository<Client, ClientModels, ClientModel>();
     johnClient = Client(name: Name('John'), id: Uid.fromInt(1));
+  });
+
+  test(
+      "[State.notFoundFailure()] constructor should be [State.failure(failure)]"
+      "Failure should be [SubmissionFailure.notFound()]", () {
+    final state = DeleteState.notFoundFailure();
+    const expectedValue = DeleteState.failure(
+      failure: SubmissionFailure.notFound(),
+    );
+    expect(state, expectedValue);
+  });
+
+  test("[State.inProgress()] should be [isInProgress] = true", () {
+    const state = DeleteState.inProgress();
+    expect(state.isInProgress, isTrue);
+  });
+
+  test("[State.success()] should be [isSuccess] = true", () {
+    const state = DeleteState.success();
+    expect(state.isSuccess, isTrue);
+  });
+
+  test("[State.failure()] should be [isFailure] = true", () {
+    const state = DeleteState.failure(
+      failure: failure_fixture.dbErrorSubmissionFailure,
+    );
+    expect(state.isFailure, isTrue);
   });
 
   blocTest(
