@@ -1,10 +1,10 @@
 class CriticalError extends Error {
-  final String message;
+  final String _message;
 
-  CriticalError(this.message);
+  CriticalError(this._message);
 
   @override
   String toString() {
-    return Error.safeToString('Critical Error: $message');
+    return Error.safeToString('Critical Error: $_message');
   }
 }
