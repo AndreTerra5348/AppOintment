@@ -14,9 +14,6 @@ class LoadState<T extends EntityMixin> with _$LoadState<T> {
           failure: SubmissionFailure.repository(failure: failure));
 
   bool get isLoading => this is _Loading;
-  bool get isNotLoading => !isLoading;
   bool get isSuccess => this is _Success;
-  bool get isNotSuccess => !isSuccess;
   bool get isFailure => this is _Failure;
-  bool get isNotFailure => !isFailure;
 }
