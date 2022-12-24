@@ -1,4 +1,7 @@
 import 'package:appointment/infrastructure/client/dao.dart';
+import 'package:appointment/presentation/app_ointment.dart';
+import 'package:appointment/presentation/client/register/page.dart';
+import 'package:appointment/presentation/client/search/page.dart';
 import 'package:appointment/presentation/home/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -82,6 +85,48 @@ void main() {
         ),
         findsOneWidget,
       );
+    },
+  );
+
+  testWidgets(
+    "When Client Regiter button is pressed"
+    "Then ClientRegisterPage is rendered",
+    (tester) async {
+      await tester.pumpWidget(AppOintment());
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HomePage), findsOneWidget);
+
+      await tester.tap(
+        find.widgetWithText(
+          ElevatedButton,
+          AppLocalizationsEn().pageClientRegisterTitle,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ClientRegisterPage), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    "When Client Search button is pressed"
+    "Then ClientSearchPage is rendered",
+    (tester) async {
+      await tester.pumpWidget(AppOintment());
+      await tester.pumpAndSettle();
+
+      expect(find.byType(HomePage), findsOneWidget);
+
+      await tester.tap(
+        find.widgetWithText(
+          ElevatedButton,
+          AppLocalizationsEn().pageClientSearchTitle,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ClientSearchPage), findsOneWidget);
     },
   );
 }
