@@ -13,12 +13,6 @@ class SubmissionStatus with _$SubmissionStatus {
   const factory SubmissionStatus.failure({required SubmissionFailure failure}) =
       _Failure;
   const factory SubmissionStatus.canceled() = _Canceled;
-
-  bool get isInitial => this is _Initial;
-  bool get isInProgress => this is _InProgress;
-  bool get isSuccess => this is _Success;
-  bool get isFailure => this is _Failure;
-  bool get isCanceled => this is _Canceled;
 }
 
 @freezed
