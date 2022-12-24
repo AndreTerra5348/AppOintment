@@ -45,10 +45,10 @@ jobs:
           path: test-results.json
           reporter: flutter-json
 
-      # - name: Remove generated files from coverage
-      #   run: |
-      #     dart pub global activate remove_from_coverage
-      #     dart pub global run remove_from_coverage:remove_from_coverage -f coverage/lcov.info -r '\.g\.dart$' -r '\.gr\.dart$'
+      - name: Remove generated files from coverage
+        run: |
+          dart pub global activate remove_from_coverage
+          dart pub global run remove_from_coverage:remove_from_coverage -f coverage/lcov.info -r '\.g\.dart$' -r '\.gr\.dart$'
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
