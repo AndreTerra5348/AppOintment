@@ -1,3 +1,5 @@
+// This file is used for configuration only, it should not be tested
+// coverage:ignore-file
 import 'package:appointment/application/client/bloc/bloc.dart';
 import 'package:appointment/application/client/register/validator.dart';
 import 'package:appointment/application/client/search/bloc/bloc.dart';

@@ -1,3 +1,5 @@
+// This file is used for configuration only, it should not be tested
+// coverage:ignore-file
 import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/presentation/client/details/page.dart';
 import 'package:appointment/presentation/client/register/page.dart';
@@ -18,7 +20,7 @@ import 'package:auto_route/auto_route.dart';
 )
 class $AppRouter {}
 
-extension AppRouterX on StackRouter {
+extension StackRouterX on StackRouter {
   ClientSearchRoute get clientSearchRoute => ClientSearchRoute(bloc: getIt());
   ClientRegisterRoute get clientRegisterRoute =>
       ClientRegisterRoute(registerBloc: getIt(), clientBloc: getIt());
