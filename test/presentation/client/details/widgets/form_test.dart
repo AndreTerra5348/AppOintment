@@ -6,7 +6,6 @@ import 'package:appointment/application/edit/bloc/bloc.dart';
 import 'package:appointment/domain/client/entity.dart';
 import 'package:appointment/domain/client/values.dart';
 import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/domain/core/repository.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/common/widgets/name_form_field.dart';
