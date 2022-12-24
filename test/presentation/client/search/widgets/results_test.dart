@@ -171,7 +171,7 @@ void main() {
 
         expect(
             find.text(AppLocalizationsEn()
-                .databaseFailure(failure_fixture.dbErrorMessage)),
+                .databaseFailure(failure_fixture.errorMessage)),
             findsOneWidget);
       },
     );
@@ -190,6 +190,10 @@ void main() {
         offset: anyNamed("offset"),
         filter: anyNamed("filter"),
       )).thenAnswer((_) => Future.value(models));
+
+      when(mockClientDao.getById(any)).thenAnswer(
+        (_) async => models.first,
+      );
 
       mock_di.mockServicesConfiguration(mockClientDao);
 
