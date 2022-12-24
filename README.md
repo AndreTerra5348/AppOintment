@@ -1,6 +1,6 @@
 # AppOintment (WIP)
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/AndreTerra5348/appointment/ci.yml?label=CI) [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/AndreTerra5348/appointment?sort=semver)](https://github.com/AndreTerra5348/appointment/releases) [![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/AndreTerra5348/appointment/1?label=Appointments%20Milestone)](https://github.com/AndreTerra5348/appointment/milestone/1)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/AndreTerra5348/appointment/ci.yml?label=CI) [![codecov](https://codecov.io/gh/AndreTerra5348/appointment/branch/main/graph/badge.svg?token=TIRVPWPE9E)](https://codecov.io/gh/AndreTerra5348/appointment) [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/AndreTerra5348/appointment?sort=semver)](https://github.com/AndreTerra5348/appointment/releases) [![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/AndreTerra5348/appointment/1?label=Appointments%20Milestone)](https://github.com/AndreTerra5348/appointment/milestone/1)
 
 
 ## Description
