@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:appointment/infrastructure/drift/native_db.dart' as native_db;
 
@@ -20,5 +21,16 @@ void main() {
     // Assert
     (actual as LazyDatabase).opener;
     expect(actual.dialect, SqlDialect.sqlite);
+  });
+
+  // test opener
+
+  test("opener should return an instance of NativeDatabase", () async {
+    // Arrange
+    // Act
+    final actual = await native_db.opener();
+
+    // Assert
+    expect(actual, isA<NativeDatabase>());
   });
 }
