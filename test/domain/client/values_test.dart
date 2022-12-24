@@ -5,38 +5,50 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group("Value Object", () {
-    group("Name", () {
-      test(
-          "Should return Right(value) "
-          "when name length is equal to 1", () {
-        // Arrange
-        const name = "B";
-        expectRight(name);
-      });
-      test(
-          "Should return a type of Left<StringFailure, String>, String> "
-          "when name length is less than 1", () {
-        // Arrange
-        const name = "";
-        expectLeft(name);
-      });
+  group("Name", () {
+    test(
+        "Given a valid name, "
+        "When hashCode is called, "
+        "Then it returns the name hashCode", () {
+      // Arrange
+      const name = "Bob";
+      final sut = Name(name);
 
-      test(
-          "Should return Right(value) "
-          "when name contains accents", () {
-        // Arrange
-        const name = "André";
-        expectRight(name);
-      });
+      // Act
+      final actual = sut.hashCode;
 
-      test(
-          "Should return a type of Left<StringFailure, String>, String> "
-          "when name contains number", () {
-        // Arrange
-        const name = "A0";
-        expectLeft(name);
-      });
+      // Assert
+      expect(actual, name.hashCode);
+    });
+    test(
+        "Should return Right(value) "
+        "when name length is equal to 1", () {
+      // Arrange
+      const name = "B";
+      expectRight(name);
+    });
+    test(
+        "Should return a type of Left<StringFailure, String>, String> "
+        "when name length is less than 1", () {
+      // Arrange
+      const name = "";
+      expectLeft(name);
+    });
+
+    test(
+        "Should return Right(value) "
+        "when name contains accents", () {
+      // Arrange
+      const name = "André";
+      expectRight(name);
+    });
+
+    test(
+        "Should return a type of Left<StringFailure, String>, String> "
+        "when name contains number", () {
+      // Arrange
+      const name = "A0";
+      expectLeft(name);
     });
   });
 }
