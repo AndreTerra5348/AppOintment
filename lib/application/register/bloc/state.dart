@@ -24,7 +24,6 @@ class RegisterState with _$RegisterState {
         ),
       );
 
-  bool get isInitial => this is _Initial;
   bool get isInProgress => this is _InProgress;
   bool get isSuccess => this is _Success;
   bool get isFailure => this is _Failure;
