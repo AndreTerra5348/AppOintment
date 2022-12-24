@@ -36,7 +36,7 @@ jobs:
         run: flutter analyze
 
       - name: Run Tests
-        run: flutter test --machine > test-results.json
+        run: flutter test --coverage --machine > test-results.json
 
       - name: Generate Test Report
         uses: dorny/test-reporter@v1.4.2
@@ -44,3 +44,11 @@ jobs:
           name: test-results
           path: test-results.json
           reporter: flutter-json
+
+      - name: Remove generated files from coverage
+        run: |
+          dart pub global activate remove_from_coverage
+          dart pub global run remove_from_coverage:remove_from_coverage -f coverage/lcov.info -r '\.g\.dart$' -r '\.gr\.dart$'
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
