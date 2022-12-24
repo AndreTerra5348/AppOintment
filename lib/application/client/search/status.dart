@@ -11,8 +11,4 @@ class ClientSearchStatus with _$ClientSearchStatus {
   const factory ClientSearchStatus.empty() = _Empty;
   const factory ClientSearchStatus.failure(
       {required PageServiceFailure failure}) = _Failure;
-
-  bool get isLoading => this is _Loading;
-  bool get isSuccess => this is _Success;
-  bool get isFailure => this is _Failure;
 }
