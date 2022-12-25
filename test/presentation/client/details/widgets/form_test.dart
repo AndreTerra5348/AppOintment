@@ -87,13 +87,13 @@ void main() {
     testWidgets("Render loading indicator", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expectLater(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets("Render NameInputWidget", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expectLater(find.byType(DetailsNameInputWidget), findsOneWidget);
+      expect(find.byType(DetailsNameInputWidget), findsOneWidget);
     });
   });
 
