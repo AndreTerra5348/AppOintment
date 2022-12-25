@@ -40,7 +40,7 @@ The project is divided into 4 layers
 
 ### App
 * [Flutter](https://flutter.dev/)
-* [Dartz](https://pub.dev/packages/dartz) Either and Option types are used to prevent [Value Objects](lib/domain/common/value_object.dart) invalid states and propagete failures
+* [Dartz](https://pub.dev/packages/dartz) Either and Option types are used to prevent [Value Objects](lib/domain/common/value_object.dart) invalid states and propagate failures
 * [BLoC](https://pub.dev/packages/flutter_bloc) for state management
 * [Freezed](https://pub.dev/packages/freezed) for data classes and union types
 * [Drift](https://pub.dev/packages/drift) for sqlite database
