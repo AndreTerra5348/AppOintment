@@ -23,14 +23,8 @@ class EditState with _$EditState {
         ),
       );
 
-  bool get isInitial => this is _Initial;
-  bool get isNotInitial => !isInitial;
   bool get isEditing => this is _Editing;
-  bool get isNotEditing => !isEditing;
   bool get isInProgress => this is _InProgress;
-  bool get isNotInProgress => !isInProgress;
   bool get isSuccess => this is _Success;
-  bool get isNotSuccess => !isSuccess;
   bool get isFailure => this is _Failure;
-  bool get isNotFailure => !isFailure;
 }

@@ -4,7 +4,7 @@ import 'package:appointment/domain/common/values.dart';
 import 'package:appointment/infrastructure/client/dao.dart';
 import 'package:appointment/infrastructure/client/filter.dart';
 import 'package:appointment/infrastructure/drift/db.dart';
-import 'package:drift/drift.dart';
+import 'package:drift/drift.dart' as drift;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -52,6 +52,17 @@ void main() {
       // Assert
       expect(e, isA<StateError>());
     }
+  });
+
+  test("Table should not be null", () async {
+    // Arrange
+    final sut = ClientDao(db!);
+
+    // Act
+    final actual = sut.table;
+
+    // Assert
+    expect(actual, isNotNull);
   });
 
   test(
@@ -132,7 +143,7 @@ void main() {
     final actual = await sut.save(
       model.id,
       ClientModelsCompanion(
-        name: Value(joeName),
+        name: drift.Value(joeName),
       ),
     );
 
@@ -153,7 +164,7 @@ void main() {
       await sut.save(
         model.id,
         ClientModelsCompanion(
-          name: Value(Name("")),
+          name: drift.Value(Name("")),
         ),
       );
     } catch (e) {
@@ -175,7 +186,7 @@ void main() {
     final actual = await sut.save(
       Uid.fromInt(2),
       ClientModelsCompanion(
-        name: Value(joeName),
+        name: drift.Value(joeName),
       ),
     );
 

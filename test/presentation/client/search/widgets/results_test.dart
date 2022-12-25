@@ -81,6 +81,37 @@ void main() {
       );
 
       testWidgets(
+        "When [ListView] do not have enough content to fill the screen "
+        "And didChangeMetrics is called "
+        "Add [Event.fetchRequested()] twice",
+        (tester) async {
+          const resultWidget = ClientSearchResultsWidget();
+          await tester.pumpWidget(MockClientSearchPage(
+            bloc: searchBloc,
+            resultsWidget: resultWidget,
+          ));
+
+          // schedule a frame to allow addPostFrameCallback to be called
+          tester.binding.scheduleWarmUpFrame();
+
+          // get ClientSearchResultsWidget state which is a WidgetsBindingObserver
+          WidgetsBindingObserver observer =
+              tester.state(find.byType(ClientSearchResultsWidget))
+                  as WidgetsBindingObserver;
+
+          // Act
+          observer.didChangeMetrics();
+
+          // schedule a frame to allow addPostFrameCallback to be called
+          tester.binding.scheduleWarmUpFrame();
+
+          // Assert
+          verify(searchBloc.add(const ClientSearchEvent.fetchRequested()))
+              .called(2);
+        },
+      );
+
+      testWidgets(
         "When [ListView] ScrollController is scrolled to the end "
         "Add [Event.fetchRequested()] once",
         (tester) async {
@@ -140,7 +171,7 @@ void main() {
 
         expect(
             find.text(AppLocalizationsEn()
-                .databaseFailure(failure_fixture.dbErrorMessage)),
+                .databaseFailure(failure_fixture.errorMessage)),
             findsOneWidget);
       },
     );
@@ -159,6 +190,10 @@ void main() {
         offset: anyNamed("offset"),
         filter: anyNamed("filter"),
       )).thenAnswer((_) => Future.value(models));
+
+      when(mockClientDao.getById(any)).thenAnswer(
+        (_) async => models.first,
+      );
 
       mock_di.mockServicesConfiguration(mockClientDao);
 
@@ -184,7 +219,11 @@ void main() {
 
 class MockClientSearchPage extends StatelessWidget {
   final ClientSearchBloc bloc;
-  const MockClientSearchPage({super.key, required this.bloc});
+  final ClientSearchResultsWidget resultsWidget;
+  const MockClientSearchPage(
+      {super.key,
+      required this.bloc,
+      this.resultsWidget = const ClientSearchResultsWidget()});
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +234,7 @@ class MockClientSearchPage extends StatelessWidget {
       home: Scaffold(
         body: BlocProvider(
           create: (context) => bloc,
-          child: const ClientSearchResultsWidget(),
+          child: resultsWidget,
         ),
       ),
     );

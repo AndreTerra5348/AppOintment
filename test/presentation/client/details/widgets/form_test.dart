@@ -87,13 +87,13 @@ void main() {
     testWidgets("Render loading indicator", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expectLater(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets("Render NameInputWidget", (tester) async {
       await tester.pumpWidget(mockClientDetailPage);
 
-      expectLater(find.byType(DetailsNameInputWidget), findsOneWidget);
+      expect(find.byType(DetailsNameInputWidget), findsOneWidget);
     });
   });
 
@@ -216,21 +216,18 @@ void main() {
       });
 
       group("When [EditState] is [failure()] ", () {
-        setUp(() {
-          final state = EditState.repositoryFailure(
-            failure: mock_failure.dbErrorRepositoryFailure,
-          );
-
-          when(mockDetailsBloc.stream).thenAnswer(
-            (_) => Stream.value(
-              DetailsState<Client>.edit(state: state),
-            ),
-          );
-        });
-
         testWidgets(
           "Show Icons.error_outline for 1 second",
           (tester) async {
+            final state = EditState.repositoryFailure(
+              failure: mock_failure.dbErrorRepositoryFailure,
+            );
+
+            when(mockDetailsBloc.stream).thenAnswer(
+              (_) => Stream.value(
+                DetailsState<Client>.edit(state: state),
+              ),
+            );
             await tester.pumpWidget(mockClientDetailPage);
             await tester.pump();
 
@@ -243,8 +240,18 @@ void main() {
         );
 
         testWidgets(
-          "Show failure message for 1 second",
+          "Show localized dbErrorRepositoryFailure failure message "
+          "for 1 second",
           (tester) async {
+            final state = EditState.repositoryFailure(
+              failure: mock_failure.dbErrorRepositoryFailure,
+            );
+
+            when(mockDetailsBloc.stream).thenAnswer(
+              (_) => Stream.value(
+                DetailsState<Client>.edit(state: state),
+              ),
+            );
             await tester.pumpWidget(mockClientDetailPage);
             await tester.pump();
 
@@ -261,57 +268,241 @@ void main() {
             );
           },
         );
+
+        testWidgets(
+          "Show localized SubmissionFailure.notFound() failure message "
+          "for 1 second",
+          (tester) async {
+            final state = EditState.notFoundFailure();
+
+            when(mockDetailsBloc.stream).thenAnswer(
+              (_) => Stream.value(
+                DetailsState<Client>.edit(state: state),
+              ),
+            );
+            await tester.pumpWidget(mockClientDetailPage);
+            await tester.pump();
+
+            expect(
+              find.text(mock_failure.notFoundLocalizedMessage),
+              findsOneWidget,
+            );
+
+            await tester.pump(const Duration(seconds: 1));
+
+            expect(
+              find.text(mock_failure.notFoundLocalizedMessage),
+              findsNothing,
+            );
+          },
+        );
       });
+    });
+
+    group("When [deleteState] is [inProgress()]", () {
+      setUp(() {
+        when(mockDetailsBloc.state).thenReturn(
+          const DetailsState<Client>.delete(
+            state: DeleteState.inProgress(),
+          ),
+        );
+      });
+
+      testWidgets(
+        "Show loading indicator",
+        (tester) async {
+          await tester.pumpWidget(mockClientDetailPage);
+
+          expect(find.byType(CircularProgressIndicator), findsOneWidget);
+        },
+      );
+    });
+
+    group("When [deleteState] is [failure()]", () {
+      testWidgets(
+        "Show Icons.error_outline for 1 second",
+        (tester) async {
+          final state = DeleteState.repositoryFailure(
+            failure: mock_failure.dbErrorRepositoryFailure,
+          );
+
+          when(mockDetailsBloc.stream).thenAnswer(
+            (_) => Stream.value(
+              DetailsState<Client>.delete(state: state),
+            ),
+          );
+          await tester.pumpWidget(mockClientDetailPage);
+          await tester.pump();
+
+          expect(find.byIcon(Icons.error_outline), findsOneWidget);
+
+          await tester.pump(const Duration(seconds: 1));
+
+          expect(find.byIcon(Icons.error_outline), findsNothing);
+        },
+      );
+
+      testWidgets(
+        "Show localized dbErrorRepositoryFailure failure message "
+        "for 1 second",
+        (tester) async {
+          final state = DeleteState.repositoryFailure(
+            failure: mock_failure.dbErrorRepositoryFailure,
+          );
+
+          when(mockDetailsBloc.stream).thenAnswer(
+            (_) => Stream.value(
+              DetailsState<Client>.delete(state: state),
+            ),
+          );
+          await tester.pumpWidget(mockClientDetailPage);
+          await tester.pump();
+
+          expect(
+            find.text(mock_failure.dbErrorLocalizedMessage),
+            findsOneWidget,
+          );
+
+          await tester.pump(const Duration(seconds: 1));
+
+          expect(
+            find.text(mock_failure.dbErrorLocalizedMessage),
+            findsNothing,
+          );
+        },
+      );
+
+      testWidgets(
+        "Show localized SubmissionFailure.notFound() failure message "
+        "for 1 second",
+        (tester) async {
+          final state = DeleteState.notFoundFailure();
+
+          when(mockDetailsBloc.stream).thenAnswer(
+            (_) => Stream.value(
+              DetailsState<Client>.delete(state: state),
+            ),
+          );
+          await tester.pumpWidget(mockClientDetailPage);
+          await tester.pump();
+
+          expect(
+            find.text(mock_failure.notFoundLocalizedMessage),
+            findsOneWidget,
+          );
+
+          await tester.pump(const Duration(seconds: 1));
+
+          expect(
+            find.text(mock_failure.notFoundLocalizedMessage),
+            findsNothing,
+          );
+        },
+      );
     });
   });
 
-  testWidgets(
-    "When delete successful dialog is dismissed, pop page",
-    (tester) async {
-      final mockClientDao = MockClientDao();
+  group("Mocked DI container", () {
+    final mockClientDao = MockClientDao();
+    mock_di.mockServicesConfiguration(mockClientDao);
+    testWidgets(
+      "When [LoadState] is [failure] "
+      "Show localized failure message "
+      "for 1 second"
+      "and go back to previous page",
+      (tester) async {
+        final models = client_fixture.generateModel(amount: 5);
+        final ex = StateError(mock_failure.errorMessage);
 
-      final models = client_fixture.generateModel(amount: 5);
+        when(mockClientDao.getPage(
+          limit: anyNamed("limit"),
+          offset: anyNamed("offset"),
+          filter: anyNamed("filter"),
+        )).thenAnswer((_) => Future.value(models));
 
-      when(mockClientDao.getPage(
-        limit: anyNamed("limit"),
-        offset: anyNamed("offset"),
-        filter: anyNamed("filter"),
-      )).thenAnswer((_) => Future.value(models));
+        when(mockClientDao.getById(any)).thenThrow(ex);
 
-      when(mockClientDao.getById(any)).thenAnswer(
-        (_) => Future.value(models.first),
-      );
+        await tester.pumpWidget(AppOintment());
+        await tester.pumpAndSettle();
 
-      when(mockClientDao.remove(any)).thenAnswer(
-        (_) => Future.value(true),
-      );
+        await tester.tap(
+          find.widgetWithText(
+            ElevatedButton,
+            AppLocalizationsEn().pageClientSearchTitle,
+          ),
+        );
+        await tester.pumpAndSettle();
 
-      mock_di.mockServicesConfiguration(mockClientDao);
+        await tester.tap(
+          find.text(models.first.id.getOrThrow().toString()),
+        );
+        await tester.pumpAndSettle();
 
-      await tester.pumpWidget(AppOintment());
-      await tester.pumpAndSettle();
+        expect(find.byType(ClientDetailsPage), findsOneWidget);
 
-      await tester.tap(
-        find.widgetWithText(
-          ElevatedButton,
-          AppLocalizationsEn().pageClientSearchTitle,
-        ),
-      );
-      await tester.pumpAndSettle();
+        final localizedErrorMessage = AppLocalizationsEn().databaseFailure(
+          ex.toString(),
+        );
 
-      await tester.tap(find.text(models.first.id.getOrThrow().toString()));
-      await tester.pumpAndSettle();
+        expect(
+          find.text(localizedErrorMessage),
+          findsOneWidget,
+        );
 
-      expect(find.byType(ClientDetailsPage), findsOneWidget);
+        await tester.pump(const Duration(seconds: 1));
+        await tester.pumpAndSettle();
 
-      await tester.tap(find.byIcon(Icons.delete_outlined));
-      await tester.pump();
+        expect(
+          find.text(localizedErrorMessage),
+          findsNothing,
+        );
+        expect(find.byType(ClientDetailsPage), findsNothing);
+      },
+    );
 
-      await tester.tap(find.text(AppLocalizationsEn().delete));
-      await tester.pump(const Duration(seconds: 1));
-      await tester.pumpAndSettle();
+    testWidgets(
+      "When delete successful dialog is dismissed, pop page",
+      (tester) async {
+        final models = client_fixture.generateModel(amount: 5);
 
-      expect(find.byType(ClientSearchPage), findsOneWidget);
-    },
-  );
+        when(mockClientDao.getPage(
+          limit: anyNamed("limit"),
+          offset: anyNamed("offset"),
+          filter: anyNamed("filter"),
+        )).thenAnswer((_) => Future.value(models));
+
+        when(mockClientDao.getById(any)).thenAnswer(
+          (_) => Future.value(models.first),
+        );
+
+        when(mockClientDao.remove(any)).thenAnswer(
+          (_) => Future.value(true),
+        );
+        await tester.pumpWidget(AppOintment());
+        await tester.pumpAndSettle();
+
+        await tester.tap(
+          find.widgetWithText(
+            ElevatedButton,
+            AppLocalizationsEn().pageClientSearchTitle,
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text(models.first.id.getOrThrow().toString()));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ClientDetailsPage), findsOneWidget);
+
+        await tester.tap(find.byIcon(Icons.delete_outlined));
+        await tester.pump();
+
+        await tester.tap(find.text(AppLocalizationsEn().delete));
+        await tester.pump(const Duration(seconds: 1));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(ClientSearchPage), findsOneWidget);
+      },
+    );
+  });
 }

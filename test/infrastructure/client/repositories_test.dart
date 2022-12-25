@@ -228,13 +228,14 @@ void main() {
     });
 
     test(
-        "Should return [RepositoryFailure] "
+        "Should return [RepositoryFailure.dbException] "
         "when delete is called "
         "and [Dao] throws exception", () async {
       // Arrange
       final uid = Uid.fromInt(1);
       final clientDao = MockClientDao();
-      when(clientDao.remove(any)).thenThrow(Exception("Mocked Exception"));
+      final error = Exception("Mocked Exception");
+      when(clientDao.remove(any)).thenThrow(error);
 
       final sut = DriftRepository<Client, ClientModels, ClientModel>(
           clientDao, ClientConveter());
@@ -243,9 +244,27 @@ void main() {
       final actual = await sut.delete(uid);
 
       // Assert
-      expect(actual, isA<Left<RepositoryFailure, bool>>());
-      expect((actual as Left<RepositoryFailure, bool>).value,
-          isA<RepositoryFailure>());
+      expect(actual, Left(RepositoryFailure.dbException(error: error)));
+    });
+
+    test(
+        "Should return [RepositoryFailure.notFound] "
+        "when getById is called "
+        "and [Dao] throws StateError", () async {
+      // Arrange
+      final uid = Uid.fromInt(1);
+      final clientDao = MockClientDao();
+      final error = StateError("Mocked Exception");
+      when(clientDao.getById(any)).thenThrow(error);
+
+      final sut = DriftRepository<Client, ClientModels, ClientModel>(
+          clientDao, ClientConveter());
+
+      // Act
+      final actual = await sut.getById(uid);
+
+      // Assert
+      expect(actual, Left(RepositoryFailure.notFound(error: error)));
     });
   });
 }

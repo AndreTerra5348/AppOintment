@@ -3,17 +3,29 @@ import 'package:appointment/domain/core/repository.dart';
 import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
-const dbErrorMessage = "Error";
+const errorMessage = "Error";
+
+// Repository Failures
 const dbErrorRepositoryFailure =
-    RepositoryFailure.dbException(error: dbErrorMessage);
+    RepositoryFailure.dbException(error: errorMessage);
+const notFoundRepositoryFailure =
+    RepositoryFailure.notFound(error: errorMessage);
+
+// Submission Failures
 const dbErrorSubmissionFailure =
     SubmissionFailure.repository(failure: dbErrorRepositoryFailure);
+
+// Submission Statuses
 const SubmissionStatus dbErrorSubmissionStatus = SubmissionStatus.failure(
   failure: dbErrorSubmissionFailure,
 );
 
+// Localized Messages
 final dbErrorLocalizedMessage =
-    AppLocalizationsEn().databaseFailure(dbErrorMessage);
+    AppLocalizationsEn().databaseFailure(errorMessage);
 
+final notFoundLocalizedMessage = AppLocalizationsEn().notFoundFailure;
+
+// Page Service Failures
 const PageServiceFailure dbErrorPageServiceFailure =
-    PageServiceFailure.dbException(error: dbErrorMessage);
+    PageServiceFailure.dbException(error: errorMessage);
