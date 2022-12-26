@@ -1,6 +1,6 @@
-import 'package:appointment/domain/client/entity.dart';
-import 'package:appointment/infrastructure/client/converter.dart';
-import 'package:appointment/infrastructure/client/table.dart';
+import 'package:appointment/domain/client/client_entity.dart';
+import 'package:appointment/infrastructure/client/client_converter.dart';
+import 'package:appointment/infrastructure/client/client_table.dart';
 import 'package:appointment/infrastructure/core/dao.dart';
 import 'package:appointment/infrastructure/core/page_service.dart';
 import 'package:appointment/infrastructure/drift/db.dart';

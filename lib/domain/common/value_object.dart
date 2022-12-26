@@ -1,4 +1,4 @@
-import 'package:appointment/domain/common/error.dart';
+import 'package:appointment/domain/common/common_errors.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ValueObject<T_Failure, T_Value> {

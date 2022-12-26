@@ -1,5 +1,5 @@
 import 'package:appointment/infrastructure/core/dao.dart';
-import 'package:appointment/infrastructure/core/filter.dart';
+import 'package:appointment/infrastructure/core/select_filter.dart';
 import 'package:dartz/dartz.dart';
 // Incompatibility with json annotation
 import 'package:drift/drift.dart' as drift;

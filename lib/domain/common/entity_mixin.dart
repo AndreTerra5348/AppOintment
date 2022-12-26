@@ -1,5 +1,5 @@
 import 'package:appointment/domain/common/value_object.dart';
-import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/domain/common/common_values.dart';
 import 'package:dartz/dartz.dart';
 
 mixin EntityMixin {

@@ -1,7 +1,7 @@
-import 'package:appointment/domain/client/values.dart';
-import 'package:appointment/domain/common/values.dart';
-import 'package:appointment/infrastructure/client/table.dart';
-import 'package:appointment/infrastructure/common/type_converter.dart';
+import 'package:appointment/domain/client/client_values.dart';
+import 'package:appointment/domain/common/common_values.dart';
+import 'package:appointment/infrastructure/client/client_table.dart';
+import 'package:appointment/infrastructure/common/type_converters.dart';
 import 'package:drift/drift.dart';
 
 part 'db.g.dart';
