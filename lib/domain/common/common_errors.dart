@@ -1,3 +1,6 @@
+/// Common errors for the domain layer.
+
+/// A critical error that should never happen.
 class CriticalError extends Error {
   final String _message;
 
