@@ -5,8 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
 
-import 'package:appointment/infrastructure/core/page_service.dart' as _i4;
-import 'package:appointment/infrastructure/core/select_filter.dart' as _i6;
+import 'package:appointment/infrastructure/drift/core/page_service.dart' as _i4;
+import 'package:appointment/infrastructure/drift/core/select_filter.dart'
+    as _i6;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:drift/drift.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;

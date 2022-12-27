@@ -1,6 +1,6 @@
-import 'package:appointment/infrastructure/client/client_filters.dart';
-import 'package:appointment/infrastructure/client/client_table.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/infrastructure/drift/client/client_filters.dart';
+import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

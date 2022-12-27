@@ -6,10 +6,12 @@
 import 'dart:async' as _i7;
 
 import 'package:appointment/domain/common/common_values.dart' as _i8;
-import 'package:appointment/infrastructure/client/client_dao.dart' as _i6;
-import 'package:appointment/infrastructure/client/client_table.dart' as _i2;
-import 'package:appointment/infrastructure/core/select_filter.dart' as _i9;
-import 'package:appointment/infrastructure/drift/db.dart' as _i3;
+import 'package:appointment/infrastructure/drift/client/client_dao.dart' as _i6;
+import 'package:appointment/infrastructure/drift/client/client_table.dart'
+    as _i2;
+import 'package:appointment/infrastructure/drift/core/select_filter.dart'
+    as _i9;
+import 'package:appointment/infrastructure/drift/drift_db.dart' as _i3;
 import 'package:drift/drift.dart' as _i4;
 import 'package:drift/src/runtime/executor/stream_queries.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;

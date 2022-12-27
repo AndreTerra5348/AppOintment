@@ -1,7 +1,7 @@
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/core/entity_model_converter.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/infrastructure/drift/core/entity_model_converter.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 
 class ClientConveter extends EntityModelConverter<Client, ClientModel> {
   @override

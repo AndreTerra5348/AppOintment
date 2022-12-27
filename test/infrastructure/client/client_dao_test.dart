@@ -1,9 +1,9 @@
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_errors.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/client/client_dao.dart';
-import 'package:appointment/infrastructure/client/client_filters.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/infrastructure/drift/client/client_dao.dart';
+import 'package:appointment/infrastructure/drift/client/client_filters.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:drift/drift.dart' as drift;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';

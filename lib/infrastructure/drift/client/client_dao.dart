@@ -1,8 +1,8 @@
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/client/client_table.dart';
-import 'package:appointment/infrastructure/core/dao.dart';
-import 'package:appointment/infrastructure/core/select_filter.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/core/dao.dart';
+import 'package:appointment/infrastructure/drift/core/select_filter.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:drift/drift.dart';
 
 part 'client_dao.g.dart';

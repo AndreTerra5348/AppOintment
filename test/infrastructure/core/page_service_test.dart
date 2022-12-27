@@ -1,9 +1,9 @@
 import 'package:appointment/domain/client/client_entity.dart';
-import 'package:appointment/infrastructure/client/client_converter.dart';
-import 'package:appointment/infrastructure/client/client_table.dart';
-import 'package:appointment/infrastructure/core/dao.dart';
-import 'package:appointment/infrastructure/core/page_service.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/infrastructure/drift/client/client_converter.dart';
+import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/core/dao.dart';
+import 'package:appointment/infrastructure/drift/core/page_service.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

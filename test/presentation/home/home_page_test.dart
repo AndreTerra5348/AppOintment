@@ -1,4 +1,4 @@
-import 'package:appointment/infrastructure/client/client_dao.dart';
+import 'package:appointment/infrastructure/drift/client/client_dao.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/register/client_register_page.dart';
 import 'package:appointment/presentation/client/search/client_search_page.dart';
