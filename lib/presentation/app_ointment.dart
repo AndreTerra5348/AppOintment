@@ -1,4 +1,4 @@
-import 'package:appointment/presentation/config/route.gr.dart';
+import 'package:appointment/presentation/config/route_config.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

@@ -1,4 +1,4 @@
-import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/domain/common/common_values.dart';
 import 'package:drift/drift.dart';
 
 abstract class EntityModelConverter<T_Entity, T_Model extends DataClass> {

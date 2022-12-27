@@ -1,5 +1,5 @@
 import 'package:appointment/domain/common/entity_mixin.dart';
-import 'package:appointment/domain/common/values.dart';
+import 'package:appointment/domain/common/common_values.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
