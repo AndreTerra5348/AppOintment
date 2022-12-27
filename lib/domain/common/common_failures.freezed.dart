@@ -43,26 +43,26 @@ mixin _$StringFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(MaxLengthFailure value) maxLength,
-    required TResult Function(MinLengthFailure value) minLength,
-    required TResult Function(EmptyStringFailure value) empty,
-    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
+    required TResult Function(_MaxLengthFailure value) maxLength,
+    required TResult Function(_MinLengthFailure value) minLength,
+    required TResult Function(_EmptyStringFailure value) empty,
+    required TResult Function(_InvalidCharacterFailure value) invalidCharacter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MaxLengthFailure value)? maxLength,
-    TResult? Function(MinLengthFailure value)? minLength,
-    TResult? Function(EmptyStringFailure value)? empty,
-    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult? Function(_MaxLengthFailure value)? maxLength,
+    TResult? Function(_MinLengthFailure value)? minLength,
+    TResult? Function(_EmptyStringFailure value)? empty,
+    TResult? Function(_InvalidCharacterFailure value)? invalidCharacter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(MaxLengthFailure value)? maxLength,
-    TResult Function(MinLengthFailure value)? minLength,
-    TResult Function(EmptyStringFailure value)? empty,
-    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult Function(_MaxLengthFailure value)? maxLength,
+    TResult Function(_MinLengthFailure value)? minLength,
+    TResult Function(_EmptyStringFailure value)? empty,
+    TResult Function(_InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,20 +87,20 @@ class _$StringFailureCopyWithImpl<$Res, $Val extends StringFailure>
 }
 
 /// @nodoc
-abstract class _$$MaxLengthFailureCopyWith<$Res> {
-  factory _$$MaxLengthFailureCopyWith(
-          _$MaxLengthFailure value, $Res Function(_$MaxLengthFailure) then) =
-      __$$MaxLengthFailureCopyWithImpl<$Res>;
+abstract class _$$_MaxLengthFailureCopyWith<$Res> {
+  factory _$$_MaxLengthFailureCopyWith(
+          _$_MaxLengthFailure value, $Res Function(_$_MaxLengthFailure) then) =
+      __$$_MaxLengthFailureCopyWithImpl<$Res>;
   @useResult
   $Res call({String value, int length});
 }
 
 /// @nodoc
-class __$$MaxLengthFailureCopyWithImpl<$Res>
-    extends _$StringFailureCopyWithImpl<$Res, _$MaxLengthFailure>
-    implements _$$MaxLengthFailureCopyWith<$Res> {
-  __$$MaxLengthFailureCopyWithImpl(
-      _$MaxLengthFailure _value, $Res Function(_$MaxLengthFailure) _then)
+class __$$_MaxLengthFailureCopyWithImpl<$Res>
+    extends _$StringFailureCopyWithImpl<$Res, _$_MaxLengthFailure>
+    implements _$$_MaxLengthFailureCopyWith<$Res> {
+  __$$_MaxLengthFailureCopyWithImpl(
+      _$_MaxLengthFailure _value, $Res Function(_$_MaxLengthFailure) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +109,7 @@ class __$$MaxLengthFailureCopyWithImpl<$Res>
     Object? value = null,
     Object? length = null,
   }) {
-    return _then(_$MaxLengthFailure(
+    return _then(_$_MaxLengthFailure(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ class __$$MaxLengthFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MaxLengthFailure implements MaxLengthFailure {
-  const _$MaxLengthFailure({required this.value, required this.length});
+class _$_MaxLengthFailure implements _MaxLengthFailure {
+  const _$_MaxLengthFailure({required this.value, required this.length});
 
   @override
   final String value;
@@ -141,7 +141,7 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MaxLengthFailure &&
+            other is _$_MaxLengthFailure &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.length, length) || other.length == length));
   }
@@ -152,8 +152,8 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MaxLengthFailureCopyWith<_$MaxLengthFailure> get copyWith =>
-      __$$MaxLengthFailureCopyWithImpl<_$MaxLengthFailure>(this, _$identity);
+  _$$_MaxLengthFailureCopyWith<_$_MaxLengthFailure> get copyWith =>
+      __$$_MaxLengthFailureCopyWithImpl<_$_MaxLengthFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -195,10 +195,10 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(MaxLengthFailure value) maxLength,
-    required TResult Function(MinLengthFailure value) minLength,
-    required TResult Function(EmptyStringFailure value) empty,
-    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
+    required TResult Function(_MaxLengthFailure value) maxLength,
+    required TResult Function(_MinLengthFailure value) minLength,
+    required TResult Function(_EmptyStringFailure value) empty,
+    required TResult Function(_InvalidCharacterFailure value) invalidCharacter,
   }) {
     return maxLength(this);
   }
@@ -206,10 +206,10 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MaxLengthFailure value)? maxLength,
-    TResult? Function(MinLengthFailure value)? minLength,
-    TResult? Function(EmptyStringFailure value)? empty,
-    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult? Function(_MaxLengthFailure value)? maxLength,
+    TResult? Function(_MinLengthFailure value)? minLength,
+    TResult? Function(_EmptyStringFailure value)? empty,
+    TResult? Function(_InvalidCharacterFailure value)? invalidCharacter,
   }) {
     return maxLength?.call(this);
   }
@@ -217,10 +217,10 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(MaxLengthFailure value)? maxLength,
-    TResult Function(MinLengthFailure value)? minLength,
-    TResult Function(EmptyStringFailure value)? empty,
-    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult Function(_MaxLengthFailure value)? maxLength,
+    TResult Function(_MinLengthFailure value)? minLength,
+    TResult Function(_EmptyStringFailure value)? empty,
+    TResult Function(_InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (maxLength != null) {
@@ -230,33 +230,33 @@ class _$MaxLengthFailure implements MaxLengthFailure {
   }
 }
 
-abstract class MaxLengthFailure implements StringFailure {
-  const factory MaxLengthFailure(
+abstract class _MaxLengthFailure implements StringFailure {
+  const factory _MaxLengthFailure(
       {required final String value,
-      required final int length}) = _$MaxLengthFailure;
+      required final int length}) = _$_MaxLengthFailure;
 
   String get value;
   int get length;
   @JsonKey(ignore: true)
-  _$$MaxLengthFailureCopyWith<_$MaxLengthFailure> get copyWith =>
+  _$$_MaxLengthFailureCopyWith<_$_MaxLengthFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MinLengthFailureCopyWith<$Res> {
-  factory _$$MinLengthFailureCopyWith(
-          _$MinLengthFailure value, $Res Function(_$MinLengthFailure) then) =
-      __$$MinLengthFailureCopyWithImpl<$Res>;
+abstract class _$$_MinLengthFailureCopyWith<$Res> {
+  factory _$$_MinLengthFailureCopyWith(
+          _$_MinLengthFailure value, $Res Function(_$_MinLengthFailure) then) =
+      __$$_MinLengthFailureCopyWithImpl<$Res>;
   @useResult
   $Res call({String value, int length});
 }
 
 /// @nodoc
-class __$$MinLengthFailureCopyWithImpl<$Res>
-    extends _$StringFailureCopyWithImpl<$Res, _$MinLengthFailure>
-    implements _$$MinLengthFailureCopyWith<$Res> {
-  __$$MinLengthFailureCopyWithImpl(
-      _$MinLengthFailure _value, $Res Function(_$MinLengthFailure) _then)
+class __$$_MinLengthFailureCopyWithImpl<$Res>
+    extends _$StringFailureCopyWithImpl<$Res, _$_MinLengthFailure>
+    implements _$$_MinLengthFailureCopyWith<$Res> {
+  __$$_MinLengthFailureCopyWithImpl(
+      _$_MinLengthFailure _value, $Res Function(_$_MinLengthFailure) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -265,7 +265,7 @@ class __$$MinLengthFailureCopyWithImpl<$Res>
     Object? value = null,
     Object? length = null,
   }) {
-    return _then(_$MinLengthFailure(
+    return _then(_$_MinLengthFailure(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -280,8 +280,8 @@ class __$$MinLengthFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MinLengthFailure implements MinLengthFailure {
-  const _$MinLengthFailure({required this.value, required this.length});
+class _$_MinLengthFailure implements _MinLengthFailure {
+  const _$_MinLengthFailure({required this.value, required this.length});
 
   @override
   final String value;
@@ -297,7 +297,7 @@ class _$MinLengthFailure implements MinLengthFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MinLengthFailure &&
+            other is _$_MinLengthFailure &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.length, length) || other.length == length));
   }
@@ -308,8 +308,8 @@ class _$MinLengthFailure implements MinLengthFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MinLengthFailureCopyWith<_$MinLengthFailure> get copyWith =>
-      __$$MinLengthFailureCopyWithImpl<_$MinLengthFailure>(this, _$identity);
+  _$$_MinLengthFailureCopyWith<_$_MinLengthFailure> get copyWith =>
+      __$$_MinLengthFailureCopyWithImpl<_$_MinLengthFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -351,10 +351,10 @@ class _$MinLengthFailure implements MinLengthFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(MaxLengthFailure value) maxLength,
-    required TResult Function(MinLengthFailure value) minLength,
-    required TResult Function(EmptyStringFailure value) empty,
-    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
+    required TResult Function(_MaxLengthFailure value) maxLength,
+    required TResult Function(_MinLengthFailure value) minLength,
+    required TResult Function(_EmptyStringFailure value) empty,
+    required TResult Function(_InvalidCharacterFailure value) invalidCharacter,
   }) {
     return minLength(this);
   }
@@ -362,10 +362,10 @@ class _$MinLengthFailure implements MinLengthFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MaxLengthFailure value)? maxLength,
-    TResult? Function(MinLengthFailure value)? minLength,
-    TResult? Function(EmptyStringFailure value)? empty,
-    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult? Function(_MaxLengthFailure value)? maxLength,
+    TResult? Function(_MinLengthFailure value)? minLength,
+    TResult? Function(_EmptyStringFailure value)? empty,
+    TResult? Function(_InvalidCharacterFailure value)? invalidCharacter,
   }) {
     return minLength?.call(this);
   }
@@ -373,10 +373,10 @@ class _$MinLengthFailure implements MinLengthFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(MaxLengthFailure value)? maxLength,
-    TResult Function(MinLengthFailure value)? minLength,
-    TResult Function(EmptyStringFailure value)? empty,
-    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult Function(_MaxLengthFailure value)? maxLength,
+    TResult Function(_MinLengthFailure value)? minLength,
+    TResult Function(_EmptyStringFailure value)? empty,
+    TResult Function(_InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (minLength != null) {
@@ -386,38 +386,38 @@ class _$MinLengthFailure implements MinLengthFailure {
   }
 }
 
-abstract class MinLengthFailure implements StringFailure {
-  const factory MinLengthFailure(
+abstract class _MinLengthFailure implements StringFailure {
+  const factory _MinLengthFailure(
       {required final String value,
-      required final int length}) = _$MinLengthFailure;
+      required final int length}) = _$_MinLengthFailure;
 
   String get value;
   int get length;
   @JsonKey(ignore: true)
-  _$$MinLengthFailureCopyWith<_$MinLengthFailure> get copyWith =>
+  _$$_MinLengthFailureCopyWith<_$_MinLengthFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$EmptyStringFailureCopyWith<$Res> {
-  factory _$$EmptyStringFailureCopyWith(_$EmptyStringFailure value,
-          $Res Function(_$EmptyStringFailure) then) =
-      __$$EmptyStringFailureCopyWithImpl<$Res>;
+abstract class _$$_EmptyStringFailureCopyWith<$Res> {
+  factory _$$_EmptyStringFailureCopyWith(_$_EmptyStringFailure value,
+          $Res Function(_$_EmptyStringFailure) then) =
+      __$$_EmptyStringFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmptyStringFailureCopyWithImpl<$Res>
-    extends _$StringFailureCopyWithImpl<$Res, _$EmptyStringFailure>
-    implements _$$EmptyStringFailureCopyWith<$Res> {
-  __$$EmptyStringFailureCopyWithImpl(
-      _$EmptyStringFailure _value, $Res Function(_$EmptyStringFailure) _then)
+class __$$_EmptyStringFailureCopyWithImpl<$Res>
+    extends _$StringFailureCopyWithImpl<$Res, _$_EmptyStringFailure>
+    implements _$$_EmptyStringFailureCopyWith<$Res> {
+  __$$_EmptyStringFailureCopyWithImpl(
+      _$_EmptyStringFailure _value, $Res Function(_$_EmptyStringFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EmptyStringFailure implements EmptyStringFailure {
-  const _$EmptyStringFailure();
+class _$_EmptyStringFailure implements _EmptyStringFailure {
+  const _$_EmptyStringFailure();
 
   @override
   String toString() {
@@ -427,7 +427,7 @@ class _$EmptyStringFailure implements EmptyStringFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$EmptyStringFailure);
+        (other.runtimeType == runtimeType && other is _$_EmptyStringFailure);
   }
 
   @override
@@ -473,10 +473,10 @@ class _$EmptyStringFailure implements EmptyStringFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(MaxLengthFailure value) maxLength,
-    required TResult Function(MinLengthFailure value) minLength,
-    required TResult Function(EmptyStringFailure value) empty,
-    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
+    required TResult Function(_MaxLengthFailure value) maxLength,
+    required TResult Function(_MinLengthFailure value) minLength,
+    required TResult Function(_EmptyStringFailure value) empty,
+    required TResult Function(_InvalidCharacterFailure value) invalidCharacter,
   }) {
     return empty(this);
   }
@@ -484,10 +484,10 @@ class _$EmptyStringFailure implements EmptyStringFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MaxLengthFailure value)? maxLength,
-    TResult? Function(MinLengthFailure value)? minLength,
-    TResult? Function(EmptyStringFailure value)? empty,
-    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult? Function(_MaxLengthFailure value)? maxLength,
+    TResult? Function(_MinLengthFailure value)? minLength,
+    TResult? Function(_EmptyStringFailure value)? empty,
+    TResult? Function(_InvalidCharacterFailure value)? invalidCharacter,
   }) {
     return empty?.call(this);
   }
@@ -495,10 +495,10 @@ class _$EmptyStringFailure implements EmptyStringFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(MaxLengthFailure value)? maxLength,
-    TResult Function(MinLengthFailure value)? minLength,
-    TResult Function(EmptyStringFailure value)? empty,
-    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult Function(_MaxLengthFailure value)? maxLength,
+    TResult Function(_MinLengthFailure value)? minLength,
+    TResult Function(_EmptyStringFailure value)? empty,
+    TResult Function(_InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -508,25 +508,25 @@ class _$EmptyStringFailure implements EmptyStringFailure {
   }
 }
 
-abstract class EmptyStringFailure implements StringFailure {
-  const factory EmptyStringFailure() = _$EmptyStringFailure;
+abstract class _EmptyStringFailure implements StringFailure {
+  const factory _EmptyStringFailure() = _$_EmptyStringFailure;
 }
 
 /// @nodoc
-abstract class _$$InvalidCharacterFailureCopyWith<$Res> {
-  factory _$$InvalidCharacterFailureCopyWith(_$InvalidCharacterFailure value,
-          $Res Function(_$InvalidCharacterFailure) then) =
-      __$$InvalidCharacterFailureCopyWithImpl<$Res>;
+abstract class _$$_InvalidCharacterFailureCopyWith<$Res> {
+  factory _$$_InvalidCharacterFailureCopyWith(_$_InvalidCharacterFailure value,
+          $Res Function(_$_InvalidCharacterFailure) then) =
+      __$$_InvalidCharacterFailureCopyWithImpl<$Res>;
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$InvalidCharacterFailureCopyWithImpl<$Res>
-    extends _$StringFailureCopyWithImpl<$Res, _$InvalidCharacterFailure>
-    implements _$$InvalidCharacterFailureCopyWith<$Res> {
-  __$$InvalidCharacterFailureCopyWithImpl(_$InvalidCharacterFailure _value,
-      $Res Function(_$InvalidCharacterFailure) _then)
+class __$$_InvalidCharacterFailureCopyWithImpl<$Res>
+    extends _$StringFailureCopyWithImpl<$Res, _$_InvalidCharacterFailure>
+    implements _$$_InvalidCharacterFailureCopyWith<$Res> {
+  __$$_InvalidCharacterFailureCopyWithImpl(_$_InvalidCharacterFailure _value,
+      $Res Function(_$_InvalidCharacterFailure) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -534,7 +534,7 @@ class __$$InvalidCharacterFailureCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$InvalidCharacterFailure(
+    return _then(_$_InvalidCharacterFailure(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -545,8 +545,8 @@ class __$$InvalidCharacterFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InvalidCharacterFailure implements InvalidCharacterFailure {
-  const _$InvalidCharacterFailure({required this.value});
+class _$_InvalidCharacterFailure implements _InvalidCharacterFailure {
+  const _$_InvalidCharacterFailure({required this.value});
 
   @override
   final String value;
@@ -560,7 +560,7 @@ class _$InvalidCharacterFailure implements InvalidCharacterFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InvalidCharacterFailure &&
+            other is _$_InvalidCharacterFailure &&
             (identical(other.value, value) || other.value == value));
   }
 
@@ -570,9 +570,10 @@ class _$InvalidCharacterFailure implements InvalidCharacterFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InvalidCharacterFailureCopyWith<_$InvalidCharacterFailure> get copyWith =>
-      __$$InvalidCharacterFailureCopyWithImpl<_$InvalidCharacterFailure>(
-          this, _$identity);
+  _$$_InvalidCharacterFailureCopyWith<_$_InvalidCharacterFailure>
+      get copyWith =>
+          __$$_InvalidCharacterFailureCopyWithImpl<_$_InvalidCharacterFailure>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -614,10 +615,10 @@ class _$InvalidCharacterFailure implements InvalidCharacterFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(MaxLengthFailure value) maxLength,
-    required TResult Function(MinLengthFailure value) minLength,
-    required TResult Function(EmptyStringFailure value) empty,
-    required TResult Function(InvalidCharacterFailure value) invalidCharacter,
+    required TResult Function(_MaxLengthFailure value) maxLength,
+    required TResult Function(_MinLengthFailure value) minLength,
+    required TResult Function(_EmptyStringFailure value) empty,
+    required TResult Function(_InvalidCharacterFailure value) invalidCharacter,
   }) {
     return invalidCharacter(this);
   }
@@ -625,10 +626,10 @@ class _$InvalidCharacterFailure implements InvalidCharacterFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MaxLengthFailure value)? maxLength,
-    TResult? Function(MinLengthFailure value)? minLength,
-    TResult? Function(EmptyStringFailure value)? empty,
-    TResult? Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult? Function(_MaxLengthFailure value)? maxLength,
+    TResult? Function(_MinLengthFailure value)? minLength,
+    TResult? Function(_EmptyStringFailure value)? empty,
+    TResult? Function(_InvalidCharacterFailure value)? invalidCharacter,
   }) {
     return invalidCharacter?.call(this);
   }
@@ -636,10 +637,10 @@ class _$InvalidCharacterFailure implements InvalidCharacterFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(MaxLengthFailure value)? maxLength,
-    TResult Function(MinLengthFailure value)? minLength,
-    TResult Function(EmptyStringFailure value)? empty,
-    TResult Function(InvalidCharacterFailure value)? invalidCharacter,
+    TResult Function(_MaxLengthFailure value)? maxLength,
+    TResult Function(_MinLengthFailure value)? minLength,
+    TResult Function(_EmptyStringFailure value)? empty,
+    TResult Function(_InvalidCharacterFailure value)? invalidCharacter,
     required TResult orElse(),
   }) {
     if (invalidCharacter != null) {
@@ -649,14 +650,14 @@ class _$InvalidCharacterFailure implements InvalidCharacterFailure {
   }
 }
 
-abstract class InvalidCharacterFailure implements StringFailure {
-  const factory InvalidCharacterFailure({required final String value}) =
-      _$InvalidCharacterFailure;
+abstract class _InvalidCharacterFailure implements StringFailure {
+  const factory _InvalidCharacterFailure({required final String value}) =
+      _$_InvalidCharacterFailure;
 
   String get value;
   @JsonKey(ignore: true)
-  _$$InvalidCharacterFailureCopyWith<_$InvalidCharacterFailure> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_InvalidCharacterFailureCopyWith<_$_InvalidCharacterFailure>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -679,17 +680,17 @@ mixin _$UidFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidUid value) invalid,
+    required TResult Function(_InvalidUid value) invalid,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidUid value)? invalid,
+    TResult? Function(_InvalidUid value)? invalid,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidUid value)? invalid,
+    TResult Function(_InvalidUid value)? invalid,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -714,25 +715,25 @@ class _$UidFailureCopyWithImpl<$Res, $Val extends UidFailure>
 }
 
 /// @nodoc
-abstract class _$$InvalidUidCopyWith<$Res> {
-  factory _$$InvalidUidCopyWith(
-          _$InvalidUid value, $Res Function(_$InvalidUid) then) =
-      __$$InvalidUidCopyWithImpl<$Res>;
+abstract class _$$_InvalidUidCopyWith<$Res> {
+  factory _$$_InvalidUidCopyWith(
+          _$_InvalidUid value, $Res Function(_$_InvalidUid) then) =
+      __$$_InvalidUidCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InvalidUidCopyWithImpl<$Res>
-    extends _$UidFailureCopyWithImpl<$Res, _$InvalidUid>
-    implements _$$InvalidUidCopyWith<$Res> {
-  __$$InvalidUidCopyWithImpl(
-      _$InvalidUid _value, $Res Function(_$InvalidUid) _then)
+class __$$_InvalidUidCopyWithImpl<$Res>
+    extends _$UidFailureCopyWithImpl<$Res, _$_InvalidUid>
+    implements _$$_InvalidUidCopyWith<$Res> {
+  __$$_InvalidUidCopyWithImpl(
+      _$_InvalidUid _value, $Res Function(_$_InvalidUid) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InvalidUid implements InvalidUid {
-  const _$InvalidUid();
+class _$_InvalidUid implements _InvalidUid {
+  const _$_InvalidUid();
 
   @override
   String toString() {
@@ -742,7 +743,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InvalidUid);
+        (other.runtimeType == runtimeType && other is _$_InvalidUid);
   }
 
   @override
@@ -779,7 +780,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidUid value) invalid,
+    required TResult Function(_InvalidUid value) invalid,
   }) {
     return invalid(this);
   }
@@ -787,7 +788,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidUid value)? invalid,
+    TResult? Function(_InvalidUid value)? invalid,
   }) {
     return invalid?.call(this);
   }
@@ -795,7 +796,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidUid value)? invalid,
+    TResult Function(_InvalidUid value)? invalid,
     required TResult orElse(),
   }) {
     if (invalid != null) {
@@ -805,6 +806,6 @@ class _$InvalidUid implements InvalidUid {
   }
 }
 
-abstract class InvalidUid implements UidFailure {
-  const factory InvalidUid() = _$InvalidUid;
+abstract class _InvalidUid implements UidFailure {
+  const factory _InvalidUid() = _$_InvalidUid;
 }
