@@ -680,17 +680,17 @@ mixin _$UidFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidUid value) invalid,
+    required TResult Function(_InvalidUid value) invalid,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidUid value)? invalid,
+    TResult? Function(_InvalidUid value)? invalid,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidUid value)? invalid,
+    TResult Function(_InvalidUid value)? invalid,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -715,25 +715,25 @@ class _$UidFailureCopyWithImpl<$Res, $Val extends UidFailure>
 }
 
 /// @nodoc
-abstract class _$$InvalidUidCopyWith<$Res> {
-  factory _$$InvalidUidCopyWith(
-          _$InvalidUid value, $Res Function(_$InvalidUid) then) =
-      __$$InvalidUidCopyWithImpl<$Res>;
+abstract class _$$_InvalidUidCopyWith<$Res> {
+  factory _$$_InvalidUidCopyWith(
+          _$_InvalidUid value, $Res Function(_$_InvalidUid) then) =
+      __$$_InvalidUidCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InvalidUidCopyWithImpl<$Res>
-    extends _$UidFailureCopyWithImpl<$Res, _$InvalidUid>
-    implements _$$InvalidUidCopyWith<$Res> {
-  __$$InvalidUidCopyWithImpl(
-      _$InvalidUid _value, $Res Function(_$InvalidUid) _then)
+class __$$_InvalidUidCopyWithImpl<$Res>
+    extends _$UidFailureCopyWithImpl<$Res, _$_InvalidUid>
+    implements _$$_InvalidUidCopyWith<$Res> {
+  __$$_InvalidUidCopyWithImpl(
+      _$_InvalidUid _value, $Res Function(_$_InvalidUid) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InvalidUid implements InvalidUid {
-  const _$InvalidUid();
+class _$_InvalidUid implements _InvalidUid {
+  const _$_InvalidUid();
 
   @override
   String toString() {
@@ -743,7 +743,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InvalidUid);
+        (other.runtimeType == runtimeType && other is _$_InvalidUid);
   }
 
   @override
@@ -780,7 +780,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidUid value) invalid,
+    required TResult Function(_InvalidUid value) invalid,
   }) {
     return invalid(this);
   }
@@ -788,7 +788,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidUid value)? invalid,
+    TResult? Function(_InvalidUid value)? invalid,
   }) {
     return invalid?.call(this);
   }
@@ -796,7 +796,7 @@ class _$InvalidUid implements InvalidUid {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidUid value)? invalid,
+    TResult Function(_InvalidUid value)? invalid,
     required TResult orElse(),
   }) {
     if (invalid != null) {
@@ -806,6 +806,6 @@ class _$InvalidUid implements InvalidUid {
   }
 }
 
-abstract class InvalidUid implements UidFailure {
-  const factory InvalidUid() = _$InvalidUid;
+abstract class _InvalidUid implements UidFailure {
+  const factory _InvalidUid() = _$_InvalidUid;
 }

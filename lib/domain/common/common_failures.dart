@@ -1,5 +1,4 @@
-/// Common failures for the domain layer.
-
+/// Domain layer common failures
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'common_failures.freezed.dart';
@@ -27,5 +26,5 @@ class StringFailure with _$StringFailure {
 @freezed
 class UidFailure with _$UidFailure {
   /// The [Uid] is invalid.
-  const factory UidFailure.invalid() = InvalidUid;
+  const factory UidFailure.invalid() = _InvalidUid;
 }

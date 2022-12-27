@@ -1,4 +1,4 @@
-/// Common validators for Domain [ValueObject].
+/// Domain layer common validators
 import 'package:appointment/domain/common/common_failures.dart';
 import 'package:dartz/dartz.dart';
 

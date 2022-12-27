@@ -1,11 +1,11 @@
-/// Common values used in the domain layer.
+/// Domain layer common values
 import 'package:appointment/domain/common/common_failures.dart';
 import 'package:appointment/domain/common/value_object.dart';
 import 'package:dartz/dartz.dart';
 
-/// Unique identifier for entities.
+/// Used to unique identify entities.
 class Uid extends ValueObject<UidFailure, int> {
-  /// The value of the [Uid]
+  /// [Right<int>] value of the [Uid] or a [Left<UidFailure>].
   @override
   final Either<UidFailure, int> value;
 

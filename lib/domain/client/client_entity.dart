@@ -1,5 +1,4 @@
-/// Contains the definition for [Client].
-
+/// Domain model Client definition.
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/value_object.dart';
 import 'package:appointment/domain/common/common_values.dart';
@@ -8,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'client_entity.freezed.dart';
 
-/// The entity for a client.
+/// Represents a [Client] in the domain model.
 @freezed
 abstract class Client with _$Client, EntityMixin {
   const Client._();

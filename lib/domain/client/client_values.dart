@@ -1,12 +1,13 @@
-/// Client values and validators.
+/// Client values objects and validators.
 import 'package:appointment/domain/common/common_failures.dart';
 import 'package:appointment/domain/common/value_object.dart';
 import 'package:appointment/domain/common/common_validators.dart';
 import 'package:dartz/dartz.dart';
 
-/// The name of a client.
+/// [ValueObject] to store [Client]'s Name.
 class Name extends ValueObject<StringFailure, String> {
-  /// The value of the [Name].
+  /// [Right<String>] value of the [Name] or a [Left<StringFailure>]
+  /// if invalid
   @override
   final Either<StringFailure, String> value;
   const Name._(this.value);

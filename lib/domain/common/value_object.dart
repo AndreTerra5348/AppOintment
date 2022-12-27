@@ -1,8 +1,9 @@
-/// Contains the definition for [ValueObject].
+/// [ValueObject] definition.
 import 'package:appointment/domain/common/common_errors.dart';
 import 'package:dartz/dartz.dart';
 
-/// A generic class for value objects.
+/// Store a value of type [T_Value] or a [T_Failure].
+/// Handle invalid states by propagating a failure object.
 abstract class ValueObject<T_Failure, T_Value> {
   const ValueObject();
 
@@ -12,7 +13,6 @@ abstract class ValueObject<T_Failure, T_Value> {
 
   /// Returns the [value] of the object.
   /// Throws a [CriticalError] if the value is a [T_Failure].
-  /// Use [isValid] to check if the [value] is a [T_Value].
   T_Value getOrThrow() {
     return value.fold(
       (failure) => throw CriticalError(failure.toString()),

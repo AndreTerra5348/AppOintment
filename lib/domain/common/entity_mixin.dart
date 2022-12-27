@@ -1,9 +1,9 @@
-/// Contains the definition for [EntityMixin].
+/// [EntityMixin] definition.
 import 'package:appointment/domain/common/value_object.dart';
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:dartz/dartz.dart';
 
-/// The base mixin for entities.
+/// Provides validation checks and id for entities.
 mixin EntityMixin {
   /// Returns true if all the [values] of the entity are valid.
   bool get isValid => values.every((element) => element.isValid);
