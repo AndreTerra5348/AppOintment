@@ -1,5 +1,5 @@
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/core/select_filter.dart';
+import 'package:appointment/infrastructure/drift/core/select_filter.dart';
 import 'package:drift/drift.dart';
 
 abstract class Dao<T_Table extends Table, T_Model extends DataClass> {

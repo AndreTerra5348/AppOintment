@@ -1,4 +1,4 @@
-import 'package:appointment/infrastructure/core/page_service.dart';
+import 'package:appointment/infrastructure/drift/core/page_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'client_search_status.freezed.dart';

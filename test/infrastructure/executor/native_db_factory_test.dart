@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:appointment/infrastructure/drift/native_db_factory.dart'
+import 'package:appointment/infrastructure/drift/executor/native_executor.dart'
     as native_db;
 
 void main() {

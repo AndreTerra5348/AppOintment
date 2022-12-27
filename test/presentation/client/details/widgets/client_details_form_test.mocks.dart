@@ -12,10 +12,13 @@ import 'package:appointment/application/edit/bloc/edit_bloc.dart' as _i4;
 import 'package:appointment/application/load/bloc/load_bloc.dart' as _i3;
 import 'package:appointment/domain/common/common_values.dart' as _i15;
 import 'package:appointment/domain/common/entity_mixin.dart' as _i1;
-import 'package:appointment/infrastructure/client/client_dao.dart' as _i14;
-import 'package:appointment/infrastructure/client/client_table.dart' as _i8;
-import 'package:appointment/infrastructure/core/select_filter.dart' as _i16;
-import 'package:appointment/infrastructure/drift/db.dart' as _i9;
+import 'package:appointment/infrastructure/drift/client/client_dao.dart'
+    as _i14;
+import 'package:appointment/infrastructure/drift/client/client_table.dart'
+    as _i8;
+import 'package:appointment/infrastructure/drift/core/select_filter.dart'
+    as _i16;
+import 'package:appointment/infrastructure/drift/drift_db.dart' as _i9;
 import 'package:bloc/bloc.dart' as _i13;
 import 'package:drift/drift.dart' as _i10;
 import 'package:drift/src/runtime/executor/stream_queries.dart' as _i11;

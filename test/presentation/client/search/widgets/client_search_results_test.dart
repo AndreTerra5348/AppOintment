@@ -1,6 +1,6 @@
 import 'package:appointment/application/client/search/bloc/client_search_bloc.dart';
 import 'package:appointment/application/client/search/client_search_status.dart';
-import 'package:appointment/infrastructure/client/client_dao.dart';
+import 'package:appointment/infrastructure/drift/client/client_dao.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/details/client_details_page.dart';
 import 'package:appointment/presentation/client/search/widgets/client_search_results.dart';

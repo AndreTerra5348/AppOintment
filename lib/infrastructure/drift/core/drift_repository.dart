@@ -1,8 +1,8 @@
 import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:appointment/domain/core/repository.dart';
-import 'package:appointment/infrastructure/core/dao.dart';
-import 'package:appointment/infrastructure/core/entity_model_converter.dart';
+import 'package:appointment/infrastructure/drift/core/dao.dart';
+import 'package:appointment/infrastructure/drift/core/entity_model_converter.dart';
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
 

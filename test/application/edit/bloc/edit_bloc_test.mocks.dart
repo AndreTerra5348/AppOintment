@@ -8,7 +8,8 @@ import 'dart:async' as _i6;
 import 'package:appointment/domain/common/common_values.dart' as _i8;
 import 'package:appointment/domain/common/entity_mixin.dart' as _i3;
 import 'package:appointment/domain/core/repository.dart' as _i7;
-import 'package:appointment/infrastructure/core/drift_repository.dart' as _i5;
+import 'package:appointment/infrastructure/drift/core/drift_repository.dart'
+    as _i5;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:drift/drift.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;

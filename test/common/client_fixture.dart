@@ -1,7 +1,7 @@
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/db.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 
 Iterable<ClientModel> generateModel({
   int amount = 1,
