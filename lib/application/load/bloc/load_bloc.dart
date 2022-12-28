@@ -1,3 +1,4 @@
+/// Defines [LoadBloc] for [EntityMixin]
 import 'dart:async';
 
 import 'package:appointment/application/common/submission_status.dart';
@@ -13,6 +14,7 @@ part 'load_event.dart';
 part 'load_state.dart';
 part 'load_bloc.freezed.dart';
 
+/// Handle [EntityMixin] loading
 class LoadBloc<T extends EntityMixin> extends Bloc<LoadEvent, LoadState<T>> {
   final Repository<T> _repository;
   LoadBloc(this._repository) : super(LoadState<T>.loading()) {
