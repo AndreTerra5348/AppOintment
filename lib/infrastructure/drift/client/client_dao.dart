@@ -1,3 +1,4 @@
+/// Drift ClientDao definition
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/infrastructure/drift/core/dao.dart';
@@ -7,6 +8,8 @@ import 'package:drift/drift.dart';
 
 part 'client_dao.g.dart';
 
+/// Access Drift database tables to store and manage [ClientModel]s
+/// stored in the [ClientModels] table
 @DriftAccessor(tables: [ClientModels])
 class ClientDao extends DatabaseAccessor<DriftDb>
     with _$ClientDaoMixin

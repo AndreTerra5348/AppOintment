@@ -1,3 +1,5 @@
+/// Drift [Repository] definition
+
 import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:appointment/domain/core/repository.dart';
@@ -6,13 +8,24 @@ import 'package:appointment/infrastructure/drift/core/entity_model_converter.dar
 import 'package:dartz/dartz.dart';
 import 'package:drift/drift.dart';
 
+/// [Drift] [Repository] implementation
+/// - Convert exceptions to [RepositoryFailure]
+/// - Returns Entities
+/// - Depends on a [Dao] and [EntityModelConverter]
 class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     T_Model extends DataClass> implements Repository<T_Entity> {
+  /// Drift [Dao] to access the database
   final Dao<T_Table, T_Model> _dao;
+
+  /// Drift [EntityModelConverter] to convert between [T_Entity] and [T_Model]
   final EntityModelConverter<T_Entity, T_Model> _converter;
 
+  /// Create a [DriftRepository] with a [Dao] and [EntityModelConverter]
   DriftRepository(this._dao, this._converter);
 
+  /// Get a [T_Entity] by its [Uid]
+  /// Returns a [RepositoryFailure] if there is an exception
+  /// otherwise returns the [T_Entity]
   @override
   Future<Either<RepositoryFailure, T_Entity>> insert(T_Entity entity) async {
     try {
@@ -24,6 +37,10 @@ class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     }
   }
 
+  /// Update a [T_Entity] in the database
+  /// Returns a [RepositoryFailure] if there is an exception
+  /// Returns false if the [T_Entity] was not found
+  /// otherwise returns true
   @override
   Future<Either<RepositoryFailure, bool>> update(T_Entity entity) async {
     try {
@@ -34,6 +51,10 @@ class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     }
   }
 
+  /// Get a [T_Entity] by its [Uid]
+  /// Returns a [RepositoryFailure.notFound] if the [T_Entity] is not found
+  /// Returns a [RepositoryFailure.dbException] if there any other exception
+  /// otherwise returns the [T_Entity]
   @override
   Future<Either<RepositoryFailure, T_Entity>> getById(Uid id) async {
     try {
@@ -46,6 +67,10 @@ class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     }
   }
 
+  /// Delete a [T_Entity] by its [Uid]
+  /// Returns a [RepositoryFailure] if there is an exception
+  /// Returns false if the [T_Entity] was not found
+  /// otherwise returns true
   @override
   Future<Either<RepositoryFailure, bool>> delete(Uid id) async {
     try {
