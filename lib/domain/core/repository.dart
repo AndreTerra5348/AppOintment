@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'repository.freezed.dart';
 
-/// Stores and manage a collection of [EntityMixin].
+/// Provides a contract for storage and management of [EntityMixin]s
 abstract class Repository<T extends EntityMixin> {
   /// Inserts an entity into the repository.
   /// Either returns a [RepositoryFailure] or the inserted entity.
