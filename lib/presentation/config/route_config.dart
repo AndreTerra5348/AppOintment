@@ -1,3 +1,4 @@
+/// Defines routing configuration
 // This file is used for configuration only, it should not be tested
 // coverage:ignore-file
 import 'package:appointment/domain/common/common_values.dart';
@@ -9,6 +10,7 @@ import 'package:appointment/presentation/config/route_config.gr.dart';
 import 'package:appointment/presentation/home/home_page.dart';
 import 'package:auto_route/auto_route.dart';
 
+/// Configures [AutoRoute] router
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
@@ -20,6 +22,7 @@ import 'package:auto_route/auto_route.dart';
 )
 class $AppRouter {}
 
+/// Shortcuts for navigation with [GetIt] dependency
 extension StackRouterX on StackRouter {
   ClientSearchRoute get clientSearchRoute => ClientSearchRoute(bloc: getIt());
   ClientRegisterRoute get clientRegisterRoute =>

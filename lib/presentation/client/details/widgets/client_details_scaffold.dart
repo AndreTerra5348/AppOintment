@@ -1,3 +1,4 @@
+/// Defines [ClientDetailsPageScaffold]
 import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/application/details/bloc/details_bloc.dart';
 import 'package:appointment/application/delete/bloc/delete_bloc.dart';
@@ -12,6 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 
+/// Displays and handle inputs for deleting, editing and saving [Client] details,
+/// displays [ClientDetailsFormWidget]
 class ClientDetailsPageScaffold extends StatelessWidget {
   const ClientDetailsPageScaffold({super.key});
 
@@ -35,6 +38,8 @@ class ClientDetailsPageScaffold extends StatelessWidget {
     );
   }
 
+  /// Builds the [AppBar] and handles delete, edit, save and cancel editing actions
+  /// enabling or disabling them based on the current state of the [EditBloc]
   List<Widget> _buildActions(BuildContext context, bool isEditing) {
     return isEditing
         ? [
@@ -63,6 +68,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
           ];
   }
 
+  /// Displays a dialog box to confirm stopping editing
   _showStopEditingConfirmationDialog(BuildContext context) {
     Dialogs.materialDialog(
       dialogWidth: 0.1,
@@ -83,6 +89,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
     );
   }
 
+  /// Displays dialog box to confirm saving changes
   _showSaveConfirmationDialog(BuildContext context) {
     Dialogs.materialDialog(
       dialogWidth: 0.1,
@@ -102,6 +109,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
     );
   }
 
+  /// Displays a dialog box to confirm [Client] deletion
   _showDeleteConfirmationDialog(BuildContext context) {
     Dialogs.materialDialog(
       dialogWidth: 0.1,
@@ -124,6 +132,7 @@ class ClientDetailsPageScaffold extends StatelessWidget {
   }
 }
 
+/// Pops the current [BuildContext] from the navigation stack
 class CancelIconsButton extends IconsButton {
   CancelIconsButton({required BuildContext context, String? text})
       : super(
@@ -133,6 +142,13 @@ class CancelIconsButton extends IconsButton {
         );
 }
 
+/// Shortcuts for accessing
+/// [LoadBloc],
+/// [EditBloc],
+/// [ClientBloc]
+/// and [DeleteBloc]
+/// events and states
+/// from [BuildContext]
 extension on BuildContext {
   LoadBloc<Client> get detailsBloc => BlocProvider.of<LoadBloc<Client>>(this);
 

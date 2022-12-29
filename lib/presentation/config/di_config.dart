@@ -1,3 +1,4 @@
+/// Defines dependency injection configuration
 // This file is used for configuration only, it should not be tested
 // coverage:ignore-file
 import 'package:appointment/application/client/bloc/client_bloc.dart';
@@ -25,8 +26,10 @@ import 'package:drift/drift.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+/// instantiates [GetIt] globally
 final getIt = GetIt.instance;
 
+/// Registers all dependencies
 void servicesConfiguration() {
   getIt.registerSingleton<QueryExecutor>(
     executor_provider.getQueryExecutor(),

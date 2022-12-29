@@ -1,3 +1,4 @@
+/// Defines [ClientDetailsPage]
 import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/application/details/bloc/details_bloc.dart';
 import 'package:appointment/application/delete/bloc/delete_bloc.dart';
@@ -9,12 +10,26 @@ import 'package:appointment/presentation/client/details/widgets/client_details_s
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Displays [ClientDetailsPageScaffold] and
+/// provides [ClientBloc], [LoadBloc], [DeleteBloc],
+/// [EditBloc] and [DetailsBloc] for [Client]
 class ClientDetailsPage extends StatelessWidget {
+  /// Loads [Client] for other BLoCs to use
   final LoadBloc<Client> loadBloc;
+
+  /// Deletes loaded [Client]
   final DeleteBloc<Client> deleteBloc;
+
+  /// Edits [Client] properties
   final EditBloc<Client> editBloc;
+
+  /// Mediates other BLoCs
   final DetailsBloc<Client> detailsBloc;
+
+  /// Provides [Client] to other BLoCs
   final ClientBloc clientBloc;
+
+  /// Specifies [Client] to load
   final Uid clientId;
 
   const ClientDetailsPage({

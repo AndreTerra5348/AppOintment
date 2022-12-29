@@ -1,3 +1,4 @@
+/// Defines [ClientSearchResultsWidget]
 import 'package:appointment/application/client/search/bloc/client_search_bloc.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
@@ -8,6 +9,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Displays a [ListView] of [Client]s and handles [ClientSearchBloc] changes.
+/// Fetches more [Client]s when the user scrolls to the bottom of the list.
+/// Navigates to [ClientDetailsPage] when a [Client] is tapped.
 class ClientSearchResultsWidget extends StatefulWidget {
   const ClientSearchResultsWidget({super.key});
 
@@ -83,34 +87,41 @@ class _ClientSearchResultsWidgetState extends State<ClientSearchResultsWidget>
     _fetchMorePostFrame();
   }
 
+  /// Fetches more [Client]s when the user scrolls to the bottom of the list
   void _onScroll() {
     _fetchMore();
   }
 
+  /// Registers a [PostFrameCallback] to fetch more [Client]s
+  /// when there's not envough clients to fill the screen
   void _fetchMorePostFrame() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _fetchMore();
     });
   }
 
+  /// Fetches more [Client]s
   void _fetchMore() {
     if (_isBottom) {
       context.fetchRequested();
     }
   }
 
+  /// Returns true if the user has scrolled to the bottom of the list
   bool get _isBottom {
     if (!_scrollController.hasClients) return false;
     return _scrollController.position.extentAfter == 0;
   }
 }
 
+/// Converts a [PageServiceFailure] to a [String]
 extension on PageServiceFailure {
   String toErrorText(BuildContext context) {
     return map(dbException: (value) => context.tr.databaseFailure(value.error));
   }
 }
 
+/// Shortcuts for [ClientSearchBloc] events
 extension on BuildContext {
   ClientSearchBloc get searchBloc => read<ClientSearchBloc>();
 
@@ -127,6 +138,7 @@ extension on BuildContext {
       );
 }
 
+/// Shortcuts for [ClientSearchState] properties
 extension on ClientSearchState {
   Uid getId(int index) => clients.elementAt(index).id;
   Name getName(int index) => clients.elementAt(index).name;

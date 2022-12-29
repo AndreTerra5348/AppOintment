@@ -1,5 +1,7 @@
+/// Defines a dialog box
 import 'package:flutter/material.dart';
 
+/// Displays a dialog with [icon] and [text]
 Future<T?> show<T>({
   required BuildContext context,
   required Icon icon,
