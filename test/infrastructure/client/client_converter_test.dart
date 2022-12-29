@@ -50,20 +50,5 @@ void main() {
       expect(actual.name, entity.name);
       expect(actual.id, entity.id);
     });
-
-    test(
-        "Should return [ClientModel] with same name and id "
-        "When [toModel] called with [Client]", () {
-      // Arrange
-      final entity = Client(name: Name("Bobo"), id: Uid.fromInt(0));
-      final sut = ClientConveter();
-
-      // Act
-      final actual = sut.toModel(entity);
-
-      // Assert
-      expect(actual.name, entity.name);
-      expect(actual.id, entity.id);
-    });
   });
 }

@@ -12,8 +12,4 @@ abstract class EntityModelConverter<T_Entity, T_Model extends DataClass> {
 
   /// Converts an [Entity] to a [UpdateCompanion] for use in an insert statement
   UpdateCompanion<T_Model> toUpdateCompanion(T_Entity entity);
-
-  /// TODO: remove this unused method
-  /// Converts an [Entity] to a [Model]
-  T_Model toModel(T_Entity entity);
 }

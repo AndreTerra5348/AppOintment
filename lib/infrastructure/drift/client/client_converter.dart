@@ -24,11 +24,4 @@ class ClientConveter extends EntityModelConverter<Client, ClientModel> {
   ClientModelsCompanion toUpdateCompanion(Client entity) {
     return ClientModelsCompanion.insert(name: entity.name);
   }
-
-  /// TODO: remove this unused method
-  /// Converts a [Client] to a [ClientModel]
-  @override
-  ClientModel toModel(Client entity) {
-    return ClientModel(id: entity.id, name: entity.name);
-  }
 }
