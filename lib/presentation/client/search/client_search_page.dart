@@ -22,9 +22,9 @@ class ClientSearchPage extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.all(8),
           child: Column(
-            children: [
-              ClientSearchBarWidget(bloc: bloc),
-              const Expanded(child: ClientSearchResultsWidget()),
+            children: const [
+              ClientSearchBarWidget(),
+              Expanded(child: ClientSearchResultsWidget()),
             ],
           ),
         ),

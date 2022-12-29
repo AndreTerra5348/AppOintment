@@ -9,7 +9,7 @@ part 'client_entity.freezed.dart';
 
 /// Represents a [Client] in the domain model.
 @freezed
-abstract class Client with _$Client, EntityMixin {
+class Client with _$Client, EntityMixin {
   const Client._();
 
   /// Creates a new [Client] with a [name] and an [id].
