@@ -60,7 +60,7 @@ class MockClientSearchPage extends StatelessWidget {
       home: Scaffold(
         body: BlocProvider(
           create: (context) => bloc,
-          child: ClientSearchBarWidget(bloc: bloc),
+          child: const ClientSearchBarWidget(),
         ),
       ),
     );
