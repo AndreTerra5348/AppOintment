@@ -1,3 +1,4 @@
+/// Defines [ClientRegisterFormWidget]
 import 'dart:async';
 
 import 'package:appointment/application/client/bloc/client_bloc.dart';
@@ -13,6 +14,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:appointment/presentation/common/messege_dialog.dart'
     as messesge_dialog;
 
+/// Handles [Client] registration,
+/// displays and handles [RegisterNameInputWidget] changes
 class ClientRegisterFormWidget extends StatefulWidget {
   const ClientRegisterFormWidget({super.key});
 
@@ -88,6 +91,8 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     );
   }
 
+  /// Handles [RegisterBloc] success
+  /// Resets [ClientBloc] and form state
   _handleSuccess(BuildContext context) {
     context.reset();
     setState(() => _formKey.currentState!.reset());
@@ -106,6 +111,8 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     );
   }
 
+  /// Handles [RegisterBloc] failure
+  /// Shows dialog box with error message
   _handleFailure(BuildContext context, SubmissionFailure failure) {
     messesge_dialog.show(
       context: context,
@@ -129,6 +136,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   }
 }
 
+/// Shortcuts for [RegisterBloc] and [ClientBloc] events and states
 extension on BuildContext {
   void submitted({required Client client}) => read<RegisterBloc<Client>>().add(
         RegisterEvent<Client>.registered(entity: client),

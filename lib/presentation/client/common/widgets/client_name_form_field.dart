@@ -1,3 +1,4 @@
+/// Defines [NameFormField]
 import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/common/common_failures.dart';
@@ -7,7 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:appointment/domain/common/common_validators.dart' as validators;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// [NameFormField] depends on [ClientBloc]
+/// A Widget for entering a [Client] name.
+/// Handles [ClientBloc] changes
 class NameFormField extends TextFormField {
   NameFormField({
     super.key,
@@ -31,6 +33,7 @@ class NameFormField extends TextFormField {
         );
 }
 
+/// Converts [StringFailure] to [String]
 extension StringFailureExtension on StringFailure {
   String? toErrorText(BuildContext context) {
     return maybeMap(
@@ -40,6 +43,8 @@ extension StringFailureExtension on StringFailure {
   }
 }
 
+/// Shortcuts for adding [ClientBloc] events
+/// and reading the [ClientBloc] state
 extension on BuildContext {
   Client get client => read<ClientBloc>().state.client;
   void nameChanged({required String name}) =>

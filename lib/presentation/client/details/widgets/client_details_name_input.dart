@@ -1,9 +1,12 @@
+/// Defines [DetailsNameInputWidget]
 import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/presentation/client/common/widgets/client_name_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Editable [NameFormField] for [Client] [Name]
 class DetailsNameInputWidget extends StatelessWidget {
+  /// Enables editing
   final bool isEditing;
   const DetailsNameInputWidget({
     super.key,
@@ -25,6 +28,7 @@ class DetailsNameInputWidget extends StatelessWidget {
   }
 }
 
+/// Shortcuts for reading [ClientState] properties
 extension on ClientState {
   String? get nameOrNull => client.name.value.fold(
         (_) => null,

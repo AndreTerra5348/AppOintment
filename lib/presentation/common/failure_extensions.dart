@@ -1,7 +1,9 @@
+/// Defines failure object extensions
 import 'package:appointment/application/common/submission_status.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:flutter/material.dart';
 
+/// Converts [SubmissionFailure] to localized [String]
 extension SubmissionFailureEx on SubmissionFailure {
   String toErrorText(BuildContext context) {
     return map(

@@ -1,3 +1,4 @@
+/// Defines [ClientDetailsFormWidget]
 import 'dart:async';
 
 import 'package:appointment/application/client/bloc/client_bloc.dart';
@@ -18,6 +19,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:appointment/presentation/common/messege_dialog.dart'
     as messesge_dialog;
 
+/// Displays the [Client] properties and
+/// handles [Client] deletion and editing
 class ClientDetailsFormWidget extends StatefulWidget {
   const ClientDetailsFormWidget({super.key});
 
@@ -102,6 +105,8 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
+  /// Determines if the [Client] was successfully deleted
+  /// or if there was a failure
   _handleDeleteStateChanged(BuildContext context, DeleteState state) {
     state.maybeMap(
       orElse: () {},
@@ -122,6 +127,8 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
+  /// Determines if the [Client] was successfully loaded
+  /// or if there was a failure
   _handleLoadStateChanged(LoadState<Client> state) {
     state.maybeMap(
       orElse: () {},
@@ -141,6 +148,8 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
+  /// Determines if the [Client] was successfully edited
+  /// or if there was a failure
   _handleEditStateChanged(BuildContext context, EditState state) {
     state.maybeMap(
         orElse: () {},
@@ -158,6 +167,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
+  /// Shows a dialog box with the [failure] message
   _handleFailure(BuildContext context, SubmissionFailure failure) {
     messesge_dialog.show(
       context: context,
@@ -174,6 +184,8 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
     );
   }
 
+  /// Reloads the [Client] details
+  /// Shows a dialog box with the success message
   _handleSuccess(BuildContext context) {
     context.reaload(id: context.client.id);
 
@@ -211,6 +223,13 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
   }
 }
 
+/// Shortcut for accessing
+/// [ClientBloc],
+/// [DetailsBloc],
+/// [DeleteBloc],
+/// and [LoadBloc],
+/// events and states
+/// from [BuildContext]
 extension on BuildContext {
   Client get client => clientBloc.state.client;
 
