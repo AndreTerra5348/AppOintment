@@ -1,3 +1,4 @@
+/// Defines [RegisterBloc] for [EntityMixin]
 import 'dart:async';
 import 'package:appointment/application/common/submission_status.dart';
 import 'package:appointment/application/register/register_validator.dart';
@@ -10,6 +11,7 @@ part 'register_event.dart';
 part 'register_state.dart';
 part 'register_bloc.freezed.dart';
 
+/// Handle [EntityMixin] registration
 class RegisterBloc<T extends EntityMixin>
     extends Bloc<RegisterEvent<T>, RegisterState> {
   final Repository<T> _repository;

@@ -1,3 +1,4 @@
+/// Defines [EditBloc] for [EntityMixin]
 import 'dart:async';
 
 import 'package:appointment/application/common/submission_status.dart';
@@ -10,6 +11,7 @@ part 'edit_event.dart';
 part 'edit_state.dart';
 part 'edit_bloc.freezed.dart';
 
+/// Handle [EntityMixin] editing
 class EditBloc<T extends EntityMixin> extends Bloc<EditEvent<T>, EditState> {
   final Repository<T> _repository;
   EditBloc(this._repository) : super(const _Initial()) {
