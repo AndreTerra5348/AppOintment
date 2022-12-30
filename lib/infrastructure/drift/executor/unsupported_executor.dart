@@ -2,7 +2,7 @@
 import 'package:drift/backends.dart';
 
 /// Throws an [UnsupportedError] if the current platform is not supported.
-QueryExecutor getQueryExecutor() {
+QueryExecutor create() {
   throw UnsupportedError(
     'No suitable database implementation was found on this platform.',
   );

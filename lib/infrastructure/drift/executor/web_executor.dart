@@ -1,10 +1,8 @@
-/// Drift [WebDatabase] handler
+/// Defines [WebDatabase] creation
 import 'package:drift/drift.dart';
 import 'package:drift/web.dart';
 
-/// Provides a [LazyDatabase] with [WebDatabase] opener
-QueryExecutor getQueryExecutor() {
-  return LazyDatabase(() async {
-    return WebDatabase('db');
-  });
+/// Provides a [WebDatabase]
+QueryExecutor create() {
+  return WebDatabase('db');
 }
