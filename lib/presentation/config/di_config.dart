@@ -20,19 +20,19 @@ import 'package:appointment/infrastructure/drift/core/entity_model_converter.dar
 import 'package:appointment/infrastructure/drift/core/page_service.dart';
 import 'package:appointment/infrastructure/drift/core/drift_repository.dart';
 import 'package:appointment/infrastructure/drift/drift_db.dart';
-import 'package:appointment/infrastructure/drift/executor/executor_provider.dart'
-    as executor_provider;
+import 'package:appointment/infrastructure/drift/executor/executor_factory.dart'
+    as executor_factory;
 import 'package:drift/drift.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-/// instantiates [GetIt] globally
+/// Instantiates [GetIt] globally
 final getIt = GetIt.instance;
 
 /// Registers all dependencies
 void servicesConfiguration() {
   getIt.registerSingleton<QueryExecutor>(
-    executor_provider.getQueryExecutor(),
+    executor_factory.create(),
   );
 
   getIt.registerSingleton(DriftDb(executor: getIt()));
