@@ -84,7 +84,7 @@ class MockDriftRepository<
       ) as _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>>);
   @override
   _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>> getById(
-          _i8.Uid? id) =>
+          _i8.Identifier? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #getById,
@@ -101,7 +101,8 @@ class MockDriftRepository<
         )),
       ) as _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>>);
   @override
-  _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>> delete(_i8.Uid? id) =>
+  _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>> delete(
+          _i8.Identifier? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #delete,

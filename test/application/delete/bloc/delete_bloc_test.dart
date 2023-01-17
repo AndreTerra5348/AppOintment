@@ -21,7 +21,7 @@ void main() {
 
   setUp(() {
     repository = MockDriftRepository<Client, ClientModels, ClientModel>();
-    johnClient = Client(name: Name('John'), id: Uid.fromInt(1));
+    johnClient = Client(name: Name('John'), id: Identifier.fromInt(1));
   });
 
   blocTest(
@@ -33,7 +33,7 @@ void main() {
       );
     },
     build: () => DeleteBloc<Client>(repository),
-    act: (bloc) => bloc.add(DeleteEvent.deleted(id: Uid())),
+    act: (bloc) => bloc.add(DeleteEvent.deleted(id: Identifier())),
     errors: () => [isA<CriticalError>()],
   );
 

@@ -193,7 +193,7 @@ class ClientDetailsRoute extends _i5.PageRouteInfo<ClientDetailsRouteArgs> {
     required _i12.DeleteBloc<_i9.Client> deleteBloc,
     required _i13.EditBloc<_i9.Client> editBloc,
     required _i10.ClientBloc clientBloc,
-    required _i14.Uid clientId,
+    required _i14.Identifier clientId,
     required _i15.DetailsBloc<_i9.Client> detailsBloc,
   }) : super(
           ClientDetailsRoute.name,
@@ -233,7 +233,7 @@ class ClientDetailsRouteArgs {
 
   final _i10.ClientBloc clientBloc;
 
-  final _i14.Uid clientId;
+  final _i14.Identifier clientId;
 
   final _i15.DetailsBloc<_i9.Client> detailsBloc;
 

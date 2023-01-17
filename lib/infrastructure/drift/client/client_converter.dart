@@ -12,9 +12,9 @@ class ClientConveter extends EntityModelConverter<Client, ClientModel> {
     return Client(name: model.name, id: model.id);
   }
 
-  /// Converts a [Client] to a [ClientModel] with an [Uid]
+  /// Converts a [Client] to a [ClientModel] with an [Identifier]
   @override
-  Client toEntityWithId(Client entity, Uid id) {
+  Client toEntityWithId(Client entity, Identifier id) {
     return entity.copyWith(id: id);
   }
 

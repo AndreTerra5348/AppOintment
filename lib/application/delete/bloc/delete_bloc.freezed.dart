@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DeleteEvent {
-  Uid get id => throw _privateConstructorUsedError;
+  Identifier get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Uid id) deleted,
+    required TResult Function(Identifier id) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Uid id)? deleted,
+    TResult? Function(Identifier id)? deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Uid id)? deleted,
+    TResult Function(Identifier id)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ abstract class $DeleteEventCopyWith<$Res> {
           DeleteEvent value, $Res Function(DeleteEvent) then) =
       _$DeleteEventCopyWithImpl<$Res, DeleteEvent>;
   @useResult
-  $Res call({Uid id});
+  $Res call({Identifier id});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class _$DeleteEventCopyWithImpl<$Res, $Val extends DeleteEvent>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as Uid,
+              as Identifier,
     ) as $Val);
   }
 }
@@ -95,7 +95,7 @@ abstract class _$$_DeletedCopyWith<$Res> implements $DeleteEventCopyWith<$Res> {
       __$$_DeletedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Uid id});
+  $Res call({Identifier id});
 }
 
 /// @nodoc
@@ -114,7 +114,7 @@ class __$$_DeletedCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as Uid,
+              as Identifier,
     ));
   }
 }
@@ -125,7 +125,7 @@ class _$_Deleted implements _Deleted {
   const _$_Deleted({required this.id});
 
   @override
-  final Uid id;
+  final Identifier id;
 
   @override
   String toString() {
@@ -152,7 +152,7 @@ class _$_Deleted implements _Deleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Uid id) deleted,
+    required TResult Function(Identifier id) deleted,
   }) {
     return deleted(id);
   }
@@ -160,7 +160,7 @@ class _$_Deleted implements _Deleted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Uid id)? deleted,
+    TResult? Function(Identifier id)? deleted,
   }) {
     return deleted?.call(id);
   }
@@ -168,7 +168,7 @@ class _$_Deleted implements _Deleted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Uid id)? deleted,
+    TResult Function(Identifier id)? deleted,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -207,10 +207,10 @@ class _$_Deleted implements _Deleted {
 }
 
 abstract class _Deleted implements DeleteEvent {
-  const factory _Deleted({required final Uid id}) = _$_Deleted;
+  const factory _Deleted({required final Identifier id}) = _$_Deleted;
 
   @override
-  Uid get id;
+  Identifier get id;
   @override
   @JsonKey(ignore: true)
   _$$_DeletedCopyWith<_$_Deleted> get copyWith =>

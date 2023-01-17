@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Client {
   Name get name => throw _privateConstructorUsedError;
-  Uid get id => throw _privateConstructorUsedError;
+  Identifier get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ClientCopyWith<Client> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ abstract class $ClientCopyWith<$Res> {
   factory $ClientCopyWith(Client value, $Res Function(Client) then) =
       _$ClientCopyWithImpl<$Res, Client>;
   @useResult
-  $Res call({Name name, Uid id});
+  $Res call({Name name, Identifier id});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as Uid,
+              as Identifier,
     ) as $Val);
   }
 }
@@ -66,7 +66,7 @@ abstract class _$$_ClientCopyWith<$Res> implements $ClientCopyWith<$Res> {
       __$$_ClientCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Name name, Uid id});
+  $Res call({Name name, Identifier id});
 }
 
 /// @nodoc
@@ -90,7 +90,7 @@ class __$$_ClientCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as Uid,
+              as Identifier,
     ));
   }
 }
@@ -103,7 +103,7 @@ class _$_Client extends _Client {
   @override
   final Name name;
   @override
-  final Uid id;
+  final Identifier id;
 
   @override
   String toString() {
@@ -130,14 +130,14 @@ class _$_Client extends _Client {
 }
 
 abstract class _Client extends Client {
-  const factory _Client({required final Name name, required final Uid id}) =
-      _$_Client;
+  const factory _Client(
+      {required final Name name, required final Identifier id}) = _$_Client;
   const _Client._() : super._();
 
   @override
   Name get name;
   @override
-  Uid get id;
+  Identifier get id;
   @override
   @JsonKey(ignore: true)
   _$$_ClientCopyWith<_$_Client> get copyWith =>

@@ -18,5 +18,5 @@ mixin EntityMixin {
   }
 
   /// The id of the entity.
-  Uid get id;
+  Identifier get id;
 }

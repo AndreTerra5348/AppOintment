@@ -20,8 +20,8 @@ void main() {
   late Client invalidClient;
   setUp(() {
     repository = MockDriftRepository<Client, ClientModels, ClientModel>();
-    validClient = Client(name: Name('John'), id: Uid.fromInt(1));
-    invalidClient = Client(name: Name(''), id: Uid.fromInt(1));
+    validClient = Client(name: Name('John'), id: Identifier.fromInt(1));
+    invalidClient = Client(name: Name(''), id: Identifier.fromInt(1));
   });
 
   test("initial [State] should be [initial()]", () {

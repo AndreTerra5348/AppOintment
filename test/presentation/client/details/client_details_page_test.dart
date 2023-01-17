@@ -32,7 +32,7 @@ void main() {
   late MockDetailsBloc<Client> mockDetailsBloc;
   late MockClientBloc mockClientBloc;
   setUp(() {
-    johnClient = Client(name: Name("John"), id: Uid.fromInt(1));
+    johnClient = Client(name: Name("John"), id: Identifier.fromInt(1));
     mockLoadBloc = MockLoadBloc<Client>();
     mockEditBloc = MockEditBloc<Client>();
     mockDeleteBloc = MockDeleteBloc<Client>();

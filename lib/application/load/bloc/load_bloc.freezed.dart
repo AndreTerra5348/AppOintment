@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoadEvent {
-  Uid get id => throw _privateConstructorUsedError;
+  Identifier get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Uid id) loaded,
+    required TResult Function(Identifier id) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Uid id)? loaded,
+    TResult? Function(Identifier id)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Uid id)? loaded,
+    TResult Function(Identifier id)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ abstract class $LoadEventCopyWith<$Res> {
   factory $LoadEventCopyWith(LoadEvent value, $Res Function(LoadEvent) then) =
       _$LoadEventCopyWithImpl<$Res, LoadEvent>;
   @useResult
-  $Res call({Uid id});
+  $Res call({Identifier id});
 }
 
 /// @nodoc
@@ -82,7 +82,7 @@ class _$LoadEventCopyWithImpl<$Res, $Val extends LoadEvent>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as Uid,
+              as Identifier,
     ) as $Val);
   }
 }
@@ -93,7 +93,7 @@ abstract class _$$_LoadedCopyWith<$Res> implements $LoadEventCopyWith<$Res> {
       __$$_LoadedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Uid id});
+  $Res call({Identifier id});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$_LoadedCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as Uid,
+              as Identifier,
     ));
   }
 }
@@ -123,7 +123,7 @@ class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
   const _$_Loaded({required this.id});
 
   @override
-  final Uid id;
+  final Identifier id;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -158,7 +158,7 @@ class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Uid id) loaded,
+    required TResult Function(Identifier id) loaded,
   }) {
     return loaded(id);
   }
@@ -166,7 +166,7 @@ class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Uid id)? loaded,
+    TResult? Function(Identifier id)? loaded,
   }) {
     return loaded?.call(id);
   }
@@ -174,7 +174,7 @@ class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Uid id)? loaded,
+    TResult Function(Identifier id)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -213,10 +213,10 @@ class _$_Loaded with DiagnosticableTreeMixin implements _Loaded {
 }
 
 abstract class _Loaded implements LoadEvent {
-  const factory _Loaded({required final Uid id}) = _$_Loaded;
+  const factory _Loaded({required final Identifier id}) = _$_Loaded;
 
   @override
-  Uid get id;
+  Identifier get id;
   @override
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>

@@ -14,25 +14,25 @@ void main() {
   DriftDb? db;
   late Name bobName;
   late Name joeName;
-  late Uid uid;
+  late Identifier uid;
   setUp(() {
     db = DriftDb(executor: NativeDatabase.memory());
     bobName = Name("Bob");
     joeName = Name("Joe");
-    uid = Uid.fromInt(1);
+    uid = Identifier.fromInt(1);
   });
 
   test(
       "Should return clientModel with same name and id "
       "when insert is called "
-      "and getByUid is called with the same id", () async {
+      "and getById is called with the same id", () async {
     // Arrange
     final model = ClientModelsCompanion.insert(name: bobName);
     final sut = ClientDao(db!);
 
     // Act
     final id = await sut.insert(model);
-    final actual = await sut.getById(Uid.fromInt(id));
+    final actual = await sut.getById(Identifier.fromInt(id));
 
     // Assert
     expect(actual.id, uid);
@@ -184,7 +184,7 @@ void main() {
 
     // Act
     final actual = await sut.save(
-      Uid.fromInt(2),
+      Identifier.fromInt(2),
       ClientModelsCompanion(
         name: drift.Value(joeName),
       ),

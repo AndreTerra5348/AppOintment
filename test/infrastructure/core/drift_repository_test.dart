@@ -25,7 +25,7 @@ void main() {
         "when insert is called", () async {
       // Arrange
       final clientDao = MockClientDao();
-      final client = Client.withoutUid(name: Name("Bob"));
+      final client = Client.withoutIdentifier(name: Name("Bob"));
 
       final sut = DriftRepository<Client, ClientModels, ClientModel>(
           clientDao, ClientConveter());
@@ -43,7 +43,7 @@ void main() {
       // Arrange
       final clientDao = MockClientDao();
       when(clientDao.insert(any)).thenAnswer((_) => Future.value(0));
-      final client = Client.withoutUid(name: Name("Bob"));
+      final client = Client.withoutIdentifier(name: Name("Bob"));
 
       final sut = DriftRepository<Client, ClientModels, ClientModel>(
           clientDao, ClientConveter());
@@ -60,7 +60,7 @@ void main() {
         "Should return client with correct id "
         "when insert is called", () async {
       // Arrange
-      final client = Client.withoutUid(name: Name("Bob"));
+      final client = Client.withoutIdentifier(name: Name("Bob"));
 
       final clientDao = MockClientDao();
       const id = 1;
@@ -75,7 +75,7 @@ void main() {
       // Assert
       expect(actual, isA<Right<RepositoryFailure, Client>>());
       expect((actual as Right<RepositoryFailure, Client>).value.id,
-          Uid.fromInt(id));
+          Identifier.fromInt(id));
     });
 
     test(
@@ -83,7 +83,7 @@ void main() {
         "when insert is called "
         "and [Dao] throws exception", () async {
       // Arrange
-      final client = Client.withoutUid(name: Name("Bob"));
+      final client = Client.withoutIdentifier(name: Name("Bob"));
       final clientDao = MockClientDao();
       when(clientDao.insert(any)).thenThrow(Exception("Mocked Exception"));
 
@@ -105,7 +105,7 @@ void main() {
       // Arrange
       final clientDao = MockClientDao();
 
-      final client = Client.withoutUid(name: Name("Bob"));
+      final client = Client.withoutIdentifier(name: Name("Bob"));
 
       final sut = DriftRepository<Client, ClientModels, ClientModel>(
           clientDao, ClientConveter());
@@ -123,7 +123,7 @@ void main() {
       // Arrange
       final clientDao = MockClientDao();
       when(clientDao.save(any, any)).thenAnswer((_) => Future.value(true));
-      final client = Client.withoutUid(name: Name("Bob"));
+      final client = Client.withoutIdentifier(name: Name("Bob"));
 
       final sut = DriftRepository<Client, ClientModels, ClientModel>(
           clientDao, ClientConveter());
@@ -141,7 +141,7 @@ void main() {
         "when updateById is called "
         "and [Dao] throws exception", () async {
       // Arrange
-      final client = Client.withoutUid(name: Name("Bob"));
+      final client = Client.withoutIdentifier(name: Name("Bob"));
       final clientDao = MockClientDao();
       when(clientDao.save(any, any)).thenThrow(Exception("Mocked Exception"));
 
@@ -162,7 +162,7 @@ void main() {
         "when getById is called "
         "and [Dao] returns client", () async {
       // Arrange
-      final uid = Uid.fromInt(1);
+      final uid = Identifier.fromInt(1);
 
       final model = ClientModel(
         id: uid,
@@ -191,7 +191,7 @@ void main() {
         "when getById is called "
         "and [Dao] throws exception", () async {
       // Arrange
-      final uid = Uid.fromInt(1);
+      final uid = Identifier.fromInt(1);
       final clientDao = MockClientDao();
       when(clientDao.getById(any)).thenThrow(Exception("Mocked Exception"));
 
@@ -212,7 +212,7 @@ void main() {
         "when delete is called", () async {
       // Arrange
       final clientDao = MockClientDao();
-      final uid = Uid.fromInt(1);
+      final uid = Identifier.fromInt(1);
       when(clientDao.remove(any)).thenAnswer(
         (_) => Future.value(true),
       );
@@ -232,7 +232,7 @@ void main() {
         "when delete is called "
         "and [Dao] throws exception", () async {
       // Arrange
-      final uid = Uid.fromInt(1);
+      final uid = Identifier.fromInt(1);
       final clientDao = MockClientDao();
       final error = Exception("Mocked Exception");
       when(clientDao.remove(any)).thenThrow(error);
@@ -252,7 +252,7 @@ void main() {
         "when getById is called "
         "and [Dao] throws StateError", () async {
       // Arrange
-      final uid = Uid.fromInt(1);
+      final uid = Identifier.fromInt(1);
       final clientDao = MockClientDao();
       final error = StateError("Mocked Exception");
       when(clientDao.getById(any)).thenThrow(error);

@@ -9,7 +9,7 @@ part of 'drift_db.dart';
 // ignore_for_file: type=lint
 class ClientModel extends DataClass implements Insertable<ClientModel> {
   /// The id of the [ClientModel]
-  final Uid id;
+  final Identifier id;
 
   /// The name of the [ClientModel]
   final Name name;
@@ -39,7 +39,7 @@ class ClientModel extends DataClass implements Insertable<ClientModel> {
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return ClientModel(
-      id: serializer.fromJson<Uid>(json['id']),
+      id: serializer.fromJson<Identifier>(json['id']),
       name: serializer.fromJson<Name>(json['name']),
     );
   }
@@ -47,12 +47,12 @@ class ClientModel extends DataClass implements Insertable<ClientModel> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'id': serializer.toJson<Uid>(id),
+      'id': serializer.toJson<Identifier>(id),
       'name': serializer.toJson<Name>(name),
     };
   }
 
-  ClientModel copyWith({Uid? id, Name? name}) => ClientModel(
+  ClientModel copyWith({Identifier? id, Name? name}) => ClientModel(
         id: id ?? this.id,
         name: name ?? this.name,
       );
@@ -74,7 +74,7 @@ class ClientModel extends DataClass implements Insertable<ClientModel> {
 }
 
 class ClientModelsCompanion extends UpdateCompanion<ClientModel> {
-  final Value<Uid> id;
+  final Value<Identifier> id;
   final Value<Name> name;
   const ClientModelsCompanion({
     this.id = const Value.absent(),
@@ -94,7 +94,7 @@ class ClientModelsCompanion extends UpdateCompanion<ClientModel> {
     });
   }
 
-  ClientModelsCompanion copyWith({Value<Uid>? id, Value<Name>? name}) {
+  ClientModelsCompanion copyWith({Value<Identifier>? id, Value<Name>? name}) {
     return ClientModelsCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -133,12 +133,12 @@ class $ClientModelsTable extends ClientModels
   $ClientModelsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  late final GeneratedColumnWithTypeConverter<Uid, int> id =
+  late final GeneratedColumnWithTypeConverter<Identifier, int> id =
       GeneratedColumn<int>('id', aliasedName, false,
               type: DriftSqlType.int,
               requiredDuringInsert: false,
               defaultConstraints: 'PRIMARY KEY AUTOINCREMENT')
-          .withConverter<Uid>($ClientModelsTable.$converter0);
+          .withConverter<Identifier>($ClientModelsTable.$converter0);
   final VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumnWithTypeConverter<Name, String> name =
@@ -183,7 +183,7 @@ class $ClientModelsTable extends ClientModels
     return $ClientModelsTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<Uid, int> $converter0 = UidConverter();
+  static TypeConverter<Identifier, int> $converter0 = IdentifierConverter();
   static TypeConverter<Name, String> $converter1 = NameConverter();
 }
 

@@ -29,7 +29,7 @@ void main() {
   late MockClientDetailPage mockClientDetailPage;
 
   setUp(() {
-    johnClient = Client(name: Name("John"), id: Uid.fromInt(1));
+    johnClient = Client(name: Name("John"), id: Identifier.fromInt(1));
     renamedJohnClient = johnClient.copyWith(name: Name("Gohn"));
     mockLoadBloc = MockLoadBloc<Client>();
     mockEditBloc = MockEditBloc<Client>();

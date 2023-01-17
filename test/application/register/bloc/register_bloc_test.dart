@@ -35,8 +35,8 @@ void main() {
     late Client validClient;
 
     setUp(() {
-      invalidClient = Client.withoutUid(name: Name(""));
-      validClient = Client(name: Name("name"), id: Uid.fromInt(1));
+      invalidClient = Client.withoutIdentifier(name: Name(""));
+      validClient = Client(name: Name("name"), id: Identifier.fromInt(1));
       repository = MockDriftRepository<Client, ClientModels, ClientModel>();
       validator = ClientRegisterValidator();
     });

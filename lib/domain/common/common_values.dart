@@ -4,17 +4,17 @@ import 'package:appointment/domain/common/value_object.dart';
 import 'package:dartz/dartz.dart';
 
 /// Used to unique identify entities.
-class Uid extends ValueObject<UidFailure, int> {
-  /// [Right<int>] value of the [Uid] or a [Left<UidFailure>].
+class Identifier extends ValueObject<IdentifierFailure, int> {
+  /// [Right<int>] value of the [Identifier] or a [Left<IdentifierFailure>].
   @override
-  final Either<UidFailure, int> value;
+  final Either<IdentifierFailure, int> value;
 
-  /// Creates a [Uid] from a [Either] [value].
-  const Uid._(this.value);
+  /// Creates a [Identifier] from a [Either] [value].
+  const Identifier._(this.value);
 
-  /// Creates an empty [Uid]
-  factory Uid() => const Uid._(Left(UidFailure.invalid()));
+  /// Creates an empty [Identifier]
+  factory Identifier() => const Identifier._(Left(IdentifierFailure.invalid()));
 
-  /// Creates a valid [Uid] from an [int] [id].
-  factory Uid.fromInt(int id) => Uid._(Right(id));
+  /// Creates a valid [Identifier] from an [int] [id].
+  factory Identifier.fromInt(int id) => Identifier._(Right(id));
 }

@@ -11,7 +11,7 @@ void main() {
         "Should return [Client] with name and id equal to the model "
         "When [toEntity] is called with [ClientModel]", () {
       // Arrange
-      final model = ClientModel(id: Uid.fromInt(0), name: Name("Bob"));
+      final model = ClientModel(id: Identifier.fromInt(0), name: Name("Bob"));
       final sut = ClientConveter();
 
       // Act
@@ -25,7 +25,7 @@ void main() {
         "Should return [ClientModelsCompanion] with the same name as the entity "
         "When toUpdateCompanion called with [Client] ", () {
       // Arrange
-      final entity = Client.withoutUid(name: Name("Bobo"));
+      final entity = Client.withoutIdentifier(name: Name("Bobo"));
       final sut = ClientConveter();
 
       // Act
@@ -37,9 +37,9 @@ void main() {
     });
     test(
         "Should return [Client] with same name and id "
-        "When [toEntityWithId] called with [Client] and [Uid]", () {
+        "When [toEntityWithId] called with [Client] and [Identifier]", () {
       // Arrange
-      final id = Uid.fromInt(0);
+      final id = Identifier.fromInt(0);
       final entity = Client(name: Name("Bobo"), id: id);
       final sut = ClientConveter();
 
