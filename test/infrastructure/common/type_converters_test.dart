@@ -4,17 +4,17 @@ import 'package:appointment/infrastructure/drift/common/type_converters.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group("UidConverver", () {
+  group("IdentifierConverver", () {
     test("fromSql", () {
-      final sut = UidConverter();
+      final sut = IdentifierConverter();
       final actual = sut.fromSql(1);
-      expect(actual, isA<Uid>());
+      expect(actual, isA<Identifier>());
       expect(actual.isValid, isTrue);
     });
     test("toSql", () {
       const id = 1;
-      final sut = UidConverter();
-      final actual = sut.toSql(Uid.fromInt(id));
+      final sut = IdentifierConverter();
+      final actual = sut.toSql(Identifier.fromInt(id));
       expect(actual, isA<int>());
       expect(actual, id);
     });

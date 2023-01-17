@@ -7,7 +7,7 @@ import 'package:drift/drift.dart';
 /// Model and stores Clients as [ClientModel] for the Drift database
 class ClientModels extends Table {
   /// The id of the [ClientModel]
-  IntColumn get id => integer().autoIncrement().map(UidConverter())();
+  IntColumn get id => integer().autoIncrement().map(IdentifierConverter())();
 
   /// The name of the [ClientModel]
   TextColumn get name => text()

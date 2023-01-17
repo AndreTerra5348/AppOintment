@@ -133,13 +133,13 @@ extension on BuildContext {
         const ClientSearchEvent.refreshRequested(),
       );
 
-  Future<T?> pushDetailsPage<T extends Object?>(Uid id) => pushRoute<T>(
+  Future<T?> pushDetailsPage<T extends Object?>(Identifier id) => pushRoute<T>(
         router.getClientDetailsRoute(id: id),
       );
 }
 
 /// Shortcuts for [ClientSearchState] properties
 extension on ClientSearchState {
-  Uid getId(int index) => clients.elementAt(index).id;
+  Identifier getId(int index) => clients.elementAt(index).id;
   Name getName(int index) => clients.elementAt(index).name;
 }

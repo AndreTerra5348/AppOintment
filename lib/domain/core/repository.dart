@@ -18,11 +18,11 @@ abstract class Repository<T extends EntityMixin> {
 
   /// Returns an entity from the repository by its [id].
   /// Either returns a [RepositoryFailure] or the entity.
-  Future<Either<RepositoryFailure, T>> getById(Uid id);
+  Future<Either<RepositoryFailure, T>> getById(Identifier id);
 
   /// Deletes an entity from the repository by its [id].
   /// Either returns a [RepositoryFailure] or a boolean indicating success.
-  Future<Either<RepositoryFailure, bool>> delete(Uid id);
+  Future<Either<RepositoryFailure, bool>> delete(Identifier id);
 }
 
 /// Repository failures.

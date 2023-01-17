@@ -165,7 +165,8 @@ extension on BuildContext {
 
   String get clientNameOrEmpty => client.name.value.getOrElse(() => "");
 
-  void reaload({required Uid id}) => detailsBloc.add(LoadEvent.loaded(id: id));
+  void reaload({required Identifier id}) =>
+      detailsBloc.add(LoadEvent.loaded(id: id));
 
   void editPressed() => editBloc.add(const EditEvent.editPressed());
 
@@ -174,6 +175,6 @@ extension on BuildContext {
   void savePressed({required Client client}) =>
       editBloc.add(EditEvent.savePressed(entity: client));
 
-  void deleted({required Uid id}) =>
+  void deleted({required Identifier id}) =>
       deleteBloc.add(DeleteEvent.deleted(id: id));
 }

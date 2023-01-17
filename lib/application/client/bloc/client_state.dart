@@ -8,5 +8,5 @@ class ClientState with _$ClientState {
 
   /// Emitted when the [ClientBloc] is initialized
   factory ClientState.initial() =>
-      ClientState(client: Client.withoutUid(name: Name("")));
+      ClientState(client: Client.withoutIdentifier(name: Name("")));
 }

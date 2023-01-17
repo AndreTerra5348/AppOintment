@@ -11,8 +11,8 @@ abstract class Dao<T_Table extends Table, T_Model extends DataClass> {
   /// Insert a new model into the database
   Future<int> insert(Insertable<T_Model> model);
 
-  /// Get a model by its [Uid]
-  Future<T_Model> getById(Uid uid);
+  /// Get a model by its [Identifier]
+  Future<T_Model> getById(Identifier uid);
 
   /// Get a page of models
   /// [limit] is the number of models to return
@@ -24,10 +24,10 @@ abstract class Dao<T_Table extends Table, T_Model extends DataClass> {
       SelectFilter<T_Table, T_Model>? filter});
 
   /// Save changes to a model in the database
-  /// [uid] is the [Uid] of the model to update
+  /// [uid] is the [Identifier] of the model to update
   /// [model] is the [Insertable] or [UpdateCompanion] to update the model with
-  Future<bool> save(Uid uid, Insertable<T_Model> model);
+  Future<bool> save(Identifier uid, Insertable<T_Model> model);
 
   /// Delete a model from the database
-  Future<bool> remove(Uid uid);
+  Future<bool> remove(Identifier uid);
 }

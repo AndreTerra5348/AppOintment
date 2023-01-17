@@ -30,7 +30,7 @@ class ClientDetailsPage extends StatelessWidget {
   final ClientBloc clientBloc;
 
   /// Specifies [Client] to load
-  final Uid clientId;
+  final Identifier clientId;
 
   const ClientDetailsPage({
     super.key,

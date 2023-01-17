@@ -20,7 +20,7 @@ void main() {
   late MockDriftRepository<Client, ClientModels, ClientModel> repository;
 
   setUp(() {
-    validClient = Client(name: Name('John'), id: Uid.fromInt(1));
+    validClient = Client(name: Name('John'), id: Identifier.fromInt(1));
     repository = MockDriftRepository<Client, ClientModels, ClientModel>();
 
     when(repository.getById(any)).thenAnswer((_) async => Right(validClient));
@@ -63,7 +63,7 @@ void main() {
     "When [Event.loaded(id)] with invalid id "
     "Then [DetailsBloc<Client>] throws [CriticalError]",
     build: () => LoadBloc<Client>(repository),
-    act: (bloc) => bloc.add(LoadEvent.loaded(id: Uid())),
+    act: (bloc) => bloc.add(LoadEvent.loaded(id: Identifier())),
     errors: () => [isA<CriticalError>()],
   );
 

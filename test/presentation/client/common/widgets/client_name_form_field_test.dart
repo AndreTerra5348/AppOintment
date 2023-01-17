@@ -18,7 +18,7 @@ void main() {
   late Client client;
   const name = "Bob";
   setUp(() {
-    client = Client(name: Name(name), id: Uid.fromInt(1));
+    client = Client(name: Name(name), id: Identifier.fromInt(1));
     clientBloc = MockClientBloc();
     when(clientBloc.state).thenReturn(ClientState.initial());
     when(clientBloc.stream).thenAnswer((_) => const Stream.empty());

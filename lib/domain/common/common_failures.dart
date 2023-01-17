@@ -22,9 +22,9 @@ class StringFailure with _$StringFailure {
       _InvalidCharacterFailure;
 }
 
-/// Uid validation failures.
+/// [Identifier] validation failures.
 @freezed
-class UidFailure with _$UidFailure {
-  /// The [Uid] is invalid.
-  const factory UidFailure.invalid() = _InvalidUid;
+class IdentifierFailure with _$IdentifierFailure {
+  /// The [Identifier] is invalid.
+  const factory IdentifierFailure.invalid() = _InvalidIdentifier;
 }

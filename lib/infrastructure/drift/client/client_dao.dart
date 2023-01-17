@@ -25,7 +25,7 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   }
 
   @override
-  Future<ClientModel> getById(Uid uid) {
+  Future<ClientModel> getById(Identifier uid) {
     return (select(clientModels)
           ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
         .getSingle();
@@ -42,7 +42,7 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   }
 
   @override
-  Future<bool> save(Uid uid, Insertable<ClientModel> model) {
+  Future<bool> save(Identifier uid, Insertable<ClientModel> model) {
     return (update(clientModels)
           ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
         .write(model)
@@ -50,7 +50,7 @@ class ClientDao extends DatabaseAccessor<DriftDb>
   }
 
   @override
-  Future<bool> remove(Uid uid) {
+  Future<bool> remove(Identifier uid) {
     return (delete(clientModels)
           ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
         .go()

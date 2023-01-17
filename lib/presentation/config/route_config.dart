@@ -27,7 +27,7 @@ extension StackRouterX on StackRouter {
   ClientSearchRoute get clientSearchRoute => ClientSearchRoute(bloc: getIt());
   ClientRegisterRoute get clientRegisterRoute =>
       ClientRegisterRoute(registerBloc: getIt(), clientBloc: getIt());
-  ClientDetailsRoute getClientDetailsRoute({required Uid id}) =>
+  ClientDetailsRoute getClientDetailsRoute({required Identifier id}) =>
       ClientDetailsRoute(
         clientId: id,
         loadBloc: getIt(),
@@ -37,7 +37,7 @@ extension StackRouterX on StackRouter {
         detailsBloc: getIt(),
       );
 
-  void pushClientDetailsPage({required Uid id}) =>
+  void pushClientDetailsPage({required Identifier id}) =>
       push(getClientDetailsRoute(id: id));
 
   void pushClientRegisterPage() => push(clientRegisterRoute);

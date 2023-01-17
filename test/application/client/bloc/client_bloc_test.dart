@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   late Client bobClient;
   setUp(() {
-    bobClient = Client(name: Name("Bob"), id: Uid.fromInt(1));
+    bobClient = Client(name: Name("Bob"), id: Identifier.fromInt(1));
   });
   group("Given [ClientBloc.initial()]", () {
     group("When [ClientEvent.clientLoaded(Client)]", () {

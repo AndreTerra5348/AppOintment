@@ -23,7 +23,7 @@ class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
   /// Create a [DriftRepository] with a [Dao] and [EntityModelConverter]
   DriftRepository(this._dao, this._converter);
 
-  /// Get a [T_Entity] by its [Uid]
+  /// Get a [T_Entity] by its [Identifier]
   /// Returns a [RepositoryFailure] if there is an exception
   /// otherwise returns the [T_Entity]
   @override
@@ -31,7 +31,7 @@ class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     try {
       final companion = _converter.toUpdateCompanion(entity);
       final id = await _dao.insert(companion);
-      return Right(_converter.toEntityWithId(entity, Uid.fromInt(id)));
+      return Right(_converter.toEntityWithId(entity, Identifier.fromInt(id)));
     } catch (error) {
       return Left(RepositoryFailure.dbException(error: error));
     }
@@ -51,12 +51,12 @@ class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     }
   }
 
-  /// Get a [T_Entity] by its [Uid]
+  /// Get a [T_Entity] by its [Identifier]
   /// Returns a [RepositoryFailure.notFound] if the [T_Entity] is not found
   /// Returns a [RepositoryFailure.dbException] if there any other exception
   /// otherwise returns the [T_Entity]
   @override
-  Future<Either<RepositoryFailure, T_Entity>> getById(Uid id) async {
+  Future<Either<RepositoryFailure, T_Entity>> getById(Identifier id) async {
     try {
       final model = await _dao.getById(id);
       return Right(_converter.toEntity(model));
@@ -67,12 +67,12 @@ class DriftRepository<T_Entity extends EntityMixin, T_Table extends Table,
     }
   }
 
-  /// Delete a [T_Entity] by its [Uid]
+  /// Delete a [T_Entity] by its [Identifier]
   /// Returns a [RepositoryFailure] if there is an exception
   /// Returns false if the [T_Entity] was not found
   /// otherwise returns true
   @override
-  Future<Either<RepositoryFailure, bool>> delete(Uid id) async {
+  Future<Either<RepositoryFailure, bool>> delete(Identifier id) async {
     try {
       return Right(await _dao.remove(id));
     } catch (error) {

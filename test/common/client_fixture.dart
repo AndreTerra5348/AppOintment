@@ -10,7 +10,7 @@ Iterable<ClientModel> generateModel({
 }) {
   return Iterable.generate(amount).map(
     (e) => ClientModel(
-      id: Uid.fromInt(e + idOffset),
+      id: Identifier.fromInt(e + idOffset),
       name: Name("Bob"),
     ),
   );
@@ -22,7 +22,7 @@ Iterable<Client> generateEntity({
 }) {
   return Iterable.generate(amount).map(
     (e) => Client(
-      id: Uid.fromInt(e),
+      id: Identifier.fromInt(e),
       name: Name(name),
     ),
   );

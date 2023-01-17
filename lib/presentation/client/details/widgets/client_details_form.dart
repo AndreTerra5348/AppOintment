@@ -247,7 +247,7 @@ extension on BuildContext {
         ClientEvent.loaded(client: client),
       );
 
-  void reaload({required Uid id}) => loadBloc.add(
+  void reaload({required Identifier id}) => loadBloc.add(
         LoadEvent.loaded(id: id),
       );
 

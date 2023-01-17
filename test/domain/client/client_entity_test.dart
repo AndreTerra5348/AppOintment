@@ -8,7 +8,8 @@ void main() {
   group('Entity', () {
     // Test if Client uses EntityMixin
     test('uses EntityMixin', () {
-      expect(Client.withoutUid(name: Name('John Doe')), isA<EntityMixin>());
+      expect(
+          Client.withoutIdentifier(name: Name('John Doe')), isA<EntityMixin>());
     });
 
     test(
@@ -16,7 +17,7 @@ void main() {
         "When isValid is called, "
         "Then it returns true", () {
       // Arrange
-      var sut = Client(name: Name('Bob'), id: Uid.fromInt(1));
+      var sut = Client(name: Name('Bob'), id: Identifier.fromInt(1));
       // Act
 
       // Assert
@@ -28,7 +29,7 @@ void main() {
         "When isValid is called, "
         "Then it returns false", () {
       // Arrange
-      var sut = Client(name: Name(''), id: Uid.fromInt(1));
+      var sut = Client(name: Name(''), id: Identifier.fromInt(1));
       // Act
 
       // Assert
@@ -40,7 +41,7 @@ void main() {
         "When isValid is called, "
         "Then it returns false", () {
       // Arrange
-      var sut = Client(name: Name('Bob'), id: Uid());
+      var sut = Client(name: Name('Bob'), id: Identifier());
       // Act
 
       // Assert
@@ -52,7 +53,7 @@ void main() {
         "When isValid is called, "
         "Then it returns false", () {
       // Arrange
-      var sut = Client(name: Name(''), id: Uid());
+      var sut = Client(name: Name(''), id: Identifier());
       // Act
 
       // Assert

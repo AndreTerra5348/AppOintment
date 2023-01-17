@@ -13,11 +13,11 @@ class Client with _$Client, EntityMixin {
   const Client._();
 
   /// Creates a new [Client] with a [name] and an [id].
-  const factory Client({required Name name, required Uid id}) = _Client;
+  const factory Client({required Name name, required Identifier id}) = _Client;
 
   /// Creates a new [Client] with a [name] and an empty [id].
-  factory Client.withoutUid({required Name name}) =>
-      Client(name: name, id: Uid());
+  factory Client.withoutIdentifier({required Name name}) =>
+      Client(name: name, id: Identifier());
 
   /// [List] of all the [ValueObject] of the [Client].
   @override

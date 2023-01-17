@@ -986,7 +986,8 @@ class MockClientDao extends _i2.Mock implements _i14.ClientDao {
         returnValueForMissingStub: _i12.Future<int>.value(0),
       ) as _i12.Future<int>);
   @override
-  _i12.Future<_i9.ClientModel> getById(_i15.Uid? uid) => (super.noSuchMethod(
+  _i12.Future<_i9.ClientModel> getById(_i15.Identifier? uid) =>
+      (super.noSuchMethod(
         Invocation.method(
           #getById,
           [uid],
@@ -1030,7 +1031,7 @@ class MockClientDao extends _i2.Mock implements _i14.ClientDao {
       ) as _i12.Future<Iterable<_i9.ClientModel>>);
   @override
   _i12.Future<bool> save(
-    _i15.Uid? uid,
+    _i15.Identifier? uid,
     _i10.Insertable<_i9.ClientModel>? model,
   ) =>
       (super.noSuchMethod(
@@ -1045,7 +1046,7 @@ class MockClientDao extends _i2.Mock implements _i14.ClientDao {
         returnValueForMissingStub: _i12.Future<bool>.value(false),
       ) as _i12.Future<bool>);
   @override
-  _i12.Future<bool> remove(_i15.Uid? uid) => (super.noSuchMethod(
+  _i12.Future<bool> remove(_i15.Identifier? uid) => (super.noSuchMethod(
         Invocation.method(
           #remove,
           [uid],

@@ -4,5 +4,5 @@ part of 'load_bloc.dart';
 @freezed
 class LoadEvent with _$LoadEvent {
   /// Event to load an [EntityMixin]
-  const factory LoadEvent.loaded({required Uid id}) = _Loaded;
+  const factory LoadEvent.loaded({required Identifier id}) = _Loaded;
 }
