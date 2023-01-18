@@ -28,3 +28,10 @@ class IdentifierFailure with _$IdentifierFailure {
   /// The [Identifier] is invalid.
   const factory IdentifierFailure.invalid() = _InvalidIdentifier;
 }
+
+/// [Range] validation failures.
+@freezed
+class RangeFailure with _$RangeFailure {
+  /// The [Range] start is after the end.
+  const factory RangeFailure.startIsAfterEnd() = _StartIsAfterEnd;
+}
