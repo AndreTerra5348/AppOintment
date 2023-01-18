@@ -22,4 +22,13 @@ void main() {
     final dateTimeRange = DateTimeRange.from(start, end);
     expect(dateTimeRange.value, const Left(RangeFailure.startIsAfterEnd()));
   });
+
+  test(
+      'DateTimeRange.from() should return [RangeFailure.startIsAfterEnd]] '
+      'when start is equal to end', () {
+    final start = DateTime(2020, 1, 1);
+    final end = DateTime(2020, 1, 1);
+    final dateTimeRange = DateTimeRange.from(start, end);
+    expect(dateTimeRange.value, const Left(RangeFailure.startIsAfterEnd()));
+  });
 }

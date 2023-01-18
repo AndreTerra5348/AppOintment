@@ -34,4 +34,7 @@ class IdentifierFailure with _$IdentifierFailure {
 class RangeFailure with _$RangeFailure {
   /// The [Range] start is after the end.
   const factory RangeFailure.startIsAfterEnd() = _StartIsAfterEnd;
+
+  /// The [Range] start is equal to the end.
+  const factory RangeFailure.startIsEqualToEnd() = _StartIsEqualToEnd;
 }
