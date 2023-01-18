@@ -815,32 +815,38 @@ mixin _$RangeFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startIsAfterEnd,
+    required TResult Function() startIsEqualToEnd,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startIsAfterEnd,
+    TResult? Function()? startIsEqualToEnd,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startIsAfterEnd,
+    TResult Function()? startIsEqualToEnd,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StartIsAfterEnd value) startIsAfterEnd,
+    required TResult Function(_StartIsEqualToEnd value) startIsEqualToEnd,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    TResult? Function(_StartIsEqualToEnd value)? startIsEqualToEnd,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    TResult Function(_StartIsEqualToEnd value)? startIsEqualToEnd,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -903,6 +909,7 @@ class _$_StartIsAfterEnd implements _StartIsAfterEnd {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startIsAfterEnd,
+    required TResult Function() startIsEqualToEnd,
   }) {
     return startIsAfterEnd();
   }
@@ -911,6 +918,7 @@ class _$_StartIsAfterEnd implements _StartIsAfterEnd {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startIsAfterEnd,
+    TResult? Function()? startIsEqualToEnd,
   }) {
     return startIsAfterEnd?.call();
   }
@@ -919,6 +927,7 @@ class _$_StartIsAfterEnd implements _StartIsAfterEnd {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startIsAfterEnd,
+    TResult Function()? startIsEqualToEnd,
     required TResult orElse(),
   }) {
     if (startIsAfterEnd != null) {
@@ -931,6 +940,7 @@ class _$_StartIsAfterEnd implements _StartIsAfterEnd {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StartIsAfterEnd value) startIsAfterEnd,
+    required TResult Function(_StartIsEqualToEnd value) startIsEqualToEnd,
   }) {
     return startIsAfterEnd(this);
   }
@@ -939,6 +949,7 @@ class _$_StartIsAfterEnd implements _StartIsAfterEnd {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    TResult? Function(_StartIsEqualToEnd value)? startIsEqualToEnd,
   }) {
     return startIsAfterEnd?.call(this);
   }
@@ -947,6 +958,7 @@ class _$_StartIsAfterEnd implements _StartIsAfterEnd {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    TResult Function(_StartIsEqualToEnd value)? startIsEqualToEnd,
     required TResult orElse(),
   }) {
     if (startIsAfterEnd != null) {
@@ -958,4 +970,106 @@ class _$_StartIsAfterEnd implements _StartIsAfterEnd {
 
 abstract class _StartIsAfterEnd implements RangeFailure {
   const factory _StartIsAfterEnd() = _$_StartIsAfterEnd;
+}
+
+/// @nodoc
+abstract class _$$_StartIsEqualToEndCopyWith<$Res> {
+  factory _$$_StartIsEqualToEndCopyWith(_$_StartIsEqualToEnd value,
+          $Res Function(_$_StartIsEqualToEnd) then) =
+      __$$_StartIsEqualToEndCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_StartIsEqualToEndCopyWithImpl<$Res>
+    extends _$RangeFailureCopyWithImpl<$Res, _$_StartIsEqualToEnd>
+    implements _$$_StartIsEqualToEndCopyWith<$Res> {
+  __$$_StartIsEqualToEndCopyWithImpl(
+      _$_StartIsEqualToEnd _value, $Res Function(_$_StartIsEqualToEnd) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_StartIsEqualToEnd implements _StartIsEqualToEnd {
+  const _$_StartIsEqualToEnd();
+
+  @override
+  String toString() {
+    return 'RangeFailure.startIsEqualToEnd()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_StartIsEqualToEnd);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startIsAfterEnd,
+    required TResult Function() startIsEqualToEnd,
+  }) {
+    return startIsEqualToEnd();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? startIsAfterEnd,
+    TResult? Function()? startIsEqualToEnd,
+  }) {
+    return startIsEqualToEnd?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startIsAfterEnd,
+    TResult Function()? startIsEqualToEnd,
+    required TResult orElse(),
+  }) {
+    if (startIsEqualToEnd != null) {
+      return startIsEqualToEnd();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartIsAfterEnd value) startIsAfterEnd,
+    required TResult Function(_StartIsEqualToEnd value) startIsEqualToEnd,
+  }) {
+    return startIsEqualToEnd(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    TResult? Function(_StartIsEqualToEnd value)? startIsEqualToEnd,
+  }) {
+    return startIsEqualToEnd?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    TResult Function(_StartIsEqualToEnd value)? startIsEqualToEnd,
+    required TResult orElse(),
+  }) {
+    if (startIsEqualToEnd != null) {
+      return startIsEqualToEnd(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartIsEqualToEnd implements RangeFailure {
+  const factory _StartIsEqualToEnd() = _$_StartIsEqualToEnd;
 }
