@@ -809,3 +809,153 @@ class _$_InvalidIdentifier implements _InvalidIdentifier {
 abstract class _InvalidIdentifier implements IdentifierFailure {
   const factory _InvalidIdentifier() = _$_InvalidIdentifier;
 }
+
+/// @nodoc
+mixin _$RangeFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startIsAfterEnd,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? startIsAfterEnd,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startIsAfterEnd,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartIsAfterEnd value) startIsAfterEnd,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StartIsAfterEnd value)? startIsAfterEnd,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RangeFailureCopyWith<$Res> {
+  factory $RangeFailureCopyWith(
+          RangeFailure value, $Res Function(RangeFailure) then) =
+      _$RangeFailureCopyWithImpl<$Res, RangeFailure>;
+}
+
+/// @nodoc
+class _$RangeFailureCopyWithImpl<$Res, $Val extends RangeFailure>
+    implements $RangeFailureCopyWith<$Res> {
+  _$RangeFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_StartIsAfterEndCopyWith<$Res> {
+  factory _$$_StartIsAfterEndCopyWith(
+          _$_StartIsAfterEnd value, $Res Function(_$_StartIsAfterEnd) then) =
+      __$$_StartIsAfterEndCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_StartIsAfterEndCopyWithImpl<$Res>
+    extends _$RangeFailureCopyWithImpl<$Res, _$_StartIsAfterEnd>
+    implements _$$_StartIsAfterEndCopyWith<$Res> {
+  __$$_StartIsAfterEndCopyWithImpl(
+      _$_StartIsAfterEnd _value, $Res Function(_$_StartIsAfterEnd) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_StartIsAfterEnd implements _StartIsAfterEnd {
+  const _$_StartIsAfterEnd();
+
+  @override
+  String toString() {
+    return 'RangeFailure.startIsAfterEnd()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_StartIsAfterEnd);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startIsAfterEnd,
+  }) {
+    return startIsAfterEnd();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? startIsAfterEnd,
+  }) {
+    return startIsAfterEnd?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startIsAfterEnd,
+    required TResult orElse(),
+  }) {
+    if (startIsAfterEnd != null) {
+      return startIsAfterEnd();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartIsAfterEnd value) startIsAfterEnd,
+  }) {
+    return startIsAfterEnd(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StartIsAfterEnd value)? startIsAfterEnd,
+  }) {
+    return startIsAfterEnd?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartIsAfterEnd value)? startIsAfterEnd,
+    required TResult orElse(),
+  }) {
+    if (startIsAfterEnd != null) {
+      return startIsAfterEnd(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartIsAfterEnd implements RangeFailure {
+  const factory _StartIsAfterEnd() = _$_StartIsAfterEnd;
+}
