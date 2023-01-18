@@ -29,6 +29,6 @@ void main() {
     final start = DateTime(2020, 1, 1);
     final end = DateTime(2020, 1, 1);
     final dateTimeRange = DateTimeRange.from(start, end);
-    expect(dateTimeRange.value, const Left(RangeFailure.startIsAfterEnd()));
+    expect(dateTimeRange.value, const Left(RangeFailure.startIsEqualToEnd()));
   });
 }
