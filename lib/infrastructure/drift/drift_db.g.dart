@@ -187,12 +187,231 @@ class $ClientModelsTable extends ClientModels
   static TypeConverter<Name, String> $converter1 = NameConverter();
 }
 
+class AppointmentModel extends DataClass
+    implements Insertable<AppointmentModel> {
+  /// The id of the [AppointmentModel]
+  final Identifier id;
+
+  /// The start DateTime of the [AppointmentModel]
+  final DateTime start;
+
+  /// The end DateTime of the [AppointmentModel]
+  final DateTime end;
+  const AppointmentModel(
+      {required this.id, required this.start, required this.end});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    {
+      final converter = $AppointmentModelsTable.$converter0;
+      map['id'] = Variable<int>(converter.toSql(id));
+    }
+    map['start'] = Variable<DateTime>(start);
+    map['end'] = Variable<DateTime>(end);
+    return map;
+  }
+
+  AppointmentModelsCompanion toCompanion(bool nullToAbsent) {
+    return AppointmentModelsCompanion(
+      id: Value(id),
+      start: Value(start),
+      end: Value(end),
+    );
+  }
+
+  factory AppointmentModel.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AppointmentModel(
+      id: serializer.fromJson<Identifier>(json['id']),
+      start: serializer.fromJson<DateTime>(json['start']),
+      end: serializer.fromJson<DateTime>(json['end']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<Identifier>(id),
+      'start': serializer.toJson<DateTime>(start),
+      'end': serializer.toJson<DateTime>(end),
+    };
+  }
+
+  AppointmentModel copyWith({Identifier? id, DateTime? start, DateTime? end}) =>
+      AppointmentModel(
+        id: id ?? this.id,
+        start: start ?? this.start,
+        end: end ?? this.end,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('AppointmentModel(')
+          ..write('id: $id, ')
+          ..write('start: $start, ')
+          ..write('end: $end')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, start, end);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AppointmentModel &&
+          other.id == this.id &&
+          other.start == this.start &&
+          other.end == this.end);
+}
+
+class AppointmentModelsCompanion extends UpdateCompanion<AppointmentModel> {
+  final Value<Identifier> id;
+  final Value<DateTime> start;
+  final Value<DateTime> end;
+  const AppointmentModelsCompanion({
+    this.id = const Value.absent(),
+    this.start = const Value.absent(),
+    this.end = const Value.absent(),
+  });
+  AppointmentModelsCompanion.insert({
+    this.id = const Value.absent(),
+    required DateTime start,
+    required DateTime end,
+  })  : start = Value(start),
+        end = Value(end);
+  static Insertable<AppointmentModel> custom({
+    Expression<int>? id,
+    Expression<DateTime>? start,
+    Expression<DateTime>? end,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (start != null) 'start': start,
+      if (end != null) 'end': end,
+    });
+  }
+
+  AppointmentModelsCompanion copyWith(
+      {Value<Identifier>? id, Value<DateTime>? start, Value<DateTime>? end}) {
+    return AppointmentModelsCompanion(
+      id: id ?? this.id,
+      start: start ?? this.start,
+      end: end ?? this.end,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      final converter = $AppointmentModelsTable.$converter0;
+      map['id'] = Variable<int>(converter.toSql(id.value));
+    }
+    if (start.present) {
+      map['start'] = Variable<DateTime>(start.value);
+    }
+    if (end.present) {
+      map['end'] = Variable<DateTime>(end.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AppointmentModelsCompanion(')
+          ..write('id: $id, ')
+          ..write('start: $start, ')
+          ..write('end: $end')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $AppointmentModelsTable extends AppointmentModels
+    with TableInfo<$AppointmentModelsTable, AppointmentModel> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AppointmentModelsTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumnWithTypeConverter<Identifier, int> id =
+      GeneratedColumn<int>('id', aliasedName, false,
+              type: DriftSqlType.int,
+              requiredDuringInsert: false,
+              defaultConstraints: 'PRIMARY KEY AUTOINCREMENT')
+          .withConverter<Identifier>($AppointmentModelsTable.$converter0);
+  final VerificationMeta _startMeta = const VerificationMeta('start');
+  @override
+  late final GeneratedColumn<DateTime> start = GeneratedColumn<DateTime>(
+      'start', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  final VerificationMeta _endMeta = const VerificationMeta('end');
+  @override
+  late final GeneratedColumn<DateTime> end = GeneratedColumn<DateTime>(
+      'end', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, start, end];
+  @override
+  String get aliasedName => _alias ?? 'appointment_models';
+  @override
+  String get actualTableName => 'appointment_models';
+  @override
+  VerificationContext validateIntegrity(Insertable<AppointmentModel> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    context.handle(_idMeta, const VerificationResult.success());
+    if (data.containsKey('start')) {
+      context.handle(
+          _startMeta, start.isAcceptableOrUnknown(data['start']!, _startMeta));
+    } else if (isInserting) {
+      context.missing(_startMeta);
+    }
+    if (data.containsKey('end')) {
+      context.handle(
+          _endMeta, end.isAcceptableOrUnknown(data['end']!, _endMeta));
+    } else if (isInserting) {
+      context.missing(_endMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AppointmentModel map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AppointmentModel(
+      id: $AppointmentModelsTable.$converter0.fromSql(attachedDatabase
+          .options.types
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!),
+      start: attachedDatabase.options.types
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}start'])!,
+      end: attachedDatabase.options.types
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}end'])!,
+    );
+  }
+
+  @override
+  $AppointmentModelsTable createAlias(String alias) {
+    return $AppointmentModelsTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<Identifier, int> $converter0 = IdentifierConverter();
+}
+
 abstract class _$DriftDb extends GeneratedDatabase {
   _$DriftDb(QueryExecutor e) : super(e);
   late final $ClientModelsTable clientModels = $ClientModelsTable(this);
+  late final $AppointmentModelsTable appointmentModels =
+      $AppointmentModelsTable(this);
   @override
   Iterable<TableInfo<Table, dynamic>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [clientModels];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [clientModels, appointmentModels];
 }
