@@ -3,8 +3,10 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:typed_data' as _i4;
 
+import 'package:appointment/infrastructure/drift/appointment/appointment_table.dart'
+    as _i3;
 import 'package:drift/drift.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -19,9 +21,9 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeDatabaseConnectionUser_0 extends _i1.SmartFake
-    implements _i2.DatabaseConnectionUser {
-  _FakeDatabaseConnectionUser_0(
+class _FakeColumn_0<T extends Object> extends _i1.SmartFake
+    implements _i2.Column<T> {
+  _FakeColumn_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -30,9 +32,9 @@ class _FakeDatabaseConnectionUser_0 extends _i1.SmartFake
         );
 }
 
-class _FakeResultSetImplementation_1<Tbl, Row> extends _i1.SmartFake
-    implements _i2.ResultSetImplementation<Tbl, Row> {
-  _FakeResultSetImplementation_1(
+class _FakeColumnBuilder_1<T extends Object> extends _i1.SmartFake
+    implements _i2.ColumnBuilder<T> {
+  _FakeColumnBuilder_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -41,345 +43,248 @@ class _FakeResultSetImplementation_1<Tbl, Row> extends _i1.SmartFake
         );
 }
 
-class _FakeJoinedSelectStatement_2<FirstT extends _i2.HasResultSet, FirstD>
-    extends _i1.SmartFake implements _i2.JoinedSelectStatement<FirstT, FirstD> {
-  _FakeJoinedSelectStatement_2(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeGenerationContext_3 extends _i1.SmartFake
-    implements _i2.GenerationContext {
-  _FakeGenerationContext_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeSelectable_4<T> extends _i1.SmartFake implements _i2.Selectable<T> {
-  _FakeSelectable_4(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-/// A class which mocks [SimpleSelectStatement].
+/// A class which mocks [AppointmentModels].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSimpleSelectStatement<T extends _i2.HasResultSet, D> extends _i1.Mock
-    implements _i2.SimpleSelectStatement<T, D> {
+class MockAppointmentModels extends _i1.Mock implements _i3.AppointmentModels {
   @override
-  bool get distinct => (super.noSuchMethod(
-        Invocation.getter(#distinct),
+  _i2.Column<int> get clientId => (super.noSuchMethod(
+        Invocation.getter(#clientId),
+        returnValue: _FakeColumn_0<int>(
+          this,
+          Invocation.getter(#clientId),
+        ),
+        returnValueForMissingStub: _FakeColumn_0<int>(
+          this,
+          Invocation.getter(#clientId),
+        ),
+      ) as _i2.Column<int>);
+  @override
+  _i2.Column<DateTime> get start => (super.noSuchMethod(
+        Invocation.getter(#start),
+        returnValue: _FakeColumn_0<DateTime>(
+          this,
+          Invocation.getter(#start),
+        ),
+        returnValueForMissingStub: _FakeColumn_0<DateTime>(
+          this,
+          Invocation.getter(#start),
+        ),
+      ) as _i2.Column<DateTime>);
+  @override
+  _i2.Column<DateTime> get end => (super.noSuchMethod(
+        Invocation.getter(#end),
+        returnValue: _FakeColumn_0<DateTime>(
+          this,
+          Invocation.getter(#end),
+        ),
+        returnValueForMissingStub: _FakeColumn_0<DateTime>(
+          this,
+          Invocation.getter(#end),
+        ),
+      ) as _i2.Column<DateTime>);
+  @override
+  bool get withoutRowId => (super.noSuchMethod(
+        Invocation.getter(#withoutRowId),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  Set<_i2.ResultSetImplementation<dynamic, dynamic>> get watchedTables =>
-      (super.noSuchMethod(
-        Invocation.getter(#watchedTables),
-        returnValue: <_i2.ResultSetImplementation<dynamic, dynamic>>{},
-        returnValueForMissingStub: <
-            _i2.ResultSetImplementation<dynamic, dynamic>>{},
-      ) as Set<_i2.ResultSetImplementation<dynamic, dynamic>>);
-  @override
-  _i2.DatabaseConnectionUser get database => (super.noSuchMethod(
-        Invocation.getter(#database),
-        returnValue: _FakeDatabaseConnectionUser_0(
-          this,
-          Invocation.getter(#database),
-        ),
-        returnValueForMissingStub: _FakeDatabaseConnectionUser_0(
-          this,
-          Invocation.getter(#database),
-        ),
-      ) as _i2.DatabaseConnectionUser);
-  @override
-  set database(_i2.DatabaseConnectionUser? _database) => super.noSuchMethod(
-        Invocation.setter(
-          #database,
-          _database,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i2.ResultSetImplementation<T, D> get table => (super.noSuchMethod(
-        Invocation.getter(#table),
-        returnValue: _FakeResultSetImplementation_1<T, D>(
-          this,
-          Invocation.getter(#table),
-        ),
-        returnValueForMissingStub: _FakeResultSetImplementation_1<T, D>(
-          this,
-          Invocation.getter(#table),
-        ),
-      ) as _i2.ResultSetImplementation<T, D>);
-  @override
-  set table(_i2.ResultSetImplementation<T, D>? _table) => super.noSuchMethod(
-        Invocation.setter(
-          #table,
-          _table,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  set whereExpr(_i2.Where? _whereExpr) => super.noSuchMethod(
-        Invocation.setter(
-          #whereExpr,
-          _whereExpr,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  set orderByExpr(_i2.OrderBy? _orderByExpr) => super.noSuchMethod(
-        Invocation.setter(
-          #orderByExpr,
-          _orderByExpr,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  set limitExpr(_i2.Limit? _limitExpr) => super.noSuchMethod(
-        Invocation.setter(
-          #limitExpr,
-          _limitExpr,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  bool get writeReturningClause => (super.noSuchMethod(
-        Invocation.getter(#writeReturningClause),
+  bool get dontWriteConstraints => (super.noSuchMethod(
+        Invocation.getter(#dontWriteConstraints),
         returnValue: false,
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  set writeReturningClause(bool? _writeReturningClause) => super.noSuchMethod(
-        Invocation.setter(
-          #writeReturningClause,
-          _writeReturningClause,
-        ),
-        returnValueForMissingStub: null,
-      );
+  bool get isStrict => (super.noSuchMethod(
+        Invocation.getter(#isStrict),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
   @override
-  void writeStartPart(_i2.GenerationContext? ctx) => super.noSuchMethod(
-        Invocation.method(
-          #writeStartPart,
-          [ctx],
-        ),
-        returnValueForMissingStub: null,
-      );
+  List<String> get customConstraints => (super.noSuchMethod(
+        Invocation.getter(#customConstraints),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
   @override
-  _i3.Future<List<D>> get() => (super.noSuchMethod(
+  _i2.Column<int> get id => (super.noSuchMethod(
+        Invocation.getter(#id),
+        returnValue: _FakeColumn_0<int>(
+          this,
+          Invocation.getter(#id),
+        ),
+        returnValueForMissingStub: _FakeColumn_0<int>(
+          this,
+          Invocation.getter(#id),
+        ),
+      ) as _i2.Column<int>);
+  @override
+  _i2.ColumnBuilder<int> integer() => (super.noSuchMethod(
         Invocation.method(
-          #get,
+          #integer,
           [],
         ),
-        returnValue: _i3.Future<List<D>>.value(<D>[]),
-        returnValueForMissingStub: _i3.Future<List<D>>.value(<D>[]),
-      ) as _i3.Future<List<D>>);
-  @override
-  _i3.Stream<List<D>> watch() => (super.noSuchMethod(
-        Invocation.method(
-          #watch,
-          [],
-        ),
-        returnValue: _i3.Stream<List<D>>.empty(),
-        returnValueForMissingStub: _i3.Stream<List<D>>.empty(),
-      ) as _i3.Stream<List<D>>);
-  @override
-  _i2.JoinedSelectStatement<_i2.HasResultSet, dynamic> join(
-          List<_i2.Join<_i2.HasResultSet, dynamic>>? joins) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #join,
-          [joins],
-        ),
-        returnValue: _FakeJoinedSelectStatement_2<_i2.HasResultSet, dynamic>(
+        returnValue: _FakeColumnBuilder_1<int>(
           this,
           Invocation.method(
-            #join,
-            [joins],
-          ),
-        ),
-        returnValueForMissingStub:
-            _FakeJoinedSelectStatement_2<_i2.HasResultSet, dynamic>(
-          this,
-          Invocation.method(
-            #join,
-            [joins],
-          ),
-        ),
-      ) as _i2.JoinedSelectStatement<_i2.HasResultSet, dynamic>);
-  @override
-  _i2.JoinedSelectStatement<_i2.HasResultSet, dynamic> addColumns(
-          List<_i2.Expression<Object>>? expressions) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #addColumns,
-          [expressions],
-        ),
-        returnValue: _FakeJoinedSelectStatement_2<_i2.HasResultSet, dynamic>(
-          this,
-          Invocation.method(
-            #addColumns,
-            [expressions],
-          ),
-        ),
-        returnValueForMissingStub:
-            _FakeJoinedSelectStatement_2<_i2.HasResultSet, dynamic>(
-          this,
-          Invocation.method(
-            #addColumns,
-            [expressions],
-          ),
-        ),
-      ) as _i2.JoinedSelectStatement<_i2.HasResultSet, dynamic>);
-  @override
-  void orderBy(List<_i2.OrderClauseGenerator<T>>? clauses) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #orderBy,
-          [clauses],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void writeInto(_i2.GenerationContext? context) => super.noSuchMethod(
-        Invocation.method(
-          #writeInto,
-          [context],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i2.GenerationContext constructQuery() => (super.noSuchMethod(
-        Invocation.method(
-          #constructQuery,
-          [],
-        ),
-        returnValue: _FakeGenerationContext_3(
-          this,
-          Invocation.method(
-            #constructQuery,
+            #integer,
             [],
           ),
         ),
-        returnValueForMissingStub: _FakeGenerationContext_3(
+        returnValueForMissingStub: _FakeColumnBuilder_1<int>(
           this,
           Invocation.method(
-            #constructQuery,
+            #integer,
             [],
           ),
         ),
-      ) as _i2.GenerationContext);
+      ) as _i2.ColumnBuilder<int>);
   @override
-  void where(_i2.Expression<bool> Function(T)? filter) => super.noSuchMethod(
+  _i2.ColumnBuilder<BigInt> int64() => (super.noSuchMethod(
         Invocation.method(
-          #where,
-          [filter],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void limit(
-    int? limit, {
-    int? offset,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #limit,
-          [limit],
-          {#offset: offset},
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i3.Future<D> getSingle() => (super.noSuchMethod(
-        Invocation.method(
-          #getSingle,
+          #int64,
           [],
         ),
-        returnValue: _i3.Future<D>.value(null),
-        returnValueForMissingStub: _i3.Future<D>.value(null),
-      ) as _i3.Future<D>);
+        returnValue: _FakeColumnBuilder_1<BigInt>(
+          this,
+          Invocation.method(
+            #int64,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeColumnBuilder_1<BigInt>(
+          this,
+          Invocation.method(
+            #int64,
+            [],
+          ),
+        ),
+      ) as _i2.ColumnBuilder<BigInt>);
   @override
-  _i3.Stream<D> watchSingle() => (super.noSuchMethod(
+  _i2.ColumnBuilder<int> intEnum<T>() => (super.noSuchMethod(
         Invocation.method(
-          #watchSingle,
+          #intEnum,
           [],
         ),
-        returnValue: _i3.Stream<D>.empty(),
-        returnValueForMissingStub: _i3.Stream<D>.empty(),
-      ) as _i3.Stream<D>);
+        returnValue: _FakeColumnBuilder_1<int>(
+          this,
+          Invocation.method(
+            #intEnum,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeColumnBuilder_1<int>(
+          this,
+          Invocation.method(
+            #intEnum,
+            [],
+          ),
+        ),
+      ) as _i2.ColumnBuilder<int>);
   @override
-  _i3.Future<D?> getSingleOrNull() => (super.noSuchMethod(
+  _i2.ColumnBuilder<String> text() => (super.noSuchMethod(
         Invocation.method(
-          #getSingleOrNull,
+          #text,
           [],
         ),
-        returnValue: _i3.Future<D?>.value(),
-        returnValueForMissingStub: _i3.Future<D?>.value(),
-      ) as _i3.Future<D?>);
+        returnValue: _FakeColumnBuilder_1<String>(
+          this,
+          Invocation.method(
+            #text,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeColumnBuilder_1<String>(
+          this,
+          Invocation.method(
+            #text,
+            [],
+          ),
+        ),
+      ) as _i2.ColumnBuilder<String>);
   @override
-  _i3.Stream<D?> watchSingleOrNull() => (super.noSuchMethod(
+  _i2.ColumnBuilder<bool> boolean() => (super.noSuchMethod(
         Invocation.method(
-          #watchSingleOrNull,
+          #boolean,
           [],
         ),
-        returnValue: _i3.Stream<D?>.empty(),
-        returnValueForMissingStub: _i3.Stream<D?>.empty(),
-      ) as _i3.Stream<D?>);
+        returnValue: _FakeColumnBuilder_1<bool>(
+          this,
+          Invocation.method(
+            #boolean,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeColumnBuilder_1<bool>(
+          this,
+          Invocation.method(
+            #boolean,
+            [],
+          ),
+        ),
+      ) as _i2.ColumnBuilder<bool>);
   @override
-  _i2.Selectable<N> map<N>(N Function(D)? mapper) => (super.noSuchMethod(
+  _i2.ColumnBuilder<DateTime> dateTime() => (super.noSuchMethod(
         Invocation.method(
-          #map,
-          [mapper],
+          #dateTime,
+          [],
         ),
-        returnValue: _FakeSelectable_4<N>(
+        returnValue: _FakeColumnBuilder_1<DateTime>(
           this,
           Invocation.method(
-            #map,
-            [mapper],
+            #dateTime,
+            [],
           ),
         ),
-        returnValueForMissingStub: _FakeSelectable_4<N>(
+        returnValueForMissingStub: _FakeColumnBuilder_1<DateTime>(
           this,
           Invocation.method(
-            #map,
-            [mapper],
+            #dateTime,
+            [],
           ),
         ),
-      ) as _i2.Selectable<N>);
+      ) as _i2.ColumnBuilder<DateTime>);
   @override
-  _i2.Selectable<N> asyncMap<N>(_i3.Future<N> Function(D)? mapper) =>
-      (super.noSuchMethod(
+  _i2.ColumnBuilder<_i4.Uint8List> blob() => (super.noSuchMethod(
         Invocation.method(
-          #asyncMap,
-          [mapper],
+          #blob,
+          [],
         ),
-        returnValue: _FakeSelectable_4<N>(
+        returnValue: _FakeColumnBuilder_1<_i4.Uint8List>(
           this,
           Invocation.method(
-            #asyncMap,
-            [mapper],
+            #blob,
+            [],
           ),
         ),
-        returnValueForMissingStub: _FakeSelectable_4<N>(
+        returnValueForMissingStub: _FakeColumnBuilder_1<_i4.Uint8List>(
           this,
           Invocation.method(
-            #asyncMap,
-            [mapper],
+            #blob,
+            [],
           ),
         ),
-      ) as _i2.Selectable<N>);
+      ) as _i2.ColumnBuilder<_i4.Uint8List>);
+  @override
+  _i2.ColumnBuilder<double> real() => (super.noSuchMethod(
+        Invocation.method(
+          #real,
+          [],
+        ),
+        returnValue: _FakeColumnBuilder_1<double>(
+          this,
+          Invocation.method(
+            #real,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeColumnBuilder_1<double>(
+          this,
+          Invocation.method(
+            #real,
+            [],
+          ),
+        ),
+      ) as _i2.ColumnBuilder<double>);
 }

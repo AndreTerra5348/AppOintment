@@ -5,8 +5,7 @@ import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:drift/drift.dart';
 
 /// Filters [SimpleSelectStatement] by the [AppointmentModel.start]
-class StartDateTimeFilter
-    extends SelectFilter<AppointmentModels, AppointmentModel> {
+class StartDateTimeFilter extends SelectFilter<AppointmentModels> {
   /// The start date to filter by
   final DateTime start;
 
@@ -17,12 +16,6 @@ class StartDateTimeFilter
     required this.start,
     required this.end,
   });
-
-  @override
-  SimpleSelectStatement<AppointmentModels, AppointmentModel> call(
-      SimpleSelectStatement<AppointmentModels, AppointmentModel> select) {
-    return select..where(getExpression);
-  }
 
   @override
   Expression<bool> getExpression(AppointmentModels table) {

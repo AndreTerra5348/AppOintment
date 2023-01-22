@@ -189,8 +189,11 @@ class $ClientModelsTable extends ClientModels
 
 class AppointmentModel extends DataClass
     implements Insertable<AppointmentModel> {
-  /// The id of the [AppointmentModel]
+  /// The unique identifier for the model
   final Identifier id;
+
+  /// The id of the [ClientModel] that the [AppointmentModel] belongs to
+  final Identifier clientId;
 
   /// The start DateTime of the [AppointmentModel]
   final DateTime start;
@@ -198,13 +201,20 @@ class AppointmentModel extends DataClass
   /// The end DateTime of the [AppointmentModel]
   final DateTime end;
   const AppointmentModel(
-      {required this.id, required this.start, required this.end});
+      {required this.id,
+      required this.clientId,
+      required this.start,
+      required this.end});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     {
       final converter = $AppointmentModelsTable.$converter0;
       map['id'] = Variable<int>(converter.toSql(id));
+    }
+    {
+      final converter = $AppointmentModelsTable.$converter1;
+      map['client_id'] = Variable<int>(converter.toSql(clientId));
     }
     map['start'] = Variable<DateTime>(start);
     map['end'] = Variable<DateTime>(end);
@@ -214,6 +224,7 @@ class AppointmentModel extends DataClass
   AppointmentModelsCompanion toCompanion(bool nullToAbsent) {
     return AppointmentModelsCompanion(
       id: Value(id),
+      clientId: Value(clientId),
       start: Value(start),
       end: Value(end),
     );
@@ -224,6 +235,7 @@ class AppointmentModel extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return AppointmentModel(
       id: serializer.fromJson<Identifier>(json['id']),
+      clientId: serializer.fromJson<Identifier>(json['clientId']),
       start: serializer.fromJson<DateTime>(json['start']),
       end: serializer.fromJson<DateTime>(json['end']),
     );
@@ -233,14 +245,20 @@ class AppointmentModel extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<Identifier>(id),
+      'clientId': serializer.toJson<Identifier>(clientId),
       'start': serializer.toJson<DateTime>(start),
       'end': serializer.toJson<DateTime>(end),
     };
   }
 
-  AppointmentModel copyWith({Identifier? id, DateTime? start, DateTime? end}) =>
+  AppointmentModel copyWith(
+          {Identifier? id,
+          Identifier? clientId,
+          DateTime? start,
+          DateTime? end}) =>
       AppointmentModel(
         id: id ?? this.id,
+        clientId: clientId ?? this.clientId,
         start: start ?? this.start,
         end: end ?? this.end,
       );
@@ -248,6 +266,7 @@ class AppointmentModel extends DataClass
   String toString() {
     return (StringBuffer('AppointmentModel(')
           ..write('id: $id, ')
+          ..write('clientId: $clientId, ')
           ..write('start: $start, ')
           ..write('end: $end')
           ..write(')'))
@@ -255,47 +274,58 @@ class AppointmentModel extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(id, start, end);
+  int get hashCode => Object.hash(id, clientId, start, end);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is AppointmentModel &&
           other.id == this.id &&
+          other.clientId == this.clientId &&
           other.start == this.start &&
           other.end == this.end);
 }
 
 class AppointmentModelsCompanion extends UpdateCompanion<AppointmentModel> {
   final Value<Identifier> id;
+  final Value<Identifier> clientId;
   final Value<DateTime> start;
   final Value<DateTime> end;
   const AppointmentModelsCompanion({
     this.id = const Value.absent(),
+    this.clientId = const Value.absent(),
     this.start = const Value.absent(),
     this.end = const Value.absent(),
   });
   AppointmentModelsCompanion.insert({
     this.id = const Value.absent(),
+    required Identifier clientId,
     required DateTime start,
     required DateTime end,
-  })  : start = Value(start),
+  })  : clientId = Value(clientId),
+        start = Value(start),
         end = Value(end);
   static Insertable<AppointmentModel> custom({
     Expression<int>? id,
+    Expression<int>? clientId,
     Expression<DateTime>? start,
     Expression<DateTime>? end,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
+      if (clientId != null) 'client_id': clientId,
       if (start != null) 'start': start,
       if (end != null) 'end': end,
     });
   }
 
   AppointmentModelsCompanion copyWith(
-      {Value<Identifier>? id, Value<DateTime>? start, Value<DateTime>? end}) {
+      {Value<Identifier>? id,
+      Value<Identifier>? clientId,
+      Value<DateTime>? start,
+      Value<DateTime>? end}) {
     return AppointmentModelsCompanion(
       id: id ?? this.id,
+      clientId: clientId ?? this.clientId,
       start: start ?? this.start,
       end: end ?? this.end,
     );
@@ -307,6 +337,10 @@ class AppointmentModelsCompanion extends UpdateCompanion<AppointmentModel> {
     if (id.present) {
       final converter = $AppointmentModelsTable.$converter0;
       map['id'] = Variable<int>(converter.toSql(id.value));
+    }
+    if (clientId.present) {
+      final converter = $AppointmentModelsTable.$converter1;
+      map['client_id'] = Variable<int>(converter.toSql(clientId.value));
     }
     if (start.present) {
       map['start'] = Variable<DateTime>(start.value);
@@ -321,6 +355,7 @@ class AppointmentModelsCompanion extends UpdateCompanion<AppointmentModel> {
   String toString() {
     return (StringBuffer('AppointmentModelsCompanion(')
           ..write('id: $id, ')
+          ..write('clientId: $clientId, ')
           ..write('start: $start, ')
           ..write('end: $end')
           ..write(')'))
@@ -342,18 +377,30 @@ class $AppointmentModelsTable extends AppointmentModels
               requiredDuringInsert: false,
               defaultConstraints: 'PRIMARY KEY AUTOINCREMENT')
           .withConverter<Identifier>($AppointmentModelsTable.$converter0);
+  final VerificationMeta _clientIdMeta = const VerificationMeta('clientId');
+  @override
+  late final GeneratedColumnWithTypeConverter<Identifier, int> clientId =
+      GeneratedColumn<int>('client_id', aliasedName, false,
+              type: DriftSqlType.int,
+              requiredDuringInsert: true,
+              defaultConstraints: 'REFERENCES client_models (id)')
+          .withConverter<Identifier>($AppointmentModelsTable.$converter1);
   final VerificationMeta _startMeta = const VerificationMeta('start');
   @override
   late final GeneratedColumn<DateTime> start = GeneratedColumn<DateTime>(
       'start', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      check: () => start.isSmallerThan(end),
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: true);
   final VerificationMeta _endMeta = const VerificationMeta('end');
   @override
   late final GeneratedColumn<DateTime> end = GeneratedColumn<DateTime>(
       'end', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+      check: () => end.isBiggerThan(start),
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns => [id, start, end];
+  List<GeneratedColumn> get $columns => [id, clientId, start, end];
   @override
   String get aliasedName => _alias ?? 'appointment_models';
   @override
@@ -364,6 +411,7 @@ class $AppointmentModelsTable extends AppointmentModels
     final context = VerificationContext();
     final data = instance.toColumns(true);
     context.handle(_idMeta, const VerificationResult.success());
+    context.handle(_clientIdMeta, const VerificationResult.success());
     if (data.containsKey('start')) {
       context.handle(
           _startMeta, start.isAcceptableOrUnknown(data['start']!, _startMeta));
@@ -388,6 +436,9 @@ class $AppointmentModelsTable extends AppointmentModels
       id: $AppointmentModelsTable.$converter0.fromSql(attachedDatabase
           .options.types
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!),
+      clientId: $AppointmentModelsTable.$converter1.fromSql(attachedDatabase
+          .options.types
+          .read(DriftSqlType.int, data['${effectivePrefix}client_id'])!),
       start: attachedDatabase.options.types
           .read(DriftSqlType.dateTime, data['${effectivePrefix}start'])!,
       end: attachedDatabase.options.types
@@ -401,6 +452,7 @@ class $AppointmentModelsTable extends AppointmentModels
   }
 
   static TypeConverter<Identifier, int> $converter0 = IdentifierConverter();
+  static TypeConverter<Identifier, int> $converter1 = IdentifierConverter();
 }
 
 abstract class _$DriftDb extends GeneratedDatabase {
@@ -414,4 +466,7 @@ abstract class _$DriftDb extends GeneratedDatabase {
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
       [clientModels, appointmentModels];
+  @override
+  DriftDatabaseOptions get options =>
+      const DriftDatabaseOptions(storeDateTimeAsText: true);
 }
