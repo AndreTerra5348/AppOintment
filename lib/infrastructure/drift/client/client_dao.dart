@@ -1,5 +1,4 @@
 /// Drift ClientDao definition
-import 'package:appointment/domain/common/common_values.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/infrastructure/drift/core/dao.dart';
 import 'package:appointment/infrastructure/drift/core/select_filter.dart';
@@ -12,48 +11,31 @@ part 'client_dao.g.dart';
 /// stored in the [ClientModels] table
 @DriftAccessor(tables: [ClientModels])
 class ClientDao extends DatabaseAccessor<DriftDb>
-    with _$ClientDaoMixin
-    implements Dao<ClientModels, ClientModel> {
+    with _$ClientDaoMixin, Dao<ClientModels, ClientModel> {
   ClientDao(super.attachedDatabase);
 
   @override
-  ClientModels get table => clientModels;
+  SimpleSelectStatement<ClientModels, ClientModel> getSelect(
+      {SelectFilter<ClientModels>? filter}) {
+    if (filter == null) {
+      return select(clientModels);
+    }
 
-  @override
-  Future<int> insert(Insertable<ClientModel> model) {
-    return into(clientModels).insert(model);
+    return select(clientModels)..where(filter.getExpression);
   }
 
   @override
-  Future<ClientModel> getById(Identifier uid) {
-    return (select(clientModels)
-          ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
-        .getSingle();
+  DeleteStatement<ClientModels, ClientModel> getDelete() {
+    return delete(clientModels);
   }
 
   @override
-  Future<Iterable<ClientModel>> getPage(
-      {required int limit,
-      required int offset,
-      SelectFilter<ClientModels, ClientModel>? filter}) {
-    return filter == null
-        ? (select(clientModels)..limit(limit, offset: offset)).get()
-        : (filter(select(clientModels))..limit(limit, offset: offset)).get();
+  InsertStatement<ClientModels, ClientModel> getInsert() {
+    return into(clientModels);
   }
 
   @override
-  Future<bool> save(Identifier uid, Insertable<ClientModel> model) {
-    return (update(clientModels)
-          ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
-        .write(model)
-        .then((value) => value > 0);
-  }
-
-  @override
-  Future<bool> remove(Identifier uid) {
-    return (delete(clientModels)
-          ..where((tbl) => tbl.id.equals(uid.getOrThrow())))
-        .go()
-        .then((value) => value > 0);
+  UpdateStatement<ClientModels, ClientModel> getUpdate() {
+    return update(clientModels);
   }
 }

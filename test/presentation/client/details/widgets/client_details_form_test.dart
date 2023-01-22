@@ -7,12 +7,15 @@ import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:appointment/infrastructure/drift/client/client_dao.dart';
+import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart';
+import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/common/widgets/client_name_form_field.dart';
 import 'package:appointment/presentation/client/details/widgets/client_details_name_input.dart';
 import 'package:appointment/presentation/client/details/client_details_page.dart';
 import 'package:appointment/presentation/client/details/widgets/client_details_form.dart';
 import 'package:appointment/presentation/client/search/client_search_page.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -34,6 +37,7 @@ import '../../../config/mock_di_config.dart' as mock_di;
 ])
 @GenerateNiceMocks([
   MockSpec<ClientDao>(unsupportedMembers: {#table, #alias}),
+  MockSpec<ClientPaginationService>(),
 ])
 void main() {
   late Client johnClient;
@@ -320,7 +324,8 @@ void main() {
 
     group("When [deleteState] is [failure()]", () {
       testWidgets(
-        "Show Icons.error_outline for 1 second",
+        "Show Icons.error_outline for 1 second "
+        "Don't show Icons.check_circle_outline",
         (tester) async {
           final state = DeleteState.repositoryFailure(
             failure: mock_failure.dbErrorRepositoryFailure,
@@ -335,6 +340,7 @@ void main() {
           await tester.pump();
 
           expect(find.byIcon(Icons.error_outline), findsOneWidget);
+          expect(find.byIcon(Icons.check_circle_outline), findsNothing);
 
           await tester.pump(const Duration(seconds: 1));
 
@@ -403,24 +409,34 @@ void main() {
   });
 
   group("Mocked DI container", () {
-    final mockClientDao = MockClientDao();
-    mock_di.mockServicesConfiguration(mockClientDao);
+    late MockClientDao mockClientDao;
+    late MockClientPaginationService mockClientPaginationService;
+    setUp(() async {
+      mockClientDao = MockClientDao();
+      mockClientPaginationService = MockClientPaginationService();
+      await mock_di.reset();
+      mock_di.mockServicesConfiguration(
+        mockClientDao,
+        clientPaginationService: mockClientPaginationService,
+      );
+    });
+
     testWidgets(
       "When [LoadState] is [failure] "
       "Show localized failure message "
       "for 1 second"
       "and go back to previous page",
       (tester) async {
-        final models = client_fixture.generateModel(amount: 5);
+        final entities = client_fixture.generateEntity(amount: 5);
         final ex = StateError(mock_failure.errorMessage);
 
-        when(mockClientDao.getPage(
+        when(mockClientPaginationService.getPage(
           limit: anyNamed("limit"),
           offset: anyNamed("offset"),
           filter: anyNamed("filter"),
-        )).thenAnswer((_) => Future.value(models));
+        )).thenAnswer((_) async => Right(entities));
 
-        when(mockClientDao.getById(any)).thenThrow(ex);
+        when(mockClientDao.getByFilter(any)).thenThrow(ex);
 
         await tester.pumpWidget(AppOintment());
         await tester.pumpAndSettle();
@@ -433,9 +449,7 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        await tester.tap(
-          find.text(models.first.id.getOrThrow().toString()),
-        );
+        await tester.tap(find.text(entities.first.id.getOrThrow().toString()));
         await tester.pumpAndSettle();
 
         expect(find.byType(ClientDetailsPage), findsOneWidget);
@@ -461,17 +475,20 @@ void main() {
     );
 
     testWidgets(
-      "When delete successful dialog is dismissed, pop page",
+      "When delete successful dialog is dismissed, pop page "
+      "[Dao.getByFilter] should be called only once",
       (tester) async {
         final models = client_fixture.generateModel(amount: 5);
 
-        when(mockClientDao.getPage(
+        when(mockClientPaginationService.getPage(
           limit: anyNamed("limit"),
           offset: anyNamed("offset"),
           filter: anyNamed("filter"),
-        )).thenAnswer((_) => Future.value(models));
+        )).thenAnswer(
+          (_) async => Right(models.map((e) => e.toEntity())),
+        );
 
-        when(mockClientDao.getById(any)).thenAnswer(
+        when(mockClientDao.getByFilter(any)).thenAnswer(
           (_) => Future.value(models.first),
         );
 
@@ -502,6 +519,8 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(ClientSearchPage), findsOneWidget);
+
+        verify(mockClientDao.getByFilter(any)).called(1);
       },
     );
   });

@@ -1,25 +1,25 @@
 import 'package:appointment/infrastructure/drift/client/client_filters.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'client_filters_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<SimpleSelectStatement>()])
+@GenerateNiceMocks([MockSpec<ClientModels>()])
 void main() {
-  test("Should call SimpleSelectStatement once when filter is called", () {
+  test(
+      "Should call [ClientModels.name.contains(name)] once "
+      "when getExpression is called", () {
     // Arrange
     const name = "Bob";
-    final mockSelect = MockSimpleSelectStatement<ClientModels, ClientModel>();
-    when(mockSelect.where(any));
+    final table = MockClientModels();
     final sut = ClientNameFilter(name);
 
     // Act
-    sut(mockSelect);
+    sut.getExpression(table);
 
     // Assert
-    verify(mockSelect.where(any)).called(1);
+    verify(table.name.contains(name)).called(1);
   });
 }

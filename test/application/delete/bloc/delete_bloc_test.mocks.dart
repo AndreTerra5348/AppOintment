@@ -3,15 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i4;
 
-import 'package:appointment/domain/common/common_values.dart' as _i8;
-import 'package:appointment/domain/common/entity_mixin.dart' as _i3;
-import 'package:appointment/domain/core/repository.dart' as _i7;
-import 'package:appointment/infrastructure/drift/core/drift_repository.dart'
-    as _i5;
+import 'package:appointment/domain/client/client_entity.dart' as _i7;
+import 'package:appointment/domain/common/common_values.dart' as _i6;
+import 'package:appointment/domain/core/repository.dart' as _i5;
+import 'package:appointment/infrastructure/drift/client/client_repository.dart'
+    as _i3;
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:drift/drift.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -35,86 +34,82 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [DriftRepository].
+/// A class which mocks [ClientRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDriftRepository<
-        T_Entity extends _i3.EntityMixin,
-        T_Table extends _i4.Table,
-        T_Model extends _i4.DataClass> extends _i1.Mock
-    implements _i5.DriftRepository<T_Entity, T_Table, T_Model> {
-  MockDriftRepository() {
+class MockClientRepository extends _i1.Mock implements _i3.ClientRepository {
+  MockClientRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>> insert(
-          T_Entity? entity) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #insert,
-          [entity],
-        ),
-        returnValue:
-            _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>>.value(
-                _FakeEither_0<_i7.RepositoryFailure, T_Entity>(
-          this,
-          Invocation.method(
-            #insert,
-            [entity],
-          ),
-        )),
-      ) as _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>>);
-  @override
-  _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>> update(
-          T_Entity? entity) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #update,
-          [entity],
-        ),
-        returnValue: _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>>.value(
-            _FakeEither_0<_i7.RepositoryFailure, bool>(
-          this,
-          Invocation.method(
-            #update,
-            [entity],
-          ),
-        )),
-      ) as _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>>);
-  @override
-  _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>> getById(
-          _i8.Identifier? id) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getById,
-          [id],
-        ),
-        returnValue:
-            _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>>.value(
-                _FakeEither_0<_i7.RepositoryFailure, T_Entity>(
-          this,
-          Invocation.method(
-            #getById,
-            [id],
-          ),
-        )),
-      ) as _i6.Future<_i2.Either<_i7.RepositoryFailure, T_Entity>>);
-  @override
-  _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>> delete(
-          _i8.Identifier? id) =>
+  _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>> delete(
+          _i6.Identifier? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #delete,
           [id],
         ),
-        returnValue: _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>>.value(
-            _FakeEither_0<_i7.RepositoryFailure, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>.value(
+            _FakeEither_0<_i5.RepositoryFailure, bool>(
           this,
           Invocation.method(
             #delete,
             [id],
           ),
         )),
-      ) as _i6.Future<_i2.Either<_i7.RepositoryFailure, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>);
+  @override
+  _i4.Future<_i2.Either<_i5.RepositoryFailure, _i7.Client>> getById(
+          _i6.Identifier? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getById,
+          [id],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.RepositoryFailure, _i7.Client>>.value(
+                _FakeEither_0<_i5.RepositoryFailure, _i7.Client>(
+          this,
+          Invocation.method(
+            #getById,
+            [id],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, _i7.Client>>);
+  @override
+  _i4.Future<_i2.Either<_i5.RepositoryFailure, _i7.Client>> insert(
+          _i7.Client? entity) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #insert,
+          [entity],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.RepositoryFailure, _i7.Client>>.value(
+                _FakeEither_0<_i5.RepositoryFailure, _i7.Client>(
+          this,
+          Invocation.method(
+            #insert,
+            [entity],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, _i7.Client>>);
+  @override
+  _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>> update(
+          _i7.Client? entity) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [entity],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>.value(
+            _FakeEither_0<_i5.RepositoryFailure, bool>(
+          this,
+          Invocation.method(
+            #update,
+            [entity],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.RepositoryFailure, bool>>);
 }

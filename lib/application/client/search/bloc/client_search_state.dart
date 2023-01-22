@@ -32,7 +32,7 @@ class SearchFilter with _$SearchFilter {
 /// Extends [ClientSearchState] to handle [SearchFilter]s
 extension ClientSearchStateExtension on ClientSearchState {
   /// Returns the [SelectFilter] for the [Client] search
-  SelectFilter<ClientModels, ClientModel> getFilter() {
+  SelectFilter<ClientModels> getFilter() {
     return filter.map(
       name: (_) => ClientNameFilter(term),
     );

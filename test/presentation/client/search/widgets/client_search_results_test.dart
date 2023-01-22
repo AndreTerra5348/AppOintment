@@ -1,9 +1,12 @@
 import 'package:appointment/application/client/search/bloc/client_search_bloc.dart';
 import 'package:appointment/application/client/search/client_search_status.dart';
 import 'package:appointment/infrastructure/drift/client/client_dao.dart';
+import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart';
+import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/details/client_details_page.dart';
 import 'package:appointment/presentation/client/search/widgets/client_search_results.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,6 +22,7 @@ import 'client_search_results_test.mocks.dart';
 @GenerateNiceMocks([
   MockSpec<ClientSearchBloc>(),
   MockSpec<ClientDao>(unsupportedMembers: {#table, #alias}),
+  MockSpec<ClientPaginationService>(),
 ])
 void main() {
   late MockClientSearchBloc searchBloc;
@@ -182,20 +186,26 @@ void main() {
     "Navigate to [ClientDetailsPage] with [Client.id] as argument",
     (tester) async {
       final mockClientDao = MockClientDao();
+      final mockClientPaginationService = MockClientPaginationService();
 
       final models = client_fixture.generateModel(amount: 5);
 
-      when(mockClientDao.getPage(
+      when(mockClientPaginationService.getPage(
         limit: anyNamed("limit"),
         offset: anyNamed("offset"),
         filter: anyNamed("filter"),
-      )).thenAnswer((_) => Future.value(models));
+      )).thenAnswer(
+        (_) async => Right(models.map((e) => e.toEntity())),
+      );
 
-      when(mockClientDao.getById(any)).thenAnswer(
+      when(mockClientDao.getByFilter(any)).thenAnswer(
         (_) async => models.first,
       );
 
-      mock_di.mockServicesConfiguration(mockClientDao);
+      mock_di.mockServicesConfiguration(
+        mockClientDao,
+        clientPaginationService: mockClientPaginationService,
+      );
 
       await tester.pumpWidget(AppOintment());
       await tester.pumpAndSettle();

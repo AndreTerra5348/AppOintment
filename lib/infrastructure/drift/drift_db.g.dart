@@ -8,7 +8,7 @@ part of 'drift_db.dart';
 
 // ignore_for_file: type=lint
 class ClientModel extends DataClass implements Insertable<ClientModel> {
-  /// The id of the [ClientModel]
+  /// The unique identifier for the model
   final Identifier id;
 
   /// The name of the [ClientModel]
