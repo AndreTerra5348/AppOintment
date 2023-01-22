@@ -21,7 +21,7 @@ mixin _$ClientSearchStatus {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() empty,
-    required TResult Function(PageServiceFailure failure) failure,
+    required TResult Function(PaginationServiceFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$ClientSearchStatus {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function()? empty,
-    TResult? Function(PageServiceFailure failure)? failure,
+    TResult? Function(PaginationServiceFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$ClientSearchStatus {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? empty,
-    TResult Function(PageServiceFailure failure)? failure,
+    TResult Function(PaginationServiceFailure failure)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$_Loading extends _Loading {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() empty,
-    required TResult Function(PageServiceFailure failure) failure,
+    required TResult Function(PaginationServiceFailure failure) failure,
   }) {
     return loading();
   }
@@ -137,7 +137,7 @@ class _$_Loading extends _Loading {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function()? empty,
-    TResult? Function(PageServiceFailure failure)? failure,
+    TResult? Function(PaginationServiceFailure failure)? failure,
   }) {
     return loading?.call();
   }
@@ -148,7 +148,7 @@ class _$_Loading extends _Loading {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? empty,
-    TResult Function(PageServiceFailure failure)? failure,
+    TResult Function(PaginationServiceFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -240,7 +240,7 @@ class _$_Success extends _Success {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() empty,
-    required TResult Function(PageServiceFailure failure) failure,
+    required TResult Function(PaginationServiceFailure failure) failure,
   }) {
     return success();
   }
@@ -251,7 +251,7 @@ class _$_Success extends _Success {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function()? empty,
-    TResult? Function(PageServiceFailure failure)? failure,
+    TResult? Function(PaginationServiceFailure failure)? failure,
   }) {
     return success?.call();
   }
@@ -262,7 +262,7 @@ class _$_Success extends _Success {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? empty,
-    TResult Function(PageServiceFailure failure)? failure,
+    TResult Function(PaginationServiceFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -353,7 +353,7 @@ class _$_Empty extends _Empty {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() empty,
-    required TResult Function(PageServiceFailure failure) failure,
+    required TResult Function(PaginationServiceFailure failure) failure,
   }) {
     return empty();
   }
@@ -364,7 +364,7 @@ class _$_Empty extends _Empty {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function()? empty,
-    TResult? Function(PageServiceFailure failure)? failure,
+    TResult? Function(PaginationServiceFailure failure)? failure,
   }) {
     return empty?.call();
   }
@@ -375,7 +375,7 @@ class _$_Empty extends _Empty {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? empty,
-    TResult Function(PageServiceFailure failure)? failure,
+    TResult Function(PaginationServiceFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -433,9 +433,9 @@ abstract class _$$_FailureCopyWith<$Res> {
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
   @useResult
-  $Res call({PageServiceFailure failure});
+  $Res call({PaginationServiceFailure failure});
 
-  $PageServiceFailureCopyWith<$Res> get failure;
+  $PaginationServiceFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -454,14 +454,14 @@ class __$$_FailureCopyWithImpl<$Res>
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as PageServiceFailure,
+              as PaginationServiceFailure,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PageServiceFailureCopyWith<$Res> get failure {
-    return $PageServiceFailureCopyWith<$Res>(_value.failure, (value) {
+  $PaginationServiceFailureCopyWith<$Res> get failure {
+    return $PaginationServiceFailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
     });
   }
@@ -473,7 +473,7 @@ class _$_Failure extends _Failure {
   const _$_Failure({required this.failure}) : super._();
 
   @override
-  final PageServiceFailure failure;
+  final PaginationServiceFailure failure;
 
   @override
   String toString() {
@@ -503,7 +503,7 @@ class _$_Failure extends _Failure {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function() empty,
-    required TResult Function(PageServiceFailure failure) failure,
+    required TResult Function(PaginationServiceFailure failure) failure,
   }) {
     return failure(this.failure);
   }
@@ -514,7 +514,7 @@ class _$_Failure extends _Failure {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function()? empty,
-    TResult? Function(PageServiceFailure failure)? failure,
+    TResult? Function(PaginationServiceFailure failure)? failure,
   }) {
     return failure?.call(this.failure);
   }
@@ -525,7 +525,7 @@ class _$_Failure extends _Failure {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function()? empty,
-    TResult Function(PageServiceFailure failure)? failure,
+    TResult Function(PaginationServiceFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -573,11 +573,11 @@ class _$_Failure extends _Failure {
 }
 
 abstract class _Failure extends ClientSearchStatus {
-  const factory _Failure({required final PageServiceFailure failure}) =
+  const factory _Failure({required final PaginationServiceFailure failure}) =
       _$_Failure;
   const _Failure._() : super._();
 
-  PageServiceFailure get failure;
+  PaginationServiceFailure get failure;
   @JsonKey(ignore: true)
   _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;

@@ -2,9 +2,7 @@ import 'package:appointment/application/edit/bloc/edit_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/client/client_table.dart';
-import 'package:appointment/infrastructure/drift/core/drift_repository.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
+import 'package:appointment/infrastructure/drift/client/client_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,21 +11,20 @@ import 'package:mockito/mockito.dart';
 import 'edit_bloc_test.mocks.dart';
 import '../../../common/failure_fixture.dart' as failure_fixture;
 
-@GenerateMocks([DriftRepository])
+@GenerateMocks([ClientRepository])
 void main() {
-  late MockDriftRepository<Client, ClientModels, ClientModel> repository;
+  late MockClientRepository repository;
   late Client validClient;
   late Client invalidClient;
   setUp(() {
-    repository = MockDriftRepository<Client, ClientModels, ClientModel>();
+    repository = MockClientRepository();
     validClient = Client(name: Name('John'), id: Identifier.fromInt(1));
     invalidClient = Client(name: Name(''), id: Identifier.fromInt(1));
   });
 
   test("initial [State] should be [initial()]", () {
     // Arrange
-    final sut =
-        EditBloc(MockDriftRepository<Client, ClientModels, ClientModel>());
+    final sut = EditBloc(MockClientRepository());
     // Act
     // Assert
     expect(sut.state, const EditState.initial());
@@ -37,8 +34,7 @@ void main() {
     "Given [State.initial()] "
     "When [Event.editPressed] "
     "Then [State.editing()]",
-    build: () =>
-        EditBloc(MockDriftRepository<Client, ClientModels, ClientModel>()),
+    build: () => EditBloc(MockClientRepository()),
     act: (bloc) => bloc.add(const EditEvent<Client>.editPressed()),
     expect: () => [const EditState.editing()],
   );

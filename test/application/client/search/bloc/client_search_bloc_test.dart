@@ -2,9 +2,8 @@ import 'package:appointment/application/client/search/bloc/client_search_bloc.da
 import 'package:appointment/application/client/search/client_search_status.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/infrastructure/drift/client/client_filters.dart';
-import 'package:appointment/infrastructure/drift/client/client_table.dart';
-import 'package:appointment/infrastructure/drift/core/page_service.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
+import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart';
+import 'package:appointment/infrastructure/drift/core/pagination_service.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,12 +14,12 @@ import 'client_search_bloc_test.mocks.dart';
 import '../../../../common/client_fixture.dart' as client_fixture;
 
 @GenerateNiceMocks([
-  MockSpec<DriftPageService>(),
+  MockSpec<ClientPaginationService>(),
 ])
 void main() {
-  late MockDriftPageService<Client, ClientModels, ClientModel> pageService;
+  late MockClientPaginationService pageService;
   setUp(() {
-    pageService = MockDriftPageService<Client, ClientModels, ClientModel>();
+    pageService = MockClientPaginationService();
   });
 
   test(
@@ -96,7 +95,7 @@ void main() {
   );
   const term = "Bob";
   late Iterable<Client> clients;
-  late PageServiceFailure failure;
+  late PaginationServiceFailure failure;
 
   group("Given [PageService.getPage()] return clients  ", () {
     setUp(() {
@@ -193,7 +192,7 @@ void main() {
     "And [pageService.getPage()] returns [PageServiceFailure] "
     "Then [State.status] should be [failure()] ",
     setUp: () {
-      failure = PageServiceFailure.dbException(error: Exception("error"));
+      failure = PaginationServiceFailure.dbException(error: Exception("error"));
       pageService = _whenMockClientPageServiceWithFailure(failure);
     },
     build: () => ClientSearchBloc(pageService),
@@ -233,9 +232,9 @@ void main() {
   );
 }
 
-MockDriftPageService<Client, ClientModels, ClientModel>
-    _whenMockClientPageServiceWithClients(Iterable<Client> clients) {
-  final mock = MockDriftPageService<Client, ClientModels, ClientModel>();
+MockClientPaginationService _whenMockClientPageServiceWithClients(
+    Iterable<Client> clients) {
+  final mock = MockClientPaginationService();
   when(mock.getPage(
     limit: anyNamed("limit"),
     offset: anyNamed("offset"),
@@ -244,9 +243,9 @@ MockDriftPageService<Client, ClientModels, ClientModel>
   return mock;
 }
 
-MockDriftPageService<Client, ClientModels, ClientModel>
-    _whenMockClientPageServiceWithFailure(PageServiceFailure failure) {
-  final mock = MockDriftPageService<Client, ClientModels, ClientModel>();
+MockClientPaginationService _whenMockClientPageServiceWithFailure(
+    PaginationServiceFailure failure) {
+  final mock = MockClientPaginationService();
   when(mock.getPage(
     limit: anyNamed("limit"),
     offset: anyNamed("offset"),
@@ -255,9 +254,7 @@ MockDriftPageService<Client, ClientModels, ClientModel>
   return mock;
 }
 
-void _verifyPageMock(
-    {required MockDriftPageService<Client, ClientModels, ClientModel>
-        pageService}) {
+void _verifyPageMock({required MockClientPaginationService pageService}) {
   verify(pageService.getPage(
     limit: anyNamed("limit"),
     offset: anyNamed("offset"),
