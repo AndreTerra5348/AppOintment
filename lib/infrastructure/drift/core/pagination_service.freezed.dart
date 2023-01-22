@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'page_service.dart';
+part of 'pagination_service.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PageServiceFailure {
+mixin _$PaginationServiceFailure {
   Object get error => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -51,23 +51,24 @@ mixin _$PageServiceFailure {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PageServiceFailureCopyWith<PageServiceFailure> get copyWith =>
+  $PaginationServiceFailureCopyWith<PaginationServiceFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PageServiceFailureCopyWith<$Res> {
-  factory $PageServiceFailureCopyWith(
-          PageServiceFailure value, $Res Function(PageServiceFailure) then) =
-      _$PageServiceFailureCopyWithImpl<$Res, PageServiceFailure>;
+abstract class $PaginationServiceFailureCopyWith<$Res> {
+  factory $PaginationServiceFailureCopyWith(PaginationServiceFailure value,
+          $Res Function(PaginationServiceFailure) then) =
+      _$PaginationServiceFailureCopyWithImpl<$Res, PaginationServiceFailure>;
   @useResult
   $Res call({Object error});
 }
 
 /// @nodoc
-class _$PageServiceFailureCopyWithImpl<$Res, $Val extends PageServiceFailure>
-    implements $PageServiceFailureCopyWith<$Res> {
-  _$PageServiceFailureCopyWithImpl(this._value, this._then);
+class _$PaginationServiceFailureCopyWithImpl<$Res,
+        $Val extends PaginationServiceFailure>
+    implements $PaginationServiceFailureCopyWith<$Res> {
+  _$PaginationServiceFailureCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -87,7 +88,7 @@ class _$PageServiceFailureCopyWithImpl<$Res, $Val extends PageServiceFailure>
 
 /// @nodoc
 abstract class _$$_GetPageDbExceptionCopyWith<$Res>
-    implements $PageServiceFailureCopyWith<$Res> {
+    implements $PaginationServiceFailureCopyWith<$Res> {
   factory _$$_GetPageDbExceptionCopyWith(_$_GetPageDbException value,
           $Res Function(_$_GetPageDbException) then) =
       __$$_GetPageDbExceptionCopyWithImpl<$Res>;
@@ -98,7 +99,7 @@ abstract class _$$_GetPageDbExceptionCopyWith<$Res>
 
 /// @nodoc
 class __$$_GetPageDbExceptionCopyWithImpl<$Res>
-    extends _$PageServiceFailureCopyWithImpl<$Res, _$_GetPageDbException>
+    extends _$PaginationServiceFailureCopyWithImpl<$Res, _$_GetPageDbException>
     implements _$$_GetPageDbExceptionCopyWith<$Res> {
   __$$_GetPageDbExceptionCopyWithImpl(
       _$_GetPageDbException _value, $Res Function(_$_GetPageDbException) _then)
@@ -125,7 +126,7 @@ class _$_GetPageDbException implements _GetPageDbException {
 
   @override
   String toString() {
-    return 'PageServiceFailure.dbException(error: $error)';
+    return 'PaginationServiceFailure.dbException(error: $error)';
   }
 
   @override
@@ -204,7 +205,7 @@ class _$_GetPageDbException implements _GetPageDbException {
   }
 }
 
-abstract class _GetPageDbException implements PageServiceFailure {
+abstract class _GetPageDbException implements PaginationServiceFailure {
   const factory _GetPageDbException({required final Object error}) =
       _$_GetPageDbException;
 

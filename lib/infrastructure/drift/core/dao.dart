@@ -1,33 +1,56 @@
-/// Drift DAO contract
-import 'package:appointment/domain/common/common_values.dart';
+/// Drift generic DAO contract
+import 'package:appointment/infrastructure/drift/common/model_mixin.dart';
 import 'package:appointment/infrastructure/drift/core/select_filter.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:drift/drift.dart';
 
-/// Access Drift database tables to store and manage data
-abstract class Dao<T_Table extends Table, T_Model extends DataClass> {
-  /// Drift [DataClass] table
-  T_Table get table;
+mixin Dao<T_Table extends ModelMixin, T_Model extends DataClass>
+    on DatabaseAccessor<DriftDb> {
+  /// Get a [SimpleSelectStatement] for the table
+  /// with optional [SelectFilter]
+  SimpleSelectStatement<T_Table, T_Model> getSelect(
+      {SelectFilter<T_Table>? filter});
 
-  /// Insert a new model into the database
-  Future<int> insert(Insertable<T_Model> model);
+  /// Get a [InsertStatement] for the table
+  InsertStatement<T_Table, T_Model> getInsert();
 
-  /// Get a model by its [Identifier]
-  Future<T_Model> getById(Identifier uid);
+  /// Get a [UpdateStatement] for the table
+  UpdateStatement<T_Table, T_Model> getUpdate();
 
-  /// Get a page of models
-  /// [limit] is the number of models to return
-  /// [offset] is the number of models to skip
-  /// [filter] is a [SelectFilter] to filter the models
-  Future<Iterable<T_Model>> getPage(
-      {required int limit,
-      required int offset,
-      SelectFilter<T_Table, T_Model>? filter});
+  /// Get a [DeleteStatement] for the table
+  DeleteStatement<T_Table, T_Model> getDelete();
 
-  /// Save changes to a model in the database
-  /// [uid] is the [Identifier] of the model to update
-  /// [model] is the [Insertable] or [UpdateCompanion] to update the model with
-  Future<bool> save(Identifier uid, Insertable<T_Model> model);
+  /// Insert a [model] into the table
+  /// Returns the [id] of the inserted model
+  Future<int> insert(Insertable<T_Model> model) {
+    return getInsert().insert(model);
+  }
 
-  /// Delete a model from the database
-  Future<bool> remove(Identifier uid);
+  /// Get all [models] from the table
+  /// Returns a [List] of [models]
+  Future<List<T_Model>> getAll() {
+    return getSelect().get();
+  }
+
+  /// Get a [model] by [SelectFilter] e.g [IdentifierFilter]
+  /// Returns the [model] if found, otherwise throws [Error]
+  Future<T_Model> getByFilter(SelectFilter<T_Table> filter) {
+    return getSelect(filter: filter).getSingle();
+  }
+
+  /// Save a [model] by [SelectFilter] e.g [IdentifierFilter]
+  /// Returns true if the model was updated, otherwise false
+  Future<bool> save(SelectFilter<T_Table> filter, Insertable<T_Model> model) {
+    return (getUpdate()..where(filter.getExpression))
+        .write(model)
+        .then((value) => value > 0);
+  }
+
+  /// Remove a [model] by [SelectFilter] e.g [IdentifierFilter]
+  /// Returns true if the model was removed, otherwise false
+  Future<bool> remove(SelectFilter<T_Table> filter) {
+    return (getDelete()..where(filter.getExpression))
+        .go()
+        .then((value) => value > 0);
+  }
 }

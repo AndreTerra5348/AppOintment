@@ -1,5 +1,5 @@
 /// Defines [ClientSearchStatus]
-import 'package:appointment/infrastructure/drift/core/page_service.dart';
+import 'package:appointment/infrastructure/drift/core/pagination_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'client_search_status.freezed.dart';
@@ -20,5 +20,5 @@ class ClientSearchStatus with _$ClientSearchStatus {
 
   /// Failed to fetch [Client]s
   const factory ClientSearchStatus.failure(
-      {required PageServiceFailure failure}) = _Failure;
+      {required PaginationServiceFailure failure}) = _Failure;
 }

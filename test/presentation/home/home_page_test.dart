@@ -1,8 +1,11 @@
 import 'package:appointment/infrastructure/drift/client/client_dao.dart';
+import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/register/client_register_page.dart';
 import 'package:appointment/presentation/client/search/client_search_page.dart';
 import 'package:appointment/presentation/home/home_page.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
@@ -14,16 +17,17 @@ import 'home_page_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<ClientDao>(unsupportedMembers: {#table, #alias}),
+  MockSpec<SimpleSelectStatement>(),
 ])
 void main() {
   final MockClientDao mockClientDao = MockClientDao();
   mock_di.mockServicesConfiguration(mockClientDao);
   setUp(() {
-    when(mockClientDao.getPage(
-      limit: anyNamed("limit"),
-      offset: anyNamed("offset"),
-      filter: anyNamed("filter"),
-    )).thenAnswer((_) => Future.value(const Iterable.empty()));
+    final mockSelection =
+        MockSimpleSelectStatement<ClientModels, ClientModel>();
+    when(mockSelection.get()).thenAnswer((_) => Future.value([]));
+    when(mockClientDao.getSelect(filter: anyNamed("filter")))
+        .thenReturn(mockSelection);
   });
 
   testWidgets(

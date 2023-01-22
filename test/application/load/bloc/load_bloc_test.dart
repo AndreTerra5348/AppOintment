@@ -3,9 +3,7 @@ import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_errors.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/client/client_table.dart';
-import 'package:appointment/infrastructure/drift/core/drift_repository.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
+import 'package:appointment/infrastructure/drift/client/client_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,14 +12,14 @@ import 'package:mockito/mockito.dart';
 import 'load_bloc_test.mocks.dart';
 import '../../../common/failure_fixture.dart' as failure_fixture;
 
-@GenerateMocks([DriftRepository])
+@GenerateMocks([ClientRepository])
 void main() {
   late Client validClient;
-  late MockDriftRepository<Client, ClientModels, ClientModel> repository;
+  late MockClientRepository repository;
 
   setUp(() {
     validClient = Client(name: Name('John'), id: Identifier.fromInt(1));
-    repository = MockDriftRepository<Client, ClientModels, ClientModel>();
+    repository = MockClientRepository();
 
     when(repository.getById(any)).thenAnswer((_) async => Right(validClient));
   });

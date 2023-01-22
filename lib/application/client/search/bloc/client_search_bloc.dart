@@ -6,8 +6,7 @@ import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/infrastructure/drift/client/client_filters.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/infrastructure/drift/core/select_filter.dart';
-import 'package:appointment/infrastructure/drift/core/page_service.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
+import 'package:appointment/infrastructure/drift/core/pagination_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -30,7 +29,7 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 /// Handles [Client] search events and states
 class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
   /// Listens to the events and changes the state accordingly
-  final PageService<Client, ClientModels, ClientModel> _pageService;
+  final PaginationService<Client, ClientModels> _pageService;
   ClientSearchBloc(this._pageService) : super(ClientSearchState.initial()) {
     on<_FetchRequested>(_onFetchRequested);
     on<_TermChanged>(
@@ -40,7 +39,7 @@ class ClientSearchBloc extends Bloc<ClientSearchEvent, ClientSearchState> {
     on<_RefreshRequested>(_onRefreshRequested);
   }
 
-  /// Fetches a page from [PageService] of [Client]s from the database
+  /// Fetches a page from [PaginationService] of [Client]s from the database
   FutureOr<void> _emitFetched(Emitter<ClientSearchState> emit) async {
     final page = await _pageService.getPage(
       limit: state.limit,

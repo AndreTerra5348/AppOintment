@@ -3,13 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
-import 'package:appointment/infrastructure/drift/core/page_service.dart' as _i4;
+import 'package:appointment/domain/client/client_entity.dart' as _i6;
+import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart'
+    as _i3;
+import 'package:appointment/infrastructure/drift/client/client_table.dart'
+    as _i8;
+import 'package:appointment/infrastructure/drift/core/pagination_service.dart'
+    as _i5;
 import 'package:appointment/infrastructure/drift/core/select_filter.dart'
-    as _i6;
+    as _i7;
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:drift/drift.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -33,17 +38,17 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [DriftPageService].
+/// A class which mocks [ClientPaginationService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDriftPageService<T_Entity, T_Table extends _i3.Table,
-        T_Model extends _i3.DataClass> extends _i1.Mock
-    implements _i4.DriftPageService<T_Entity, T_Table, T_Model> {
+class MockClientPaginationService extends _i1.Mock
+    implements _i3.ClientPaginationService {
   @override
-  _i5.Future<_i2.Either<_i4.PageServiceFailure, Iterable<T_Entity>>> getPage({
+  _i4.Future<
+      _i2.Either<_i5.PaginationServiceFailure, Iterable<_i6.Client>>> getPage({
     required int? limit,
     required int? offset,
-    _i6.SelectFilter<T_Table, T_Model>? filter,
+    _i7.SelectFilter<_i8.ClientModels>? filter,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -55,9 +60,10 @@ class MockDriftPageService<T_Entity, T_Table extends _i3.Table,
             #filter: filter,
           },
         ),
-        returnValue: _i5.Future<
-                _i2.Either<_i4.PageServiceFailure, Iterable<T_Entity>>>.value(
-            _FakeEither_0<_i4.PageServiceFailure, Iterable<T_Entity>>(
+        returnValue: _i4.Future<
+                _i2.Either<_i5.PaginationServiceFailure,
+                    Iterable<_i6.Client>>>.value(
+            _FakeEither_0<_i5.PaginationServiceFailure, Iterable<_i6.Client>>(
           this,
           Invocation.method(
             #getPage,
@@ -69,9 +75,10 @@ class MockDriftPageService<T_Entity, T_Table extends _i3.Table,
             },
           ),
         )),
-        returnValueForMissingStub: _i5.Future<
-                _i2.Either<_i4.PageServiceFailure, Iterable<T_Entity>>>.value(
-            _FakeEither_0<_i4.PageServiceFailure, Iterable<T_Entity>>(
+        returnValueForMissingStub: _i4.Future<
+                _i2.Either<_i5.PaginationServiceFailure,
+                    Iterable<_i6.Client>>>.value(
+            _FakeEither_0<_i5.PaginationServiceFailure, Iterable<_i6.Client>>(
           this,
           Invocation.method(
             #getPage,
@@ -83,5 +90,6 @@ class MockDriftPageService<T_Entity, T_Table extends _i3.Table,
             },
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i4.PageServiceFailure, Iterable<T_Entity>>>);
+      ) as _i4.Future<
+          _i2.Either<_i5.PaginationServiceFailure, Iterable<_i6.Client>>>);
 }

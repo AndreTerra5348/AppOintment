@@ -2,7 +2,7 @@
 import 'package:appointment/application/client/search/bloc/client_search_bloc.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/core/page_service.dart';
+import 'package:appointment/infrastructure/drift/core/pagination_service.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/config/route_config.dart';
 import 'package:auto_route/auto_route.dart';
@@ -114,8 +114,8 @@ class _ClientSearchResultsWidgetState extends State<ClientSearchResultsWidget>
   }
 }
 
-/// Converts a [PageServiceFailure] to a [String]
-extension on PageServiceFailure {
+/// Converts a [PaginationServiceFailure] to a [String]
+extension on PaginationServiceFailure {
   String toErrorText(BuildContext context) {
     return map(dbException: (value) => context.tr.databaseFailure(value.error));
   }
