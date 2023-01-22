@@ -324,7 +324,8 @@ void main() {
 
     group("When [deleteState] is [failure()]", () {
       testWidgets(
-        "Show Icons.error_outline for 1 second",
+        "Show Icons.error_outline for 1 second "
+        "Don't show Icons.check_circle_outline",
         (tester) async {
           final state = DeleteState.repositoryFailure(
             failure: mock_failure.dbErrorRepositoryFailure,
@@ -339,6 +340,7 @@ void main() {
           await tester.pump();
 
           expect(find.byIcon(Icons.error_outline), findsOneWidget);
+          expect(find.byIcon(Icons.check_circle_outline), findsNothing);
 
           await tester.pump(const Duration(seconds: 1));
 
@@ -407,12 +409,18 @@ void main() {
   });
 
   group("Mocked DI container", () {
-    final mockClientDao = MockClientDao();
-    final mockClientPaginationService = MockClientPaginationService();
-    mock_di.mockServicesConfiguration(
-      mockClientDao,
-      clientPaginationService: mockClientPaginationService,
-    );
+    late MockClientDao mockClientDao;
+    late MockClientPaginationService mockClientPaginationService;
+    setUp(() async {
+      mockClientDao = MockClientDao();
+      mockClientPaginationService = MockClientPaginationService();
+      await mock_di.reset();
+      mock_di.mockServicesConfiguration(
+        mockClientDao,
+        clientPaginationService: mockClientPaginationService,
+      );
+    });
+
     testWidgets(
       "When [LoadState] is [failure] "
       "Show localized failure message "
@@ -467,7 +475,8 @@ void main() {
     );
 
     testWidgets(
-      "When delete successful dialog is dismissed, pop page",
+      "When delete successful dialog is dismissed, pop page "
+      "[Dao.getByFilter] should be called only once",
       (tester) async {
         final models = client_fixture.generateModel(amount: 5);
 
@@ -510,6 +519,8 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(ClientSearchPage), findsOneWidget);
+
+        verify(mockClientDao.getByFilter(any)).called(1);
       },
     );
   });

@@ -67,3 +67,7 @@ void mockServicesConfiguration(ClientDao dao,
     signalsReady: true,
   );
 }
+
+Future<void> reset() async {
+  await getIt.reset();
+}
