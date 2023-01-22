@@ -110,7 +110,7 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
   _handleDeleteStateChanged(BuildContext context, DeleteState state) {
     state.maybeMap(
       orElse: () {},
-      success: (_) => _handleSuccess(context),
+      success: (_) => _handleSuccess(context, reload: false),
       failure: (failure) => _handleFailure(
         context,
         failure.failure,
@@ -186,8 +186,10 @@ class _ClientDetailsFormWidgetState extends State<ClientDetailsFormWidget> {
 
   /// Reloads the [Client] details
   /// Shows a dialog box with the success message
-  _handleSuccess(BuildContext context) {
-    context.reaload(id: context.client.id);
+  _handleSuccess(BuildContext context, {bool reload = true}) {
+    if (reload) {
+      context.reaload(id: context.client.id);
+    }
 
     messesge_dialog.show(
       context: context,

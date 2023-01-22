@@ -22,7 +22,8 @@ import 'home_page_test.mocks.dart';
 void main() {
   final MockClientDao mockClientDao = MockClientDao();
   mock_di.mockServicesConfiguration(mockClientDao);
-  setUp(() {
+
+  setUp(() async {
     final mockSelection =
         MockSimpleSelectStatement<ClientModels, ClientModel>();
     when(mockSelection.get()).thenAnswer((_) => Future.value([]));
