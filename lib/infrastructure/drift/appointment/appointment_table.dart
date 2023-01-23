@@ -4,6 +4,7 @@
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/infrastructure/drift/common/model_mixin.dart';
 import 'package:appointment/infrastructure/drift/common/value_converters.dart';
+import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:drift/drift.dart';
 
 /// Model and stores Appointments as [AppointmentModel] for the Drift database
