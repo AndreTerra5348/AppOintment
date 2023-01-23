@@ -1,8 +1,8 @@
 import 'package:appointment/application/client/search/bloc/client_search_bloc.dart';
 import 'package:appointment/application/client/search/client_search_status.dart';
+import 'package:appointment/infrastructure/drift/client/client_converter.dart';
 import 'package:appointment/infrastructure/drift/client/client_dao.dart';
 import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart';
-import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/details/client_details_page.dart';
 import 'package:appointment/presentation/client/search/widgets/client_search_results.dart';
@@ -195,7 +195,7 @@ void main() {
         offset: anyNamed("offset"),
         filter: anyNamed("filter"),
       )).thenAnswer(
-        (_) async => Right(models.map((e) => e.toEntity())),
+        (_) async => Right(models.map(ClientConverter().toEntity)),
       );
 
       when(mockClientDao.getByFilter(any)).thenAnswer(

@@ -6,9 +6,9 @@ import 'package:appointment/application/edit/bloc/edit_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
+import 'package:appointment/infrastructure/drift/client/client_converter.dart';
 import 'package:appointment/infrastructure/drift/client/client_dao.dart';
 import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart';
-import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/presentation/app_ointment.dart';
 import 'package:appointment/presentation/client/common/widgets/client_name_form_field.dart';
 import 'package:appointment/presentation/client/details/widgets/client_details_name_input.dart';
@@ -485,7 +485,7 @@ void main() {
           offset: anyNamed("offset"),
           filter: anyNamed("filter"),
         )).thenAnswer(
-          (_) async => Right(models.map((e) => e.toEntity())),
+          (_) async => Right(models.map(ClientConverter().toEntity)),
         );
 
         when(mockClientDao.getByFilter(any)).thenAnswer(
