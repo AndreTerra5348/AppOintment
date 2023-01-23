@@ -1,8 +1,11 @@
+import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
+import 'package:appointment/infrastructure/drift/client/client_converter.dart';
 import 'package:appointment/infrastructure/drift/client/client_filters.dart';
 import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/common/entity_converter.dart';
 import 'package:appointment/infrastructure/drift/core/dao.dart';
 import 'package:appointment/infrastructure/drift/core/pagination_service.dart';
 import 'package:appointment/infrastructure/drift/drift_db.dart';
@@ -20,6 +23,12 @@ import '../../common/client_fixture.dart' as client_fixture;
   MockSpec<SimpleSelectStatement>(),
 ])
 void main() {
+  late EntityConverter<ClientModel, Client> converter;
+
+  setUp(() {
+    converter = ClientConverter();
+  });
+
   test(
       "Should call [Dao.getSelect()] one time "
       "[SimpleSelectStatement.setLimit()] one time"
@@ -39,7 +48,10 @@ void main() {
     when(mockDao.getSelect(filter: anyNamed("filter")))
         .thenReturn(mockSelection);
 
-    final ClientPaginationService sut = ClientPaginationService(mockDao);
+    final ClientPaginationService sut = ClientPaginationService(
+      mockDao,
+      converter,
+    );
 
     // Act
     final actual = await sut.getPage(limit: 0, offset: 5);
@@ -48,9 +60,7 @@ void main() {
     expect(
       actual.getOrElse(() => const Iterable.empty()),
       containsAllInOrder(
-        models.map(
-          (model) => model.toEntity(),
-        ),
+        models.map(converter.toEntity),
       ),
     );
     verify(mockDao.getSelect(filter: anyNamed("filter"))).called(1);
@@ -69,7 +79,10 @@ void main() {
     when(mockDao.getSelect(filter: anyNamed("filter")))
         .thenReturn(mockSelection);
     when(mockSelection.get()).thenThrow(error);
-    final ClientPaginationService sut = ClientPaginationService(mockDao);
+    final ClientPaginationService sut = ClientPaginationService(
+      mockDao,
+      converter,
+    );
 
     // Act
     final actual = await sut.getPage(limit: 0, offset: 5);
@@ -94,7 +107,10 @@ void main() {
     when(mockDao.getSelect(filter: anyNamed("filter")))
         .thenReturn(mockSelection);
 
-    final ClientPaginationService sut = ClientPaginationService(mockDao);
+    final ClientPaginationService sut = ClientPaginationService(
+      mockDao,
+      converter,
+    );
 
     // Act
     final actual = await sut.getPage(limit: 5, offset: 0);
@@ -103,7 +119,7 @@ void main() {
     expect(
       actual.getOrElse(() => const Iterable.empty()),
       containsAllInOrder(
-        models.take(5).map((model) => model.toEntity()),
+        models.take(5).map(converter.toEntity),
       ),
     );
   });
@@ -121,7 +137,10 @@ void main() {
     when(mockDao.getSelect(filter: anyNamed("filter")))
         .thenReturn(mockSelection);
 
-    final ClientPaginationService sut = ClientPaginationService(mockDao);
+    final ClientPaginationService sut = ClientPaginationService(
+      mockDao,
+      converter,
+    );
 
     // Act
     final actual = await sut.getPage(limit: 5, offset: 10);
@@ -151,7 +170,10 @@ void main() {
     when(mockDao.getSelect(filter: anyNamed("filter")))
         .thenReturn(mockSelection);
 
-    final ClientPaginationService sut = ClientPaginationService(mockDao);
+    final ClientPaginationService sut = ClientPaginationService(
+      mockDao,
+      converter,
+    );
 
     // Act
     final actual = await sut.getPage(
@@ -164,9 +186,9 @@ void main() {
     expect(
       actual.getOrElse(() => const Iterable.empty()),
       containsAllInOrder(
-        models.where((model) => model.name.getOrThrow() == otherName).map(
-              (model) => model.toEntity(),
-            ),
+        models
+            .where((model) => model.name.getOrThrow() == otherName)
+            .map(converter.toEntity),
       ),
     );
   });

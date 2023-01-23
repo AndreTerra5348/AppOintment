@@ -1,25 +1,23 @@
-/// Drift [Repository] definition
-
-import 'package:appointment/domain/client/client_entity.dart';
+/// Drift [EntityRepository] definition
 import 'package:appointment/domain/common/common_values.dart';
+import 'package:appointment/domain/common/entity_mixin.dart';
 import 'package:appointment/domain/core/repository.dart';
-import 'package:appointment/infrastructure/drift/client/client_dao.dart';
-import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/common/entity_converter.dart';
 import 'package:appointment/infrastructure/drift/common/filters.dart';
+import 'package:appointment/infrastructure/drift/common/model_mixin.dart';
 import 'package:appointment/infrastructure/drift/core/dao.dart';
-import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:dartz/dartz.dart';
+import 'package:drift/drift.dart';
 
-/// [Client] [Drift] [Repository] implementation
-/// - Convert exceptions to [RepositoryFailure]
-/// - Returns Entities
-/// - Depends on a [ClientDao]
-class ClientRepository implements Repository<Client> {
-  final Dao<ClientModels, ClientModel> _dao;
+/// Generic repository for entitites CRUD operations
+class EntityRepository<T_Model extends DataClass, T_Table extends ModelMixin,
+    T_Entity extends EntityMixin> implements Repository<T_Entity> {
+  final Dao<T_Table, T_Model> _dao;
+  final EntityConverter<T_Model, T_Entity> _converter;
 
-  ClientRepository(this._dao);
+  EntityRepository(this._dao, this._converter);
 
-  /// Delete [Client] by its [Identifier]
+  /// Delete the entity by its [Identifier]
   /// Returns [RepositoryFailure.dbException] if there is any exception
   @override
   Future<Either<RepositoryFailure, bool>> delete(Identifier id) async {
@@ -30,14 +28,14 @@ class ClientRepository implements Repository<Client> {
     }
   }
 
-  /// Get [Client] by its [Identifier]
-  /// Returns [RepositoryFailure.notFound] if there is no [Client] with the [Identifier]
+  /// Get the entity by its [Identifier]
+  /// Returns [RepositoryFailure.notFound] if there is no entity with the [Identifier]
   /// Returns [RepositoryFailure.dbException] if there is any other exception
   @override
-  Future<Either<RepositoryFailure, Client>> getById(Identifier id) async {
+  Future<Either<RepositoryFailure, T_Entity>> getById(Identifier id) async {
     try {
       final model = await _dao.getByFilter(id.toFilter());
-      return Right(model.toEntity());
+      return Right(_converter.toEntity(model));
     } on StateError catch (error) {
       return Left(RepositoryFailure.notFound(error: error));
     } catch (error) {
@@ -45,25 +43,29 @@ class ClientRepository implements Repository<Client> {
     }
   }
 
-  /// Insert [Client] into the database
+  /// Insert entity into the database
   /// Returns [RepositoryFailure.dbException] if there is any exception
   @override
-  Future<Either<RepositoryFailure, Client>> insert(Client entity) async {
+  Future<Either<RepositoryFailure, T_Entity>> insert(T_Entity entity) async {
     try {
-      final companion = entity.toInsertCompanion();
+      final companion = _converter.toCompanion(entity);
       final id = await _dao.insert(companion);
-      return Right(entity.copyWith(id: Identifier.fromInt(id)));
+      final entityWithId = _converter.copyWithId(
+        entity,
+        Identifier.fromInt(id),
+      );
+      return Right(entityWithId);
     } catch (error) {
       return Left(RepositoryFailure.dbException(error: error));
     }
   }
 
-  /// Update [Client] in the database
+  /// Update entity in the database
   /// Returns [RepositoryFailure.dbException] if there is any exception
   @override
-  Future<Either<RepositoryFailure, bool>> update(Client entity) async {
+  Future<Either<RepositoryFailure, bool>> update(T_Entity entity) async {
     try {
-      final companion = entity.toInsertCompanion();
+      final companion = _converter.toCompanion(entity);
       return Right(
         await _dao.save(entity.id.toFilter(), companion),
       );

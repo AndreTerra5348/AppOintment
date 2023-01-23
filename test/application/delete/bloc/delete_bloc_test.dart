@@ -3,7 +3,7 @@ import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_errors.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/client/client_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,13 +12,13 @@ import 'package:mockito/mockito.dart';
 import 'delete_bloc_test.mocks.dart';
 import '../../../common/failure_fixture.dart' as failure_fixture;
 
-@GenerateMocks([ClientRepository])
+@GenerateMocks([Repository])
 void main() {
-  late MockClientRepository repository;
+  late MockRepository<Client> repository;
   late Client johnClient;
 
   setUp(() {
-    repository = MockClientRepository();
+    repository = MockRepository<Client>();
     johnClient = Client(name: Name('John'), id: Identifier.fromInt(1));
   });
 

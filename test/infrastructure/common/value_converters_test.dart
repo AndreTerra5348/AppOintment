@@ -1,6 +1,6 @@
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/common/type_converters.dart';
+import 'package:appointment/infrastructure/drift/common/value_converters.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

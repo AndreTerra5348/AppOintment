@@ -2,8 +2,10 @@ import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:appointment/domain/core/repository.dart';
+import 'package:appointment/infrastructure/drift/client/client_converter.dart';
 import 'package:appointment/infrastructure/drift/client/client_dao.dart';
-import 'package:appointment/infrastructure/drift/client/client_repository.dart';
+import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/common/entity_repository.dart';
 import 'package:appointment/infrastructure/drift/common/filters.dart';
 import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:dartz/dartz.dart';
@@ -12,7 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'client_repository_test.mocks.dart';
+import 'entity_repository_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<ClientDao>(unsupportedMembers: {#table, #alias})
@@ -25,7 +27,8 @@ void main() {
     final clientDao = MockClientDao();
     final client = Client.withoutIdentifier(name: Name("Bob"));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     await sut.insert(client);
@@ -35,14 +38,15 @@ void main() {
   });
 
   test(
-      "Should call [Dao] insert with clientModelsCompanion"
+      "Should call [Dao] insert with entity ModelsCompanion"
       "when insert is called", () async {
     // Arrange
     final clientDao = MockClientDao();
     when(clientDao.insert(any)).thenAnswer((_) => Future.value(0));
     final client = Client.withoutIdentifier(name: Name("Bob"));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     await sut.insert(client);
@@ -53,7 +57,7 @@ void main() {
   });
 
   test(
-      "Should return client with correct id "
+      "Should return entity with correct id "
       "when insert is called", () async {
     // Arrange
     final client = Client.withoutIdentifier(name: Name("Bob"));
@@ -62,7 +66,8 @@ void main() {
     const id = 1;
     when(clientDao.insert(any)).thenAnswer((_) => Future.value(id));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     final actual = await sut.insert(client);
@@ -82,7 +87,8 @@ void main() {
     final clientDao = MockClientDao();
     when(clientDao.insert(any)).thenThrow(Exception("Mocked Exception"));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     final actual = await sut.insert(client);
@@ -101,7 +107,8 @@ void main() {
 
     final client = Client.withoutIdentifier(name: Name("Bob"));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     await sut.update(client);
@@ -111,14 +118,15 @@ void main() {
   });
 
   test(
-      "Should call [Dao] updateById with clientModelsCompanion"
+      "Should call [Dao] updateById with entity ModelsCompanion"
       "when update is called", () async {
     // Arrange
     final clientDao = MockClientDao();
     when(clientDao.save(any, any)).thenAnswer((_) => Future.value(true));
     final client = Client.withoutIdentifier(name: Name("Bob"));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     await sut.update(client);
@@ -137,7 +145,8 @@ void main() {
     final clientDao = MockClientDao();
     when(clientDao.save(any, any)).thenThrow(Exception("Mocked Exception"));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     final actual = await sut.update(client);
@@ -164,7 +173,8 @@ void main() {
       (_) => Future.value(model),
     );
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     final actual = await sut.getById(id);
@@ -185,7 +195,8 @@ void main() {
     final clientDao = MockClientDao();
     when(clientDao.getByFilter(any)).thenThrow(Exception("Mocked Exception"));
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     final actual = await sut.getById(uid);
@@ -206,7 +217,8 @@ void main() {
       (_) => Future.value(true),
     );
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     await sut.delete(id);
@@ -225,7 +237,8 @@ void main() {
     final error = Exception("Mocked Exception");
     when(clientDao.remove(any)).thenThrow(error);
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     final actual = await sut.delete(uid);
@@ -244,7 +257,8 @@ void main() {
     final error = StateError("Mocked Exception");
     when(clientDao.getByFilter(any)).thenThrow(error);
 
-    final sut = ClientRepository(clientDao);
+    final sut = EntityRepository<ClientModel, ClientModels, Client>(
+        clientDao, ClientConverter());
 
     // Act
     final actual = await sut.getById(uid);

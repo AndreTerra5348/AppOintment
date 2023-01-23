@@ -9,19 +9,22 @@ import 'package:appointment/application/register/bloc/register_bloc.dart';
 import 'package:appointment/application/register/register_validator.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/core/repository.dart';
+import 'package:appointment/infrastructure/drift/client/client_converter.dart';
 import 'package:appointment/infrastructure/drift/client/client_dao.dart';
 import 'package:appointment/infrastructure/drift/client/client_pagination_service.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
+import 'package:appointment/infrastructure/drift/common/entity_converter.dart';
+import 'package:appointment/infrastructure/drift/common/entity_repository.dart';
 import 'package:appointment/infrastructure/drift/core/dao.dart';
 import 'package:appointment/infrastructure/drift/core/pagination_service.dart';
-import 'package:appointment/infrastructure/drift/client/client_repository.dart';
 import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:appointment/presentation/config/di_config.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 void mockServicesConfiguration(ClientDao dao,
     {ClientPaginationService? clientPaginationService,
-    ClientRepository? clientRepository,
+    EntityRepository<ClientModel, ClientModels, Client>? clientRepository,
+    EntityConverter<ClientModel, Client>? clientConverter,
     ClientRegisterValidator? clientRegisterValidator,
     RegisterBloc<Client>? registerBloc,
     ClientSearchBloc? clientSearchBloc,
@@ -33,12 +36,17 @@ void mockServicesConfiguration(ClientDao dao,
     PackageInfo? packageInfo}) {
   getIt.registerSingleton<Dao<ClientModels, ClientModel>>(dao);
 
+  getIt.registerSingleton<EntityConverter<ClientModel, Client>>(
+    clientConverter ?? ClientConverter(),
+  );
+
   getIt.registerSingleton<PaginationService<Client, ClientModels>>(
-    clientPaginationService ?? ClientPaginationService(getIt()),
+    clientPaginationService ?? ClientPaginationService(getIt(), getIt()),
   );
 
   getIt.registerSingleton<Repository<Client>>(
-    clientRepository ?? ClientRepository(getIt()),
+    clientRepository ??
+        EntityRepository<ClientModel, ClientModels, Client>(getIt(), getIt()),
   );
 
   getIt.registerSingleton<RegisterValidator<Client>>(

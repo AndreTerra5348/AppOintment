@@ -3,7 +3,7 @@ import 'package:appointment/application/register/bloc/register_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/client/client_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,11 +13,12 @@ import 'package:mockito/mockito.dart';
 import 'register_bloc_test.mocks.dart';
 import '../../../common/failure_fixture.dart' as failure_fixture;
 
-@GenerateMocks([ClientRepository])
+@GenerateMocks([Repository])
 void main() {
   test("Initial state should be [State.initial()]", () {
     // Arrange
-    final sut = RegisterBloc(MockClientRepository(), ClientRegisterValidator());
+    final sut =
+        RegisterBloc(MockRepository<Client>(), ClientRegisterValidator());
 
     // Act
     // Assert
@@ -25,7 +26,7 @@ void main() {
   });
 
   group("Given [State.initial()]", () {
-    late MockClientRepository repository;
+    late MockRepository<Client> repository;
     late ClientRegisterValidator validator;
     late Client invalidClient;
     late Client validClient;
@@ -33,7 +34,7 @@ void main() {
     setUp(() {
       invalidClient = Client.withoutIdentifier(name: Name(""));
       validClient = Client(name: Name("name"), id: Identifier.fromInt(1));
-      repository = MockClientRepository();
+      repository = MockRepository<Client>();
       validator = ClientRegisterValidator();
     });
 
