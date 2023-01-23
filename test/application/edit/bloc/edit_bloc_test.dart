@@ -2,7 +2,7 @@ import 'package:appointment/application/edit/bloc/edit_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/client/client_values.dart';
 import 'package:appointment/domain/common/common_values.dart';
-import 'package:appointment/infrastructure/drift/client/client_repository.dart';
+import 'package:appointment/domain/core/repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,20 +11,20 @@ import 'package:mockito/mockito.dart';
 import 'edit_bloc_test.mocks.dart';
 import '../../../common/failure_fixture.dart' as failure_fixture;
 
-@GenerateMocks([ClientRepository])
+@GenerateMocks([Repository])
 void main() {
-  late MockClientRepository repository;
+  late MockRepository<Client> repository;
   late Client validClient;
   late Client invalidClient;
   setUp(() {
-    repository = MockClientRepository();
+    repository = MockRepository<Client>();
     validClient = Client(name: Name('John'), id: Identifier.fromInt(1));
     invalidClient = Client(name: Name(''), id: Identifier.fromInt(1));
   });
 
   test("initial [State] should be [initial()]", () {
     // Arrange
-    final sut = EditBloc(MockClientRepository());
+    final sut = EditBloc(MockRepository<Client>());
     // Act
     // Assert
     expect(sut.state, const EditState.initial());
@@ -34,7 +34,7 @@ void main() {
     "Given [State.initial()] "
     "When [Event.editPressed] "
     "Then [State.editing()]",
-    build: () => EditBloc(MockClientRepository()),
+    build: () => EditBloc(MockRepository<Client>()),
     act: (bloc) => bloc.add(const EditEvent<Client>.editPressed()),
     expect: () => [const EditState.editing()],
   );
