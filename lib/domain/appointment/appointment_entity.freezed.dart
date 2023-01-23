@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Appointment {
   Identifier get id => throw _privateConstructorUsedError;
+  Identifier get clientId => throw _privateConstructorUsedError;
   DateTimeRange get dateTimeRange => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,7 @@ abstract class $AppointmentCopyWith<$Res> {
           Appointment value, $Res Function(Appointment) then) =
       _$AppointmentCopyWithImpl<$Res, Appointment>;
   @useResult
-  $Res call({Identifier id, DateTimeRange dateTimeRange});
+  $Res call({Identifier id, Identifier clientId, DateTimeRange dateTimeRange});
 }
 
 /// @nodoc
@@ -47,12 +48,17 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
   @override
   $Res call({
     Object? id = null,
+    Object? clientId = null,
     Object? dateTimeRange = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as Identifier,
+      clientId: null == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
               as Identifier,
       dateTimeRange: null == dateTimeRange
           ? _value.dateTimeRange
@@ -70,7 +76,7 @@ abstract class _$$_AppointmentCopyWith<$Res>
       __$$_AppointmentCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Identifier id, DateTimeRange dateTimeRange});
+  $Res call({Identifier id, Identifier clientId, DateTimeRange dateTimeRange});
 }
 
 /// @nodoc
@@ -85,12 +91,17 @@ class __$$_AppointmentCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? clientId = null,
     Object? dateTimeRange = null,
   }) {
     return _then(_$_Appointment(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as Identifier,
+      clientId: null == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
               as Identifier,
       dateTimeRange: null == dateTimeRange
           ? _value.dateTimeRange
@@ -103,17 +114,20 @@ class __$$_AppointmentCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Appointment extends _Appointment {
-  const _$_Appointment({required this.id, required this.dateTimeRange})
+  const _$_Appointment(
+      {required this.id, required this.clientId, required this.dateTimeRange})
       : super._();
 
   @override
   final Identifier id;
   @override
+  final Identifier clientId;
+  @override
   final DateTimeRange dateTimeRange;
 
   @override
   String toString() {
-    return 'Appointment(id: $id, dateTimeRange: $dateTimeRange)';
+    return 'Appointment(id: $id, clientId: $clientId, dateTimeRange: $dateTimeRange)';
   }
 
   @override
@@ -122,12 +136,14 @@ class _$_Appointment extends _Appointment {
         (other.runtimeType == runtimeType &&
             other is _$_Appointment &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.clientId, clientId) ||
+                other.clientId == clientId) &&
             (identical(other.dateTimeRange, dateTimeRange) ||
                 other.dateTimeRange == dateTimeRange));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, dateTimeRange);
+  int get hashCode => Object.hash(runtimeType, id, clientId, dateTimeRange);
 
   @JsonKey(ignore: true)
   @override
@@ -139,11 +155,14 @@ class _$_Appointment extends _Appointment {
 abstract class _Appointment extends Appointment {
   const factory _Appointment(
       {required final Identifier id,
+      required final Identifier clientId,
       required final DateTimeRange dateTimeRange}) = _$_Appointment;
   const _Appointment._() : super._();
 
   @override
   Identifier get id;
+  @override
+  Identifier get clientId;
   @override
   DateTimeRange get dateTimeRange;
   @override

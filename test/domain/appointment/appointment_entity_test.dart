@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test("Should implements [EntityMixin]", () {
     var sut = Appointment.withoutIdentifier(
+      clientId: Identifier.fromInt(1),
       dateTimeRange: DateTimeRange.from(
         DateTime.now(),
         DateTime.now().add(
@@ -23,6 +24,7 @@ void main() {
     // Arrange
     var sut = Appointment(
       id: Identifier.fromInt(1),
+      clientId: Identifier.fromInt(1),
       dateTimeRange: DateTimeRange.from(
         DateTime.now(),
         DateTime.now().add(
@@ -44,6 +46,7 @@ void main() {
     // Arrange
     var sut = Appointment(
       id: Identifier(),
+      clientId: Identifier.fromInt(1),
       dateTimeRange: DateTimeRange.from(
         DateTime.now(),
         DateTime.now().add(
@@ -65,6 +68,7 @@ void main() {
     // Arrange
     var sut = Appointment(
       id: Identifier.fromInt(1),
+      clientId: Identifier.fromInt(1),
       dateTimeRange: DateTimeRange.from(
         DateTime.now(),
         DateTime.now(),
