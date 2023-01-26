@@ -26,6 +26,9 @@ class DateTimeRange extends ValueObject<RangeFailure, Range<DateTime>> {
   @override
   final Either<RangeFailure, Range<DateTime>> value;
 
+  DateTime get startOrThrow => getOrThrow().start;
+  DateTime get endOrThrow => getOrThrow().end;
+
   /// Creates a [DateTimeRange] from a [Either] [value].
   const DateTimeRange._(this.value);
 
