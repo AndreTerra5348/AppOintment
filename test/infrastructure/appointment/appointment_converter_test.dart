@@ -23,8 +23,8 @@ void main() {
     // Assert
     expect(actual.id, model.id);
     expect(actual.clientId, model.clientId);
-    expect(actual.dateTimeRange.getOrThrow().start, model.start);
-    expect(actual.dateTimeRange.getOrThrow().end, model.end);
+    expect(actual.dateTimeRange.startOrThrow, model.start);
+    expect(actual.dateTimeRange.endOrThrow, model.end);
   });
 
   test(
@@ -46,8 +46,8 @@ void main() {
     // Assert
     expect(actual, isA<AppointmentModelsCompanion>());
     expect(actual.clientId.value, entity.clientId);
-    expect(actual.start.value, entity.dateTimeRange.getOrThrow().start);
-    expect(actual.end.value, entity.dateTimeRange.getOrThrow().end);
+    expect(actual.start.value, entity.dateTimeRange.startOrThrow);
+    expect(actual.end.value, entity.dateTimeRange.endOrThrow);
   });
 
   test(

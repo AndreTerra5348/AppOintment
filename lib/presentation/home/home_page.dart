@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     textAlign: TextAlign.center,
                     context.tr.appointmentSubtitle,
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
                 Expanded(

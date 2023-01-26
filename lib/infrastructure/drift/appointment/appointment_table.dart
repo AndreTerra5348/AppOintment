@@ -14,8 +14,10 @@ class AppointmentModels extends Table with ModelMixin {
       integer().map(IdentifierConverter()).references(ClientModels, #id)();
 
   /// The start DateTime of the [AppointmentModel]
+  // ignore: recursive_getters
   DateTimeColumn get start => dateTime().check(start.isSmallerThan(end))();
 
   /// The end DateTime of the [AppointmentModel]
+  // ignore: recursive_getters
   DateTimeColumn get end => dateTime().check(end.isBiggerThan(start))();
 }

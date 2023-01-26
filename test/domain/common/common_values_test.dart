@@ -1,3 +1,4 @@
+import 'package:appointment/domain/common/common_errors.dart';
 import 'package:appointment/domain/common/common_failures.dart';
 import 'package:appointment/domain/common/common_types.dart';
 import 'package:appointment/domain/common/common_values.dart';
@@ -30,5 +31,33 @@ void main() {
     final end = DateTime(2020, 1, 1);
     final dateTimeRange = DateTimeRange.from(start, end);
     expect(dateTimeRange.value, const Left(RangeFailure.startIsEqualToEnd()));
+  });
+
+  test("startOrThrow should return start when it's valid", () {
+    final start = DateTime(2020, 1, 1);
+    final end = DateTime(2020, 1, 2);
+    final dateTimeRange = DateTimeRange.from(start, end);
+    expect(dateTimeRange.startOrThrow, start);
+  });
+
+  test("startOrThrow should throw when it's invalid", () {
+    final start = DateTime(2020, 1, 2);
+    final end = DateTime(2020, 1, 1);
+    final dateTimeRange = DateTimeRange.from(start, end);
+    expect(() => dateTimeRange.startOrThrow, throwsA(isA<CriticalError>()));
+  });
+
+  test("endOrThrow should return end when it's valid", () {
+    final start = DateTime(2020, 1, 1);
+    final end = DateTime(2020, 1, 2);
+    final dateTimeRange = DateTimeRange.from(start, end);
+    expect(dateTimeRange.endOrThrow, end);
+  });
+
+  test("endOrThrow should throw when it's invalid", () {
+    final start = DateTime(2020, 1, 2);
+    final end = DateTime(2020, 1, 1);
+    final dateTimeRange = DateTimeRange.from(start, end);
+    expect(() => dateTimeRange.endOrThrow, throwsA(isA<CriticalError>()));
   });
 }
