@@ -37,4 +37,7 @@ class RangeFailure with _$RangeFailure {
 
   /// The [Range] start is equal to the end.
   const factory RangeFailure.startIsEqualToEnd() = _StartIsEqualToEnd;
+
+  /// The [Range] is empty.
+  const factory RangeFailure.empty() = _EmptyRange;
 }

@@ -32,6 +32,9 @@ class DateTimeRange extends ValueObject<RangeFailure, Range<DateTime>> {
   /// Creates a [DateTimeRange] from a [Either] [value].
   const DateTimeRange._(this.value);
 
+  /// Creates an empty [DateTimeRange]
+  factory DateTimeRange() => const DateTimeRange._(Left(RangeFailure.empty()));
+
   /// Creates a valid [DateTimeRange] from a [DateTime] [start] and [DateTime] [end].
   /// or a RangeFailure if [start] is after [end] or [start] is equal to [end].
   factory DateTimeRange.from(DateTime start, DateTime end) {
