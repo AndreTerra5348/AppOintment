@@ -60,4 +60,9 @@ void main() {
     final dateTimeRange = DateTimeRange.from(start, end);
     expect(() => dateTimeRange.endOrThrow, throwsA(isA<CriticalError>()));
   });
+
+  test('DateTimeRange() should return a [Left(RangeFailure.empty())] ', () {
+    final dateTimeRange = DateTimeRange();
+    expect(dateTimeRange.value, const Left(RangeFailure.empty()));
+  });
 }
