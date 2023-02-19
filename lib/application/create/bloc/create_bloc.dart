@@ -11,17 +11,16 @@ part 'create_event.dart';
 part 'create_state.dart';
 part 'create_bloc.freezed.dart';
 
-/// Handle [EntityMixin] registration
+/// Handle [EntityMixin] creation
 class CreateBloc<T extends EntityMixin>
     extends Bloc<CreateEvent<T>, CreateState> {
   final Repository<T> _repository;
   final CreateValidator<T> validator;
   CreateBloc(this._repository, this.validator) : super(CreateState.initial()) {
-    on<_Created<T>>(_registered);
+    on<_Created<T>>(_created);
   }
 
-  FutureOr<void> _registered(
-      _Created<T> event, Emitter<CreateState> emit) async {
+  FutureOr<void> _created(_Created<T> event, Emitter<CreateState> emit) async {
     emit(
       validator.validate(event.entity).fold(
             () => CreateState.invalidFieldFailure(),

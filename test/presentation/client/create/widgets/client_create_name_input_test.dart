@@ -1,6 +1,6 @@
 import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/presentation/client/common/widgets/client_name_form_field.dart';
-import 'package:appointment/presentation/client/register/widgets/client_create_name_input.dart';
+import 'package:appointment/presentation/client/create/widgets/client_create_name_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

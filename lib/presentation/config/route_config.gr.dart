@@ -23,8 +23,8 @@ import '../../application/edit/bloc/edit_bloc.dart' as _i13;
 import '../../application/load/bloc/load_bloc.dart' as _i11;
 import '../../domain/client/client_entity.dart' as _i9;
 import '../../domain/common/common_values.dart' as _i14;
+import '../client/create/client_create_page.dart' as _i3;
 import '../client/details/client_details_page.dart' as _i4;
-import '../client/register/client_create_page.dart' as _i3;
 import '../client/search/client_search_page.dart' as _i2;
 import '../home/home_page.dart' as _i1;
 
@@ -56,7 +56,7 @@ class AppRouter extends _i5.RootStackRouter {
         routeData: routeData,
         child: _i3.ClientCreatePage(
           key: args.key,
-          registerBloc: args.registerBloc,
+          createBloc: args.createBloc,
           clientBloc: args.clientBloc,
         ),
       );
@@ -150,14 +150,14 @@ class ClientSearchRouteArgs {
 class ClientCreateRoute extends _i5.PageRouteInfo<ClientCreateRouteArgs> {
   ClientCreateRoute({
     _i6.Key? key,
-    required _i8.CreateBloc<_i9.Client> registerBloc,
+    required _i8.CreateBloc<_i9.Client> createBloc,
     required _i10.ClientBloc clientBloc,
   }) : super(
           ClientCreateRoute.name,
           path: '/client-create-page',
           args: ClientCreateRouteArgs(
             key: key,
-            registerBloc: registerBloc,
+            createBloc: createBloc,
             clientBloc: clientBloc,
           ),
         );
@@ -168,19 +168,19 @@ class ClientCreateRoute extends _i5.PageRouteInfo<ClientCreateRouteArgs> {
 class ClientCreateRouteArgs {
   const ClientCreateRouteArgs({
     this.key,
-    required this.registerBloc,
+    required this.createBloc,
     required this.clientBloc,
   });
 
   final _i6.Key? key;
 
-  final _i8.CreateBloc<_i9.Client> registerBloc;
+  final _i8.CreateBloc<_i9.Client> createBloc;
 
   final _i10.ClientBloc clientBloc;
 
   @override
   String toString() {
-    return 'ClientCreateRouteArgs{key: $key, registerBloc: $registerBloc, clientBloc: $clientBloc}';
+    return 'ClientCreateRouteArgs{key: $key, createBloc: $createBloc, clientBloc: $clientBloc}';
   }
 }
 

@@ -3,7 +3,7 @@
 // coverage:ignore-file
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:appointment/presentation/client/details/client_details_page.dart';
-import 'package:appointment/presentation/client/register/client_create_page.dart';
+import 'package:appointment/presentation/client/create/client_create_page.dart';
 import 'package:appointment/presentation/client/search/client_search_page.dart';
 import 'package:appointment/presentation/config/di_config.dart';
 import 'package:appointment/presentation/config/route_config.gr.dart';
@@ -26,7 +26,7 @@ class $AppRouter {}
 extension StackRouterX on StackRouter {
   ClientSearchRoute get clientSearchRoute => ClientSearchRoute(bloc: getIt());
   ClientCreateRoute get clientCreateRoute =>
-      ClientCreateRoute(registerBloc: getIt(), clientBloc: getIt());
+      ClientCreateRoute(createBloc: getIt(), clientBloc: getIt());
   ClientDetailsRoute getClientDetailsRoute({required Identifier id}) =>
       ClientDetailsRoute(
         clientId: id,

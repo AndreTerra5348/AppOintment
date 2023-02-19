@@ -2,7 +2,7 @@ import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/application/create/bloc/create_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/presentation/client/common/widgets/client_name_form_field.dart';
-import 'package:appointment/presentation/client/register/widgets/client_create_form.dart';
+import 'package:appointment/presentation/client/create/widgets/client_create_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -29,7 +29,7 @@ void main() {
     when(createBloc.stream).thenAnswer((_) => const Stream.empty());
 
     mockPage = MockClientCreatePage(
-      registerBloc: createBloc,
+      createBloc: createBloc,
       clientBloc: clientBloc,
       child: const ClientCreateFormWidget(),
     );
@@ -232,12 +232,12 @@ void main() {
 }
 
 class MockClientCreatePage extends StatelessWidget {
-  final CreateBloc<Client> registerBloc;
+  final CreateBloc<Client> createBloc;
   final ClientBloc clientBloc;
   final Widget child;
   const MockClientCreatePage({
     super.key,
-    required this.registerBloc,
+    required this.createBloc,
     required this.clientBloc,
     required this.child,
   });
@@ -255,7 +255,7 @@ class MockClientCreatePage extends StatelessWidget {
                 create: (context) => clientBloc,
               ),
               BlocProvider(
-                create: (context) => registerBloc,
+                create: (context) => createBloc,
               ),
             ],
             child: child,

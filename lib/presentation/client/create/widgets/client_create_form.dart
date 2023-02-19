@@ -5,7 +5,7 @@ import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/application/common/submission_status.dart';
 import 'package:appointment/application/create/bloc/create_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
-import 'package:appointment/presentation/client/register/widgets/client_create_name_input.dart';
+import 'package:appointment/presentation/client/create/widgets/client_create_name_input.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:appointment/presentation/common/messege_dialog.dart'
     as messesge_dialog;
 
-/// Handles [Client] registration,
+/// Handles [Client] creation,
 /// displays and handles [CreateNameInputWidget] changes
 class ClientCreateFormWidget extends StatefulWidget {
   const ClientCreateFormWidget({super.key});
@@ -31,8 +31,8 @@ class _ClientCreateFormWidgetState extends State<ClientCreateFormWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<CreateBloc<Client>, CreateState>(
       listenWhen: (previous, current) => current.isFailure || current.isSuccess,
-      listener: (context, registerState) {
-        registerState.maybeMap(
+      listener: (context, createState) {
+        createState.maybeMap(
           orElse: () {},
           success: (_) => _handleSuccess(context),
           failure: (failureState) => _handleFailure(
@@ -47,10 +47,10 @@ class _ClientCreateFormWidgetState extends State<ClientCreateFormWidget> {
           ),
         );
       },
-      builder: (context, registerState) {
+      builder: (context, createState) {
         return Form(
           key: _formKey,
-          autovalidateMode: registerState.isFailure
+          autovalidateMode: createState.isFailure
               ? AutovalidateMode.always
               : AutovalidateMode.onUserInteraction,
           child: BlocBuilder<ClientBloc, ClientState>(
@@ -76,7 +76,7 @@ class _ClientCreateFormWidgetState extends State<ClientCreateFormWidget> {
                         ),
                       ],
                     ),
-                    if (registerState.isInProgress)
+                    if (createState.isInProgress)
                       const Center(
                         child: CircularProgressIndicator(value: null),
                       )

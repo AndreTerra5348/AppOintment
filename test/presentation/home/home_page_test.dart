@@ -2,7 +2,7 @@ import 'package:appointment/infrastructure/drift/client/client_dao.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:appointment/presentation/app_ointment.dart';
-import 'package:appointment/presentation/client/register/client_create_page.dart';
+import 'package:appointment/presentation/client/create/client_create_page.dart';
 import 'package:appointment/presentation/client/search/client_search_page.dart';
 import 'package:appointment/presentation/home/home_page.dart';
 import 'package:drift/drift.dart';

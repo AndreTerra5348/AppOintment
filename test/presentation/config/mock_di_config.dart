@@ -26,7 +26,7 @@ void mockServicesConfiguration(ClientDao dao,
     EntityRepository<ClientModel, ClientModels, Client>? clientRepository,
     EntityConverter<ClientModel, Client>? clientConverter,
     ClientCreateValidator? clientCreateValidator,
-    CreateBloc<Client>? registerBloc,
+    CreateBloc<Client>? createBloc,
     ClientSearchBloc? clientSearchBloc,
     LoadBloc<Client>? loadBloc,
     EditBloc<Client>? editBloc,
@@ -54,7 +54,7 @@ void mockServicesConfiguration(ClientDao dao,
   );
 
   getIt.registerFactory(
-      () => registerBloc ?? CreateBloc<Client>(getIt(), getIt()));
+      () => createBloc ?? CreateBloc<Client>(getIt(), getIt()));
   getIt.registerFactory(() => clientSearchBloc ?? ClientSearchBloc(getIt()));
 
   getIt.registerFactory(() => loadBloc ?? LoadBloc<Client>(getIt()));
