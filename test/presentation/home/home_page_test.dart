@@ -2,7 +2,7 @@ import 'package:appointment/infrastructure/drift/client/client_dao.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/infrastructure/drift/drift_db.dart';
 import 'package:appointment/presentation/app_ointment.dart';
-import 'package:appointment/presentation/client/register/client_register_page.dart';
+import 'package:appointment/presentation/client/create/client_create_page.dart';
 import 'package:appointment/presentation/client/search/client_search_page.dart';
 import 'package:appointment/presentation/home/home_page.dart';
 import 'package:drift/drift.dart';
@@ -66,13 +66,13 @@ void main() {
   );
 
   testWidgets(
-    "Render ElevatedButton with pageClientRegisterTitle localized text",
+    "Render ElevatedButton with pageClientCreateTitle localized text",
     (tester) async {
       await tester.pumpWidget(const MockApp());
       expect(
         find.widgetWithText(
           ElevatedButton,
-          AppLocalizationsEn().pageClientRegisterTitle,
+          AppLocalizationsEn().pageClientCreateTitle,
         ),
         findsOneWidget,
       );
@@ -95,7 +95,7 @@ void main() {
 
   testWidgets(
     "When Client Regiter button is pressed"
-    "Then ClientRegisterPage is rendered",
+    "Then ClientCreatePage is rendered",
     (tester) async {
       await tester.pumpWidget(AppOintment());
       await tester.pumpAndSettle();
@@ -105,12 +105,12 @@ void main() {
       await tester.tap(
         find.widgetWithText(
           ElevatedButton,
-          AppLocalizationsEn().pageClientRegisterTitle,
+          AppLocalizationsEn().pageClientCreateTitle,
         ),
       );
       await tester.pumpAndSettle();
 
-      expect(find.byType(ClientRegisterPage), findsOneWidget);
+      expect(find.byType(ClientCreatePage), findsOneWidget);
     },
   );
 

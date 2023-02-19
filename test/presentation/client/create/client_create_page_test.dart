@@ -1,27 +1,27 @@
 import 'package:appointment/application/client/bloc/client_bloc.dart';
-import 'package:appointment/application/client/register/client_register_validator.dart';
-import 'package:appointment/application/register/bloc/register_bloc.dart';
+import 'package:appointment/application/client/create/client_create_validator.dart';
+import 'package:appointment/application/create/bloc/create_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/infrastructure/drift/client/client_table.dart';
 import 'package:appointment/infrastructure/drift/common/entity_repository.dart';
 import 'package:appointment/infrastructure/drift/drift_db.dart';
-import 'package:appointment/presentation/client/register/client_register_page.dart';
-import 'package:appointment/presentation/client/register/widgets/client_register_form.dart';
+import 'package:appointment/presentation/client/create/client_create_page.dart';
+import 'package:appointment/presentation/client/create/widgets/client_create_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'client_register_page_test.mocks.dart';
+import 'client_create_page_test.mocks.dart';
 
 @GenerateMocks([EntityRepository])
 void main() {
-  group("Client Register Page", () {
-    testWidgets("Render ClientRegisterFormWidget", (tester) async {
+  group("Client Create Page", () {
+    testWidgets("Render ClientCreateFormWidget", (tester) async {
       // Arrange
-      final clientRegisterPage = ClientRegisterPage(
-        registerBloc: RegisterBloc(
+      final clientCreatePage = ClientCreatePage(
+        createBloc: CreateBloc(
             MockEntityRepository<ClientModel, ClientModels, Client>(),
-            ClientRegisterValidator()),
+            ClientCreateValidator()),
         clientBloc: ClientBloc(),
       );
       await tester.pumpWidget(
@@ -29,13 +29,13 @@ void main() {
           locale: const Locale('en'),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          home: clientRegisterPage,
+          home: clientCreatePage,
         ),
       );
 
       // Act
       // Assert
-      expect(find.byType(ClientRegisterFormWidget), findsOneWidget);
+      expect(find.byType(ClientCreateFormWidget), findsOneWidget);
     });
   });
 }

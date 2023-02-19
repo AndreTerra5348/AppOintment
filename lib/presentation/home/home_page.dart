@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 8),
-          _buildRegisterButton(context),
+          _buildCreateButton(context),
           const SizedBox(height: 8),
           _buildSearchButton(context),
         ],
@@ -79,11 +79,11 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  /// Displays the button to navigate to [ClientRegisterPage]
-  ElevatedButton _buildRegisterButton(BuildContext context) {
+  /// Displays the button to navigate to [ClientCreatePage]
+  ElevatedButton _buildCreateButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => context.router.pushClientRegisterPage(),
-      child: Text(context.tr.pageClientRegisterTitle),
+      onPressed: () => context.router.pushClientCreatePage(),
+      child: Text(context.tr.pageClientCreateTitle),
     );
   }
 

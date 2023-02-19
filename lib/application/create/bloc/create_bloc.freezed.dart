@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'register_bloc.dart';
+part of 'create_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,59 +15,59 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$RegisterEvent<T extends EntityMixin> {
+mixin _$CreateEvent<T extends EntityMixin> {
   T get entity => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T entity) registered,
+    required TResult Function(T entity) created,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T entity)? registered,
+    TResult? Function(T entity)? created,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T entity)? registered,
+    TResult Function(T entity)? created,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Registered<T> value) registered,
+    required TResult Function(_Created<T> value) created,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Registered<T> value)? registered,
+    TResult? Function(_Created<T> value)? created,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Registered<T> value)? registered,
+    TResult Function(_Created<T> value)? created,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RegisterEventCopyWith<T, RegisterEvent<T>> get copyWith =>
+  $CreateEventCopyWith<T, CreateEvent<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegisterEventCopyWith<T extends EntityMixin, $Res> {
-  factory $RegisterEventCopyWith(
-          RegisterEvent<T> value, $Res Function(RegisterEvent<T>) then) =
-      _$RegisterEventCopyWithImpl<T, $Res, RegisterEvent<T>>;
+abstract class $CreateEventCopyWith<T extends EntityMixin, $Res> {
+  factory $CreateEventCopyWith(
+          CreateEvent<T> value, $Res Function(CreateEvent<T>) then) =
+      _$CreateEventCopyWithImpl<T, $Res, CreateEvent<T>>;
   @useResult
   $Res call({T entity});
 }
 
 /// @nodoc
-class _$RegisterEventCopyWithImpl<T extends EntityMixin, $Res,
-    $Val extends RegisterEvent<T>> implements $RegisterEventCopyWith<T, $Res> {
-  _$RegisterEventCopyWithImpl(this._value, this._then);
+class _$CreateEventCopyWithImpl<T extends EntityMixin, $Res,
+    $Val extends CreateEvent<T>> implements $CreateEventCopyWith<T, $Res> {
+  _$CreateEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -89,22 +89,22 @@ class _$RegisterEventCopyWithImpl<T extends EntityMixin, $Res,
 }
 
 /// @nodoc
-abstract class _$$_RegisteredCopyWith<T extends EntityMixin, $Res>
-    implements $RegisterEventCopyWith<T, $Res> {
-  factory _$$_RegisteredCopyWith(
-          _$_Registered<T> value, $Res Function(_$_Registered<T>) then) =
-      __$$_RegisteredCopyWithImpl<T, $Res>;
+abstract class _$$_CreatedCopyWith<T extends EntityMixin, $Res>
+    implements $CreateEventCopyWith<T, $Res> {
+  factory _$$_CreatedCopyWith(
+          _$_Created<T> value, $Res Function(_$_Created<T>) then) =
+      __$$_CreatedCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({T entity});
 }
 
 /// @nodoc
-class __$$_RegisteredCopyWithImpl<T extends EntityMixin, $Res>
-    extends _$RegisterEventCopyWithImpl<T, $Res, _$_Registered<T>>
-    implements _$$_RegisteredCopyWith<T, $Res> {
-  __$$_RegisteredCopyWithImpl(
-      _$_Registered<T> _value, $Res Function(_$_Registered<T>) _then)
+class __$$_CreatedCopyWithImpl<T extends EntityMixin, $Res>
+    extends _$CreateEventCopyWithImpl<T, $Res, _$_Created<T>>
+    implements _$$_CreatedCopyWith<T, $Res> {
+  __$$_CreatedCopyWithImpl(
+      _$_Created<T> _value, $Res Function(_$_Created<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +112,7 @@ class __$$_RegisteredCopyWithImpl<T extends EntityMixin, $Res>
   $Res call({
     Object? entity = null,
   }) {
-    return _then(_$_Registered<T>(
+    return _then(_$_Created<T>(
       entity: null == entity
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
@@ -123,22 +123,22 @@ class __$$_RegisteredCopyWithImpl<T extends EntityMixin, $Res>
 
 /// @nodoc
 
-class _$_Registered<T extends EntityMixin> implements _Registered<T> {
-  const _$_Registered({required this.entity});
+class _$_Created<T extends EntityMixin> implements _Created<T> {
+  const _$_Created({required this.entity});
 
   @override
   final T entity;
 
   @override
   String toString() {
-    return 'RegisterEvent<$T>.registered(entity: $entity)';
+    return 'CreateEvent<$T>.created(entity: $entity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Registered<T> &&
+            other is _$_Created<T> &&
             const DeepCollectionEquality().equals(other.entity, entity));
   }
 
@@ -149,33 +149,33 @@ class _$_Registered<T extends EntityMixin> implements _Registered<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RegisteredCopyWith<T, _$_Registered<T>> get copyWith =>
-      __$$_RegisteredCopyWithImpl<T, _$_Registered<T>>(this, _$identity);
+  _$$_CreatedCopyWith<T, _$_Created<T>> get copyWith =>
+      __$$_CreatedCopyWithImpl<T, _$_Created<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T entity) registered,
+    required TResult Function(T entity) created,
   }) {
-    return registered(entity);
+    return created(entity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T entity)? registered,
+    TResult? Function(T entity)? created,
   }) {
-    return registered?.call(entity);
+    return created?.call(entity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T entity)? registered,
+    TResult Function(T entity)? created,
     required TResult orElse(),
   }) {
-    if (registered != null) {
-      return registered(entity);
+    if (created != null) {
+      return created(entity);
     }
     return orElse();
   }
@@ -183,45 +183,45 @@ class _$_Registered<T extends EntityMixin> implements _Registered<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Registered<T> value) registered,
+    required TResult Function(_Created<T> value) created,
   }) {
-    return registered(this);
+    return created(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Registered<T> value)? registered,
+    TResult? Function(_Created<T> value)? created,
   }) {
-    return registered?.call(this);
+    return created?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Registered<T> value)? registered,
+    TResult Function(_Created<T> value)? created,
     required TResult orElse(),
   }) {
-    if (registered != null) {
-      return registered(this);
+    if (created != null) {
+      return created(this);
     }
     return orElse();
   }
 }
 
-abstract class _Registered<T extends EntityMixin> implements RegisterEvent<T> {
-  const factory _Registered({required final T entity}) = _$_Registered<T>;
+abstract class _Created<T extends EntityMixin> implements CreateEvent<T> {
+  const factory _Created({required final T entity}) = _$_Created<T>;
 
   @override
   T get entity;
   @override
   @JsonKey(ignore: true)
-  _$$_RegisteredCopyWith<T, _$_Registered<T>> get copyWith =>
+  _$$_CreatedCopyWith<T, _$_Created<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$RegisterState {
+mixin _$CreateState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -275,16 +275,16 @@ mixin _$RegisterState {
 }
 
 /// @nodoc
-abstract class $RegisterStateCopyWith<$Res> {
-  factory $RegisterStateCopyWith(
-          RegisterState value, $Res Function(RegisterState) then) =
-      _$RegisterStateCopyWithImpl<$Res, RegisterState>;
+abstract class $CreateStateCopyWith<$Res> {
+  factory $CreateStateCopyWith(
+          CreateState value, $Res Function(CreateState) then) =
+      _$CreateStateCopyWithImpl<$Res, CreateState>;
 }
 
 /// @nodoc
-class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
-    implements $RegisterStateCopyWith<$Res> {
-  _$RegisterStateCopyWithImpl(this._value, this._then);
+class _$CreateStateCopyWithImpl<$Res, $Val extends CreateState>
+    implements $CreateStateCopyWith<$Res> {
+  _$CreateStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -301,7 +301,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_Initial>
+    extends _$CreateStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -314,7 +314,7 @@ class _$_Initial extends _Initial {
 
   @override
   String toString() {
-    return 'RegisterState.initial()';
+    return 'CreateState.initial()';
   }
 
   @override
@@ -401,7 +401,7 @@ class _$_Initial extends _Initial {
   }
 }
 
-abstract class _Initial extends RegisterState {
+abstract class _Initial extends CreateState {
   factory _Initial() = _$_Initial;
   _Initial._() : super._();
 }
@@ -415,7 +415,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SuccessCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_Success>
+    extends _$CreateStateCopyWithImpl<$Res, _$_Success>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
@@ -428,7 +428,7 @@ class _$_Success extends _Success {
 
   @override
   String toString() {
-    return 'RegisterState.success()';
+    return 'CreateState.success()';
   }
 
   @override
@@ -515,7 +515,7 @@ class _$_Success extends _Success {
   }
 }
 
-abstract class _Success extends RegisterState {
+abstract class _Success extends CreateState {
   factory _Success() = _$_Success;
   _Success._() : super._();
 }
@@ -529,7 +529,7 @@ abstract class _$$_InProgressCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InProgressCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_InProgress>
+    extends _$CreateStateCopyWithImpl<$Res, _$_InProgress>
     implements _$$_InProgressCopyWith<$Res> {
   __$$_InProgressCopyWithImpl(
       _$_InProgress _value, $Res Function(_$_InProgress) _then)
@@ -543,7 +543,7 @@ class _$_InProgress extends _InProgress {
 
   @override
   String toString() {
-    return 'RegisterState.inProgress()';
+    return 'CreateState.inProgress()';
   }
 
   @override
@@ -630,7 +630,7 @@ class _$_InProgress extends _InProgress {
   }
 }
 
-abstract class _InProgress extends RegisterState {
+abstract class _InProgress extends CreateState {
   factory _InProgress() = _$_InProgress;
   _InProgress._() : super._();
 }
@@ -648,7 +648,7 @@ abstract class _$$_FailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailureCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_Failure>
+    extends _$CreateStateCopyWithImpl<$Res, _$_Failure>
     implements _$$_FailureCopyWith<$Res> {
   __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
       : super(_value, _then);
@@ -685,7 +685,7 @@ class _$_Failure extends _Failure {
 
   @override
   String toString() {
-    return 'RegisterState.failure(failure: $failure)';
+    return 'CreateState.failure(failure: $failure)';
   }
 
   @override
@@ -780,7 +780,7 @@ class _$_Failure extends _Failure {
   }
 }
 
-abstract class _Failure extends RegisterState {
+abstract class _Failure extends CreateState {
   factory _Failure({required final SubmissionFailure failure}) = _$_Failure;
   _Failure._() : super._();
 

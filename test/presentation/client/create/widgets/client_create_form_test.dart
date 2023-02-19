@@ -1,8 +1,8 @@
 import 'package:appointment/application/client/bloc/client_bloc.dart';
-import 'package:appointment/application/register/bloc/register_bloc.dart';
+import 'package:appointment/application/create/bloc/create_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/presentation/client/common/widgets/client_name_form_field.dart';
-import 'package:appointment/presentation/client/register/widgets/client_register_form.dart';
+import 'package:appointment/presentation/client/create/widgets/client_create_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,26 +12,26 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 
 import '../../../../common/failure_fixture.dart' as failure_fixture;
-import 'client_register_form_test.mocks.dart';
+import 'client_create_form_test.mocks.dart';
 
-@GenerateMocks([RegisterBloc, ClientBloc])
+@GenerateMocks([CreateBloc, ClientBloc])
 void main() {
   late MockClientBloc clientBloc;
-  late MockRegisterBloc<Client> registerBloc;
-  late MockClientRegisterPage mockPage;
+  late MockCreateBloc<Client> createBloc;
+  late MockClientCreatePage mockPage;
   setUp(() {
     clientBloc = MockClientBloc();
     when(clientBloc.state).thenReturn(ClientState.initial());
     when(clientBloc.stream).thenAnswer((_) => const Stream.empty());
 
-    registerBloc = MockRegisterBloc<Client>();
-    when(registerBloc.state).thenReturn(RegisterState.initial());
-    when(registerBloc.stream).thenAnswer((_) => const Stream.empty());
+    createBloc = MockCreateBloc<Client>();
+    when(createBloc.state).thenReturn(CreateState.initial());
+    when(createBloc.stream).thenAnswer((_) => const Stream.empty());
 
-    mockPage = MockClientRegisterPage(
-      registerBloc: registerBloc,
+    mockPage = MockClientCreatePage(
+      createBloc: createBloc,
       clientBloc: clientBloc,
-      child: const ClientRegisterFormWidget(),
+      child: const ClientCreateFormWidget(),
     );
   });
   testWidgets("Render [Form]", (tester) async {
@@ -56,7 +56,7 @@ void main() {
   });
 
   testWidgets(
-      "Add [RegisterEvent.submitted()] "
+      "Add [CreateEvent.submitted()] "
       "when Submit ElevatedButton is pressed", (tester) async {
     // Arrange
     final client = ClientState.initial().client;
@@ -68,8 +68,8 @@ void main() {
 
     // Assert
     verify(
-      registerBloc.add(
-        RegisterEvent<Client>.registered(
+      createBloc.add(
+        CreateEvent<Client>.created(
           entity: client,
         ),
       ),
@@ -78,11 +78,11 @@ void main() {
 
   testWidgets(
       "Show [Icons.error_outline] for 1 second"
-      "When [RegisterState.submissionStatus] is [failure()] ", (tester) async {
+      "When [CreateState.submissionStatus] is [failure()] ", (tester) async {
     // Arrange
-    final state = RegisterState.invalidFieldFailure();
-    when(registerBloc.state).thenReturn(state);
-    when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
+    final state = CreateState.invalidFieldFailure();
+    when(createBloc.state).thenReturn(state);
+    when(createBloc.stream).thenAnswer((_) => Stream.value(state));
 
     await tester.pumpWidget(mockPage);
     await tester.pump();
@@ -98,12 +98,12 @@ void main() {
 
   testWidgets(
       "Show emptyNameFailure translation message"
-      "When [RegisterState.submissionStatus] is [failure()] "
-      "And [RegisterState.failure] is [emptyNameFailure()]", (tester) async {
+      "When [CreateState.submissionStatus] is [failure()] "
+      "And [CreateState.failure] is [emptyNameFailure()]", (tester) async {
     // Arrange
-    final state = RegisterState.invalidFieldFailure();
-    when(registerBloc.state).thenReturn(state);
-    when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
+    final state = CreateState.invalidFieldFailure();
+    when(createBloc.state).thenReturn(state);
+    when(createBloc.stream).thenAnswer((_) => Stream.value(state));
 
     await tester.pumpWidget(mockPage);
     await tester.pump();
@@ -118,14 +118,14 @@ void main() {
 
   testWidgets(
       "Show error [dbErrorMessage] translation message "
-      "When [RegisterState.submissionStatus] is [failure()] "
+      "When [CreateState.submissionStatus] is [failure()] "
       "And [SubmissionFailure] is [repository()] "
       "And [RepositoryFailure] is [dbException()]", (tester) async {
     // Arrange
-    final state = RegisterState.repositoryFailure(
+    final state = CreateState.repositoryFailure(
         failure: failure_fixture.dbErrorRepositoryFailure);
-    when(registerBloc.state).thenReturn(state);
-    when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
+    when(createBloc.state).thenReturn(state);
+    when(createBloc.stream).thenAnswer((_) => Stream.value(state));
 
     await tester.pumpWidget(mockPage);
     await tester.pump();
@@ -140,10 +140,9 @@ void main() {
 
   testWidgets(
       "Show [CircularProgressIndicator] "
-      "When [RegisterState.submissionStatus] is [inProgress()]",
-      (tester) async {
+      "When [CreateState.submissionStatus] is [inProgress()]", (tester) async {
     // Arrange
-    when(registerBloc.state).thenReturn(RegisterState.inProgress());
+    when(createBloc.state).thenReturn(CreateState.inProgress());
 
     await tester.pumpWidget(mockPage);
 
@@ -154,7 +153,7 @@ void main() {
 
   testWidgets(
       "NOT show [CircularProgressIndicator] "
-      "When [RegisterState.submissionStatus] is NOT [inProgress()]",
+      "When [CreateState.submissionStatus] is NOT [inProgress()]",
       (tester) async {
     // Arrange
     await tester.pumpWidget(mockPage);
@@ -166,11 +165,11 @@ void main() {
 
   testWidgets(
       "Show [Icons.check_circle_outline] for 1 second"
-      "When [RegisterState.submissionStatus] is [success()]", (tester) async {
+      "When [CreateState.submissionStatus] is [success()]", (tester) async {
     // Arrange
-    final state = RegisterState.success();
-    when(registerBloc.state).thenReturn(state);
-    when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
+    final state = CreateState.success();
+    when(createBloc.state).thenReturn(state);
+    when(createBloc.stream).thenAnswer((_) => Stream.value(state));
 
     await tester.pumpWidget(mockPage);
     await tester.pump();
@@ -186,11 +185,11 @@ void main() {
 
   testWidgets(
       "Add [ClientEvent.loaded(ClientState.initial().client)] "
-      "When [RegisterState.submissionStatus] is [success()]", (tester) async {
+      "When [CreateState.submissionStatus] is [success()]", (tester) async {
     // Arrange
-    final state = RegisterState.success();
-    when(registerBloc.state).thenReturn(state);
-    when(registerBloc.stream).thenAnswer((_) => Stream.value(state));
+    final state = CreateState.success();
+    when(createBloc.state).thenReturn(state);
+    when(createBloc.stream).thenAnswer((_) => Stream.value(state));
     await tester.pumpWidget(mockPage);
 
     // Act
@@ -206,11 +205,11 @@ void main() {
 
   testWidgets(
       "Should all [NameFormField] initialValue be empty "
-      "When [RegisterState.submissionStatus] is [success()]", (tester) async {
+      "When [CreateState.submissionStatus] is [success()]", (tester) async {
     // Arrange
-    when(registerBloc.state).thenReturn(RegisterState.success());
-    when(registerBloc.stream)
-        .thenAnswer((_) => Stream.value(RegisterState.success()));
+    when(createBloc.state).thenReturn(CreateState.success());
+    when(createBloc.stream)
+        .thenAnswer((_) => Stream.value(CreateState.success()));
     when(clientBloc.state).thenReturn(ClientState.initial());
     when(clientBloc.stream)
         .thenAnswer((_) => Stream.value(ClientState.initial()));
@@ -232,13 +231,13 @@ void main() {
   });
 }
 
-class MockClientRegisterPage extends StatelessWidget {
-  final RegisterBloc<Client> registerBloc;
+class MockClientCreatePage extends StatelessWidget {
+  final CreateBloc<Client> createBloc;
   final ClientBloc clientBloc;
   final Widget child;
-  const MockClientRegisterPage({
+  const MockClientCreatePage({
     super.key,
-    required this.registerBloc,
+    required this.createBloc,
     required this.clientBloc,
     required this.child,
   });
@@ -256,7 +255,7 @@ class MockClientRegisterPage extends StatelessWidget {
                 create: (context) => clientBloc,
               ),
               BlocProvider(
-                create: (context) => registerBloc,
+                create: (context) => createBloc,
               ),
             ],
             child: child,

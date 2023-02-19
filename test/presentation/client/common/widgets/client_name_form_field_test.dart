@@ -28,7 +28,7 @@ void main() {
     // Arrange
     const text = '123';
     await tester.pumpWidget(
-      MockClientRegisterPage(
+      MockClientCreatePage(
         bloc: clientBloc,
       ),
     );
@@ -47,7 +47,7 @@ void main() {
     when(clientBloc.state).thenReturn(ClientState(client: client));
 
     await tester.pumpWidget(
-      MockClientRegisterPage(
+      MockClientCreatePage(
         bloc: clientBloc,
         isEditing: true,
       ),
@@ -67,7 +67,7 @@ void main() {
     when(clientBloc.state).thenReturn(ClientState(client: client));
 
     await tester.pumpWidget(
-      MockClientRegisterPage(
+      MockClientCreatePage(
         bloc: clientBloc,
         isEditing: false,
       ),
@@ -87,7 +87,7 @@ void main() {
     when(clientBloc.state).thenReturn(ClientState(client: client));
 
     await tester.pumpWidget(
-      MockClientRegisterPage(
+      MockClientCreatePage(
         bloc: clientBloc,
         initialValue: name,
       ),
@@ -105,7 +105,7 @@ void main() {
     when(clientBloc.state).thenReturn(ClientState(client: client));
 
     await tester.pumpWidget(
-      MockClientRegisterPage(
+      MockClientCreatePage(
         bloc: clientBloc,
         isEditing: true,
       ),
@@ -123,11 +123,11 @@ void main() {
   });
 }
 
-class MockClientRegisterPage extends StatelessWidget {
+class MockClientCreatePage extends StatelessWidget {
   final ClientBloc bloc;
   final bool isEditing;
   final String? initialValue;
-  const MockClientRegisterPage(
+  const MockClientCreatePage(
       {super.key,
       required this.bloc,
       this.isEditing = false,
