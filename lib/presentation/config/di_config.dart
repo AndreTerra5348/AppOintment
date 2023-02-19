@@ -2,14 +2,14 @@
 // This file is used for configuration only, it should not be tested
 // coverage:ignore-file
 import 'package:appointment/application/client/bloc/client_bloc.dart';
-import 'package:appointment/application/client/register/client_register_validator.dart';
+import 'package:appointment/application/client/create/client_create_validator.dart';
 import 'package:appointment/application/client/search/bloc/client_search_bloc.dart';
 import 'package:appointment/application/delete/bloc/delete_bloc.dart';
 import 'package:appointment/application/details/bloc/details_bloc.dart';
 import 'package:appointment/application/edit/bloc/edit_bloc.dart';
 import 'package:appointment/application/load/bloc/load_bloc.dart';
-import 'package:appointment/application/register/bloc/register_bloc.dart';
-import 'package:appointment/application/register/register_validator.dart';
+import 'package:appointment/application/create/bloc/create_bloc.dart';
+import 'package:appointment/application/create/create_validator.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/core/repository.dart';
 import 'package:appointment/infrastructure/drift/client/client_converter.dart';
@@ -30,7 +30,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 /// Instantiates [GetIt] globally
 final getIt = GetIt.instance;
 
-/// Registers all dependencies
+/// Creates all dependencies
 void servicesConfiguration() {
   getIt.registerSingleton<QueryExecutor>(
     executor_factory.create(),
@@ -54,11 +54,11 @@ void servicesConfiguration() {
     EntityRepository<ClientModel, ClientModels, Client>(getIt(), getIt()),
   );
 
-  getIt.registerSingleton<RegisterValidator<Client>>(
-    ClientRegisterValidator(),
+  getIt.registerSingleton<CreateValidator<Client>>(
+    ClientCreateValidator(),
   );
 
-  getIt.registerFactory(() => RegisterBloc<Client>(getIt(), getIt()));
+  getIt.registerFactory(() => CreateBloc<Client>(getIt(), getIt()));
   getIt.registerFactory(() => ClientSearchBloc(getIt()));
 
   getIt.registerFactory(() => LoadBloc<Client>(getIt()));

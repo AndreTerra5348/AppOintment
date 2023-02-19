@@ -1,31 +1,29 @@
-part of 'register_bloc.dart';
+part of 'create_bloc.dart';
 
 /// Defines [EntityMixin] registration states
 @freezed
-class RegisterState with _$RegisterState {
-  const RegisterState._();
+class CreateState with _$CreateState {
+  const CreateState._();
 
   /// Emitted when intializing
-  factory RegisterState.initial() = _Initial;
+  factory CreateState.initial() = _Initial;
 
   /// Emitted when the [EntityMixin] is successfully registered
-  factory RegisterState.success() = _Success;
+  factory CreateState.success() = _Success;
 
   /// Emitted when the [EntityMixin] is registering
-  factory RegisterState.inProgress() = _InProgress;
+  factory CreateState.inProgress() = _InProgress;
 
   /// Emitted when the [EntityMixin] fails to register for any reason
-  factory RegisterState.failure({required SubmissionFailure failure}) =
-      _Failure;
+  factory CreateState.failure({required SubmissionFailure failure}) = _Failure;
 
   /// Emitted when the [EntityMixin] fails to register due to invalid fields
-  factory RegisterState.invalidFieldFailure() =>
-      RegisterState.failure(failure: const SubmissionFailure.invalidFields());
+  factory CreateState.invalidFieldFailure() =>
+      CreateState.failure(failure: const SubmissionFailure.invalidFields());
 
   /// Emitted when the [EntityMixin] fails to register due to a [Repository] error
-  factory RegisterState.repositoryFailure(
-          {required RepositoryFailure failure}) =>
-      RegisterState.failure(
+  factory CreateState.repositoryFailure({required RepositoryFailure failure}) =>
+      CreateState.failure(
         failure: SubmissionFailure.repository(
           failure: failure,
         ),

@@ -15,7 +15,7 @@
 
     "@_HOME_DRAWER": {},
     "homeDrawerTitle": "Home",
-    "homeDrawerClientRegister": "Client Registration",
+    "homeDrawerClientCreate": "Client Registration",
     "homeDrawerClientSearch": "Client Search",
 
     "@_COMMON": {},
@@ -29,9 +29,9 @@
     "cancel": "Cancel",
     "success": "Success",
 
-    "@_CLIENT_REGISTER_PAGE": {},
-    "pageClientRegisterTitle": "Client Registration",
-    "registrationCompleted": "Registration Completed",
+    "@_CLIENT_CREATE_PAGE": {},
+    "pageClientCreateTitle": "Client Registration",
+    "creationCompleted": "Registration Completed",
 
     "@_CLIENT_SEARCH_PAGE": {},
     "pageClientSearchTitle": "Client Search",

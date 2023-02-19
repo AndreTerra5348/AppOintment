@@ -1,11 +1,11 @@
-/// Defines [ClientRegisterFormWidget]
+/// Defines [ClientCreateFormWidget]
 import 'dart:async';
 
 import 'package:appointment/application/client/bloc/client_bloc.dart';
 import 'package:appointment/application/common/submission_status.dart';
-import 'package:appointment/application/register/bloc/register_bloc.dart';
+import 'package:appointment/application/create/bloc/create_bloc.dart';
 import 'package:appointment/domain/client/client_entity.dart';
-import 'package:appointment/presentation/client/register/widgets/client_register_name_input.dart';
+import 'package:appointment/presentation/client/register/widgets/client_create_name_input.dart';
 import 'package:appointment/presentation/common/build_context_extensions.dart';
 import 'package:appointment/presentation/common/failure_extensions.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +15,21 @@ import 'package:appointment/presentation/common/messege_dialog.dart'
     as messesge_dialog;
 
 /// Handles [Client] registration,
-/// displays and handles [RegisterNameInputWidget] changes
-class ClientRegisterFormWidget extends StatefulWidget {
-  const ClientRegisterFormWidget({super.key});
+/// displays and handles [CreateNameInputWidget] changes
+class ClientCreateFormWidget extends StatefulWidget {
+  const ClientCreateFormWidget({super.key});
 
   @override
-  State<ClientRegisterFormWidget> createState() =>
-      _ClientRegisterFormWidgetState();
+  State<ClientCreateFormWidget> createState() => _ClientCreateFormWidgetState();
 }
 
-class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
+class _ClientCreateFormWidgetState extends State<ClientCreateFormWidget> {
   final _formKey = GlobalKey<FormState>();
   Timer? _timer;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterBloc<Client>, RegisterState>(
+    return BlocConsumer<CreateBloc<Client>, CreateState>(
       listenWhen: (previous, current) => current.isFailure || current.isSuccess,
       listener: (context, registerState) {
         registerState.maybeMap(
@@ -63,7 +62,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const RegisterNameInputWidget(),
+                        const CreateNameInputWidget(),
                         Expanded(
                           child: Align(
                             alignment: Alignment.bottomRight,
@@ -91,7 +90,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     );
   }
 
-  /// Handles [RegisterBloc] success
+  /// Handles [CreateBloc] success
   /// Resets [ClientBloc] and form state
   _handleSuccess(BuildContext context) {
     context.reset();
@@ -103,7 +102,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
         color: Colors.green,
       ),
       text: Text(
-        context.tr.registrationCompleted,
+        context.tr.creationCompleted,
         style: const TextStyle(
           color: Colors.green,
         ),
@@ -111,7 +110,7 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
     );
   }
 
-  /// Handles [RegisterBloc] failure
+  /// Handles [CreateBloc] failure
   /// Shows dialog box with error message
   _handleFailure(BuildContext context, SubmissionFailure failure) {
     messesge_dialog.show(
@@ -136,10 +135,10 @@ class _ClientRegisterFormWidgetState extends State<ClientRegisterFormWidget> {
   }
 }
 
-/// Shortcuts for [RegisterBloc] and [ClientBloc] events and states
+/// Shortcuts for [CreateBloc] and [ClientBloc] events and states
 extension on BuildContext {
-  void submitted({required Client client}) => read<RegisterBloc<Client>>().add(
-        RegisterEvent<Client>.registered(entity: client),
+  void submitted({required Client client}) => read<CreateBloc<Client>>().add(
+        CreateEvent<Client>.created(entity: client),
       );
 
   void reset() => read<ClientBloc>().add(

@@ -92,7 +92,7 @@ class _ClientSearchResultsWidgetState extends State<ClientSearchResultsWidget>
     _fetchMore();
   }
 
-  /// Registers a [PostFrameCallback] to fetch more [Client]s
+  /// Creates a [PostFrameCallback] to fetch more [Client]s
   /// when there's not envough clients to fill the screen
   void _fetchMorePostFrame() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

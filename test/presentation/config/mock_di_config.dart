@@ -1,12 +1,12 @@
 import 'package:appointment/application/client/bloc/client_bloc.dart';
-import 'package:appointment/application/client/register/client_register_validator.dart';
+import 'package:appointment/application/client/create/client_create_validator.dart';
 import 'package:appointment/application/client/search/bloc/client_search_bloc.dart';
 import 'package:appointment/application/delete/bloc/delete_bloc.dart';
 import 'package:appointment/application/details/bloc/details_bloc.dart';
 import 'package:appointment/application/load/bloc/load_bloc.dart';
 import 'package:appointment/application/edit/bloc/edit_bloc.dart';
-import 'package:appointment/application/register/bloc/register_bloc.dart';
-import 'package:appointment/application/register/register_validator.dart';
+import 'package:appointment/application/create/bloc/create_bloc.dart';
+import 'package:appointment/application/create/create_validator.dart';
 import 'package:appointment/domain/client/client_entity.dart';
 import 'package:appointment/domain/core/repository.dart';
 import 'package:appointment/infrastructure/drift/client/client_converter.dart';
@@ -25,8 +25,8 @@ void mockServicesConfiguration(ClientDao dao,
     {ClientPaginationService? clientPaginationService,
     EntityRepository<ClientModel, ClientModels, Client>? clientRepository,
     EntityConverter<ClientModel, Client>? clientConverter,
-    ClientRegisterValidator? clientRegisterValidator,
-    RegisterBloc<Client>? registerBloc,
+    ClientCreateValidator? clientCreateValidator,
+    CreateBloc<Client>? registerBloc,
     ClientSearchBloc? clientSearchBloc,
     LoadBloc<Client>? loadBloc,
     EditBloc<Client>? editBloc,
@@ -49,12 +49,12 @@ void mockServicesConfiguration(ClientDao dao,
         EntityRepository<ClientModel, ClientModels, Client>(getIt(), getIt()),
   );
 
-  getIt.registerSingleton<RegisterValidator<Client>>(
-    clientRegisterValidator ?? ClientRegisterValidator(),
+  getIt.registerSingleton<CreateValidator<Client>>(
+    clientCreateValidator ?? ClientCreateValidator(),
   );
 
   getIt.registerFactory(
-      () => registerBloc ?? RegisterBloc<Client>(getIt(), getIt()));
+      () => registerBloc ?? CreateBloc<Client>(getIt(), getIt()));
   getIt.registerFactory(() => clientSearchBloc ?? ClientSearchBloc(getIt()));
 
   getIt.registerFactory(() => loadBloc ?? LoadBloc<Client>(getIt()));

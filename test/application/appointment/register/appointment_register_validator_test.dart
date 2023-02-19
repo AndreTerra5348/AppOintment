@@ -1,4 +1,4 @@
-import 'package:appointment/application/appointment/register/appointment_register_validator.dart';
+import 'package:appointment/application/appointment/create/appointment_create_validator.dart';
 import 'package:appointment/domain/appointment/appointment_entity.dart';
 import 'package:appointment/domain/common/common_values.dart';
 import 'package:dartz/dartz.dart';
@@ -16,7 +16,7 @@ void main() {
       ),
     );
 
-    final sut = AppointmentRegisterValidator();
+    final sut = AppointmentCreateValidator();
 
     // Act
     final actual = sut.validate(appointment);
@@ -36,7 +36,7 @@ void main() {
       ),
     );
 
-    final sut = AppointmentRegisterValidator();
+    final sut = AppointmentCreateValidator();
 
     // Act
     final actual = sut.validate(appointment);
